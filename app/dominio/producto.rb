@@ -1,7 +1,7 @@
 #Estructura de datos de un producto
 class Producto
-  attr_accessor :id, :nombre, :descripcion
-  #1 a N
+  attr_accessor :id, :nombre, :descripcion, :stock
+  #N a N
   attr_accessor :carrito, :proveedor
 
   #Funcion JSON
