@@ -1,0 +1,20 @@
+# Configuracion de la base de datos cuando se encuentra en el entorno de desarrollo
+development:
+  adapter: sqlite3
+  encoding: unicode
+  database: db/cf_development.sqlite3
+  pool: 5
+
+# Configuracion de la base de datos cuando se encuentra en el entorno de testing
+test:
+  adapter: sqlite3
+  encoding: unicode
+  database: db/cf_test.sqlite3
+  pool: 5
+
+# Configuracion de la base de datos cuando se encuentra en el entorno de produccion
+production:
+  adapter: sqlite3
+  encoding: unicode
+  database: db/cf_production.sqlite3
+  pool: 5
