@@ -6,7 +6,7 @@ require 'json'
 require 'app/dominio/producto'
 require 'app/aplicacion/producto_bo'
 
-#Clase principal de los productos del proyecto
+#Clase principal de la API de los productos
 class ProductosAPI < Sinatra::Base
 
   #Configuracion inicial
