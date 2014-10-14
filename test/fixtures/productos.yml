@@ -1,0 +1,13 @@
+jamon_serrano:
+  nombre: Jamon serrano
+  descripcion: Jamon de pata negra
+  precioKg: 75
+  stock: 100
+  ofertas: true
+
+jamon_york:
+  nombre: Jamon york
+  descripcion: Jamon normalito
+  precioKg: 5
+  stock: 200
+  ofertas: false

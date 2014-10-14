@@ -1,10 +1,10 @@
 require 'sinatra'
 require 'sinatra/reloader'
+require 'sinatra/activerecord'
 require 'json'
 
 require 'app/dominio/producto'
 require 'app/aplicacion/producto_bo'
-#require 'app/util/validacion_error'
 
 #Clase principal de los productos del proyecto
 class ProductosAPI < Sinatra::Base

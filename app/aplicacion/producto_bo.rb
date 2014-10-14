@@ -3,11 +3,10 @@ class ProductoBO
 
   #Funcion que devuelve una lista de los productos en oferta
   def ofertas
-    'ofertas'
+    Producto.where(:ofertas=>true)
   end
 
   #Funcion que crea un producto a partir de los datos
-  def crear_prodcuto(datos, login)
-    Producto.new
+  def crear_producto(datos, login)
   end
 end
