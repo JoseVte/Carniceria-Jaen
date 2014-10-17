@@ -1,0 +1,8 @@
+root:
+  user: root
+  pass: root
+  nombre: Adminitrador
+  apellidos: del sistema
+  email: root@root.su
+  direccion: root
+  telefono: 987654321
