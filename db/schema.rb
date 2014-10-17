@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141014074325) do
+ActiveRecord::Schema.define(version: 20141014121047) do
 
   create_table "productos", force: true do |t|
     t.string  "nombre"
@@ -19,6 +19,16 @@ ActiveRecord::Schema.define(version: 20141014074325) do
     t.float   "precioKg"
     t.integer "stock"
     t.boolean "ofertas"
+  end
+
+  create_table "usuarios", id: false, force: true do |t|
+    t.string "user"
+    t.string "pass",      null: false
+    t.string "nombre",    null: false
+    t.string "apellidos", null: false
+    t.string "email",     null: false
+    t.text   "direccion", null: false
+    t.string "telefono",  null: false
   end
 
 end

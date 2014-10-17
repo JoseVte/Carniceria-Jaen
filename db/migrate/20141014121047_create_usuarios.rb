@@ -1,8 +1,8 @@
 class CreateUsuarios < ActiveRecord::Migration
   def change
-    create_table :usuarios, id:false do |u|
+    create_table :usuarios,{ :id => false, :primary_key => :user } do |u|
       #Sera la clave primaria
-      u.string :user, null:false
+      u.string :user
       #Estara codificada con digest
       u.string :pass, null:false
 
@@ -14,8 +14,6 @@ class CreateUsuarios < ActiveRecord::Migration
       #De momento solo una direccion y un telefono
       u.text :direccion,null:false
       u.string :telefono, null:false
-
-      execute "ALTER TABLE usuarios ADD PRIMARY KEY (user);"
     end
   end
 end
