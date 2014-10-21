@@ -12,11 +12,15 @@ class UsuariosAPI < Sinatra::Base
   #Configuracion inicial
   configure do
     puts 'configurando API de usuarios...'
-    @@producto_bo = ProductoBO.new
+    @@usuario_bo = UsuarioBO.new
   end
 
   configure :development do
     register Sinatra::Reloader
+  end
+
+  get '/all' do
+    @@usuario_bo.usuarios.to_json
   end
 
 end

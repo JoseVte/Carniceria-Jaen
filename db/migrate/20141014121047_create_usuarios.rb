@@ -1,8 +1,8 @@
 class CreateUsuarios < ActiveRecord::Migration
   def change
-    create_table :usuarios,{ :id => false, :primary_key => :user } do |u|
+    create_table :usuarios do |u|
       #Sera la clave primaria
-      u.string :user
+      u.string :user, null:false
       #Estara codificada con digest
       u.string :pass, null:false
 

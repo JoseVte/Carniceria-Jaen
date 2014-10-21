@@ -1,10 +1,9 @@
 require 'minitest/autorun'
 require 'json'
-require 'database_cleaner'
 require_relative '../test_helper' #para poder ejecutar los test desde RubyMine
-require 'app/aplicacion/producto_bo'
+require 'app/aplicacion/usuario_bo'
 
-class ProductosBOTest < MiniTest::Test
+class UsuariosBOTest < MiniTest::Test
 
   def setup
     ActiveRecord::Base.establish_connection(
@@ -13,14 +12,12 @@ class ProductosBOTest < MiniTest::Test
         #si cambiáis de sitio el test, habrá que cambiar el path
         :database  => File.join(File.dirname(__FILE__),'..', '..','db','cf_test.sqlite3')
     )
-    DatabaseCleaner.strategy = :transaction
-    DatabaseCleaner.start
   end
 
-  # Test para listar los productos en oferta
-  def test_listar_ofertas
-    prod_bo = ProductoBO.new
-    lista = prod_bo.ofertas()
+  # Test de listado total de los usuarios
+  def test_listar_todo
+    us_bo = UsuarioBO.new
+    lista = us_bo.usuarios
     assert_equal 1, lista.length
   end
 
