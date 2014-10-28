@@ -24,6 +24,10 @@ class ProductosAPI < Sinatra::Base
     @@producto_bo.ofertas.to_json
   end
 
+  get '/all' do
+    @@producto_bo.all.to_json
+  end
+
   #Mostrar un producto
   get '/:id' do
     @@producto_bo.ver_producto(params['id']).to_json

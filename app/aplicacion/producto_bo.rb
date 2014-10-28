@@ -6,6 +6,10 @@ class ProductoBO
     Producto.where(:ofertas=>true)
   end
 
+  def all
+    Producto.all
+  end
+
   #Devuelve un producto concreto
   def ver_producto(id)
     Producto.find_by(id)
@@ -29,6 +33,7 @@ class ProductoBO
   #Modifica un producto
   def modificar_producto(datos, login)
     p = Producto.find_by(datos['id'])
+    datos.delete('id')
     if p.nil?
       'Error 404: no existe el producto '+datos['id']
     elsif p.update(datos)
