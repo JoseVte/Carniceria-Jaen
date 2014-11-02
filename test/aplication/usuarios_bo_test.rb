@@ -5,6 +5,8 @@ require 'app/aplicacion/usuario_bo'
 
 class UsuariosBOTest < MiniTest::Test
 
+  @@users_bo = UsuarioBO.new
+
   def setup
     ActiveRecord::Base.establish_connection(
         :adapter => "sqlite3",
@@ -15,9 +17,8 @@ class UsuariosBOTest < MiniTest::Test
   end
 
   # Test de listado total de los usuarios
-  def test_listar_todo
-    us_bo = UsuarioBO.new
-    lista = us_bo.usuarios
+  def test_listar_todos
+    lista = @@users_bo.all
     assert_equal 1, lista.length
   end
 

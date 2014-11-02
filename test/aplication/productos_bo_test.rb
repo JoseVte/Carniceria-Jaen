@@ -33,10 +33,8 @@ class ProductosBOTest < MiniTest::Test
 
   # Test para listar un producto
   def test_listar_id
-    # Preguntar porque esta mierda no va
-    # p = prod_bo.ver_producto(65007893)
-
-    # assert_equal 'Jamon serrano',p.nombre
+    p = @@prod_bo.ver_producto(1)
+    assert_equal 'Jamon serrano',p.nombre
   end
 
   # Test para crear un producto
