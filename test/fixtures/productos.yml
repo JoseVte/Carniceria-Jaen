@@ -1,4 +1,5 @@
 jamon_serrano:
+  id: 1
   nombre: Jamon serrano
   descripcion: Jamon de pata negra
   precioKg: 75
@@ -6,6 +7,7 @@ jamon_serrano:
   ofertas: true
 
 jamon_york:
+  id: 2
   nombre: Jamon york
   descripcion: Jamon normalito
   precioKg: 5
