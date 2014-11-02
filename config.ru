@@ -6,17 +6,22 @@ $LOAD_PATH << File.expand_path(__dir__)
 
 #puts $LOAD_PATH
 
-=begin Descomentar en un futuro
+require 'app/api/productos_api'
+require 'app/api/usuarios_api'
+#require 'app/api/autentificacion_api'
 
-require 'app/api/carniceria_api'
-require 'app/api/autentificacion_api'
 
-
-map '/api/carniceria' do
+map '/api/producto' do
   use Rack::Session::Pool
-  run ProyectosAPI
+  run ProductosAPI
 end
 
+map '/api/usuario' do
+  use Rack::Session::Pool
+  run UsuariosAPI
+end
+
+=begin
 map '/api/autentificacion' do
   use Rack::Session::Pool
   run AutentificacionAPI
