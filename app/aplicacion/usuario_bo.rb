@@ -8,7 +8,9 @@ class UsuarioBO
 
   # Devuelve un producto concreto
   def ver_usuario(usuario)
-    Usuario.find_by(user: usuario)
+    u = Usuario.find_by(user: usuario)
+    raise CustomMsgException.new(404,'Error 404: No existe el usuario '+usuario) if u.nil?
+    u
   end
 
   # Funcion que crea un producto a partir de los datos

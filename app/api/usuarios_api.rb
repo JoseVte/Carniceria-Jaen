@@ -28,8 +28,13 @@ class UsuariosAPI < Sinatra::Base
 
   # Un usuario en JSON. Si no existe lanza un 404
   get '/:user' do
-    u = @@usuario_bo.ver_usuario(params['user']) or not_found('Error 404: No existe el usuario')
-    u.to_json
+    begin
+      u = @@usuario_bo.ver_usuario(params['user'])
+      u.to_json
+    rescue CustomMsgException => e
+      status e.status
+      e.message
+    end
   end
 
   # Crea un usuario nuevo. Si ya existe o esta mal formado el formulario lanza un 400

@@ -46,7 +46,7 @@ class UsuariosAPITest < MiniTest::Test
     get '/noExiste'
     assert_equal 404, last_response.status
     datos = last_response.body
-    assert_equal datos, 'Error 404: No existe el usuario'
+    assert_equal datos, 'Error 404: No existe el usuario noExiste'
   end
 
 =begin
