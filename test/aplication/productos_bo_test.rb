@@ -20,25 +20,32 @@ class ProductosBOTest < MiniTest::Test
   end
 
   # Test para listar los productos en oferta
-  def test_listar_ofertas
+  def test_bo_listar_ofertas
     lista = @@prod_bo.ofertas()
     assert_equal 1, lista.length
   end
 
   # Test para listar todos los productos
-  def test_listar_todos
+  def test_bo_listar_todos
     lista = @@prod_bo.all()
     assert_equal 2, lista.length
   end
 
   # Test para listar un producto
-  def test_listar_id
+  def test_bo_listar_id
     p = @@prod_bo.ver_producto(1)
     assert_equal 'Jamon serrano',p.nombre
   end
 
+  def test_bo_error_listar_id
+    e = assert_raises CustomMsgException  do
+      @@prod_bo.ver_producto(0)
+    end
+    assert_equal 'Error 404: No existe el producto 0',e.message
+  end
+
   # Test para crear un producto
-  def test_crear_producto
+  def test_bo_crear_producto
     datos = {:nombre => 'Test',
              :descripcion => '',
              :precioKg => 0,
@@ -51,16 +58,18 @@ class ProductosBOTest < MiniTest::Test
   end
 
   # Test para el error al crear un producto
-  def test_error_crear_producto
+  def test_bo_error_crear_producto
     datos = {}
 
-    p = @@prod_bo.crear_producto(datos,'login')
-    assert_equal 'Aqui excepcion', p
+    e = assert_raises CustomMsgException do
+      @@prod_bo.crear_producto(datos,'login')
+    end
+    assert_equal 'Error 400: Los datos son incorrectos', e.message
   end
 
 =begin Preguntar porque no funciona
   # Test para modificar un producto
-  def test_modificar_producto
+  def test_bo_modificar_producto
     datos = {:nombre => 'Test',
              :descripcion => '',
              :precioKg => 0,
@@ -81,4 +90,18 @@ class ProductosBOTest < MiniTest::Test
     assert_equal 'Test 2', p2.nombre
   end
 =end
+
+  # Test para borrar un producto de la BD
+  def test_bo_delete_user
+    msg = @@prod_bo.borrar_producto(1,'login')
+    assert_equal 'Se ha borrado correctamente el producto 1', msg
+  end
+
+  # Test para comprobar si el producto no existe al borrar
+  def test_bo_delete_user_no_exist
+    e = assert_raises CustomMsgException do
+      @@prod_bo.borrar_producto(0,'login')
+    end
+    assert_equal 'Error 404: No existe el producto con id 0', e.message
+  end
 end
