@@ -25,6 +25,11 @@ class ProductosBOTest < MiniTest::Test
     assert_equal 1, lista.length
   end
 
+  def test_bo_buscar_prod
+    lista = @@prod_bo.busqueda('ja')
+    assert_equal 2, lista.length
+  end
+
   # Test para listar todos los productos
   def test_bo_listar_todos
     lista = @@prod_bo.all()
@@ -37,6 +42,7 @@ class ProductosBOTest < MiniTest::Test
     assert_equal 'Jamon serrano',p.nombre
   end
 
+  # Test error al buscar un producto
   def test_bo_error_listar_id
     e = assert_raises CustomMsgException  do
       @@prod_bo.ver_producto(0)

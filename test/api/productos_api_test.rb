@@ -33,6 +33,13 @@ class ProductosAPITest < MiniTest::Test
     assert_equal datos.length, 1
   end
 
+  def test_api_buscar_prod
+    get '/buscar/ja'
+    assert_equal 200, last_response.status
+    datos = JSON.parse(last_response.body)
+    assert_equal datos.length, 2
+  end
+
   # Test para comprobar la llamada a la API de todos los productos
   def test_api_all
     get '/all'
