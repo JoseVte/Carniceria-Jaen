@@ -24,6 +24,11 @@ class ProductosAPI < Sinatra::Base
     @@producto_bo.ofertas.to_json
   end
 
+  # Devuelve un listado con todos los productos que contengan la subcadena
+  get '/buscar/:subcadena' do
+    @@producto_bo.busqueda(params['subcadena']).to_json
+  end
+
   # Todos los productos en JSON
   get '/all' do
     @@producto_bo.all.to_json

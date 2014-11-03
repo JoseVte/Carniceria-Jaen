@@ -6,6 +6,11 @@ class ProductoBO
     Producto.where(:ofertas=>true)
   end
 
+  # Busqueda de productos por subcadena
+  def busqueda(subcadena)
+    Producto.where("nombre LIKE ?", "%#{subcadena}%")
+  end
+
   # Todos los productos
   def all
     Producto.all
