@@ -22,4 +22,6 @@ class UsuariosBOTest < MiniTest::Test
     assert_equal 1, lista.length
   end
 
+
+
 end

@@ -1,51 +1,43 @@
-#Clase DAO para usuarios
+# Clase DAO para usuarios
 class UsuarioBO
+
+  # Devuelve una lista de todos los usuarios
   def all
     Usuario.all
   end
 
-  #Devuelve un producto concreto
+  # Devuelve un producto concreto
   def ver_usuario(usuario)
     Usuario.find_by(user: usuario)
   end
 
-  #Funcion que crea un producto a partir de los datos
+  # Funcion que crea un producto a partir de los datos
   def crear_usuario(datos)
     u = Usuario.new(datos)
 
-    if u.nil?
-      'Aqui no va'
-    elsif u.valid?
-      #'Aqui funca'
-      u.save
-      u
-    else
-      'Aqui excepcion'
-    end
+    raise CustomMsgException.new(400,'Error 400: Los datos son incorrectos') if !u.valid?
+
+    u.save
+    u
   end
 
-  #Modifica un producto
+  # Modifica un producto
   def modificar_usuario(datos)
     u = Usuario.find_by(user: datos['user'])
+
+    raise CustomMsgException.new(404,'Error 404: No existe el usuario '+datos['user']) if u.nil?
     datos.delete('user')
-    if u.nil?
-      'Error 404: no existe el producto '+datos['user']
-    elsif u.update(datos)
-      u.save
-      u
-    else
-      'Error no se ha podido modificar'
-    end
+    raise CustomMsgException.new(500,'Error 500: No se ha podido modificar') if !u.update(datos)
+
+    u.save
+    u
   end
 
-  #Borra un producto por el id
+  # Borra un producto por el id
   def borrar_usuario(usuario)
-    if Usuario.find_by(user: usuario).nil?
-      #Excepcion
-      'Error 404: no se ha podido encontrar el producto'
-    else
-      Usuario.destroy_all(user: usuario)
-      'Se ha borrado correctamente'
-    end
+    raise CustomMsgException.new(404,'Error 404: No existe el usuario '+usuario) if Usuario.find_by(user: usuario).nil?
+
+    Usuario.destroy_all(user: usuario)
+    'Se ha borrado correctamente'
   end
 end

@@ -2,9 +2,11 @@ require 'sinatra'
 require 'sinatra/reloader'
 require 'sinatra/activerecord'
 require 'json'
+require 'sinatra/respond_with'
 
 require 'app/dominio/usuario'
 require 'app/aplicacion/usuario_bo'
+require 'app/util/custom_msg_exception'
 
 #Clase principal de la API de los usuarios
 class UsuariosAPI < Sinatra::Base
@@ -19,14 +21,18 @@ class UsuariosAPI < Sinatra::Base
     register Sinatra::Reloader
   end
 
+  # Lista de usuarios en JSON
   get '/all' do
     @@usuario_bo.all.to_json
   end
 
+  # Un usuario en JSON. Si no existe lanza un 404
   get '/:user' do
-    @@usuario_bo.ver_usuario(params['user']).to_json
+    u = @@usuario_bo.ver_usuario(params['user']) or not_found('No existe el usuario')
+    u.to_json
   end
 
+  # Crea un usuario nuevo. Si ya existe o esta mal formado el formulario lanza un 400
   post '/new' do
     datos = {:user => params['user'],
              :pass => params['pass'],
@@ -36,9 +42,18 @@ class UsuariosAPI < Sinatra::Base
              :direccion => params['direccion'],
              :telefono => params['telefono']
     }
-    @@usuario_bo.crear_usuario(datos)
+
+    begin
+      u = @@usuario_bo.crear_usuario(datos)
+      status 201
+      u.to_json
+    rescue CustomMsgException => e
+      status e.status
+      e.message
+    end
   end
 
+  # Actualiza los campos de un usuario. Si se viola alguna regla de la base de datos lanza un 400
   post '/update' do
     if params['user'].nil?
       'Error en el formulario'
@@ -66,11 +81,26 @@ class UsuariosAPI < Sinatra::Base
         datos.store('telefono',params['telefono'])
       end
 
-      @@usuario_bo.modificar_usuario(datos)
+      begin
+        u = @@usuario_bo.modificar_usuario(datos)
+        status 200
+        u.to_json
+      rescue CustomMsgException => e
+        status e.status
+        e.message
+      end
     end
   end
 
+  # Borra un usuario del sistema. Si no existe devuelve un 404
   delete '/delete/:user' do
-    @@usuario_bo.borrar_usuario(params['user'])
+    begin
+      msg = @@usuario_bo.borrar_usuario(params['user'])
+      status 200
+      msg
+    rescue CustomMsgException => e
+      status e.status
+      e.message
+    end
   end
 end
