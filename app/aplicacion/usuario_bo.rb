@@ -1,51 +1,47 @@
-#Clase DAO para usuarios
+# Clase DAO para usuarios
 class UsuarioBO
+
+  # Devuelve una lista de todos los usuarios
   def all
     Usuario.all
   end
 
-  #Devuelve un producto concreto
+  # Devuelve un producto concreto
   def ver_usuario(usuario)
-    Usuario.find_by(user: usuario)
+    u = Usuario.find_by(user: usuario)
+    raise CustomMsgException.new(404,'Error 404: No existe el usuario '+usuario) if u.nil?
+    u
   end
 
-  #Funcion que crea un producto a partir de los datos
-  def crear_usuario(datos)
+  # Funcion que crea un producto a partir de los datos
+  def crear_usuario(datos,login)
+    exist = Usuario.find_by(user: datos['user'].to_s)
+    raise CustomMsgException.new(400,'Error 400: El usuario '+datos['user']+' ya existe') if !exist.nil?
+
     u = Usuario.new(datos)
+    raise CustomMsgException.new(400,'Error 400: Los datos son incorrectos') if !u.valid?
 
-    if u.nil?
-      'Aqui no va'
-    elsif u.valid?
-      #'Aqui funca'
-      u.save
-      u
-    else
-      'Aqui excepcion'
-    end
+    u.save
+    u
   end
 
-  #Modifica un producto
-  def modificar_usuario(datos)
-    u = Usuario.find_by(user: datos['user'])
+  # Modifica un producto
+  def modificar_usuario(datos,login)
+    u = Usuario.find_by(user: datos['user'].to_s)
+
+    raise CustomMsgException.new(404,'Error 404: No existe el usuario '+datos['user'].to_s) if u.nil?
     datos.delete('user')
-    if u.nil?
-      'Error 404: no existe el producto '+datos['user']
-    elsif u.update(datos)
-      u.save
-      u
-    else
-      'Error no se ha podido modificar'
-    end
+    raise CustomMsgException.new(500,'Error 500: No se ha podido modificar') if !u.update(datos)
+
+    u.save
+    u
   end
 
-  #Borra un producto por el id
-  def borrar_usuario(usuario)
-    if Usuario.find_by(user: usuario).nil?
-      #Excepcion
-      'Error 404: no se ha podido encontrar el producto'
-    else
-      Usuario.destroy_all(user: usuario)
-      'Se ha borrado correctamente'
-    end
+  # Borra un producto por el id
+  def borrar_usuario(usuario,login)
+    raise CustomMsgException.new(404,'Error 404: No existe el usuario '+usuario) if Usuario.find_by(user: usuario).nil?
+
+    Usuario.destroy_all(user: usuario)
+    'Se ha borrado correctamente el usuario '+usuario
   end
 end

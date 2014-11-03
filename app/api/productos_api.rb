@@ -19,21 +19,34 @@ class ProductosAPI < Sinatra::Base
     register Sinatra::Reloader
   end
 
-  #Listado de los productos en oferta
+  # Listado de los productos en oferta en JSON
   get '/ofertas' do
     @@producto_bo.ofertas.to_json
   end
 
+  # Devuelve un listado con todos los productos que contengan la subcadena
+  get '/buscar/:subcadena' do
+    @@producto_bo.busqueda(params['subcadena']).to_json
+  end
+
+  # Todos los productos en JSON
   get '/all' do
     @@producto_bo.all.to_json
   end
 
-  #Mostrar un producto
+  # Un producto en JSON. Si no existe lanza un 404
   get '/:id' do
-    @@producto_bo.ver_producto(params['id']).to_json
+    begin
+      p = @@producto_bo.ver_producto(params['id'])
+      status 200
+      p.to_json
+    rescue CustomMsgException => e
+      status e.status
+      e.message
+    end
   end
 
-  #Crear un nuevo producto
+  # Crea un producto nuevo. Si ya existe o esta mal formado el formulario lanza un 400
   post '/new' do
     datos = {:nombre => params['nombre'],
              :descripcion => params['descripcion'],
@@ -41,13 +54,21 @@ class ProductosAPI < Sinatra::Base
              :stock => params['stock'],
              :ofertas => params['ofertas']
     }
-    @@producto_bo.crear_producto(datos,'login').to_json
+    begin
+      p = @@producto_bo.crear_producto(datos,'login')
+      status 201
+      p.to_json
+    rescue CustomMsgException => e
+      status e.status
+      e.message
+    end
   end
 
-  #Modificar un producto
+  # Actualiza los campos de un producto. Si se viola alguna regla de la base de datos lanza un 400
   post '/update' do
     if params['id'].nil?
-      'Error en el formulario'
+      status 400
+      'Error 400: Falta el id en el formulario'
     else
       datos = {:id => params['id']}
 
@@ -72,12 +93,26 @@ class ProductosAPI < Sinatra::Base
         datos.store('ofertas',params['ofertas'])
       end
 
-      @@producto_bo.modificar_producto(datos,'login').to_json
+      begin
+        p = @@producto_bo.modificar_producto(datos,'login')
+        status 200
+        p.to_json
+      rescue CustomMsgException => e
+        status e.status
+        e.message
+      end
     end
   end
 
-  #Borrar un producto
+  # Borra un producto del sistema. Si no existe devuelve un 404
   delete '/:id' do
-    @@producto_bo.borrar_producto(params['id'])
+    begin
+      msg = @@producto_bo.borrar_producto(params['id'],'login')
+      status 200
+      msg
+    rescue CustomMsgException => e
+      status e.status
+      e.message
+    end
   end
 end

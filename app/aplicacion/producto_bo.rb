@@ -1,57 +1,55 @@
-#Clase DAO para productos
+# Clase DAO para productos
 class ProductoBO
 
-  #Funcion que devuelve una lista de los productos en oferta
+  # Funcion que devuelve una lista de los productos en oferta
   def ofertas
     Producto.where(:ofertas=>true)
   end
 
+  # Busqueda de productos por subcadena
+  def busqueda(subcadena)
+    Producto.where("nombre LIKE ?", "%#{subcadena}%")
+  end
+
+  # Todos los productos
   def all
     Producto.all
   end
 
-  #Devuelve un producto concreto
+  # Devuelve un producto concreto
   def ver_producto(id)
-    Producto.find_by(id)
+    p = Producto.find_by(id: id)
+    raise CustomMsgException.new(404,'Error 404: No existe el producto '+id.to_s) if p.nil?
+    p
   end
 
-  #Funcion que crea un producto a partir de los datos
+  # Crea un producto a partir de los datos
   def crear_producto(datos, login)
     p = Producto.new(datos)
 
-    if p.nil?
-      'Aqui no va'
-    elsif p.valid?
-      #'Aqui funca'
-      p.save
-      p
-    else
-      'Aqui excepcion'
-    end
+    raise CustomMsgException.new(400,'Error 400: Los datos son incorrectos') if !p.valid?
+
+    p.save
+    p
   end
 
-  #Modifica un producto
+  # Modifica un producto a partir del id
   def modificar_producto(datos, login)
-    p = Producto.find_by(datos['id'])
+    p = Producto.find_by(id: datos['id'])
+    raise CustomMsgException.new(404,'Error 404: No existe el producto '+datos['id'].to_s) if p.nil?
+
     datos.delete('id')
-    if p.nil?
-      'Error 404: no existe el producto '+datos['id']
-    elsif p.update(datos)
-      p.save
-      p
-    else
-      'Error no se ha podido modificar'
-    end
+    raise CustomMsgException.new(500,'Error 500: No se ha podido modificar') if !p.update(datos)
+
+    p.save
+    p
   end
 
-  #Borra un producto por el id
-  def borrar_producto(id)
-    if Producto.find_by(id).nil?
-      #Excepcion
-      'Error 404: no se ha podido encontrar el producto'
-    else
-      Producto.destroy(id)
-      'Se ha borrado correctamente'
-    end
+  # Borra un producto por el id
+  def borrar_producto(id, login)
+    raise CustomMsgException.new(404,'Error 404: No existe el producto con id '+id.to_s) if Producto.find_by(id: id).nil?
+
+    Producto.destroy_all(id: id)
+    'Se ha borrado correctamente el producto '+id.to_s
   end
 end
