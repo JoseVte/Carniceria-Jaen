@@ -15,9 +15,10 @@ class UsuarioBO
 
   # Funcion que crea un producto a partir de los datos
   def crear_usuario(datos)
-    u = Usuario.new(datos)
+    exist = Usuario.find_by(user: datos['user'].to_s)
+    raise CustomMsgException.new(400,'Error 400: El usuario '+datos['user']+' ya existe') if !exist.nil?
 
-    raise CustomMsgException.new(400,'Error 400: El usuario ya existe') if !Usuario.find_by(user: datos['user']).nil?
+    u = Usuario.new(datos)
     raise CustomMsgException.new(400,'Error 400: Los datos son incorrectos') if !u.valid?
 
     u.save
@@ -26,9 +27,9 @@ class UsuarioBO
 
   # Modifica un producto
   def modificar_usuario(datos)
-    u = Usuario.find_by(user: datos['user'])
+    u = Usuario.find_by(user: datos['user'].to_s)
 
-    raise CustomMsgException.new(404,'Error 404: No existe el usuario '+datos['user']) if u.nil?
+    raise CustomMsgException.new(404,'Error 404: No existe el usuario '+datos['user'].to_s) if u.nil?
     datos.delete('user')
     raise CustomMsgException.new(500,'Error 500: No se ha podido modificar') if !u.update(datos)
 

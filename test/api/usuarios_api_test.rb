@@ -26,7 +26,7 @@ class UsuariosAPITest < MiniTest::Test
   end
 
   # Test para comprobar la llamada a la API de todos los usuarios
-  def test_all
+  def test_api_all
     get '/all'
     assert_equal 200, last_response.status
     datos = JSON.parse(last_response.body)
@@ -34,7 +34,7 @@ class UsuariosAPITest < MiniTest::Test
   end
 
   # Test para comprobar la seleccion de un usuario que existe
-  def test_find_user
+  def test_api_find_user
     get '/root'
     assert_equal 200, last_response.status
     datos = JSON.parse(last_response.body)
@@ -42,7 +42,7 @@ class UsuariosAPITest < MiniTest::Test
   end
 
   # Test para comprobar que pasa si el usuario no existe
-  def test_error_find_user_no_exist
+  def test_api_error_find_user_no_exist
     get '/noExiste'
     assert_equal 404, last_response.status
     datos = last_response.body
@@ -51,7 +51,7 @@ class UsuariosAPITest < MiniTest::Test
 
 =begin
   # Test para comprobar si se crea correctamente un usuario desde la API
-  def test_new_user
+  def test_api_new_user
     u = Usuario.new
     u.user = 'Test'
     u.pass = 'Test'
@@ -79,7 +79,7 @@ class UsuariosAPITest < MiniTest::Test
 =end
 =begin
   # Test para comprobar si el nuevo usuario ya existia
-  def test_error_new_user_exist
+  def test_api_error_new_user_exist
     u = Usuario.new
     u.user = 'root'
     u.pass = 'Test'
@@ -102,12 +102,12 @@ class UsuariosAPITest < MiniTest::Test
 
     assert_equal 400, last_response.status
     datos = last_response.body
-    assert datos.include? 'Error 400: El usuario ya existe'
+    assert datos.include? 'Error 400: El usuario Test ya existe'
   end
 =end
 
   # Test para comprobar que se han introducido correctamente los datos en el formulario
-  def test_error_new_user_data_error
+  def test_api_error_new_user_data_error
     u = Usuario.new
     u.user = 'error'
     u.pass = 'Test'
@@ -121,7 +121,7 @@ class UsuariosAPITest < MiniTest::Test
 
 =begin
   # Test para actualizar algun campo de un usuario
-  def test_update_user
+  def test_api_update_user
     u = Usuario.new
     u.user = 'root'
     u.pass = 'cambioPass'
@@ -135,7 +135,7 @@ class UsuariosAPITest < MiniTest::Test
 =end
 =begin
   # Test para comprobar si el usuario a modificar no existe
-  def test_error_update_user_no_exist
+  def test_api_error_update_user_no_exist
     u = Usuario.new
     u.user = 'error'
     u.pass = 'cambioPass'
@@ -149,7 +149,7 @@ class UsuariosAPITest < MiniTest::Test
 =end
 
   # Test para comprobar que se han introducido correctamente los datos en el formulario
-  def test_error_update_user_data_error
+  def test_api_error_update_user_data_error
     u = Usuario.new
     u.user = 'error'
     u.pass = 'Test'
@@ -162,7 +162,7 @@ class UsuariosAPITest < MiniTest::Test
   end
 
   # Test para comprobar si se borra el usuario
-  def test_delete_user
+  def test_api_delete_user
     delete '/root'
     assert_equal 200, last_response.status
     datos = last_response.body
@@ -170,7 +170,7 @@ class UsuariosAPITest < MiniTest::Test
   end
 
   # Test para comprobar al borrar si no existe el usuario
-  def test_error_delete_user_no_exist
+  def test_api_error_delete_user_no_exist
     delete '/noExiste'
     assert_equal 404, last_response.status
     datos = last_response.body
