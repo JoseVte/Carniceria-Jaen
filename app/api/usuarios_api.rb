@@ -28,7 +28,7 @@ class UsuariosAPI < Sinatra::Base
 
   # Un usuario en JSON. Si no existe lanza un 404
   get '/:user' do
-    u = @@usuario_bo.ver_usuario(params['user']) or not_found('No existe el usuario')
+    u = @@usuario_bo.ver_usuario(params['user']) or not_found('Error 404: No existe el usuario')
     u.to_json
   end
 
@@ -55,8 +55,10 @@ class UsuariosAPI < Sinatra::Base
 
   # Actualiza los campos de un usuario. Si se viola alguna regla de la base de datos lanza un 400
   post '/update' do
+    # Es necesario el nombre del usuario
     if params['user'].nil?
-      'Error en el formulario'
+      status 400
+      'Error 400: Falta el usuario en el formulario'
     else
       datos = {'user' => params['user']}
 
@@ -64,19 +66,15 @@ class UsuariosAPI < Sinatra::Base
       if !params['nombre'].nil?
         datos.store('nombre',params['nombre'])
       end
-
       if !params['apellidos'].nil?
         datos.store('apellidos',params['apellidos'])
       end
-
       if !params['email'].nil?
         datos.store('email',params['email'])
       end
-
       if !params['direccion'].nil?
         datos.store('direccion',params['direccion'])
       end
-
       if !params['telefono'].nil?
         datos.store('telefono',params['telefono'])
       end
@@ -93,7 +91,7 @@ class UsuariosAPI < Sinatra::Base
   end
 
   # Borra un usuario del sistema. Si no existe devuelve un 404
-  delete '/delete/:user' do
+  delete '/:user' do
     begin
       msg = @@usuario_bo.borrar_usuario(params['user'])
       status 200

@@ -46,7 +46,7 @@ class UsuariosAPITest < MiniTest::Test
     get '/noExiste'
     assert_equal 404, last_response.status
     datos = last_response.body
-    assert_equal datos, 'No existe el usuario'
+    assert_equal datos, 'Error 404: No existe el usuario'
   end
 
 =begin
@@ -76,27 +76,104 @@ class UsuariosAPITest < MiniTest::Test
     datos = JSON.parse(last_response.body)
     assert_equal 'Test', datos['user']
   end
-
+=end
+=begin
+  # Test para comprobar si el nuevo usuario ya existia
   def test_error_new_user_exist
+    u = Usuario.new
+    u.user = 'root'
+    u.pass = 'Test'
+    u.email = 'a@a.a'
+    u.nombre = 'Test'
+    u.apellidos = 'de prueba'
+    u.direccion = 'Test'
+    u.telefono = '123321123'
 
-  end
+    u = {:user => 'Test',
+         :pass => 'Test',
+         :nombre => 'Test',
+         :apellidos => 'de prueba',
+         :email => 'a@a.a',
+         :direccion => 'Test',
+         :telefono => '123456789'
+    }
 
-  def test_update_user
+    post '/new', u.to_json
 
-  end
-
-  def test_error_update_user_no_exist
-
-  end
-
-  def test_error_update_user_new_exist
-
-  def test_delete_user
-
-  end
-
-  def test_error_delete_user_no_exist
-
+    assert_equal 400, last_response.status
+    datos = last_response.body
+    assert datos.include? 'Error 400: El usuario ya existe'
   end
 =end
+
+  # Test para comprobar que se han introducido correctamente los datos en el formulario
+  def test_error_new_user_data_error
+    u = Usuario.new
+    u.user = 'error'
+    u.pass = 'Test'
+
+    post '/new', u.to_json
+
+    assert_equal 400, last_response.status
+    datos = last_response.body
+    assert_equal 'Error 400: Los datos son incorrectos',datos
+  end
+
+=begin
+  # Test para actualizar algun campo de un usuario
+  def test_update_user
+    u = Usuario.new
+    u.user = 'root'
+    u.pass = 'cambioPass'
+
+    post '/update', u.to_json
+
+    assert_equal 200, last_response.status
+    datos = JSON.parse(last_response.body)
+    assert_equal 'cambioPass', datos['pass']
+  end
+=end
+=begin
+  # Test para comprobar si el usuario a modificar no existe
+  def test_error_update_user_no_exist
+    u = Usuario.new
+    u.user = 'error'
+    u.pass = 'cambioPass'
+
+    post '/update', u.to_json
+
+    assert_equal 404, last_response.status
+    datos = last_response.body
+    assert_equal datos, 'Error 404: No existe el usuario'
+  end
+=end
+
+  # Test para comprobar que se han introducido correctamente los datos en el formulario
+  def test_error_update_user_data_error
+    u = Usuario.new
+    u.user = 'error'
+    u.pass = 'Test'
+
+    post '/update', u.to_json
+
+    assert_equal 400, last_response.status
+    datos = last_response.body
+    assert_equal 'Error 400: Falta el usuario en el formulario',datos
+  end
+
+  # Test para comprobar si se borra el usuario
+  def test_delete_user
+    delete '/root'
+    assert_equal 200, last_response.status
+    datos = last_response.body
+    assert_equal 'Se ha borrado correctamente el usuario root', datos
+  end
+
+  # Test para comprobar al borrar si no existe el usuario
+  def test_error_delete_user_no_exist
+    delete '/noExiste'
+    assert_equal 404, last_response.status
+    datos = last_response.body
+    assert_equal 'Error 404: No existe el usuario noExiste', datos
+  end
 end

@@ -15,6 +15,7 @@ class UsuarioBO
   def crear_usuario(datos)
     u = Usuario.new(datos)
 
+    raise CustomMsgException.new(400,'Error 400: El usuario ya existe') if !Usuario.find_by(user: datos['user']).nil?
     raise CustomMsgException.new(400,'Error 400: Los datos son incorrectos') if !u.valid?
 
     u.save
@@ -38,6 +39,6 @@ class UsuarioBO
     raise CustomMsgException.new(404,'Error 404: No existe el usuario '+usuario) if Usuario.find_by(user: usuario).nil?
 
     Usuario.destroy_all(user: usuario)
-    'Se ha borrado correctamente'
+    'Se ha borrado correctamente el usuario '+usuario
   end
 end
