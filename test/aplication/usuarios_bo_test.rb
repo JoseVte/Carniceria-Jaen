@@ -50,7 +50,7 @@ class UsuariosBOTest < MiniTest::Test
              :telefono => '123456789'
     }
 
-    u = @@users_bo.crear_usuario datos
+    u = @@users_bo.crear_usuario(datos,'login')
     assert_equal 'Test', u.user
   end
 
@@ -66,7 +66,7 @@ class UsuariosBOTest < MiniTest::Test
              :telefono => '123456789'
     }
     e = assert_raises CustomMsgException do
-      @@users_bo.crear_usuario datos
+      @@users_bo.crear_usuario(datos,'login')
     end
     assert_equal 'Error 400: El usuario root ya existe', e.message
   end
@@ -78,7 +78,7 @@ class UsuariosBOTest < MiniTest::Test
              :email => 'root@root.su'
     }
     e = assert_raises CustomMsgException do
-      @@users_bo.crear_usuario datos
+      @@users_bo.crear_usuario(datos,'login')
     end
     assert_equal 'Error 400: Los datos son incorrectos', e.message
   end
@@ -90,7 +90,7 @@ class UsuariosBOTest < MiniTest::Test
              :email => 'a@a.a'
     }
 
-    u = @@users_bo.modificar_usuario datos
+    u = @@users_bo.modificar_usuario(datos,'login')
     assert_equal 'a@a.a', u.email
   end
 =end
@@ -103,7 +103,7 @@ class UsuariosBOTest < MiniTest::Test
     }
 
     e = assert_raises CustomMsgException do
-      @@users_bo.modificar_usuario datos
+      @@users_bo.modificar_usuario(datos,'login')
     end
     assert_equal 'Error 404: No existe el usuario noExiste', e.message
   end
@@ -111,14 +111,14 @@ class UsuariosBOTest < MiniTest::Test
 
   # Test para borrar un usuario de la BD
   def test_bo_delete_user
-    msg = @@users_bo.borrar_usuario('root')
+    msg = @@users_bo.borrar_usuario('root','login')
     assert_equal 'Se ha borrado correctamente el usuario root', msg
   end
 
-  # Test para comprobar si el usuario no existe
+  # Test para comprobar si el usuario no existe al borrar
   def test_bo_delete_user_no_exist
     e = assert_raises CustomMsgException do
-      @@users_bo.borrar_usuario('noExiste')
+      @@users_bo.borrar_usuario('noExiste','login')
     end
     assert_equal 'Error 404: No existe el usuario noExiste', e.message
   end
