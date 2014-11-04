@@ -129,14 +129,14 @@ class UsuariosAPI < Sinatra::Base
 
   # Añadir un producto al carrito
   post '/:user/carrito' do
-    datos = {:usuarios_id => params['user_id'],
-             :productos_id => params['prod_id']
+    datos = {:usuarios_id => params[:user_id],
+             :productos_id => params[:prod_id]
     }
 
     begin
       c = @@carrito_bo.crear_prod_en_carrito(datos,'login')
       status 201
-      c.to_json
+      c
     rescue CustomMsgException => e
       status e.status
       e.message
