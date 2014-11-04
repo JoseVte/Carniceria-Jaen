@@ -54,7 +54,6 @@ class UsuariosBOTest < MiniTest::Test
     assert_equal 'Test', u.user
   end
 
-=begin
   # Test para comprobar si ya existe el usuario
   def test_bo_new_user_exist
     datos = {:user => 'root',
@@ -70,7 +69,6 @@ class UsuariosBOTest < MiniTest::Test
     end
     assert_equal 'Error 400: El usuario root ya existe', e.message
   end
-=end
 
   # Test para comprobar que los datos esta bien introducidos
   def test_bo_new_user_data_error
@@ -83,7 +81,6 @@ class UsuariosBOTest < MiniTest::Test
     assert_equal 'Error 400: Los datos son incorrectos', e.message
   end
 
-=begin
   # Test para modificar los datos de un usuario
   def test_bo_update_user
     datos = {:user => 'root',
@@ -93,9 +90,7 @@ class UsuariosBOTest < MiniTest::Test
     u = @@users_bo.modificar_usuario(datos,'login')
     assert_equal 'a@a.a', u.email
   end
-=end
 
-=begin
   # Test para comprobar si el usuario no existe
   def test_bo_update_user_no_exist
     datos = {:user => 'noExiste',
@@ -107,7 +102,6 @@ class UsuariosBOTest < MiniTest::Test
     end
     assert_equal 'Error 404: No existe el usuario noExiste', e.message
   end
-=end
 
   # Test para borrar un usuario de la BD
   def test_bo_delete_user
