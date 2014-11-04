@@ -49,18 +49,8 @@ class UsuariosAPITest < MiniTest::Test
     assert_equal datos, 'Error 404: No existe el usuario noExiste'
   end
 
-=begin
   # Test para comprobar si se crea correctamente un usuario desde la API
   def test_api_new_user
-    u = Usuario.new
-    u.user = 'Test'
-    u.pass = 'Test'
-    u.email = 'a@a.a'
-    u.nombre = 'Test'
-    u.apellidos = 'de prueba'
-    u.direccion = 'Test'
-    u.telefono = '123321123'
-
     u = {:user => 'Test',
          :pass => 'Test',
          :nombre => 'Test',
@@ -70,26 +60,16 @@ class UsuariosAPITest < MiniTest::Test
          :telefono => '123456789'
     }
 
-    post '/new', u.to_json
+    post '/new', u
 
     assert_equal 201, last_response.status
     datos = JSON.parse(last_response.body)
     assert_equal 'Test', datos['user']
   end
-=end
-=begin
+
   # Test para comprobar si el nuevo usuario ya existia
   def test_api_error_new_user_exist
-    u = Usuario.new
-    u.user = 'root'
-    u.pass = 'Test'
-    u.email = 'a@a.a'
-    u.nombre = 'Test'
-    u.apellidos = 'de prueba'
-    u.direccion = 'Test'
-    u.telefono = '123321123'
-
-    u = {:user => 'Test',
+    u = {:user => 'root',
          :pass => 'Test',
          :nombre => 'Test',
          :apellidos => 'de prueba',
@@ -98,63 +78,57 @@ class UsuariosAPITest < MiniTest::Test
          :telefono => '123456789'
     }
 
-    post '/new', u.to_json
+    post '/new', u
 
     assert_equal 400, last_response.status
     datos = last_response.body
-    assert datos.include? 'Error 400: El usuario Test ya existe'
+    assert_equal 'Error 400: El usuario root ya existe',datos
   end
-=end
 
   # Test para comprobar que se han introducido correctamente los datos en el formulario
   def test_api_error_new_user_data_error
-    u = Usuario.new
-    u.user = 'error'
-    u.pass = 'Test'
+    u = {:user => 'error',
+         :email => 'a@a.a'
+    }
 
-    post '/new', u.to_json
+    post '/new', u
 
     assert_equal 400, last_response.status
     datos = last_response.body
     assert_equal 'Error 400: Los datos son incorrectos',datos
   end
 
-=begin
   # Test para actualizar algun campo de un usuario
   def test_api_update_user
-    u = Usuario.new
-    u.user = 'root'
-    u.pass = 'cambioPass'
+    u = {:user => 'root',
+         :pass => 'cambioPass'
+    }
 
-    post '/update', u.to_json
+    post '/update', u
 
     assert_equal 200, last_response.status
     datos = JSON.parse(last_response.body)
     assert_equal 'cambioPass', datos['pass']
   end
-=end
-=begin
+
   # Test para comprobar si el usuario a modificar no existe
   def test_api_error_update_user_no_exist
-    u = Usuario.new
-    u.user = 'error'
-    u.pass = 'cambioPass'
+    u = {:user => 'noExiste',
+         :pass => 'Test'
+    }
 
-    post '/update', u.to_json
+    post '/update', u
 
     assert_equal 404, last_response.status
     datos = last_response.body
-    assert_equal datos, 'Error 404: No existe el usuario'
+    assert_equal datos, 'Error 404: No existe el usuario noExiste'
   end
-=end
 
   # Test para comprobar que se han introducido correctamente los datos en el formulario
   def test_api_error_update_user_data_error
-    u = Usuario.new
-    u.user = 'error'
-    u.pass = 'Test'
+    u = {}
 
-    post '/update', u.to_json
+    post '/update', u
 
     assert_equal 400, last_response.status
     datos = last_response.body
@@ -175,5 +149,89 @@ class UsuariosAPITest < MiniTest::Test
     assert_equal 404, last_response.status
     datos = last_response.body
     assert_equal 'Error 404: No existe el usuario noExiste', datos
+  end
+
+  # Carrito
+
+  # Test para comprobar todo el carrito de un usuario
+  def test_api_all_carrito
+    get '/root/carrito'
+    assert_equal 200, last_response.status
+    datos = JSON.parse(last_response.body)
+    assert_equal 1,datos.length
+  end
+
+  # Test para comprobar si no existe el usuario
+  def test_api_all_carrito_error_user_no_exist
+    get '/noExiste/carrito'
+    assert_equal 404, last_response.status
+    datos = last_response.body
+    assert_equal datos, 'Error 404: No existe el usuario noExiste'
+  end
+
+  # Test para añadir un producto al carrito
+  def test_api_add_carrito
+    d = {:user_id => 1,
+         :prod_id => 2
+    }
+
+    post '/root/carrito', d
+    assert_equal 201, last_response.status
+    datos = last_response.body
+    assert_equal datos, 'Añadido el producto 2 al carrito'
+  end
+
+  # Test para comprobar si el usuario no existe
+  def test_api_add_carrito_error_user_no_exist
+    d = {:user_id => 2,
+         :prod_id => 2
+    }
+
+    post '/root/carrito', d
+    assert_equal 404, last_response.status
+    datos = last_response.body
+    assert_equal datos, 'Error 404: No existe el usuario con id 2'
+  end
+
+  # Test para comprobar si el producto no existe
+  def test_api_add_carrito_error_prod_no_exist
+    d = {:user_id => 1,
+         :prod_id => 3
+    }
+
+    post '/root/carrito', d
+    assert_equal 404, last_response.status
+    datos = last_response.body
+    assert_equal datos, 'Error 404: No existe el producto 3'
+  end
+
+  # Test para añadir un producto al carrito
+  def test_api_del_carrito
+    d = {:prod_id => 1}
+
+    delete '/root/carrito', d
+    assert_equal 200, last_response.status
+    datos = last_response.body
+    assert_equal datos, 'Se ha eliminado el producto 1 del carrito'
+  end
+
+  # Test para comprobar si el usuario no existe
+  def test_api_del_carrito_error_user_no_exist
+    d = {:prod_id => 1}
+
+    delete '/noExiste/carrito', d
+    assert_equal 404, last_response.status
+    datos = last_response.body
+    assert_equal datos, 'Error 404: No existe el usuario noExiste'
+  end
+
+  # Test para comprobar si el producto no existe
+  def test_api_del_carrito_error_prod_no_exist
+    d = {:prod_id => 3}
+
+    delete '/root/carrito', d
+    assert_equal 404, last_response.status
+    datos = last_response.body
+    assert_equal datos, 'Error 404: No existe el producto 3'
   end
 end

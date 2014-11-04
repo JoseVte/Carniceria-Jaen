@@ -61,113 +61,63 @@ class ProductosAPITest < MiniTest::Test
     get '/0'
     assert_equal 404, last_response.status
     datos = last_response.body
-    assert_equal datos, 'Error 404: No existe el producto 0'
+    assert_equal datos, 'Error 404: No existe el producto con id 0'
   end
 
-=begin
   # Test para comprobar si se crea correctamente un usuario desde la API
-  def test_api_new_user
-    u = Usuario.new
-    u.user = 'Test'
-    u.pass = 'Test'
-    u.email = 'a@a.a'
-    u.nombre = 'Test'
-    u.apellidos = 'de prueba'
-    u.direccion = 'Test'
-    u.telefono = '123321123'
-
-    u = {:user => 'Test',
-         :pass => 'Test',
-         :nombre => 'Test',
-         :apellidos => 'de prueba',
-         :email => 'a@a.a',
-         :direccion => 'Test',
-         :telefono => '123456789'
+  def test_api_prod_user
+    p = {:nombre => 'Test',
+         :precioKg => 2
     }
 
-    post '/new', u.to_json
+    post '/new', p
 
     assert_equal 201, last_response.status
     datos = JSON.parse(last_response.body)
-    assert_equal 'Test', datos['user']
+    assert_equal 'Test', datos['nombre']
   end
-=end
-=begin
-  # Test para comprobar si el nuevo usuario ya existia
-  def test_api_error_new_user_exist
-    u = Usuario.new
-    u.user = 'root'
-    u.pass = 'Test'
-    u.email = 'a@a.a'
-    u.nombre = 'Test'
-    u.apellidos = 'de prueba'
-    u.direccion = 'Test'
-    u.telefono = '123321123'
-
-    u = {:user => 'Test',
-         :pass => 'Test',
-         :nombre => 'Test',
-         :apellidos => 'de prueba',
-         :email => 'a@a.a',
-         :direccion => 'Test',
-         :telefono => '123456789'
-    }
-
-    post '/new', u.to_json
-
-    assert_equal 400, last_response.status
-    datos = last_response.body
-    assert datos.include? 'Error 400: El usuario Test ya existe'
-  end
-=end
 
   # Test para comprobar que se han introducido correctamente los datos en el formulario
   def test_api_error_new_prod_data_error
-    p = Producto.new
-    p.nombre = 'Test'
+    p = {:nombre => 'Test'}
 
-    post '/new', p.to_json
+    post '/new', p
 
     assert_equal 400, last_response.status
     datos = last_response.body
     assert_equal 'Error 400: Los datos son incorrectos',datos
   end
 
-=begin
   # Test para actualizar algun campo de un usuario
-  def test_api_update_user
-    u = Usuario.new
-    u.user = 'root'
-    u.pass = 'cambioPass'
+  def test_api_update_prod
+    p = {:id => 1,
+         :nombre => 'Test'
+    }
 
-    post '/update', u.to_json
+    post '/update', p
 
     assert_equal 200, last_response.status
     datos = JSON.parse(last_response.body)
-    assert_equal 'cambioPass', datos['pass']
+    assert_equal 'Test', datos['nombre']
   end
-=end
-=begin
-  # Test para comprobar si el usuario a modificar no existe
-  def test_api_error_update_user_no_exist
-    u = Usuario.new
-    u.user = 'error'
-    u.pass = 'cambioPass'
 
-    post '/update', u.to_json
+  # Test para comprobar si el usuario a modificar no existe
+  def test_api_error_update_prod_no_exist
+    p = {:id => 0,
+         :nombre => 'Test'
+    }
+
+    post '/update', p
 
     assert_equal 404, last_response.status
     datos = last_response.body
-    assert_equal datos, 'Error 404: No existe el usuario'
+    assert_equal datos,'Error 404: No existe el producto con id 0'
   end
-=end
 
   # Test para comprobar que se han introducido correctamente los datos en el formulario
   def test_api_error_update_prod_data_error
-    p = Producto.new
-    p.nombre = 'Test'
-
-    post '/update', p.to_json
+    p = {:nombre => 'Test'}
+    post '/update', p
 
     assert_equal 400, last_response.status
     datos = last_response.body
