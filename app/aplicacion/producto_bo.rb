@@ -19,7 +19,7 @@ class ProductoBO
   # Devuelve un producto concreto
   def ver_producto(id)
     p = Producto.find_by(id: id)
-    raise CustomMsgException.new(404,'Error 404: No existe el producto '+id.to_s) if p.nil?
+    raise CustomMsgException.new(404,"Error 404: No existe el producto con id #{id}") if p.nil?
     p
   end
 
@@ -35,10 +35,9 @@ class ProductoBO
 
   # Modifica un producto a partir del id
   def modificar_producto(datos, login)
-    p = Producto.find_by(id: datos['id'])
-    raise CustomMsgException.new(404,'Error 404: No existe el producto '+datos['id'].to_s) if p.nil?
+    p = ver_producto(datos[:id])
 
-    datos.delete('id')
+    datos.delete(:id)
     raise CustomMsgException.new(500,'Error 500: No se ha podido modificar') if !p.update(datos)
 
     p.save
@@ -47,9 +46,9 @@ class ProductoBO
 
   # Borra un producto por el id
   def borrar_producto(id, login)
-    raise CustomMsgException.new(404,'Error 404: No existe el producto con id '+id.to_s) if Producto.find_by(id: id).nil?
+    ver_producto(id)
 
     Producto.destroy_all(id: id)
-    'Se ha borrado correctamente el producto '+id.to_s
+    return "Se ha borrado correctamente el producto #{id}"
   end
 end

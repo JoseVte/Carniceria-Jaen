@@ -25,6 +25,7 @@ class ProductosBOTest < MiniTest::Test
     assert_equal 1, lista.length
   end
 
+  # Test para buscar un producto a partir de una subcadena
   def test_bo_buscar_prod
     lista = @@prod_bo.busqueda('ja')
     assert_equal 2, lista.length
@@ -47,7 +48,7 @@ class ProductosBOTest < MiniTest::Test
     e = assert_raises CustomMsgException  do
       @@prod_bo.ver_producto(0)
     end
-    assert_equal 'Error 404: No existe el producto 0',e.message
+    assert_equal 'Error 404: No existe el producto con id 0',e.message
   end
 
   # Test para crear un producto
@@ -73,29 +74,29 @@ class ProductosBOTest < MiniTest::Test
     assert_equal 'Error 400: Los datos son incorrectos', e.message
   end
 
-=begin Preguntar porque no funciona
   # Test para modificar un producto
   def test_bo_modificar_producto
-    datos = {:nombre => 'Test',
-             :descripcion => '',
-             :precioKg => 0,
-             :stock => 1,
-             :ofertas => false
-    }
-    p = @@prod_bo.crear_producto(datos,'login')
-
-    datos2 = {:id => p.id,
-              :nombre => 'Test 2',
-              :descripcion => '',
-              :precioKg => 0,
-              :stock => 1,
-              :ofertas => false
+    datos = {:id => 1,
+             :nombre => 'Test 2',
+             :precioKg => 0
     }
 
-    p2 = @@prod_bo.modificar_producto(datos2,'login')
-    assert_equal 'Test 2', p2.nombre
+    p = @@prod_bo.modificar_producto(datos,'login')
+    assert_equal 'Test 2', p.nombre
   end
-=end
+
+  # Test para modificar un producto
+  def test_bo_modificar_producto_error_no_exist
+    datos = {:id => 0,
+             :nombre => 'Test 2',
+             :precioKg => 0
+    }
+
+    e = assert_raises CustomMsgException do
+      @@prod_bo.modificar_producto(datos,'login')
+    end
+    assert_equal 'Error 404: No existe el producto con id 0', e.message
+  end
 
   # Test para borrar un producto de la BD
   def test_bo_delete_user
