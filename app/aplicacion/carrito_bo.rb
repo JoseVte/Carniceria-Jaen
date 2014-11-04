@@ -9,21 +9,35 @@ class CarritoBO
   def all(usuario,login)
     u = @@usuario_bo.ver_usuario(usuario)
     raise CustomMsgException.new(404,"Error 404: No existe el usuario #{usuario}") if u.nil?
+    carrito = Carrito.find_by(usuarios_id: u.id)
 
-    json = Carrito.where(usuarios_id: u.id).to_json
-    hash = JSON.parse(json)
-    hash.each { |par| par.delete('id') }
-    return hash
+    carrito.productos.to_ary
   end
 
   # Añade un producto a un carrito comprobando los datos previamente
-  def crear_prod_en_carrito(datos,login)
-    raise CustomMsgException.new(404,"Error 404: No existe el usuario con id #{datos[:usuarios_id]}") if Usuario.find_by(id: datos[:usuarios_id]).nil?
-    raise CustomMsgException.new(404,"Error 404: No existe el producto #{datos[:productos_id]}") if Producto.find_by(id: datos[:productos_id]).nil?
+  def add_prod_en_carrito(datos,login)
+    raise CustomMsgException.new(404,"Error 404: No existe el usuario con id #{datos[:carrito_id]}") if Usuario.find_by(id: datos[:carrito_id]).nil?
+    raise CustomMsgException.new(404,"Error 404: No existe el producto #{datos[:producto_id]}") if Producto.find_by(id: datos[:producto_id]).nil?
 
-    c = Carrito.new(datos)
-    raise CustomMsgException.new(400,'Error 400: Los datos son incorrectos') if !c.valid?
-    c.save
-    return "Añadido el producto #{datos[:productos_id]} al carrito"
+    carrito = Carrito.find_by(usuarios_id: datos[:carrito_id])
+    producto = Producto.find_by(id: datos[:producto_id])
+
+    raise CustomMsgException.new(400,'Error 400: Ya esta en el carrito') if carrito.exists?(producto)
+
+    carrito.productos << producto
+    return "Añadido el producto #{datos[:producto_id]} al carrito"
+  end
+
+  # Borra un producto de un carrito
+  def delete_prod_en_carrito(user,id,login)
+    u = @@usuario_bo.ver_usuario(user)
+    raise CustomMsgException.new(404,"Error 404: No existe el usuario #{user}") if u.nil?
+    raise CustomMsgException.new(404,"Error 404: No existe el producto #{id}") if Producto.find_by(id: id).nil?
+
+    carrito = Carrito.find_by(usuarios_id: u.id)
+    producto = Producto.find_by(id: id)
+
+    carrito.productos.destroy(producto)
+    "Se ha eliminado el producto #{id} del carrito"
   end
 end

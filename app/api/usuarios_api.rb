@@ -129,14 +129,26 @@ class UsuariosAPI < Sinatra::Base
 
   # Añadir un producto al carrito
   post '/:user/carrito' do
-    datos = {:usuarios_id => params[:user_id],
-             :productos_id => params[:prod_id]
+    datos = {:carrito_id => params[:user_id],
+             :producto_id => params[:prod_id]
     }
 
     begin
-      c = @@carrito_bo.crear_prod_en_carrito(datos,'login')
+      msg = @@carrito_bo.add_prod_en_carrito(datos,'login')
       status 201
-      c
+      msg
+    rescue CustomMsgException => e
+      status e.status
+      e.message
+    end
+  end
+
+  # Borrar un producto al carrito
+  delete '/:user/carrito' do
+    begin
+      msg = @@carrito_bo.delete_prod_en_carrito(params['user'],params[:prod_id],'login')
+      status 200
+      msg
     rescue CustomMsgException => e
       status e.status
       e.message

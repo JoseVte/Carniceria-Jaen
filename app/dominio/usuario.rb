@@ -9,4 +9,7 @@ class Usuario < ActiveRecord::Base
   validates :apellidos, presence: true
   validates :direccion, presence: true
   validates :telefono, presence: true
+
+  # Un usuario no puede tener mas de un carrito
+  has_one :carrito
 end

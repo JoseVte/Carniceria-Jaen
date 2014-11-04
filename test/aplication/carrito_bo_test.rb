@@ -35,32 +35,54 @@ class CarritoBOTest < MiniTest::Test
 
   # Test para añadir un producto al carrito
   def test_bo_add_carrito
-    datos = { :usuarios_id => 1,
-              :productos_id => 2
+    datos = { :carrito_id => 1,
+              :producto_id => 2
     }
-    msg = @@carrito_bo.crear_prod_en_carrito(datos,'login')
+    msg = @@carrito_bo.add_prod_en_carrito(datos,'login')
     assert_equal 'Añadido el producto 2 al carrito',msg
   end
 
   # Test para comprobar si el usuario no existe
   def test_bo_add_carrito_error_user_no_exist
-    datos = { :usuarios_id => 2,
-              :productos_id => 2
+    datos = { :carrito_id => 2,
+              :producto_id => 2
     }
     e = assert_raises CustomMsgException  do
-      @@carrito_bo.crear_prod_en_carrito(datos,'login')
+      @@carrito_bo.add_prod_en_carrito(datos,'login')
     end
     assert_equal 'Error 404: No existe el usuario con id 2',e.message
   end
 
   # Test para comprobar si el producto no existe
   def test_bo_add_carrito_error_prod_no_exist
-    datos = { :usuarios_id => 1,
-              :productos_id => 3
+    datos = { :carrito_id => 1,
+              :producto_id => 3
     }
     e = assert_raises CustomMsgException  do
-      @@carrito_bo.crear_prod_en_carrito(datos,'login')
+      @@carrito_bo.add_prod_en_carrito(datos,'login')
     end
     assert_equal 'Error 404: No existe el producto 3',e.message
+  end
+
+  # Test para borrar un producto del carrito
+  def test_bo_del_carrito
+    msg = @@carrito_bo.delete_prod_en_carrito('root',1,'login')
+    assert_equal 'Se ha eliminado el producto 1 del carrito', msg
+  end
+
+  # Test para comprobar si el usuario no existe
+  def test_bo_del_carrito_error_user_no_exist
+    e = assert_raises CustomMsgException  do
+      @@carrito_bo.delete_prod_en_carrito('noExiste',1,'login')
+    end
+    assert_equal 'Error 404: No existe el usuario noExiste', e.message
+  end
+
+  # Test para comprobar si el producto no existe
+  def test_bo_del_carrito_error_prod_no_exist
+    e = assert_raises CustomMsgException  do
+      @@carrito_bo.delete_prod_en_carrito('root',0,'login')
+    end
+    assert_equal 'Error 404: No existe el producto 0', e.message
   end
 end
