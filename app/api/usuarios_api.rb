@@ -9,17 +9,19 @@ require 'app/aplicacion/usuario_bo'
 require 'app/aplicacion/carrito_bo'
 require 'app/util/custom_msg_exception'
 
-#Clase principal de la API de los usuarios
+# Clase que se encarga del acceso a la API de Usuario
 class UsuariosAPI < Sinatra::Base
 
-  #Configuracion inicial
+  # Configuracion inicial
   configure do
     puts 'configurando API de usuarios...'
     @@usuario_bo = UsuarioBO.new
     @@carrito_bo = CarritoBO.new
   end
 
+  # Configuracion mientras se esta desarrollando
   configure :development do
+    puts 'activando reloader de usuarios...'
     register Sinatra::Reloader
   end
 

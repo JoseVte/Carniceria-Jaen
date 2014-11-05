@@ -1,4 +1,4 @@
-# Clase DAO para productos
+# Clase que se encarga de contener todos los metodos de acceso de la BD a los Producto
 class ProductoBO
 
   # Funcion que devuelve una lista de los productos en oferta

@@ -6,16 +6,18 @@ require 'json'
 require 'app/dominio/producto'
 require 'app/aplicacion/producto_bo'
 
-#Clase principal de la API de los productos
+# Clase que se encarga del acceso a la API de Producto
 class ProductosAPI < Sinatra::Base
 
-  #Configuracion inicial
+  # Configuracion inicial
   configure do
     puts 'configurando API de productos...'
     @@producto_bo = ProductoBO.new
   end
 
+  # Configuracion mientras se esta desarrollando
   configure :development do
+    puts 'activando reloader de productos...'
     register Sinatra::Reloader
   end
 

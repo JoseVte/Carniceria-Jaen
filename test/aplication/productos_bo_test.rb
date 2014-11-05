@@ -4,10 +4,12 @@ require 'database_cleaner'
 require_relative '../test_helper' #para poder ejecutar los test desde RubyMine
 require 'app/aplicacion/producto_bo'
 
+# Testea todos los metodos de la clase ProductoBO
 class ProductosBOTest < MiniTest::Test
 
   @@prod_bo = ProductoBO.new
 
+  # Configuracion de la BD
   def setup
     ActiveRecord::Base.establish_connection(
         :adapter => "sqlite3",

@@ -1,4 +1,6 @@
+# Añade la migracion para los usuarios
 class CreateUsuarios < ActiveRecord::Migration
+  # Creamos la tabla usuarios
   def change
     create_table :usuarios do |u|
       #Sera la clave primaria

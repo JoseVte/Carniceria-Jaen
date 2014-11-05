@@ -7,13 +7,16 @@ require 'json'
 require_relative '../test_helper' #para poder ejecutar los test desde RubyMine
 require 'app/api/productos_api'
 
+# Testea todos los metodos de la clase ProductosAPI
 class ProductosAPITest < MiniTest::Test
   include Rack::Test::Methods
 
+  # API a testear
   def app
     ProductosAPI
   end
 
+  # Configuracion de la BD
   def setup
     ActiveRecord::Base.establish_connection(
         :adapter => "sqlite3",
@@ -33,6 +36,7 @@ class ProductosAPITest < MiniTest::Test
     assert_equal datos.length, 1
   end
 
+  # Test para buscar un producto a partir de una subcadena
   def test_api_buscar_prod
     get '/buscar/ja'
     assert_equal 200, last_response.status

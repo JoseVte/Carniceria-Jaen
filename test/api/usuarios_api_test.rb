@@ -7,13 +7,16 @@ require 'json'
 require_relative '../test_helper' #para poder ejecutar los test desde RubyMine
 require 'app/api/usuarios_api'
 
+# Testea todos los metodos de la clase UsuariosAPI
 class UsuariosAPITest < MiniTest::Test
   include Rack::Test::Methods
 
+  # API a testear
   def app
     UsuariosAPI
   end
 
+  # Configuracion de la BD
   def setup
     ActiveRecord::Base.establish_connection(
         :adapter => "sqlite3",
@@ -151,7 +154,7 @@ class UsuariosAPITest < MiniTest::Test
     assert_equal 'Error 404: No existe el usuario noExiste', datos
   end
 
-  # Carrito
+  # Test para los Carrito
 
   # Test para comprobar todo el carrito de un usuario
   def test_api_all_carrito

@@ -1,8 +1,9 @@
 require 'app/aplicacion/usuario_bo'
 require 'app/dominio/usuario'
 
-# Clase DAO para carrito
+# Clase que se encarga de contener todos los metodos de acceso de la BD a los Carrito
 class CarritoBO
+  # Atributo auxiliar para diversos metodos
   @@usuario_bo = UsuarioBO.new
 
   # Todos los productos del carrito en un hash

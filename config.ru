@@ -11,11 +11,13 @@ require 'app/api/usuarios_api'
 #require 'app/api/autentificacion_api'
 
 
+# URI de la API de productos
 map '/api/producto' do
   use Rack::Session::Pool
   run ProductosAPI
 end
 
+# URI de la API de usuarios y carritos
 map '/api/usuario' do
   use Rack::Session::Pool
   run UsuariosAPI

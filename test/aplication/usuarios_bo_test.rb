@@ -4,10 +4,12 @@ require 'json'
 require_relative '../test_helper' #para poder ejecutar los test desde RubyMine
 require 'app/aplicacion/usuario_bo'
 
+# Testea todos los metodos de la clase UsuariosBO
 class UsuariosBOTest < MiniTest::Test
 
   @@users_bo = UsuarioBO.new
 
+  # Configuracion de la BD
   def setup
     ActiveRecord::Base.establish_connection(
         :adapter => "sqlite3",

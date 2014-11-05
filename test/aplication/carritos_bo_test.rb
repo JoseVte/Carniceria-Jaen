@@ -4,10 +4,12 @@ require 'database_cleaner'
 require_relative '../test_helper' #para poder ejecutar los test desde RubyMine
 require 'app/aplicacion/carrito_bo'
 
-class CarritoBOTest < MiniTest::Test
+# Testea todos los metodos de la clase CarritoBO
+class CarritosBOTest < MiniTest::Test
 
   @@carrito_bo = CarritoBO.new
 
+  # Configuracion de la BD
   def setup
     ActiveRecord::Base.establish_connection(
         :adapter => "sqlite3",

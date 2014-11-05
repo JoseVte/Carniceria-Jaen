@@ -1,6 +1,6 @@
 require 'active_record'
 
-#Clase principal de carritos
+# Clase donde añadimos todas las restricciones de la BD
 class Carrito < ActiveRecord::Base
   # Un carrito pertenece a un usuario
   belongs_to :usuario
@@ -9,6 +9,7 @@ class Carrito < ActiveRecord::Base
   # Un producto puede estar en varios carritos
   has_and_belongs_to_many :productos
 
+  # Comprobar si contiene el producto en el carrito
   def exists?(producto)
     self.productos.include?(producto)
   end

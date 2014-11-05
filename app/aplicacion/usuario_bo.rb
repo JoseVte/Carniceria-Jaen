@@ -1,4 +1,4 @@
-# Clase DAO para usuarios
+# Clase que se encarga de contener todos los metodos de acceso de la BD a los Usuario
 class UsuarioBO
 
   # Devuelve una lista de todos los usuarios

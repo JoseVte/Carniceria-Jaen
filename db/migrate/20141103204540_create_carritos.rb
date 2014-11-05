@@ -1,4 +1,6 @@
+# Crea la migracion para añadir los carritos
 class CreateCarritos < ActiveRecord::Migration
+  # Creamos la tabla carritos y carritos_productos, para la relacion N a N
   def change
     create_table :carritos do |c|
       c.belongs_to :usuarios
