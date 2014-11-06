@@ -2,7 +2,7 @@
 class CreateProovedores < ActiveRecord::Migration
   def change
     # Creamos la tabla de proovedores
-    create_table :proovedores do |p|
+    create_table :proovedors do |p|
       # Nombre de la empresa
       p.string :nombreEmpresa, null:false
 

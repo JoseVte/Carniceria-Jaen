@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20141106031518) do
     t.integer "proovedor_id"
   end
 
-  create_table "proovedores", force: true do |t|
+  create_table "proovedors", force: true do |t|
     t.string "nombreEmpresa", null: false
     t.string "nombre"
     t.string "apellidos"
