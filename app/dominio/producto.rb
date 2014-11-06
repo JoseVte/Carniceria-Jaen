@@ -2,7 +2,7 @@ require 'active_record'
 
 # Clase donde añadimos todas las restricciones de la BD
 class Producto < ActiveRecord::Base
-   # Validacion del nombre del producto
+  # Validacion del nombre del producto
   validates :nombre, presence: true
   # Validacion del precio por kilo del producto
   validates :precioKg, presence: true
@@ -10,4 +10,7 @@ class Producto < ActiveRecord::Base
   # Un carrito puede tener muchos productos
   # Un producto puede estar en varios carritos
   has_and_belongs_to_many :carritos
+
+  # Un producto solo tiene un proovedor
+  belongs_to :proovedor
 end
