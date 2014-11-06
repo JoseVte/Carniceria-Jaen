@@ -11,18 +11,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141014121047) do
+ActiveRecord::Schema.define(version: 20141106031518) do
 
-  create_table "productos", force: true do |t|
-    t.string  "nombre"
-    t.text    "descripcion"
-    t.float   "precioKg"
-    t.integer "stock"
-    t.boolean "ofertas"
+  create_table "carritos", force: true do |t|
+    t.integer "usuarios_id"
   end
 
-  create_table "usuarios", id: false, force: true do |t|
-    t.string "user"
+  create_table "carritos_productos", id: false, force: true do |t|
+    t.integer "carrito_id"
+    t.integer "producto_id"
+  end
+
+  create_table "productos", force: true do |t|
+    t.string  "nombre",                       null: false
+    t.text    "descripcion"
+    t.float   "precioKg",                     null: false
+    t.integer "stock",        default: 0
+    t.boolean "ofertas",      default: false
+    t.integer "proovedor_id"
+  end
+
+  create_table "proovedors", force: true do |t|
+    t.string "nombreEmpresa", null: false
+    t.string "nombre"
+    t.string "apellidos"
+    t.string "email",         null: false
+    t.text   "direccion",     null: false
+    t.string "telefono",      null: false
+  end
+
+  create_table "usuarios", force: true do |t|
+    t.string "user",      null: false
     t.string "pass",      null: false
     t.string "nombre",    null: false
     t.string "apellidos", null: false

@@ -1,4 +1,6 @@
+# Añade la migracion para los productos
 class CreateProductos < ActiveRecord::Migration
+  # Creamos la tabla productos
   def change
     create_table :productos do |p|
       p.string :nombre, null:false

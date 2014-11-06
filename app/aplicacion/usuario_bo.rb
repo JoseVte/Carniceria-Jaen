@@ -1,4 +1,4 @@
-# Clase DAO para usuarios
+# Clase que se encarga de contener todos los metodos de acceso de la BD a los Usuario
 class UsuarioBO
 
   # Devuelve una lista de todos los usuarios
@@ -7,14 +7,14 @@ class UsuarioBO
   end
 
   # Devuelve un producto concreto
-  def ver_usuario(usuario)
+  def find_by_user(usuario)
     u = Usuario.find_by(user: usuario)
     raise CustomMsgException.new(404,"Error 404: No existe el usuario #{usuario}") if u.nil?
     u
   end
 
   # Funcion que crea un producto a partir de los datos
-  def crear_usuario(datos,login)
+  def create(datos,login)
     exist = Usuario.find_by(user: datos[:user])
     raise CustomMsgException.new(400,"Error 400: El usuario #{datos[:user]} ya existe") if !exist.nil?
 
@@ -27,7 +27,7 @@ class UsuarioBO
   end
 
   # Modifica un producto
-  def modificar_usuario(datos,login)
+  def update(datos,login)
     u = Usuario.find_by(user: datos[:user])
 
     raise CustomMsgException.new(404,"Error 404: No existe el usuario #{datos[:user]}") if u.nil?
@@ -39,7 +39,7 @@ class UsuarioBO
   end
 
   # Borra un producto por el id
-  def borrar_usuario(usuario,login)
+  def delete(usuario,login)
     raise CustomMsgException.new(404,"Error 404: No existe el usuario #{usuario}") if Usuario.find_by(user: usuario).nil?
 
     Carrito.delete_all(usuarios_id: Usuario.find_by(user: usuario).id)

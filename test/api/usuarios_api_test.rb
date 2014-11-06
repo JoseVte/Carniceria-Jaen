@@ -7,13 +7,16 @@ require 'json'
 require_relative '../test_helper' #para poder ejecutar los test desde RubyMine
 require 'app/api/usuarios_api'
 
+# Testea todos los metodos de la clase UsuariosAPI
 class UsuariosAPITest < MiniTest::Test
   include Rack::Test::Methods
 
+  # API a testear
   def app
     UsuariosAPI
   end
 
+  # Configuracion de la BD
   def setup
     ActiveRecord::Base.establish_connection(
         :adapter => "sqlite3",
@@ -26,7 +29,7 @@ class UsuariosAPITest < MiniTest::Test
   end
 
   # Test para comprobar la llamada a la API de todos los usuarios
-  def test_api_all
+  def test_api_usuario_all
     get '/all'
     assert_equal 200, last_response.status
     datos = JSON.parse(last_response.body)
@@ -34,7 +37,7 @@ class UsuariosAPITest < MiniTest::Test
   end
 
   # Test para comprobar la seleccion de un usuario que existe
-  def test_api_find_user
+  def test_api_usuario_find
     get '/root'
     assert_equal 200, last_response.status
     datos = JSON.parse(last_response.body)
@@ -42,7 +45,7 @@ class UsuariosAPITest < MiniTest::Test
   end
 
   # Test para comprobar que pasa si el usuario no existe
-  def test_api_error_find_user_no_exist
+  def test_api_usuario_error_find_no_exist
     get '/noExiste'
     assert_equal 404, last_response.status
     datos = last_response.body
@@ -50,7 +53,7 @@ class UsuariosAPITest < MiniTest::Test
   end
 
   # Test para comprobar si se crea correctamente un usuario desde la API
-  def test_api_new_user
+  def test_api_usuario_new
     u = {:user => 'Test',
          :pass => 'Test',
          :nombre => 'Test',
@@ -68,7 +71,7 @@ class UsuariosAPITest < MiniTest::Test
   end
 
   # Test para comprobar si el nuevo usuario ya existia
-  def test_api_error_new_user_exist
+  def test_api_usuario_error_new_exist
     u = {:user => 'root',
          :pass => 'Test',
          :nombre => 'Test',
@@ -86,7 +89,7 @@ class UsuariosAPITest < MiniTest::Test
   end
 
   # Test para comprobar que se han introducido correctamente los datos en el formulario
-  def test_api_error_new_user_data_error
+  def test_api_usuario_error_new_data_error
     u = {:user => 'error',
          :email => 'a@a.a'
     }
@@ -99,7 +102,7 @@ class UsuariosAPITest < MiniTest::Test
   end
 
   # Test para actualizar algun campo de un usuario
-  def test_api_update_user
+  def test_api_usuario_update
     u = {:user => 'root',
          :pass => 'cambioPass'
     }
@@ -112,7 +115,7 @@ class UsuariosAPITest < MiniTest::Test
   end
 
   # Test para comprobar si el usuario a modificar no existe
-  def test_api_error_update_user_no_exist
+  def test_api_usuario_error_update_no_exist
     u = {:user => 'noExiste',
          :pass => 'Test'
     }
@@ -125,7 +128,7 @@ class UsuariosAPITest < MiniTest::Test
   end
 
   # Test para comprobar que se han introducido correctamente los datos en el formulario
-  def test_api_error_update_user_data_error
+  def test_api_usuario_error_update_data_error
     u = {}
 
     post '/update', u
@@ -136,7 +139,7 @@ class UsuariosAPITest < MiniTest::Test
   end
 
   # Test para comprobar si se borra el usuario
-  def test_api_delete_user
+  def test_api_usuario_delete
     delete '/root'
     assert_equal 200, last_response.status
     datos = last_response.body
@@ -144,17 +147,17 @@ class UsuariosAPITest < MiniTest::Test
   end
 
   # Test para comprobar al borrar si no existe el usuario
-  def test_api_error_delete_user_no_exist
+  def test_api_usuario_error_delete_no_exist
     delete '/noExiste'
     assert_equal 404, last_response.status
     datos = last_response.body
     assert_equal 'Error 404: No existe el usuario noExiste', datos
   end
 
-  # Carrito
+  # Test para los Carrito
 
   # Test para comprobar todo el carrito de un usuario
-  def test_api_all_carrito
+  def test_api_carrito_all
     get '/root/carrito'
     assert_equal 200, last_response.status
     datos = JSON.parse(last_response.body)
@@ -162,7 +165,7 @@ class UsuariosAPITest < MiniTest::Test
   end
 
   # Test para comprobar si no existe el usuario
-  def test_api_all_carrito_error_user_no_exist
+  def test_api_carrito_all_error_no_exist
     get '/noExiste/carrito'
     assert_equal 404, last_response.status
     datos = last_response.body
@@ -170,7 +173,7 @@ class UsuariosAPITest < MiniTest::Test
   end
 
   # Test para añadir un producto al carrito
-  def test_api_add_carrito
+  def test_api_carrito_add_producto_to_carrito
     d = {:user_id => 1,
          :prod_id => 2
     }
@@ -182,7 +185,7 @@ class UsuariosAPITest < MiniTest::Test
   end
 
   # Test para comprobar si el usuario no existe
-  def test_api_add_carrito_error_user_no_exist
+  def test_api_carrito_add_producto_to_carrito_error_user_no_exist
     d = {:user_id => 2,
          :prod_id => 2
     }
@@ -194,7 +197,7 @@ class UsuariosAPITest < MiniTest::Test
   end
 
   # Test para comprobar si el producto no existe
-  def test_api_add_carrito_error_prod_no_exist
+  def test_api_carrito_add_producto_to_carrito_error_prod_no_exist
     d = {:user_id => 1,
          :prod_id => 3
     }
@@ -206,7 +209,7 @@ class UsuariosAPITest < MiniTest::Test
   end
 
   # Test para añadir un producto al carrito
-  def test_api_del_carrito
+  def test_api_carrito_delete_producto_to_carrito
     d = {:prod_id => 1}
 
     delete '/root/carrito', d
@@ -216,7 +219,7 @@ class UsuariosAPITest < MiniTest::Test
   end
 
   # Test para comprobar si el usuario no existe
-  def test_api_del_carrito_error_user_no_exist
+  def test_api_carrito_delete_producto_to_carrito_error_user_no_exist
     d = {:prod_id => 1}
 
     delete '/noExiste/carrito', d
@@ -226,7 +229,7 @@ class UsuariosAPITest < MiniTest::Test
   end
 
   # Test para comprobar si el producto no existe
-  def test_api_del_carrito_error_prod_no_exist
+  def test_api_carrito_delete_producto_to_carrito_error_prod_no_exist
     d = {:prod_id => 3}
 
     delete '/root/carrito', d

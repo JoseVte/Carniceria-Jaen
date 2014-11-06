@@ -5,6 +5,7 @@ jamon_serrano:
   precioKg: 75
   stock: 100
   ofertas: true
+  proovedor_id: 1
 
 jamon_york:
   id: 2
@@ -13,3 +14,4 @@ jamon_york:
   precioKg: 5
   stock: 200
   ofertas: false
+  proovedor_id: 1

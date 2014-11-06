@@ -6,16 +6,18 @@ require 'json'
 require 'app/dominio/producto'
 require 'app/aplicacion/producto_bo'
 
-#Clase principal de la API de los productos
+# Clase que se encarga del acceso a la API de Producto
 class ProductosAPI < Sinatra::Base
 
-  #Configuracion inicial
+  # Configuracion inicial
   configure do
     puts 'configurando API de productos...'
     @@producto_bo = ProductoBO.new
   end
 
+  # Configuracion mientras se esta desarrollando
   configure :development do
+    puts 'activando reloader de productos...'
     register Sinatra::Reloader
   end
 
@@ -26,7 +28,7 @@ class ProductosAPI < Sinatra::Base
 
   # Devuelve un listado con todos los productos que contengan la subcadena
   get '/buscar/:subcadena' do
-    @@producto_bo.busqueda(params['subcadena']).to_json
+    @@producto_bo.select_by_nombre(params['subcadena']).to_json
   end
 
   # Todos los productos en JSON
@@ -37,7 +39,7 @@ class ProductosAPI < Sinatra::Base
   # Un producto en JSON. Si no existe lanza un 404
   get '/:id' do
     begin
-      p = @@producto_bo.ver_producto(params['id'])
+      p = @@producto_bo.find_by_id(params['id'])
       status 200
       p.to_json
     rescue CustomMsgException => e
@@ -52,10 +54,11 @@ class ProductosAPI < Sinatra::Base
              :descripcion => params['descripcion'],
              :precioKg => params['precioKg'],
              :stock => params['stock'],
-             :ofertas => params['ofertas']
+             :ofertas => params['ofertas'],
+             :proovedor_id => params['proovedor_id']
     }
     begin
-      p = @@producto_bo.crear_producto(datos,'login')
+      p = @@producto_bo.create(datos,'login')
       status 201
       p.to_json
     rescue CustomMsgException => e
@@ -93,8 +96,12 @@ class ProductosAPI < Sinatra::Base
         datos.store('ofertas',params['ofertas'])
       end
 
+      if !params['proovedor_id'].nil?
+        datos.store('proovedor_id',params['proovedor_id'])
+      end
+
       begin
-        p = @@producto_bo.modificar_producto(datos,'login')
+        p = @@producto_bo.update(datos,'login')
         status 200
         p.to_json
       rescue CustomMsgException => e
@@ -107,7 +114,7 @@ class ProductosAPI < Sinatra::Base
   # Borra un producto del sistema. Si no existe devuelve un 404
   delete '/:id' do
     begin
-      msg = @@producto_bo.borrar_producto(params['id'],'login')
+      msg = @@producto_bo.delete(params['id'],'login')
       status 200
       msg
     rescue CustomMsgException => e

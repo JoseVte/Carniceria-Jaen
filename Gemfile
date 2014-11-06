@@ -8,6 +8,7 @@ gem 'json'
 gem 'sinatra-activerecord'
 gem 'sqlite3'
 
+# Gemas para realizar los test
 group :test do
   gem 'minitest', '>=5.3.4'
   gem 'mocha'
