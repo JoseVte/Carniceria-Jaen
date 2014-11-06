@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 
-<title>class ProductosAPITest - RDoc Documentation</title>
+<title>class ProovedorAPITest - RDoc Documentation</title>
 
 <link href="./fonts.css" rel="stylesheet">
 <link href="./rdoc.css" rel="stylesheet">
@@ -88,29 +88,29 @@
     
     <li ><a href="#method-i-setup">#setup</a>
     
-    <li ><a href="#method-i-test_api_producto_all">#test_api_producto_all</a>
+    <li ><a href="#method-i-test_api_proovedor_all">#test_api_proovedor_all</a>
     
-    <li ><a href="#method-i-test_api_producto_buscar">#test_api_producto_buscar</a>
+    <li ><a href="#method-i-test_api_proovedor_delete">#test_api_proovedor_delete</a>
     
-    <li ><a href="#method-i-test_api_producto_delete">#test_api_producto_delete</a>
+    <li ><a href="#method-i-test_api_proovedor_error_delete_no_exist">#test_api_proovedor_error_delete_no_exist</a>
     
-    <li ><a href="#method-i-test_api_producto_error_delete_no_exist">#test_api_producto_error_delete_no_exist</a>
+    <li ><a href="#method-i-test_api_proovedor_error_find_id_no_exist">#test_api_proovedor_error_find_id_no_exist</a>
     
-    <li ><a href="#method-i-test_api_producto_error_find_no_exist">#test_api_producto_error_find_no_exist</a>
+    <li ><a href="#method-i-test_api_proovedor_error_new_data_error">#test_api_proovedor_error_new_data_error</a>
     
-    <li ><a href="#method-i-test_api_producto_error_new_data_error">#test_api_producto_error_new_data_error</a>
+    <li ><a href="#method-i-test_api_proovedor_error_update_data_error">#test_api_proovedor_error_update_data_error</a>
     
-    <li ><a href="#method-i-test_api_producto_error_update_data_error">#test_api_producto_error_update_data_error</a>
+    <li ><a href="#method-i-test_api_proovedor_error_update_no_exist">#test_api_proovedor_error_update_no_exist</a>
     
-    <li ><a href="#method-i-test_api_producto_error_update_no_exist">#test_api_producto_error_update_no_exist</a>
+    <li ><a href="#method-i-test_api_proovedor_find_field">#test_api_proovedor_find_field</a>
     
-    <li ><a href="#method-i-test_api_producto_find">#test_api_producto_find</a>
+    <li ><a href="#method-i-test_api_proovedor_find_field_no_exist">#test_api_proovedor_find_field_no_exist</a>
     
-    <li ><a href="#method-i-test_api_producto_new">#test_api_producto_new</a>
+    <li ><a href="#method-i-test_api_proovedor_find_id">#test_api_proovedor_find_id</a>
     
-    <li ><a href="#method-i-test_api_producto_ofertas">#test_api_producto_ofertas</a>
+    <li ><a href="#method-i-test_api_proovedor_new">#test_api_proovedor_new</a>
     
-    <li ><a href="#method-i-test_api_producto_update">#test_api_producto_update</a>
+    <li ><a href="#method-i-test_api_proovedor_update">#test_api_proovedor_update</a>
     
   </ul>
 </div>
@@ -118,15 +118,15 @@
   </div>
 </nav>
 
-<main role="main" aria-labelledby="class-ProductosAPITest">
-  <h1 id="class-ProductosAPITest" class="class">
-    class ProductosAPITest
+<main role="main" aria-labelledby="class-ProovedorAPITest">
+  <h1 id="class-ProovedorAPITest" class="class">
+    class ProovedorAPITest
   </h1>
 
   <section class="description">
     
 <p>Testea todos los metodos de la clase <a
-href="ProductosAPI.html">ProductosAPI</a></p>
+href="ProovedorAPI.html">ProovedorAPI</a></p>
 
   </section>
 
@@ -168,9 +168,9 @@ href="ProductosAPI.html">ProductosAPI</a></p>
 
           
           <div class="method-source-code" id="app-source">
-            <pre><span class="ruby-comment"># File test/api/productos_api_test.rb, line 15</span>
+            <pre><span class="ruby-comment"># File test/api/proovedor_api_test.rb, line 15</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">app</span>
-  <span class="ruby-constant">ProductosAPI</span>
+  <span class="ruby-constant">ProovedorAPI</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -201,7 +201,7 @@ href="ProductosAPI.html">ProductosAPI</a></p>
 
           
           <div class="method-source-code" id="setup-source">
-            <pre><span class="ruby-comment"># File test/api/productos_api_test.rb, line 20</span>
+            <pre><span class="ruby-comment"># File test/api/proovedor_api_test.rb, line 20</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">setup</span>
   <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">establish_connection</span>(
       <span class="ruby-value">:adapter</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;sqlite3&quot;</span>,
@@ -222,10 +222,10 @@ href="ProductosAPI.html">ProductosAPI</a></p>
       </div>
 
     
-      <div id="method-i-test_api_producto_all" class="method-detail ">
+      <div id="method-i-test_api_proovedor_all" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">test_api_producto_all</span><span
+          <span class="method-name">test_api_proovedor_all</span><span
             class="method-args">()</span>
           
           <span class="method-click-advice">click to toggle source</span>
@@ -235,18 +235,18 @@ href="ProductosAPI.html">ProductosAPI</a></p>
 
         <div class="method-description">
           
-          <p>Test para comprobar la llamada a la API de todos los productos</p>
+          <p>Test para comprobar la llamada a la API de todos los proovedors</p>
           
           
 
           
-          <div class="method-source-code" id="test_api_producto_all-source">
-            <pre><span class="ruby-comment"># File test/api/productos_api_test.rb, line 48</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_api_producto_all</span>
+          <div class="method-source-code" id="test_api_proovedor_all-source">
+            <pre><span class="ruby-comment"># File test/api/proovedor_api_test.rb, line 48</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_api_proovedor_all</span>
   <span class="ruby-identifier">get</span> <span class="ruby-string">&#39;/all&#39;</span>
   <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">200</span>, <span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">status</span>
   <span class="ruby-identifier">datos</span> = <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">body</span>)
-  <span class="ruby-identifier">assert_equal</span> <span class="ruby-identifier">datos</span>.<span class="ruby-identifier">length</span>, <span class="ruby-value">2</span>
+  <span class="ruby-identifier">assert_equal</span> <span class="ruby-identifier">datos</span>.<span class="ruby-identifier">length</span>, <span class="ruby-value">1</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -258,10 +258,10 @@ href="ProductosAPI.html">ProductosAPI</a></p>
       </div>
 
     
-      <div id="method-i-test_api_producto_buscar" class="method-detail ">
+      <div id="method-i-test_api_proovedor_delete" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">test_api_producto_buscar</span><span
+          <span class="method-name">test_api_proovedor_delete</span><span
             class="method-args">()</span>
           
           <span class="method-click-advice">click to toggle source</span>
@@ -271,54 +271,18 @@ href="ProductosAPI.html">ProductosAPI</a></p>
 
         <div class="method-description">
           
-          <p>Test para buscar un producto a partir de una subcadena</p>
+          <p>Test para comprobar si se borra el proovedor</p>
           
           
 
           
-          <div class="method-source-code" id="test_api_producto_buscar-source">
-            <pre><span class="ruby-comment"># File test/api/productos_api_test.rb, line 40</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_api_producto_buscar</span>
-  <span class="ruby-identifier">get</span> <span class="ruby-string">&#39;/buscar/ja&#39;</span>
-  <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">200</span>, <span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">status</span>
-  <span class="ruby-identifier">datos</span> = <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">body</span>)
-  <span class="ruby-identifier">assert_equal</span> <span class="ruby-identifier">datos</span>.<span class="ruby-identifier">length</span>, <span class="ruby-value">2</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-test_api_producto_delete" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">test_api_producto_delete</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Test para comprobar si se borra el producto</p>
-          
-          
-
-          
-          <div class="method-source-code" id="test_api_producto_delete-source">
-            <pre><span class="ruby-comment"># File test/api/productos_api_test.rb, line 132</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_api_producto_delete</span>
+          <div class="method-source-code" id="test_api_proovedor_delete-source">
+            <pre><span class="ruby-comment"># File test/api/proovedor_api_test.rb, line 134</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_api_proovedor_delete</span>
   <span class="ruby-identifier">delete</span> <span class="ruby-string">&#39;/1&#39;</span>
   <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">200</span>, <span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">status</span>
   <span class="ruby-identifier">datos</span> = <span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">body</span>
-  <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;Se ha borrado correctamente el producto 1&#39;</span>, <span class="ruby-identifier">datos</span>
+  <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;Se ha borrado correctamente el proovedor 1&#39;</span>, <span class="ruby-identifier">datos</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -330,10 +294,10 @@ href="ProductosAPI.html">ProductosAPI</a></p>
       </div>
 
     
-      <div id="method-i-test_api_producto_error_delete_no_exist" class="method-detail ">
+      <div id="method-i-test_api_proovedor_error_delete_no_exist" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">test_api_producto_error_delete_no_exist</span><span
+          <span class="method-name">test_api_proovedor_error_delete_no_exist</span><span
             class="method-args">()</span>
           
           <span class="method-click-advice">click to toggle source</span>
@@ -343,18 +307,18 @@ href="ProductosAPI.html">ProductosAPI</a></p>
 
         <div class="method-description">
           
-          <p>Test para comprobar al borrar si no existe el producto</p>
+          <p>Test para comprobar al borrar si no existe el proovedor</p>
           
           
 
           
-          <div class="method-source-code" id="test_api_producto_error_delete_no_exist-source">
-            <pre><span class="ruby-comment"># File test/api/productos_api_test.rb, line 140</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_api_producto_error_delete_no_exist</span>
+          <div class="method-source-code" id="test_api_proovedor_error_delete_no_exist-source">
+            <pre><span class="ruby-comment"># File test/api/proovedor_api_test.rb, line 142</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_api_proovedor_error_delete_no_exist</span>
   <span class="ruby-identifier">delete</span> <span class="ruby-string">&#39;/0&#39;</span>
   <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">404</span>, <span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">status</span>
   <span class="ruby-identifier">datos</span> = <span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">body</span>
-  <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;Error 404: No existe el producto con id 0&#39;</span>, <span class="ruby-identifier">datos</span>
+  <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;Error 404: No existe el proovedor con id 0&#39;</span>, <span class="ruby-identifier">datos</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -366,10 +330,10 @@ href="ProductosAPI.html">ProductosAPI</a></p>
       </div>
 
     
-      <div id="method-i-test_api_producto_error_find_no_exist" class="method-detail ">
+      <div id="method-i-test_api_proovedor_error_find_id_no_exist" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">test_api_producto_error_find_no_exist</span><span
+          <span class="method-name">test_api_proovedor_error_find_id_no_exist</span><span
             class="method-args">()</span>
           
           <span class="method-click-advice">click to toggle source</span>
@@ -379,18 +343,18 @@ href="ProductosAPI.html">ProductosAPI</a></p>
 
         <div class="method-description">
           
-          <p>Test para comprobar que pasa si el producto no existe</p>
+          <p>Test para comprobar que pasa si el proovedor no existe</p>
           
           
 
           
-          <div class="method-source-code" id="test_api_producto_error_find_no_exist-source">
-            <pre><span class="ruby-comment"># File test/api/productos_api_test.rb, line 64</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_api_producto_error_find_no_exist</span>
+          <div class="method-source-code" id="test_api_proovedor_error_find_id_no_exist-source">
+            <pre><span class="ruby-comment"># File test/api/proovedor_api_test.rb, line 64</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_api_proovedor_error_find_id_no_exist</span>
   <span class="ruby-identifier">get</span> <span class="ruby-string">&#39;/0&#39;</span>
   <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">404</span>, <span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">status</span>
   <span class="ruby-identifier">datos</span> = <span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">body</span>
-  <span class="ruby-identifier">assert_equal</span> <span class="ruby-identifier">datos</span>, <span class="ruby-string">&#39;Error 404: No existe el producto con id 0&#39;</span>
+  <span class="ruby-identifier">assert_equal</span> <span class="ruby-identifier">datos</span>, <span class="ruby-string">&#39;Error 404: No existe el proovedor con id 0&#39;</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -402,10 +366,10 @@ href="ProductosAPI.html">ProductosAPI</a></p>
       </div>
 
     
-      <div id="method-i-test_api_producto_error_new_data_error" class="method-detail ">
+      <div id="method-i-test_api_proovedor_error_new_data_error" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">test_api_producto_error_new_data_error</span><span
+          <span class="method-name">test_api_proovedor_error_new_data_error</span><span
             class="method-args">()</span>
           
           <span class="method-click-advice">click to toggle source</span>
@@ -421,9 +385,9 @@ formulario</p>
           
 
           
-          <div class="method-source-code" id="test_api_producto_error_new_data_error-source">
-            <pre><span class="ruby-comment"># File test/api/productos_api_test.rb, line 85</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_api_producto_error_new_data_error</span>
+          <div class="method-source-code" id="test_api_proovedor_error_new_data_error-source">
+            <pre><span class="ruby-comment"># File test/api/proovedor_api_test.rb, line 87</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_api_proovedor_error_new_data_error</span>
   <span class="ruby-identifier">p</span> = {<span class="ruby-value">:nombre</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Test&#39;</span>}
 
   <span class="ruby-identifier">post</span> <span class="ruby-string">&#39;/new&#39;</span>, <span class="ruby-identifier">p</span>
@@ -442,10 +406,10 @@ formulario</p>
       </div>
 
     
-      <div id="method-i-test_api_producto_error_update_data_error" class="method-detail ">
+      <div id="method-i-test_api_proovedor_error_update_data_error" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">test_api_producto_error_update_data_error</span><span
+          <span class="method-name">test_api_proovedor_error_update_data_error</span><span
             class="method-args">()</span>
           
           <span class="method-click-advice">click to toggle source</span>
@@ -461,9 +425,9 @@ formulario</p>
           
 
           
-          <div class="method-source-code" id="test_api_producto_error_update_data_error-source">
-            <pre><span class="ruby-comment"># File test/api/productos_api_test.rb, line 122</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_api_producto_error_update_data_error</span>
+          <div class="method-source-code" id="test_api_proovedor_error_update_data_error-source">
+            <pre><span class="ruby-comment"># File test/api/proovedor_api_test.rb, line 124</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_api_proovedor_error_update_data_error</span>
   <span class="ruby-identifier">p</span> = {<span class="ruby-value">:nombre</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Test&#39;</span>}
   <span class="ruby-identifier">post</span> <span class="ruby-string">&#39;/update&#39;</span>, <span class="ruby-identifier">p</span>
 
@@ -481,10 +445,10 @@ formulario</p>
       </div>
 
     
-      <div id="method-i-test_api_producto_error_update_no_exist" class="method-detail ">
+      <div id="method-i-test_api_proovedor_error_update_no_exist" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">test_api_producto_error_update_no_exist</span><span
+          <span class="method-name">test_api_proovedor_error_update_no_exist</span><span
             class="method-args">()</span>
           
           <span class="method-click-advice">click to toggle source</span>
@@ -494,14 +458,14 @@ formulario</p>
 
         <div class="method-description">
           
-          <p>Test para comprobar si el producto a modificar no existe</p>
+          <p>Test para comprobar si el proovedor a modificar no existe</p>
           
           
 
           
-          <div class="method-source-code" id="test_api_producto_error_update_no_exist-source">
-            <pre><span class="ruby-comment"># File test/api/productos_api_test.rb, line 109</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_api_producto_error_update_no_exist</span>
+          <div class="method-source-code" id="test_api_proovedor_error_update_no_exist-source">
+            <pre><span class="ruby-comment"># File test/api/proovedor_api_test.rb, line 111</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_api_proovedor_error_update_no_exist</span>
   <span class="ruby-identifier">p</span> = {<span class="ruby-value">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>,
        <span class="ruby-value">:nombre</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Test&#39;</span>
   }
@@ -510,7 +474,7 @@ formulario</p>
 
   <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">404</span>, <span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">status</span>
   <span class="ruby-identifier">datos</span> = <span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">body</span>
-  <span class="ruby-identifier">assert_equal</span> <span class="ruby-identifier">datos</span>,<span class="ruby-string">&#39;Error 404: No existe el producto con id 0&#39;</span>
+  <span class="ruby-identifier">assert_equal</span> <span class="ruby-identifier">datos</span>,<span class="ruby-string">&#39;Error 404: No existe el proovedor con id 0&#39;</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -522,10 +486,10 @@ formulario</p>
       </div>
 
     
-      <div id="method-i-test_api_producto_find" class="method-detail ">
+      <div id="method-i-test_api_proovedor_find_field" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">test_api_producto_find</span><span
+          <span class="method-name">test_api_proovedor_find_field</span><span
             class="method-args">()</span>
           
           <span class="method-click-advice">click to toggle source</span>
@@ -535,14 +499,86 @@ formulario</p>
 
         <div class="method-description">
           
-          <p>Test para comprobar la seleccion de un producto que existe</p>
+          <p>Test para buscar un proovedor a partir de una cadena en un campo</p>
           
           
 
           
-          <div class="method-source-code" id="test_api_producto_find-source">
-            <pre><span class="ruby-comment"># File test/api/productos_api_test.rb, line 56</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_api_producto_find</span>
+          <div class="method-source-code" id="test_api_proovedor_find_field-source">
+            <pre><span class="ruby-comment"># File test/api/proovedor_api_test.rb, line 32</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_api_proovedor_find_field</span>
+  <span class="ruby-identifier">get</span> <span class="ruby-string">&#39;/buscar/nombreEmpresa/Josrom&#39;</span>
+  <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">200</span>, <span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">status</span>
+  <span class="ruby-identifier">datos</span> = <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">body</span>)
+  <span class="ruby-identifier">assert_equal</span> <span class="ruby-identifier">datos</span>.<span class="ruby-identifier">length</span>, <span class="ruby-value">1</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-test_api_proovedor_find_field_no_exist" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_api_proovedor_find_field_no_exist</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Test para buscar un proovedor a partir de una subcadena</p>
+          
+          
+
+          
+          <div class="method-source-code" id="test_api_proovedor_find_field_no_exist-source">
+            <pre><span class="ruby-comment"># File test/api/proovedor_api_test.rb, line 40</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_api_proovedor_find_field_no_exist</span>
+  <span class="ruby-identifier">get</span> <span class="ruby-string">&#39;/buscar/noExiste/Josrom&#39;</span>
+  <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">404</span>, <span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">status</span>
+  <span class="ruby-identifier">datos</span> = <span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">body</span>
+  <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;Error 404: El campo noExiste no existe&#39;</span>,<span class="ruby-identifier">datos</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-test_api_proovedor_find_id" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_api_proovedor_find_id</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Test para comprobar la seleccion de un proovedor que existe</p>
+          
+          
+
+          
+          <div class="method-source-code" id="test_api_proovedor_find_id-source">
+            <pre><span class="ruby-comment"># File test/api/proovedor_api_test.rb, line 56</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_api_proovedor_find_id</span>
   <span class="ruby-identifier">get</span> <span class="ruby-string">&#39;/1&#39;</span>
   <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">200</span>, <span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">status</span>
   <span class="ruby-identifier">datos</span> = <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">body</span>)
@@ -558,10 +594,10 @@ formulario</p>
       </div>
 
     
-      <div id="method-i-test_api_producto_new" class="method-detail ">
+      <div id="method-i-test_api_proovedor_new" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">test_api_producto_new</span><span
+          <span class="method-name">test_api_proovedor_new</span><span
             class="method-args">()</span>
           
           <span class="method-click-advice">click to toggle source</span>
@@ -571,23 +607,25 @@ formulario</p>
 
         <div class="method-description">
           
-          <p>Test para comprobar si se crea correctamente un producto desde la API</p>
+          <p>Test para comprobar si se crea correctamente un proovedor desde la API</p>
           
           
 
           
-          <div class="method-source-code" id="test_api_producto_new-source">
-            <pre><span class="ruby-comment"># File test/api/productos_api_test.rb, line 72</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_api_producto_new</span>
-  <span class="ruby-identifier">p</span> = {<span class="ruby-value">:nombre</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Test&#39;</span>,
-       <span class="ruby-value">:precioKg</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">2</span>
+          <div class="method-source-code" id="test_api_proovedor_new-source">
+            <pre><span class="ruby-comment"># File test/api/proovedor_api_test.rb, line 72</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_api_proovedor_new</span>
+  <span class="ruby-identifier">p</span> = {<span class="ruby-value">:nombreEmpresa</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Test&#39;</span>,
+       <span class="ruby-value">:email</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;a@a.a&#39;</span>,
+       <span class="ruby-value">:direccion</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;123&#39;</span>,
+       <span class="ruby-value">:telefono</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;678123654&#39;</span>
   }
 
   <span class="ruby-identifier">post</span> <span class="ruby-string">&#39;/new&#39;</span>, <span class="ruby-identifier">p</span>
 
   <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">201</span>, <span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">status</span>
   <span class="ruby-identifier">datos</span> = <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">body</span>)
-  <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;Test&#39;</span>, <span class="ruby-identifier">datos</span>[<span class="ruby-string">&#39;nombre&#39;</span>]
+  <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;Test&#39;</span>, <span class="ruby-identifier">datos</span>[<span class="ruby-string">&#39;nombreEmpresa&#39;</span>]
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -599,10 +637,10 @@ formulario</p>
       </div>
 
     
-      <div id="method-i-test_api_producto_ofertas" class="method-detail ">
+      <div id="method-i-test_api_proovedor_update" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">test_api_producto_ofertas</span><span
+          <span class="method-name">test_api_proovedor_update</span><span
             class="method-args">()</span>
           
           <span class="method-click-advice">click to toggle source</span>
@@ -612,50 +650,14 @@ formulario</p>
 
         <div class="method-description">
           
-          <p>Test para comprobar la llamada desde la API a las ofertas</p>
+          <p>Test para actualizar algun campo de un proovedor</p>
           
           
 
           
-          <div class="method-source-code" id="test_api_producto_ofertas-source">
-            <pre><span class="ruby-comment"># File test/api/productos_api_test.rb, line 32</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_api_producto_ofertas</span>
-  <span class="ruby-identifier">get</span> <span class="ruby-string">&#39;/ofertas&#39;</span>
-  <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">200</span>, <span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">status</span>
-  <span class="ruby-identifier">datos</span> = <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">body</span>)
-  <span class="ruby-identifier">assert_equal</span> <span class="ruby-identifier">datos</span>.<span class="ruby-identifier">length</span>, <span class="ruby-value">1</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-test_api_producto_update" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">test_api_producto_update</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Test para actualizar algun campo de un producto</p>
-          
-          
-
-          
-          <div class="method-source-code" id="test_api_producto_update-source">
-            <pre><span class="ruby-comment"># File test/api/productos_api_test.rb, line 96</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_api_producto_update</span>
+          <div class="method-source-code" id="test_api_proovedor_update-source">
+            <pre><span class="ruby-comment"># File test/api/proovedor_api_test.rb, line 98</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_api_proovedor_update</span>
   <span class="ruby-identifier">p</span> = {<span class="ruby-value">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>,
        <span class="ruby-value">:nombre</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Test&#39;</span>
   }

@@ -75,27 +75,27 @@
     
     <li ><a href="#method-i-setup">#setup</a>
     
-    <li ><a href="#method-i-test_bo_buscar_prod">#test_bo_buscar_prod</a>
+    <li ><a href="#method-i-test_bo_producto_all">#test_bo_producto_all</a>
     
-    <li ><a href="#method-i-test_bo_crear_producto">#test_bo_crear_producto</a>
+    <li ><a href="#method-i-test_bo_producto_buscar">#test_bo_producto_buscar</a>
     
-    <li ><a href="#method-i-test_bo_delete_user">#test_bo_delete_user</a>
+    <li ><a href="#method-i-test_bo_producto_delete">#test_bo_producto_delete</a>
     
-    <li ><a href="#method-i-test_bo_delete_user_no_exist">#test_bo_delete_user_no_exist</a>
+    <li ><a href="#method-i-test_bo_producto_error_delete_no_exist">#test_bo_producto_error_delete_no_exist</a>
     
-    <li ><a href="#method-i-test_bo_error_crear_producto">#test_bo_error_crear_producto</a>
+    <li ><a href="#method-i-test_bo_producto_error_find_no_exist">#test_bo_producto_error_find_no_exist</a>
     
-    <li ><a href="#method-i-test_bo_error_listar_id">#test_bo_error_listar_id</a>
+    <li ><a href="#method-i-test_bo_producto_error_new_data_error">#test_bo_producto_error_new_data_error</a>
     
-    <li ><a href="#method-i-test_bo_listar_id">#test_bo_listar_id</a>
+    <li ><a href="#method-i-test_bo_producto_error_update_no_exist">#test_bo_producto_error_update_no_exist</a>
     
-    <li ><a href="#method-i-test_bo_listar_ofertas">#test_bo_listar_ofertas</a>
+    <li ><a href="#method-i-test_bo_producto_find">#test_bo_producto_find</a>
     
-    <li ><a href="#method-i-test_bo_listar_todos">#test_bo_listar_todos</a>
+    <li ><a href="#method-i-test_bo_producto_new">#test_bo_producto_new</a>
     
-    <li ><a href="#method-i-test_bo_modificar_producto">#test_bo_modificar_producto</a>
+    <li ><a href="#method-i-test_bo_producto_ofertas">#test_bo_producto_ofertas</a>
     
-    <li ><a href="#method-i-test_bo_modificar_producto_error_no_exist">#test_bo_modificar_producto_error_no_exist</a>
+    <li ><a href="#method-i-test_bo_producto_update">#test_bo_producto_update</a>
     
   </ul>
 </div>
@@ -174,297 +174,10 @@ href="ProductoBO.html">ProductoBO</a></p>
       </div>
 
     
-      <div id="method-i-test_bo_buscar_prod" class="method-detail ">
+      <div id="method-i-test_bo_producto_all" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">test_bo_buscar_prod</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Test para buscar un producto a partir de una subcadena</p>
-          
-          
-
-          
-          <div class="method-source-code" id="test_bo_buscar_prod-source">
-            <pre><span class="ruby-comment"># File test/aplication/productos_bo_test.rb, line 31</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bo_buscar_prod</span>
-  <span class="ruby-identifier">lista</span> = <span class="ruby-identifier">@@prod_bo</span>.<span class="ruby-identifier">busqueda</span>(<span class="ruby-string">&#39;ja&#39;</span>)
-  <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">2</span>, <span class="ruby-identifier">lista</span>.<span class="ruby-identifier">length</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-test_bo_crear_producto" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">test_bo_crear_producto</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Test para crear un producto</p>
-          
-          
-
-          
-          <div class="method-source-code" id="test_bo_crear_producto-source">
-            <pre><span class="ruby-comment"># File test/aplication/productos_bo_test.rb, line 57</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bo_crear_producto</span>
-  <span class="ruby-identifier">datos</span> = {<span class="ruby-value">:nombre</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Test&#39;</span>,
-           <span class="ruby-value">:descripcion</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;&#39;</span>,
-           <span class="ruby-value">:precioKg</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>,
-           <span class="ruby-value">:stock</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>,
-           <span class="ruby-value">:ofertas</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>
-  }
-
-  <span class="ruby-identifier">p</span> = <span class="ruby-identifier">@@prod_bo</span>.<span class="ruby-identifier">crear_producto</span>(<span class="ruby-identifier">datos</span>,<span class="ruby-string">&#39;login&#39;</span>)
-  <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;Test&#39;</span>, <span class="ruby-identifier">p</span>.<span class="ruby-identifier">nombre</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-test_bo_delete_user" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">test_bo_delete_user</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Test para borrar un producto de la BD</p>
-          
-          
-
-          
-          <div class="method-source-code" id="test_bo_delete_user-source">
-            <pre><span class="ruby-comment"># File test/aplication/productos_bo_test.rb, line 104</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bo_delete_user</span>
-  <span class="ruby-identifier">msg</span> = <span class="ruby-identifier">@@prod_bo</span>.<span class="ruby-identifier">borrar_producto</span>(<span class="ruby-value">1</span>,<span class="ruby-string">&#39;login&#39;</span>)
-  <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;Se ha borrado correctamente el producto 1&#39;</span>, <span class="ruby-identifier">msg</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-test_bo_delete_user_no_exist" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">test_bo_delete_user_no_exist</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Test para comprobar si el producto no existe al borrar</p>
-          
-          
-
-          
-          <div class="method-source-code" id="test_bo_delete_user_no_exist-source">
-            <pre><span class="ruby-comment"># File test/aplication/productos_bo_test.rb, line 110</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bo_delete_user_no_exist</span>
-  <span class="ruby-identifier">e</span> = <span class="ruby-identifier">assert_raises</span> <span class="ruby-constant">CustomMsgException</span> <span class="ruby-keyword">do</span>
-    <span class="ruby-identifier">@@prod_bo</span>.<span class="ruby-identifier">borrar_producto</span>(<span class="ruby-value">0</span>,<span class="ruby-string">&#39;login&#39;</span>)
-  <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;Error 404: No existe el producto con id 0&#39;</span>, <span class="ruby-identifier">e</span>.<span class="ruby-identifier">message</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-test_bo_error_crear_producto" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">test_bo_error_crear_producto</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Test para el error al crear un producto</p>
-          
-          
-
-          
-          <div class="method-source-code" id="test_bo_error_crear_producto-source">
-            <pre><span class="ruby-comment"># File test/aplication/productos_bo_test.rb, line 70</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bo_error_crear_producto</span>
-  <span class="ruby-identifier">datos</span> = {}
-
-  <span class="ruby-identifier">e</span> = <span class="ruby-identifier">assert_raises</span> <span class="ruby-constant">CustomMsgException</span> <span class="ruby-keyword">do</span>
-    <span class="ruby-identifier">@@prod_bo</span>.<span class="ruby-identifier">crear_producto</span>(<span class="ruby-identifier">datos</span>,<span class="ruby-string">&#39;login&#39;</span>)
-  <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;Error 400: Los datos son incorrectos&#39;</span>, <span class="ruby-identifier">e</span>.<span class="ruby-identifier">message</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-test_bo_error_listar_id" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">test_bo_error_listar_id</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Test error al buscar un producto</p>
-          
-          
-
-          
-          <div class="method-source-code" id="test_bo_error_listar_id-source">
-            <pre><span class="ruby-comment"># File test/aplication/productos_bo_test.rb, line 49</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bo_error_listar_id</span>
-  <span class="ruby-identifier">e</span> = <span class="ruby-identifier">assert_raises</span> <span class="ruby-constant">CustomMsgException</span>  <span class="ruby-keyword">do</span>
-    <span class="ruby-identifier">@@prod_bo</span>.<span class="ruby-identifier">ver_producto</span>(<span class="ruby-value">0</span>)
-  <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;Error 404: No existe el producto con id 0&#39;</span>,<span class="ruby-identifier">e</span>.<span class="ruby-identifier">message</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-test_bo_listar_id" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">test_bo_listar_id</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Test para listar un producto</p>
-          
-          
-
-          
-          <div class="method-source-code" id="test_bo_listar_id-source">
-            <pre><span class="ruby-comment"># File test/aplication/productos_bo_test.rb, line 43</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bo_listar_id</span>
-  <span class="ruby-identifier">p</span> = <span class="ruby-identifier">@@prod_bo</span>.<span class="ruby-identifier">ver_producto</span>(<span class="ruby-value">1</span>)
-  <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;Jamon serrano&#39;</span>,<span class="ruby-identifier">p</span>.<span class="ruby-identifier">nombre</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-test_bo_listar_ofertas" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">test_bo_listar_ofertas</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Test para listar los productos en oferta</p>
-          
-          
-
-          
-          <div class="method-source-code" id="test_bo_listar_ofertas-source">
-            <pre><span class="ruby-comment"># File test/aplication/productos_bo_test.rb, line 25</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bo_listar_ofertas</span>
-  <span class="ruby-identifier">lista</span> = <span class="ruby-identifier">@@prod_bo</span>.<span class="ruby-identifier">ofertas</span>()
-  <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">1</span>, <span class="ruby-identifier">lista</span>.<span class="ruby-identifier">length</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-test_bo_listar_todos" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">test_bo_listar_todos</span><span
+          <span class="method-name">test_bo_producto_all</span><span
             class="method-args">()</span>
           
           <span class="method-click-advice">click to toggle source</span>
@@ -479,9 +192,9 @@ href="ProductoBO.html">ProductoBO</a></p>
           
 
           
-          <div class="method-source-code" id="test_bo_listar_todos-source">
+          <div class="method-source-code" id="test_bo_producto_all-source">
             <pre><span class="ruby-comment"># File test/aplication/productos_bo_test.rb, line 37</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bo_listar_todos</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bo_producto_all</span>
   <span class="ruby-identifier">lista</span> = <span class="ruby-identifier">@@prod_bo</span>.<span class="ruby-identifier">all</span>()
   <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">2</span>, <span class="ruby-identifier">lista</span>.<span class="ruby-identifier">length</span>
 <span class="ruby-keyword">end</span></pre>
@@ -495,10 +208,10 @@ href="ProductoBO.html">ProductoBO</a></p>
       </div>
 
     
-      <div id="method-i-test_bo_modificar_producto" class="method-detail ">
+      <div id="method-i-test_bo_producto_buscar" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">test_bo_modificar_producto</span><span
+          <span class="method-name">test_bo_producto_buscar</span><span
             class="method-args">()</span>
           
           <span class="method-click-advice">click to toggle source</span>
@@ -508,21 +221,16 @@ href="ProductoBO.html">ProductoBO</a></p>
 
         <div class="method-description">
           
-          <p>Test para modificar un producto</p>
+          <p>Test para buscar un producto a partir de una subcadena</p>
           
           
 
           
-          <div class="method-source-code" id="test_bo_modificar_producto-source">
-            <pre><span class="ruby-comment"># File test/aplication/productos_bo_test.rb, line 80</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bo_modificar_producto</span>
-  <span class="ruby-identifier">datos</span> = {<span class="ruby-value">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>,
-           <span class="ruby-value">:nombre</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Test 2&#39;</span>,
-           <span class="ruby-value">:precioKg</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
-  }
-
-  <span class="ruby-identifier">p</span> = <span class="ruby-identifier">@@prod_bo</span>.<span class="ruby-identifier">modificar_producto</span>(<span class="ruby-identifier">datos</span>,<span class="ruby-string">&#39;login&#39;</span>)
-  <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;Test 2&#39;</span>, <span class="ruby-identifier">p</span>.<span class="ruby-identifier">nombre</span>
+          <div class="method-source-code" id="test_bo_producto_buscar-source">
+            <pre><span class="ruby-comment"># File test/aplication/productos_bo_test.rb, line 31</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bo_producto_buscar</span>
+  <span class="ruby-identifier">lista</span> = <span class="ruby-identifier">@@prod_bo</span>.<span class="ruby-identifier">select_by_nombre</span>(<span class="ruby-string">&#39;ja&#39;</span>)
+  <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">2</span>, <span class="ruby-identifier">lista</span>.<span class="ruby-identifier">length</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -534,10 +242,154 @@ href="ProductoBO.html">ProductoBO</a></p>
       </div>
 
     
-      <div id="method-i-test_bo_modificar_producto_error_no_exist" class="method-detail ">
+      <div id="method-i-test_bo_producto_delete" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">test_bo_modificar_producto_error_no_exist</span><span
+          <span class="method-name">test_bo_producto_delete</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Test para borrar un producto de la BD</p>
+          
+          
+
+          
+          <div class="method-source-code" id="test_bo_producto_delete-source">
+            <pre><span class="ruby-comment"># File test/aplication/productos_bo_test.rb, line 104</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bo_producto_delete</span>
+  <span class="ruby-identifier">msg</span> = <span class="ruby-identifier">@@prod_bo</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value">1</span>,<span class="ruby-string">&#39;login&#39;</span>)
+  <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;Se ha borrado correctamente el producto 1&#39;</span>, <span class="ruby-identifier">msg</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-test_bo_producto_error_delete_no_exist" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_bo_producto_error_delete_no_exist</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Test para comprobar si el producto no existe al borrar</p>
+          
+          
+
+          
+          <div class="method-source-code" id="test_bo_producto_error_delete_no_exist-source">
+            <pre><span class="ruby-comment"># File test/aplication/productos_bo_test.rb, line 110</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bo_producto_error_delete_no_exist</span>
+  <span class="ruby-identifier">e</span> = <span class="ruby-identifier">assert_raises</span> <span class="ruby-constant">CustomMsgException</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">@@prod_bo</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value">0</span>,<span class="ruby-string">&#39;login&#39;</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;Error 404: No existe el producto con id 0&#39;</span>, <span class="ruby-identifier">e</span>.<span class="ruby-identifier">message</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-test_bo_producto_error_find_no_exist" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_bo_producto_error_find_no_exist</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Test error al buscar un producto</p>
+          
+          
+
+          
+          <div class="method-source-code" id="test_bo_producto_error_find_no_exist-source">
+            <pre><span class="ruby-comment"># File test/aplication/productos_bo_test.rb, line 49</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bo_producto_error_find_no_exist</span>
+  <span class="ruby-identifier">e</span> = <span class="ruby-identifier">assert_raises</span> <span class="ruby-constant">CustomMsgException</span>  <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">@@prod_bo</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-value">0</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;Error 404: No existe el producto con id 0&#39;</span>,<span class="ruby-identifier">e</span>.<span class="ruby-identifier">message</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-test_bo_producto_error_new_data_error" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_bo_producto_error_new_data_error</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Test para el error al crear un producto</p>
+          
+          
+
+          
+          <div class="method-source-code" id="test_bo_producto_error_new_data_error-source">
+            <pre><span class="ruby-comment"># File test/aplication/productos_bo_test.rb, line 70</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bo_producto_error_new_data_error</span>
+  <span class="ruby-identifier">datos</span> = {}
+
+  <span class="ruby-identifier">e</span> = <span class="ruby-identifier">assert_raises</span> <span class="ruby-constant">CustomMsgException</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">@@prod_bo</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">datos</span>,<span class="ruby-string">&#39;login&#39;</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;Error 400: Los datos son incorrectos&#39;</span>, <span class="ruby-identifier">e</span>.<span class="ruby-identifier">message</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-test_bo_producto_error_update_no_exist" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_bo_producto_error_update_no_exist</span><span
             class="method-args">()</span>
           
           <span class="method-click-advice">click to toggle source</span>
@@ -552,18 +404,166 @@ href="ProductoBO.html">ProductoBO</a></p>
           
 
           
-          <div class="method-source-code" id="test_bo_modificar_producto_error_no_exist-source">
+          <div class="method-source-code" id="test_bo_producto_error_update_no_exist-source">
             <pre><span class="ruby-comment"># File test/aplication/productos_bo_test.rb, line 91</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bo_modificar_producto_error_no_exist</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bo_producto_error_update_no_exist</span>
   <span class="ruby-identifier">datos</span> = {<span class="ruby-value">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>,
            <span class="ruby-value">:nombre</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Test 2&#39;</span>,
            <span class="ruby-value">:precioKg</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
   }
 
   <span class="ruby-identifier">e</span> = <span class="ruby-identifier">assert_raises</span> <span class="ruby-constant">CustomMsgException</span> <span class="ruby-keyword">do</span>
-    <span class="ruby-identifier">@@prod_bo</span>.<span class="ruby-identifier">modificar_producto</span>(<span class="ruby-identifier">datos</span>,<span class="ruby-string">&#39;login&#39;</span>)
+    <span class="ruby-identifier">@@prod_bo</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">datos</span>,<span class="ruby-string">&#39;login&#39;</span>)
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;Error 404: No existe el producto con id 0&#39;</span>, <span class="ruby-identifier">e</span>.<span class="ruby-identifier">message</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-test_bo_producto_find" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_bo_producto_find</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Test para listar un producto</p>
+          
+          
+
+          
+          <div class="method-source-code" id="test_bo_producto_find-source">
+            <pre><span class="ruby-comment"># File test/aplication/productos_bo_test.rb, line 43</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bo_producto_find</span>
+  <span class="ruby-identifier">p</span> = <span class="ruby-identifier">@@prod_bo</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-value">1</span>)
+  <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;Jamon serrano&#39;</span>,<span class="ruby-identifier">p</span>.<span class="ruby-identifier">nombre</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-test_bo_producto_new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_bo_producto_new</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Test para crear un producto</p>
+          
+          
+
+          
+          <div class="method-source-code" id="test_bo_producto_new-source">
+            <pre><span class="ruby-comment"># File test/aplication/productos_bo_test.rb, line 57</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bo_producto_new</span>
+  <span class="ruby-identifier">datos</span> = {<span class="ruby-value">:nombre</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Test&#39;</span>,
+           <span class="ruby-value">:descripcion</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;&#39;</span>,
+           <span class="ruby-value">:precioKg</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>,
+           <span class="ruby-value">:stock</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>,
+           <span class="ruby-value">:ofertas</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>
+  }
+
+  <span class="ruby-identifier">p</span> = <span class="ruby-identifier">@@prod_bo</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">datos</span>,<span class="ruby-string">&#39;login&#39;</span>)
+  <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;Test&#39;</span>, <span class="ruby-identifier">p</span>.<span class="ruby-identifier">nombre</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-test_bo_producto_ofertas" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_bo_producto_ofertas</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Test para listar los productos en oferta</p>
+          
+          
+
+          
+          <div class="method-source-code" id="test_bo_producto_ofertas-source">
+            <pre><span class="ruby-comment"># File test/aplication/productos_bo_test.rb, line 25</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bo_producto_ofertas</span>
+  <span class="ruby-identifier">lista</span> = <span class="ruby-identifier">@@prod_bo</span>.<span class="ruby-identifier">ofertas</span>()
+  <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">1</span>, <span class="ruby-identifier">lista</span>.<span class="ruby-identifier">length</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-test_bo_producto_update" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_bo_producto_update</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Test para modificar un producto</p>
+          
+          
+
+          
+          <div class="method-source-code" id="test_bo_producto_update-source">
+            <pre><span class="ruby-comment"># File test/aplication/productos_bo_test.rb, line 80</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bo_producto_update</span>
+  <span class="ruby-identifier">datos</span> = {<span class="ruby-value">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>,
+           <span class="ruby-value">:nombre</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Test 2&#39;</span>,
+           <span class="ruby-value">:precioKg</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+  }
+
+  <span class="ruby-identifier">p</span> = <span class="ruby-identifier">@@prod_bo</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">datos</span>,<span class="ruby-string">&#39;login&#39;</span>)
+  <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;Test 2&#39;</span>, <span class="ruby-identifier">p</span>.<span class="ruby-identifier">nombre</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           

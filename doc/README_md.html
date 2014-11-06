@@ -78,6 +78,13 @@
     <li><a href="#label-Todo+el+carrito">Todo el carrito</a>
     <li><a href="#label-A%C3%B1adir+al+carrito">Añadir al carrito</a>
     <li><a href="#label-Borrar+en+el+carrito">Borrar en el carrito</a>
+    <li><a href="#label-Proovedor">Proovedor</a>
+    <li><a href="#label-Busqueda">Busqueda</a>
+    <li><a href="#label-Todos+los+proovedores">Todos los proovedores</a>
+    <li><a href="#label-Proovedores+en+detalle">Proovedores en detalle</a>
+    <li><a href="#label-Crear+proovedor">Crear proovedor</a>
+    <li><a href="#label-Actualizar+proovedor">Actualizar proovedor</a>
+    <li><a href="#label-Borrar+proovedor">Borrar proovedor</a>
   </ul>
 </div>
 
@@ -231,6 +238,39 @@ usuario actual:<br> <code> post &#39;/:user/carrito&#39; </code></p>
 
 <p>Se debe estar <strong>registrado</strong>. Elimina un producto del carrito
 del usuario actual:<br> <code> delete &#39;/:user/carrito&#39; </code></p>
+
+<h2 id="label-Proovedor"><a href="Proovedor.html">Proovedor</a><span><a href="#label-Proovedor">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+
+<p>API de proovedores.</p>
+
+<h3 id="label-Busqueda">Busqueda<span><a href="#label-Busqueda">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+
+<p>Devuelve una lista de proovedores que cumplen el criterio de busqueda:<br>
+<code> get &#39;/buscar/:campo/:cadena&#39; </code></p>
+
+<h3 id="label-Todos+los+proovedores">Todos los proovedores<span><a href="#label-Todos+los+proovedores">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+
+<p>Devuelve todos los proovedores:<br> <code> get &#39;/all&#39; </code></p>
+
+<h3 id="label-Proovedores+en+detalle">Proovedores en detalle<span><a href="#label-Proovedores+en+detalle">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+
+<p>Devuelve los datos de un proovedores a partir de su <code>id</code>:<br>
+<code> get &#39;/:id&#39; </code></p>
+
+<h3 id="label-Crear+proovedor">Crear proovedor<span><a href="#label-Crear+proovedor">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+
+<p>Se debe ser <strong>Administrador</strong>. Crea un nuevo proovedor:<br>
+<code> post &#39;/new&#39; </code></p>
+
+<h3 id="label-Actualizar+proovedor">Actualizar proovedor<span><a href="#label-Actualizar+proovedor">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+
+<p>Se debe ser <strong>Administrador</strong>. Actualiza los datos de un
+proovedor:<br> <code> post &#39;/update&#39; </code></p>
+
+<h3 id="label-Borrar+proovedor">Borrar proovedor<span><a href="#label-Borrar+proovedor">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+
+<p>Se debe ser <strong>Administrador</strong>. Borra un proovedor:<br> <code>
+delete &#39;/:id&#39; </code></p>
 </main>
 
 

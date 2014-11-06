@@ -75,13 +75,13 @@
     
     <li ><a href="#method-i-all">#all</a>
     
-    <li ><a href="#method-i-borrar_usuario">#borrar_usuario</a>
+    <li ><a href="#method-i-create">#create</a>
     
-    <li ><a href="#method-i-crear_usuario">#crear_usuario</a>
+    <li ><a href="#method-i-delete">#delete</a>
     
-    <li ><a href="#method-i-modificar_usuario">#modificar_usuario</a>
+    <li ><a href="#method-i-find_by_user">#find_by_user</a>
     
-    <li ><a href="#method-i-ver_usuario">#ver_usuario</a>
+    <li ><a href="#method-i-update">#update</a>
     
   </ul>
 </div>
@@ -153,47 +153,10 @@
       </div>
 
     
-      <div id="method-i-borrar_usuario" class="method-detail ">
+      <div id="method-i-create" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">borrar_usuario</span><span
-            class="method-args">(usuario,login)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Borra un producto por el id</p>
-          
-          
-
-          
-          <div class="method-source-code" id="borrar_usuario-source">
-            <pre><span class="ruby-comment"># File app/aplicacion/usuario_bo.rb, line 42</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">borrar_usuario</span>(<span class="ruby-identifier">usuario</span>,<span class="ruby-identifier">login</span>)
-  <span class="ruby-identifier">raise</span> <span class="ruby-constant">CustomMsgException</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">404</span>,<span class="ruby-node">&quot;Error 404: No existe el usuario #{usuario}&quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-constant">Usuario</span>.<span class="ruby-identifier">find_by</span>(<span class="ruby-identifier">user</span><span class="ruby-operator">:</span> <span class="ruby-identifier">usuario</span>).<span class="ruby-identifier">nil?</span>
-
-  <span class="ruby-constant">Carrito</span>.<span class="ruby-identifier">delete_all</span>(<span class="ruby-identifier">usuarios_id</span><span class="ruby-operator">:</span> <span class="ruby-constant">Usuario</span>.<span class="ruby-identifier">find_by</span>(<span class="ruby-identifier">user</span><span class="ruby-operator">:</span> <span class="ruby-identifier">usuario</span>).<span class="ruby-identifier">id</span>)
-  <span class="ruby-constant">Usuario</span>.<span class="ruby-identifier">destroy_all</span>(<span class="ruby-identifier">user</span><span class="ruby-operator">:</span> <span class="ruby-identifier">usuario</span>)
-  <span class="ruby-node">&quot;Se ha borrado correctamente el usuario #{usuario}&quot;</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-crear_usuario" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">crear_usuario</span><span
+          <span class="method-name">create</span><span
             class="method-args">(datos,login)</span>
           
           <span class="method-click-advice">click to toggle source</span>
@@ -208,9 +171,9 @@
           
 
           
-          <div class="method-source-code" id="crear_usuario-source">
+          <div class="method-source-code" id="create-source">
             <pre><span class="ruby-comment"># File app/aplicacion/usuario_bo.rb, line 17</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">crear_usuario</span>(<span class="ruby-identifier">datos</span>,<span class="ruby-identifier">login</span>)
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>(<span class="ruby-identifier">datos</span>,<span class="ruby-identifier">login</span>)
   <span class="ruby-identifier">exist</span> = <span class="ruby-constant">Usuario</span>.<span class="ruby-identifier">find_by</span>(<span class="ruby-identifier">user</span><span class="ruby-operator">:</span> <span class="ruby-identifier">datos</span>[<span class="ruby-value">:user</span>])
   <span class="ruby-identifier">raise</span> <span class="ruby-constant">CustomMsgException</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">400</span>,<span class="ruby-node">&quot;Error 400: El usuario #{datos[:user]} ya existe&quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">exist</span>.<span class="ruby-identifier">nil?</span>
 
@@ -231,11 +194,11 @@
       </div>
 
     
-      <div id="method-i-modificar_usuario" class="method-detail ">
+      <div id="method-i-delete" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">modificar_usuario</span><span
-            class="method-args">(datos,login)</span>
+          <span class="method-name">delete</span><span
+            class="method-args">(usuario,login)</span>
           
           <span class="method-click-advice">click to toggle source</span>
           
@@ -244,22 +207,19 @@
 
         <div class="method-description">
           
-          <p>Modifica un producto</p>
+          <p>Borra un producto por el id</p>
           
           
 
           
-          <div class="method-source-code" id="modificar_usuario-source">
-            <pre><span class="ruby-comment"># File app/aplicacion/usuario_bo.rb, line 30</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">modificar_usuario</span>(<span class="ruby-identifier">datos</span>,<span class="ruby-identifier">login</span>)
-  <span class="ruby-identifier">u</span> = <span class="ruby-constant">Usuario</span>.<span class="ruby-identifier">find_by</span>(<span class="ruby-identifier">user</span><span class="ruby-operator">:</span> <span class="ruby-identifier">datos</span>[<span class="ruby-value">:user</span>])
+          <div class="method-source-code" id="delete-source">
+            <pre><span class="ruby-comment"># File app/aplicacion/usuario_bo.rb, line 42</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">delete</span>(<span class="ruby-identifier">usuario</span>,<span class="ruby-identifier">login</span>)
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">CustomMsgException</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">404</span>,<span class="ruby-node">&quot;Error 404: No existe el usuario #{usuario}&quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-constant">Usuario</span>.<span class="ruby-identifier">find_by</span>(<span class="ruby-identifier">user</span><span class="ruby-operator">:</span> <span class="ruby-identifier">usuario</span>).<span class="ruby-identifier">nil?</span>
 
-  <span class="ruby-identifier">raise</span> <span class="ruby-constant">CustomMsgException</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">404</span>,<span class="ruby-node">&quot;Error 404: No existe el usuario #{datos[:user]}&quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">u</span>.<span class="ruby-identifier">nil?</span>
-  <span class="ruby-identifier">datos</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-string">&#39;user&#39;</span>)
-  <span class="ruby-identifier">raise</span> <span class="ruby-constant">CustomMsgException</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">500</span>,<span class="ruby-string">&#39;Error 500: No se ha podido modificar&#39;</span>) <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">u</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">datos</span>)
-
-  <span class="ruby-identifier">u</span>.<span class="ruby-identifier">save</span>
-  <span class="ruby-identifier">u</span>
+  <span class="ruby-constant">Carrito</span>.<span class="ruby-identifier">delete_all</span>(<span class="ruby-identifier">usuarios_id</span><span class="ruby-operator">:</span> <span class="ruby-constant">Usuario</span>.<span class="ruby-identifier">find_by</span>(<span class="ruby-identifier">user</span><span class="ruby-operator">:</span> <span class="ruby-identifier">usuario</span>).<span class="ruby-identifier">id</span>)
+  <span class="ruby-constant">Usuario</span>.<span class="ruby-identifier">destroy_all</span>(<span class="ruby-identifier">user</span><span class="ruby-operator">:</span> <span class="ruby-identifier">usuario</span>)
+  <span class="ruby-node">&quot;Se ha borrado correctamente el usuario #{usuario}&quot;</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -271,10 +231,10 @@
       </div>
 
     
-      <div id="method-i-ver_usuario" class="method-detail ">
+      <div id="method-i-find_by_user" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">ver_usuario</span><span
+          <span class="method-name">find_by_user</span><span
             class="method-args">(usuario)</span>
           
           <span class="method-click-advice">click to toggle source</span>
@@ -289,11 +249,51 @@
           
 
           
-          <div class="method-source-code" id="ver_usuario-source">
+          <div class="method-source-code" id="find_by_user-source">
             <pre><span class="ruby-comment"># File app/aplicacion/usuario_bo.rb, line 10</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">ver_usuario</span>(<span class="ruby-identifier">usuario</span>)
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">find_by_user</span>(<span class="ruby-identifier">usuario</span>)
   <span class="ruby-identifier">u</span> = <span class="ruby-constant">Usuario</span>.<span class="ruby-identifier">find_by</span>(<span class="ruby-identifier">user</span><span class="ruby-operator">:</span> <span class="ruby-identifier">usuario</span>)
   <span class="ruby-identifier">raise</span> <span class="ruby-constant">CustomMsgException</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">404</span>,<span class="ruby-node">&quot;Error 404: No existe el usuario #{usuario}&quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">u</span>.<span class="ruby-identifier">nil?</span>
+  <span class="ruby-identifier">u</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-update" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">update</span><span
+            class="method-args">(datos,login)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Modifica un producto</p>
+          
+          
+
+          
+          <div class="method-source-code" id="update-source">
+            <pre><span class="ruby-comment"># File app/aplicacion/usuario_bo.rb, line 30</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>(<span class="ruby-identifier">datos</span>,<span class="ruby-identifier">login</span>)
+  <span class="ruby-identifier">u</span> = <span class="ruby-constant">Usuario</span>.<span class="ruby-identifier">find_by</span>(<span class="ruby-identifier">user</span><span class="ruby-operator">:</span> <span class="ruby-identifier">datos</span>[<span class="ruby-value">:user</span>])
+
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">CustomMsgException</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">404</span>,<span class="ruby-node">&quot;Error 404: No existe el usuario #{datos[:user]}&quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">u</span>.<span class="ruby-identifier">nil?</span>
+  <span class="ruby-identifier">datos</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-string">&#39;user&#39;</span>)
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">CustomMsgException</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">500</span>,<span class="ruby-string">&#39;Error 500: No se ha podido modificar&#39;</span>) <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">u</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">datos</span>)
+
+  <span class="ruby-identifier">u</span>.<span class="ruby-identifier">save</span>
   <span class="ruby-identifier">u</span>
 <span class="ruby-keyword">end</span></pre>
           </div>

@@ -100,3 +100,37 @@ Se debe estar __registrado__. Elimina un producto del carrito del usuario actual
 ```
 delete '/:user/carrito'
 ```
+## Proovedor
+API de proovedores.
+
+### Busqueda
+Devuelve una lista de proovedores que cumplen el criterio de busqueda:  
+```
+get '/buscar/:campo/:cadena'
+```
+### Todos los proovedores
+Devuelve todos los proovedores:  
+```
+get '/all'
+```
+### Proovedores en detalle
+Devuelve los datos de un proovedores a partir de su `id`:  
+```
+get '/:id'
+```
+
+### Crear proovedor
+Se debe ser __Administrador__. Crea un nuevo proovedor:  
+```
+post '/new'
+```
+### Actualizar proovedor
+Se debe ser __Administrador__. Actualiza los datos de un proovedor:  
+```
+post '/update'
+```
+### Borrar proovedor
+Se debe ser __Administrador__. Borra un proovedor:  
+```
+delete '/:id'
+```
