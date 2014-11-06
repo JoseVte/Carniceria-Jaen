@@ -5,7 +5,7 @@ class Proovedor < ActiveRecord::Base
   # Validacion del email
   validates :email, uniqueness: true, presence: true
   # Validacion del nombre de la empresa
-  validates :nombreEmpresa, presence: true
+  validates :nombreEmpresa, uniqueness: true, presence: true
   # Validacion de la direccion
   validates :direccion, presence: true
   # Validacion del telefono

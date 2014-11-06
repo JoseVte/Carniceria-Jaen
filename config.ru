@@ -8,6 +8,7 @@ $LOAD_PATH << File.expand_path(__dir__)
 
 require 'app/api/productos_api'
 require 'app/api/usuarios_api'
+require 'app/api/proovedor_api'
 #require 'app/api/autentificacion_api'
 
 
@@ -21,6 +22,12 @@ end
 map '/api/usuario' do
   use Rack::Session::Pool
   run UsuariosAPI
+end
+
+# URI de la API de proovedores
+map '/api/proovedor' do
+  use Rack::Session::Pool
+  run ProovedorAPI
 end
 
 =begin

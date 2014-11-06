@@ -4,13 +4,8 @@ require 'app/dominio/proovedor'
 class ProovedorBO
 
   def select_by(campo,cadena)
-    begin
-      p = Proovedor.where("#{campo} LIKE ?", "%#{cadena}%")
-      p.to_json
-      return p
-    rescue ActiveRecord::StatementInvalid => e
-      raise CustomMsgException.new(404,"Error 404: El campo #{campo} no existe")
-    end
+    raise CustomMsgException.new(404,"Error 404: El campo #{campo} no existe") if !Proovedor.column_names.include?(campo)
+    Proovedor.where("#{campo} LIKE ?", "%#{cadena}%")
   end
 
   # Todos los proovedores

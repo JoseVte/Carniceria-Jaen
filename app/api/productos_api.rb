@@ -54,7 +54,8 @@ class ProductosAPI < Sinatra::Base
              :descripcion => params['descripcion'],
              :precioKg => params['precioKg'],
              :stock => params['stock'],
-             :ofertas => params['ofertas']
+             :ofertas => params['ofertas'],
+             :proovedor_id => params['proovedor_id']
     }
     begin
       p = @@producto_bo.crear_producto(datos,'login')
@@ -93,6 +94,10 @@ class ProductosAPI < Sinatra::Base
 
       if !params['ofertas'].nil?
         datos.store('ofertas',params['ofertas'])
+      end
+
+      if !params['proovedor_id'].nil?
+        datos.store('proovedor_id',params['proovedor_id'])
       end
 
       begin
