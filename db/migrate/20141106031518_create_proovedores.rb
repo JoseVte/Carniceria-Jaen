@@ -1,5 +1,6 @@
 # Crea la migracion para añadir los proovedores
 class CreateProovedores < ActiveRecord::Migration
+  # Creamos la tabla proovedores y añadidos la relacion 1 a N en productos
   def change
     # Creamos la tabla de proovedores
     create_table :proovedors do |p|

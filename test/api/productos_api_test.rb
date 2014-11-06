@@ -29,7 +29,7 @@ class ProductosAPITest < MiniTest::Test
   end
 
   # Test para comprobar la llamada desde la API a las ofertas
-  def test_api_ofertas
+  def test_api_producto_ofertas
     get '/ofertas'
     assert_equal 200, last_response.status
     datos = JSON.parse(last_response.body)
@@ -37,7 +37,7 @@ class ProductosAPITest < MiniTest::Test
   end
 
   # Test para buscar un producto a partir de una subcadena
-  def test_api_buscar_prod
+  def test_api_producto_buscar
     get '/buscar/ja'
     assert_equal 200, last_response.status
     datos = JSON.parse(last_response.body)
@@ -45,7 +45,7 @@ class ProductosAPITest < MiniTest::Test
   end
 
   # Test para comprobar la llamada a la API de todos los productos
-  def test_api_all
+  def test_api_producto_all
     get '/all'
     assert_equal 200, last_response.status
     datos = JSON.parse(last_response.body)
@@ -53,7 +53,7 @@ class ProductosAPITest < MiniTest::Test
   end
 
   # Test para comprobar la seleccion de un producto que existe
-  def test_api_find_prod
+  def test_api_producto_find
     get '/1'
     assert_equal 200, last_response.status
     datos = JSON.parse(last_response.body)
@@ -61,15 +61,15 @@ class ProductosAPITest < MiniTest::Test
   end
 
   # Test para comprobar que pasa si el producto no existe
-  def test_api_error_find_prod_no_exist
+  def test_api_producto_error_find_no_exist
     get '/0'
     assert_equal 404, last_response.status
     datos = last_response.body
     assert_equal datos, 'Error 404: No existe el producto con id 0'
   end
 
-  # Test para comprobar si se crea correctamente un usuario desde la API
-  def test_api_prod_user
+  # Test para comprobar si se crea correctamente un producto desde la API
+  def test_api_producto_new
     p = {:nombre => 'Test',
          :precioKg => 2
     }
@@ -82,7 +82,7 @@ class ProductosAPITest < MiniTest::Test
   end
 
   # Test para comprobar que se han introducido correctamente los datos en el formulario
-  def test_api_error_new_prod_data_error
+  def test_api_producto_error_new_data_error
     p = {:nombre => 'Test'}
 
     post '/new', p
@@ -92,8 +92,8 @@ class ProductosAPITest < MiniTest::Test
     assert_equal 'Error 400: Los datos son incorrectos',datos
   end
 
-  # Test para actualizar algun campo de un usuario
-  def test_api_update_prod
+  # Test para actualizar algun campo de un producto
+  def test_api_producto_update
     p = {:id => 1,
          :nombre => 'Test'
     }
@@ -105,8 +105,8 @@ class ProductosAPITest < MiniTest::Test
     assert_equal 'Test', datos['nombre']
   end
 
-  # Test para comprobar si el usuario a modificar no existe
-  def test_api_error_update_prod_no_exist
+  # Test para comprobar si el producto a modificar no existe
+  def test_api_producto_error_update_no_exist
     p = {:id => 0,
          :nombre => 'Test'
     }
@@ -119,7 +119,7 @@ class ProductosAPITest < MiniTest::Test
   end
 
   # Test para comprobar que se han introducido correctamente los datos en el formulario
-  def test_api_error_update_prod_data_error
+  def test_api_producto_error_update_data_error
     p = {:nombre => 'Test'}
     post '/update', p
 
@@ -129,7 +129,7 @@ class ProductosAPITest < MiniTest::Test
   end
 
   # Test para comprobar si se borra el producto
-  def test_api_delete_prod
+  def test_api_producto_delete
     delete '/1'
     assert_equal 200, last_response.status
     datos = last_response.body
@@ -137,7 +137,7 @@ class ProductosAPITest < MiniTest::Test
   end
 
   # Test para comprobar al borrar si no existe el producto
-  def test_api_error_delete_prod_no_exist
+  def test_api_producto_error_delete_no_exist
     delete '/0'
     assert_equal 404, last_response.status
     datos = last_response.body

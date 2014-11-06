@@ -22,39 +22,39 @@ class ProductosBOTest < MiniTest::Test
   end
 
   # Test para listar los productos en oferta
-  def test_bo_listar_ofertas
+  def test_bo_producto_ofertas
     lista = @@prod_bo.ofertas()
     assert_equal 1, lista.length
   end
 
   # Test para buscar un producto a partir de una subcadena
-  def test_bo_buscar_prod
-    lista = @@prod_bo.busqueda('ja')
+  def test_bo_producto_buscar
+    lista = @@prod_bo.select_by_nombre('ja')
     assert_equal 2, lista.length
   end
 
   # Test para listar todos los productos
-  def test_bo_listar_todos
+  def test_bo_producto_all
     lista = @@prod_bo.all()
     assert_equal 2, lista.length
   end
 
   # Test para listar un producto
-  def test_bo_listar_id
-    p = @@prod_bo.ver_producto(1)
+  def test_bo_producto_find
+    p = @@prod_bo.find_by_id(1)
     assert_equal 'Jamon serrano',p.nombre
   end
 
   # Test error al buscar un producto
-  def test_bo_error_listar_id
+  def test_bo_producto_error_find_no_exist
     e = assert_raises CustomMsgException  do
-      @@prod_bo.ver_producto(0)
+      @@prod_bo.find_by_id(0)
     end
     assert_equal 'Error 404: No existe el producto con id 0',e.message
   end
 
   # Test para crear un producto
-  def test_bo_crear_producto
+  def test_bo_producto_new
     datos = {:nombre => 'Test',
              :descripcion => '',
              :precioKg => 0,
@@ -62,54 +62,54 @@ class ProductosBOTest < MiniTest::Test
              :ofertas => false
     }
 
-    p = @@prod_bo.crear_producto(datos,'login')
+    p = @@prod_bo.create(datos,'login')
     assert_equal 'Test', p.nombre
   end
 
   # Test para el error al crear un producto
-  def test_bo_error_crear_producto
+  def test_bo_producto_error_new_data_error
     datos = {}
 
     e = assert_raises CustomMsgException do
-      @@prod_bo.crear_producto(datos,'login')
+      @@prod_bo.create(datos,'login')
     end
     assert_equal 'Error 400: Los datos son incorrectos', e.message
   end
 
   # Test para modificar un producto
-  def test_bo_modificar_producto
+  def test_bo_producto_update
     datos = {:id => 1,
              :nombre => 'Test 2',
              :precioKg => 0
     }
 
-    p = @@prod_bo.modificar_producto(datos,'login')
+    p = @@prod_bo.update(datos,'login')
     assert_equal 'Test 2', p.nombre
   end
 
   # Test para modificar un producto
-  def test_bo_modificar_producto_error_no_exist
+  def test_bo_producto_error_update_no_exist
     datos = {:id => 0,
              :nombre => 'Test 2',
              :precioKg => 0
     }
 
     e = assert_raises CustomMsgException do
-      @@prod_bo.modificar_producto(datos,'login')
+      @@prod_bo.update(datos,'login')
     end
     assert_equal 'Error 404: No existe el producto con id 0', e.message
   end
 
   # Test para borrar un producto de la BD
-  def test_bo_delete_user
-    msg = @@prod_bo.borrar_producto(1,'login')
+  def test_bo_producto_delete
+    msg = @@prod_bo.delete(1,'login')
     assert_equal 'Se ha borrado correctamente el producto 1', msg
   end
 
   # Test para comprobar si el producto no existe al borrar
-  def test_bo_delete_user_no_exist
+  def test_bo_producto_error_delete_no_exist
     e = assert_raises CustomMsgException do
-      @@prod_bo.borrar_producto(0,'login')
+      @@prod_bo.delete(0,'login')
     end
     assert_equal 'Error 404: No existe el producto con id 0', e.message
   end

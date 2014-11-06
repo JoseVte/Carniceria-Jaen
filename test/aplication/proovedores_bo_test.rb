@@ -22,13 +22,13 @@ class ProovedorBOTest < MiniTest::Test
   end
 
   # Test para buscar un proovedor a partir de una subcadena
-  def test_bo_buscar_proov
+  def test_bo_proovedor_buscar
     lista = @@proov_bo.select_by('nombreEmpresa','Josrom')
     assert_equal 1, lista.length
   end
 
   # Test para probar si no existe el campo de busqueda
-  def test_bo_buscar_proov_error_no_exist
+  def test_bo_proovedor_buscar_error_no_exist
     e = assert_raises CustomMsgException  do
       @@proov_bo.select_by('noExiste','Josrom')
     end
@@ -36,19 +36,19 @@ class ProovedorBOTest < MiniTest::Test
   end
 
   # Test para listar todos los proovedores
-  def test_bo_listar_todos
+  def test_bo_proovedor_all
     lista = @@proov_bo.all()
     assert_equal 1, lista.length
   end
 
   # Test para listar un proovedor
-  def test_bo_listar_id
+  def test_bo_proovedor_find
     p = @@proov_bo.find_by_id(1)
     assert_equal 'Josrom',p.nombreEmpresa
   end
 
   # Test error al buscar un proovedor
-  def test_bo_error_listar_id
+  def test_bo_proovedor_error_find_no_exist
     e = assert_raises CustomMsgException  do
       @@proov_bo.find_by_id(0)
     end
@@ -56,7 +56,7 @@ class ProovedorBOTest < MiniTest::Test
   end
 
   # Test para crear un proovedor
-  def test_bo_crear_proovedor
+  def test_bo_proovedor_create
     datos = {:nombreEmpresa => 'Test',
              :email => 'a@a.a',
              :direccion => '123',
@@ -68,7 +68,7 @@ class ProovedorBOTest < MiniTest::Test
   end
 
   # Test para el error al crear un proovedor
-  def test_bo_error_crear_proovedor
+  def test_bo_proovedor_error_create_data_error
     datos = {}
 
     e = assert_raises CustomMsgException do
@@ -78,7 +78,7 @@ class ProovedorBOTest < MiniTest::Test
   end
 
   # Test para modificar un proovedor
-  def test_bo_modificar_proovedor
+  def test_bo_proovedor_update
     datos = {:id => 1,
              :nombre => 'Test 1'
     }
@@ -88,7 +88,7 @@ class ProovedorBOTest < MiniTest::Test
   end
 
   # Test para modificar un proovedor
-  def test_bo_modificar_proovedor_error_no_exist
+  def test_bo_proovedor_update_error_no_exist
     datos = {:id => 0,
              :nombre => 'Test 2'
     }
@@ -100,13 +100,13 @@ class ProovedorBOTest < MiniTest::Test
   end
 
   # Test para borrar un proovedor de la BD
-  def test_bo_delete_user
+  def test_bo_proovedor_delete
     msg = @@proov_bo.delete(1,'login')
     assert_equal 'Se ha borrado correctamente el proovedor 1', msg
   end
 
   # Test para comprobar si el proovedor no existe al borrar
-  def test_bo_delete_user_no_exist
+  def test_bo_proovedor_delete_no_exist
     e = assert_raises CustomMsgException do
       @@proov_bo.delete(0,'login')
     end

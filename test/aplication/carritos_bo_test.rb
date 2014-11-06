@@ -22,13 +22,13 @@ class CarritosBOTest < MiniTest::Test
   end
 
   # Test para comprobar todo el carrito de un usuario
-  def test_bo_all_carrito
+  def test_bo_carrito_all
     lista = @@carrito_bo.all('root','login')
     assert_equal 1, lista.length
   end
 
   # Test para comprobar si no existe el usuario
-  def test_bo_all_carrito_error_user_no_exist
+  def test_bo_carrito_all_error_user_no_exist
     e = assert_raises CustomMsgException  do
       @@carrito_bo.all('noExiste','login')
     end
@@ -36,7 +36,7 @@ class CarritosBOTest < MiniTest::Test
   end
 
   # Test para añadir un producto al carrito
-  def test_bo_add_carrito
+  def test_bo_carrito_add_producto_to_carrito
     datos = { :carrito_id => 1,
               :producto_id => 2
     }
@@ -45,7 +45,7 @@ class CarritosBOTest < MiniTest::Test
   end
 
   # Test para comprobar si el usuario no existe
-  def test_bo_add_carrito_error_user_no_exist
+  def test_bo_carrito_add_producto_to_carrito_error_user_no_exist
     datos = { :carrito_id => 2,
               :producto_id => 2
     }
@@ -56,7 +56,7 @@ class CarritosBOTest < MiniTest::Test
   end
 
   # Test para comprobar si el producto no existe
-  def test_bo_add_carrito_error_prod_no_exist
+  def test_bo_carrito_add_producto_to_carrito_error_prod_no_exist
     datos = { :carrito_id => 1,
               :producto_id => 3
     }
@@ -67,13 +67,13 @@ class CarritosBOTest < MiniTest::Test
   end
 
   # Test para borrar un producto del carrito
-  def test_bo_del_carrito
+  def test_bo_carrito_delete_producto_to_carrito
     msg = @@carrito_bo.delete_prod_en_carrito('root',1,'login')
     assert_equal 'Se ha eliminado el producto 1 del carrito', msg
   end
 
   # Test para comprobar si el usuario no existe
-  def test_bo_del_carrito_error_user_no_exist
+  def test_bo_carrito_delete_producto_to_carrito_error_user_no_exist
     e = assert_raises CustomMsgException  do
       @@carrito_bo.delete_prod_en_carrito('noExiste',1,'login')
     end
@@ -81,7 +81,7 @@ class CarritosBOTest < MiniTest::Test
   end
 
   # Test para comprobar si el producto no existe
-  def test_bo_del_carrito_error_prod_no_exist
+  def test_bo_carrito_delete_producto_to_carrito_error_prod_no_exist
     e = assert_raises CustomMsgException  do
       @@carrito_bo.delete_prod_en_carrito('root',0,'login')
     end

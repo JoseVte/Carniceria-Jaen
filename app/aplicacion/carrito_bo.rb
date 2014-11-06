@@ -8,7 +8,7 @@ class CarritoBO
 
   # Todos los productos del carrito en un hash
   def all(usuario,login)
-    u = @@usuario_bo.ver_usuario(usuario)
+    u = @@usuario_bo.find_by_user(usuario)
     raise CustomMsgException.new(404,"Error 404: No existe el usuario #{usuario}") if u.nil?
     carrito = Carrito.find_by(usuarios_id: u.id)
 
@@ -31,7 +31,7 @@ class CarritoBO
 
   # Borra un producto de un carrito
   def delete_prod_en_carrito(user,id,login)
-    u = @@usuario_bo.ver_usuario(user)
+    u = @@usuario_bo.find_by_user(user)
     raise CustomMsgException.new(404,"Error 404: No existe el usuario #{user}") if u.nil?
     raise CustomMsgException.new(404,"Error 404: No existe el producto #{id}") if Producto.find_by(id: id).nil?
 

@@ -33,7 +33,7 @@ class UsuariosAPI < Sinatra::Base
   # Un usuario en JSON. Si no existe lanza un 404
   get '/:user' do
     begin
-      u = @@usuario_bo.ver_usuario(params['user'])
+      u = @@usuario_bo.find_by_user(params['user'])
       status 200
       u.to_json
     rescue CustomMsgException => e
@@ -54,7 +54,7 @@ class UsuariosAPI < Sinatra::Base
     }
 
     begin
-      u = @@usuario_bo.crear_usuario(datos,'login')
+      u = @@usuario_bo.create(datos,'login')
       status 201
       u.to_json
     rescue CustomMsgException => e
@@ -93,7 +93,7 @@ class UsuariosAPI < Sinatra::Base
       end
 
       begin
-        u = @@usuario_bo.modificar_usuario(datos,'login')
+        u = @@usuario_bo.update(datos,'login')
         status 200
         u.to_json
       rescue CustomMsgException => e
@@ -106,7 +106,7 @@ class UsuariosAPI < Sinatra::Base
   # Borra un usuario del sistema. Si no existe devuelve un 404
   delete '/:user' do
     begin
-      msg = @@usuario_bo.borrar_usuario(params['user'],'login')
+      msg = @@usuario_bo.delete(params['user'],'login')
       status 200
       msg
     rescue CustomMsgException => e

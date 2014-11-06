@@ -28,7 +28,7 @@ class ProductosAPI < Sinatra::Base
 
   # Devuelve un listado con todos los productos que contengan la subcadena
   get '/buscar/:subcadena' do
-    @@producto_bo.busqueda(params['subcadena']).to_json
+    @@producto_bo.select_by_nombre(params['subcadena']).to_json
   end
 
   # Todos los productos en JSON
@@ -39,7 +39,7 @@ class ProductosAPI < Sinatra::Base
   # Un producto en JSON. Si no existe lanza un 404
   get '/:id' do
     begin
-      p = @@producto_bo.ver_producto(params['id'])
+      p = @@producto_bo.find_by_id(params['id'])
       status 200
       p.to_json
     rescue CustomMsgException => e
@@ -58,7 +58,7 @@ class ProductosAPI < Sinatra::Base
              :proovedor_id => params['proovedor_id']
     }
     begin
-      p = @@producto_bo.crear_producto(datos,'login')
+      p = @@producto_bo.create(datos,'login')
       status 201
       p.to_json
     rescue CustomMsgException => e
@@ -101,7 +101,7 @@ class ProductosAPI < Sinatra::Base
       end
 
       begin
-        p = @@producto_bo.modificar_producto(datos,'login')
+        p = @@producto_bo.update(datos,'login')
         status 200
         p.to_json
       rescue CustomMsgException => e
@@ -114,7 +114,7 @@ class ProductosAPI < Sinatra::Base
   # Borra un producto del sistema. Si no existe devuelve un 404
   delete '/:id' do
     begin
-      msg = @@producto_bo.borrar_producto(params['id'],'login')
+      msg = @@producto_bo.delete(params['id'],'login')
       status 200
       msg
     rescue CustomMsgException => e

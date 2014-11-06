@@ -3,6 +3,7 @@ require 'app/dominio/proovedor'
 # Clase que se encarga de contener todos los metodos de acceso de la BD a los Proovedor
 class ProovedorBO
 
+  # Busca en el campo dado la cadena dada
   def select_by(campo,cadena)
     raise CustomMsgException.new(404,"Error 404: El campo #{campo} no existe") if !Proovedor.column_names.include?(campo)
     Proovedor.where("#{campo} LIKE ?", "%#{cadena}%")

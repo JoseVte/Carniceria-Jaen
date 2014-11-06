@@ -6,7 +6,7 @@ require 'json'
 require 'app/dominio/proovedor'
 require 'app/aplicacion/proovedor_bo'
 
-# Clase que se encarga del acceso a la API de Producto
+# Clase que se encarga del acceso a la API de Proovedor
 class ProovedorAPI < Sinatra::Base
 
   # Configuracion inicial
