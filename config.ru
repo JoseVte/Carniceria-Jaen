@@ -9,7 +9,7 @@ $LOAD_PATH << File.expand_path(__dir__)
 require 'app/api/productos_api'
 require 'app/api/usuarios_api'
 require 'app/api/proovedor_api'
-#require 'app/api/autentificacion_api'
+require 'app/api/autentificacion_api'
 
 
 # URI de la API de productos
@@ -30,9 +30,8 @@ map '/api/proovedor' do
   run ProovedorAPI
 end
 
-=begin
+# URI de la API de autentificacion
 map '/api/autentificacion' do
   use Rack::Session::Pool
   run AutentificacionAPI
 end
-=end

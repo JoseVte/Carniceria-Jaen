@@ -1,6 +1,16 @@
 # Clase que se encarga de contener todos los metodos de acceso de la BD a los Usuario
 class UsuarioBO
 
+  # Metodo para comprobar si el login es correcto
+  def do_login(user, pass)
+    begin
+      u = find_by_user(user)
+    ensure
+      raise CustomMsgException.new(401,"Error 401: Autentificacion incorrecta") if u.nil? || !(u.pass == pass)
+      return u.user
+    end
+  end
+
   # Devuelve una lista de todos los usuarios
   def all
     Usuario.all
