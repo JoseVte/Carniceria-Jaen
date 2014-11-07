@@ -2,29 +2,49 @@
 class UsuarioBO
 
   # Metodo para comprobar si el login es correcto
-  def do_login(user, pass)
+  def login(user, pass)
     begin
-      u = find_by_user(user)
+      u = find_by_user(user,user)
     ensure
-      raise CustomMsgException.new(401,"Error 401: Autentificacion incorrecta") if u.nil? || !(u.pass == pass)
+      raise CustomMsgException.new(401,'Error 401: Autentificacion incorrecta') if u.nil? || !(u.pass == pass)
       return u.user
     end
   end
 
+  # Comprobar si el usuario tiene permisos para acceder a la funcionalidad
+  def self.permitted?(user_want_to_access,user_who_wants_to_access)
+    # Acceso maestro a todo
+    if user_want_to_access == 'root'
+      return true
+    else
+      # Al resto de usuario solo se les permite acceder a sus datos
+      if user_want_to_access == user_who_wants_to_access
+        return true
+      else
+        raise CustomMsgException.new(403,'Error 403: Acceso prohibido')
+      end
+    end
+  end
+
   # Devuelve una lista de todos los usuarios
-  def all
-    Usuario.all
+  def all(login)
+    # Solo se le permite el acceso al admin
+    if UsuarioBO.permitted?(login,'root')
+      Usuario.all
+    end
   end
 
   # Devuelve un producto concreto
-  def find_by_user(usuario)
-    u = Usuario.find_by(user: usuario)
-    raise CustomMsgException.new(404,"Error 404: No existe el usuario #{usuario}") if u.nil?
-    u
+  def find_by_user(usuario,login)
+    if UsuarioBO.permitted?(login,usuario)
+      u = Usuario.find_by(user: usuario)
+      raise CustomMsgException.new(404,"Error 404: No existe el usuario #{usuario}") if u.nil?
+      u
+    end
   end
 
-  # Funcion que crea un producto a partir de los datos
-  def create(datos,login)
+  # Funcion que crea un usuario a partir de los datos
+  def create(datos)
     exist = Usuario.find_by(user: datos[:user])
     raise CustomMsgException.new(400,"Error 400: El usuario #{datos[:user]} ya existe") if !exist.nil?
 
@@ -36,24 +56,28 @@ class UsuarioBO
     u
   end
 
-  # Modifica un producto
+  # Modifica un usuario
   def update(datos,login)
-    u = Usuario.find_by(user: datos[:user])
+    if UsuarioBO.permitted?(login,datos[:user])
+      u = Usuario.find_by(user: datos[:user])
 
-    raise CustomMsgException.new(404,"Error 404: No existe el usuario #{datos[:user]}") if u.nil?
-    datos.delete('user')
-    raise CustomMsgException.new(500,'Error 500: No se ha podido modificar') if !u.update(datos)
+      raise CustomMsgException.new(404,"Error 404: No existe el usuario #{datos[:user]}") if u.nil?
+      datos.delete('user')
+      raise CustomMsgException.new(500,'Error 500: No se ha podido modificar') if !u.update(datos)
 
-    u.save
-    u
+      u.save
+      u
+    end
   end
 
   # Borra un producto por el id
   def delete(usuario,login)
-    raise CustomMsgException.new(404,"Error 404: No existe el usuario #{usuario}") if Usuario.find_by(user: usuario).nil?
+    if UsuarioBO.permitted?(login,usuario)
+      raise CustomMsgException.new(404,"Error 404: No existe el usuario #{usuario}") if Usuario.find_by(user: usuario).nil?
 
-    Carrito.delete_all(usuarios_id: Usuario.find_by(user: usuario).id)
-    Usuario.destroy_all(user: usuario)
-    "Se ha borrado correctamente el usuario #{usuario}"
+      Carrito.delete_all(usuarios_id: Usuario.find_by(user: usuario).id)
+      Usuario.destroy_all(user: usuario)
+      "Se ha borrado correctamente el usuario #{usuario}"
+    end
   end
 end

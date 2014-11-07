@@ -1,4 +1,7 @@
+# Clase auxiliar donde guardar los metodos auxiliares
 class Utilidad
+
+  # Dados una url base, unos datos que se puedan convertir en array, y los parametros de la url devuelve un JSON con los elementos indicados
   def self.paginacion(url_base, datos, params)
     inicio = 1
     if !params[:inicio].nil?
@@ -35,6 +38,7 @@ class Utilidad
     return result
   end
 
+  # Dados los datos y el principio y la cantidad, devuelve un array con los datos seleccionados
   def self.seleccion(datos,inicio,cantidad)
     # Transformamos los datos en un array
     seleccion_datos = JSON.parse(datos.to_json)

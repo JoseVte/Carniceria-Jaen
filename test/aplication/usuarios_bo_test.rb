@@ -8,6 +8,7 @@ require 'app/aplicacion/usuario_bo'
 class UsuariosBOTest < MiniTest::Test
 
   @@users_bo = UsuarioBO.new
+  @@login = 'root'
 
   # Configuracion de la BD
   def setup
@@ -23,20 +24,20 @@ class UsuariosBOTest < MiniTest::Test
 
   # Test de listado total de los usuarios
   def test_bo_usuario_all
-    lista = @@users_bo.all
+    lista = @@users_bo.all(@@login)
     assert_equal 1, lista.length
   end
 
   # Test para buscar un usuario en la BD
   def test_bo_usuario_find
-    u = @@users_bo.find_by_user 'root'
+    u = @@users_bo.find_by_user 'root', @@login
     assert_equal 'root', u.user
   end
 
   # Test para comprobar si no existe el usuario
   def test_bo_usuario_find_no_exist
     e = assert_raises CustomMsgException do
-      @@users_bo.find_by_user 'noExiste'
+      @@users_bo.find_by_user 'noExiste', @@login
     end
     assert_equal 'Error 404: No existe el usuario noExiste', e.message
   end
@@ -52,7 +53,7 @@ class UsuariosBOTest < MiniTest::Test
              :telefono => '123456789'
     }
 
-    u = @@users_bo.create(datos,'login')
+    u = @@users_bo.create(datos)
     assert_equal 'Test', u.user
   end
 
@@ -67,7 +68,7 @@ class UsuariosBOTest < MiniTest::Test
              :telefono => '123456789'
     }
     e = assert_raises CustomMsgException do
-      @@users_bo.create(datos,'login')
+      @@users_bo.create(datos)
     end
     assert_equal 'Error 400: El usuario root ya existe', e.message
   end
@@ -78,7 +79,7 @@ class UsuariosBOTest < MiniTest::Test
              :email => 'root@root.su'
     }
     e = assert_raises CustomMsgException do
-      @@users_bo.create(datos,'login')
+      @@users_bo.create(datos)
     end
     assert_equal 'Error 400: Los datos son incorrectos', e.message
   end
@@ -89,7 +90,7 @@ class UsuariosBOTest < MiniTest::Test
              :email => 'a@a.a'
     }
 
-    u = @@users_bo.update(datos,'login')
+    u = @@users_bo.update(datos,@@login)
     assert_equal 'a@a.a', u.email
   end
 
@@ -100,21 +101,21 @@ class UsuariosBOTest < MiniTest::Test
     }
 
     e = assert_raises CustomMsgException do
-      @@users_bo.update(datos,'login')
+      @@users_bo.update(datos,@@login)
     end
     assert_equal 'Error 404: No existe el usuario noExiste', e.message
   end
 
   # Test para borrar un usuario de la BD
   def test_bo_usuario_delete
-    msg = @@users_bo.delete('root','login')
+    msg = @@users_bo.delete('root',@@login)
     assert_equal 'Se ha borrado correctamente el usuario root', msg
   end
 
   # Test para comprobar si el usuario no existe al borrar
   def test_bo_usuario_delete_no_exist
     e = assert_raises CustomMsgException do
-      @@users_bo.delete('noExiste','login')
+      @@users_bo.delete('noExiste',@@login)
     end
     assert_equal 'Error 404: No existe el usuario noExiste', e.message
   end

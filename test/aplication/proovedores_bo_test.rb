@@ -63,7 +63,7 @@ class ProovedorBOTest < MiniTest::Test
              :telefono => '678123654'
     }
 
-    p = @@proov_bo.create(datos,'login')
+    p = @@proov_bo.create(datos,'root')
     assert_equal 'Test', p.nombreEmpresa
   end
 
@@ -72,7 +72,7 @@ class ProovedorBOTest < MiniTest::Test
     datos = {}
 
     e = assert_raises CustomMsgException do
-      @@proov_bo.create(datos,'login')
+      @@proov_bo.create(datos,'root')
     end
     assert_equal 'Error 400: Los datos son incorrectos', e.message
   end
@@ -83,7 +83,7 @@ class ProovedorBOTest < MiniTest::Test
              :nombre => 'Test 1'
     }
 
-    p = @@proov_bo.update(datos,'login')
+    p = @@proov_bo.update(datos,'root')
     assert_equal 'Test 1', p.nombre
   end
 
@@ -94,21 +94,21 @@ class ProovedorBOTest < MiniTest::Test
     }
 
     e = assert_raises CustomMsgException do
-      @@proov_bo.update(datos,'login')
+      @@proov_bo.update(datos,'root')
     end
     assert_equal 'Error 404: No existe el proovedor con id 0', e.message
   end
 
   # Test para borrar un proovedor de la BD
   def test_bo_proovedor_delete
-    msg = @@proov_bo.delete(1,'login')
+    msg = @@proov_bo.delete(1,'root')
     assert_equal 'Se ha borrado correctamente el proovedor 1', msg
   end
 
   # Test para comprobar si el proovedor no existe al borrar
   def test_bo_proovedor_delete_no_exist
     e = assert_raises CustomMsgException do
-      @@proov_bo.delete(0,'login')
+      @@proov_bo.delete(0,'root')
     end
     assert_equal 'Error 404: No existe el proovedor con id 0', e.message
   end

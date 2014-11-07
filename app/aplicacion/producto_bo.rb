@@ -1,3 +1,5 @@
+require 'app/aplicacion/usuario_bo'
+
 # Clase que se encarga de contener todos los metodos de acceso de la BD a los Producto
 class ProductoBO
 
@@ -25,30 +27,36 @@ class ProductoBO
 
   # Crea un producto a partir de los datos
   def create(datos, login)
-    p = Producto.new(datos)
+    if UsuarioBO.permitted?(login,'root')
+      p = Producto.new(datos)
 
-    raise CustomMsgException.new(400,'Error 400: Los datos son incorrectos') if !p.valid?
+      raise CustomMsgException.new(400,'Error 400: Los datos son incorrectos') if !p.valid?
 
-    p.save
-    p
+      p.save
+      p
+    end
   end
 
   # Modifica un producto a partir del id
   def update(datos, login)
-    p = find_by_id(datos[:id])
+    if UsuarioBO.permitted?(login,'root')
+      p = find_by_id(datos[:id])
 
-    datos.delete(:id)
-    raise CustomMsgException.new(500,'Error 500: No se ha podido modificar') if !p.update(datos)
+      datos.delete(:id)
+      raise CustomMsgException.new(500,'Error 500: No se ha podido modificar') if !p.update(datos)
 
-    p.save
-    p
+      p.save
+      p
+    end
   end
 
   # Borra un producto por el id
   def delete(id, login)
-    find_by_id(id)
+    if UsuarioBO.permitted?(login,'root')
+      find_by_id(id)
 
-    Producto.destroy_all(id: id)
-    return "Se ha borrado correctamente el producto #{id}"
+      Producto.destroy_all(id: id)
+      return "Se ha borrado correctamente el producto #{id}"
+    end
   end
 end
