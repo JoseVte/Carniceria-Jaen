@@ -33,7 +33,7 @@ class ProovedorAPITest < MiniTest::Test
     get '/buscar/nombreEmpresa/Josrom'
     assert_equal 200, last_response.status
     datos = JSON.parse(last_response.body)
-    assert_equal datos.length, 1
+    assert_equal datos['total'], 1
   end
 
   # Test para buscar un proovedor a partir de una subcadena
@@ -49,7 +49,7 @@ class ProovedorAPITest < MiniTest::Test
     get '/all'
     assert_equal 200, last_response.status
     datos = JSON.parse(last_response.body)
-    assert_equal datos.length, 1
+    assert_equal datos['total'], 1
   end
 
   # Test para comprobar la seleccion de un proovedor que existe

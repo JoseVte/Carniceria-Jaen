@@ -8,15 +8,18 @@ require 'app/dominio/carrito'
 require 'app/aplicacion/usuario_bo'
 require 'app/aplicacion/carrito_bo'
 require 'app/util/custom_msg_exception'
+require 'app/util/utilidad'
 
 # Clase que se encarga del acceso a la API de Usuario
 class UsuariosAPI < Sinatra::Base
+  use Rack::Session::Pool, :expire_after => 60*60
 
   # Configuracion inicial
   configure do
     puts 'configurando API de usuarios...'
     @@usuario_bo = UsuarioBO.new
     @@carrito_bo = CarritoBO.new
+    warn 'Substituir root por session'
   end
 
   # Configuracion mientras se esta desarrollando
@@ -27,13 +30,20 @@ class UsuariosAPI < Sinatra::Base
 
   # Lista de usuarios en JSON
   get '/all' do
-    @@usuario_bo.all.to_json
+    begin
+      users = @@usuario_bo.all('root')
+      result = Utilidad.paginacion(request.env['REQUEST_PATH'],users,params)
+      result.to_json
+    rescue CustomMsgException => e
+      status e.status
+      e.message
+    end
   end
 
   # Un usuario en JSON. Si no existe lanza un 404
   get '/:user' do
     begin
-      u = @@usuario_bo.find_by_user(params['user'])
+      u = @@usuario_bo.find_by_user(params['user'],'root')
       status 200
       u.to_json
     rescue CustomMsgException => e
@@ -54,7 +64,7 @@ class UsuariosAPI < Sinatra::Base
     }
 
     begin
-      u = @@usuario_bo.create(datos,'login')
+      u = @@usuario_bo.create(datos)
       status 201
       u.to_json
     rescue CustomMsgException => e
@@ -93,7 +103,7 @@ class UsuariosAPI < Sinatra::Base
       end
 
       begin
-        u = @@usuario_bo.update(datos,'login')
+        u = @@usuario_bo.update(datos,'root')
         status 200
         u.to_json
       rescue CustomMsgException => e
@@ -106,7 +116,7 @@ class UsuariosAPI < Sinatra::Base
   # Borra un usuario del sistema. Si no existe devuelve un 404
   delete '/:user' do
     begin
-      msg = @@usuario_bo.delete(params['user'],'login')
+      msg = @@usuario_bo.delete(params['user'],'root')
       status 200
       msg
     rescue CustomMsgException => e
@@ -120,9 +130,10 @@ class UsuariosAPI < Sinatra::Base
   # Todos los productos del carrito
   get '/:user/carrito' do
     begin
-      c = @@carrito_bo.all(params['user'],'login')
+      c = @@carrito_bo.all(params['user'],'root')
       status 200
-      c.to_json
+      result = Utilidad.paginacion(request.env['REQUEST_PATH'],c,params)
+      result.to_json
     rescue CustomMsgException => e
       status e.status
       e.message
@@ -136,7 +147,7 @@ class UsuariosAPI < Sinatra::Base
     }
 
     begin
-      msg = @@carrito_bo.add_prod_en_carrito(datos,'login')
+      msg = @@carrito_bo.add_prod_en_carrito(datos,'root')
       status 201
       msg
     rescue CustomMsgException => e
@@ -148,7 +159,7 @@ class UsuariosAPI < Sinatra::Base
   # Borrar un producto al carrito
   delete '/:user/carrito' do
     begin
-      msg = @@carrito_bo.delete_prod_en_carrito(params['user'],params[:prod_id],'login')
+      msg = @@carrito_bo.delete_prod_en_carrito(params['user'],params[:prod_id],'root')
       status 200
       msg
     rescue CustomMsgException => e

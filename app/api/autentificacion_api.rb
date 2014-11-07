@@ -5,7 +5,7 @@ require 'app/aplicacion/usuario_bo'
 
 # API para el login de los Usuario
 class AutentificacionAPI < Sinatra::Base
-
+  
   # Configuracion inicial
   configure do
     puts 'activando autentificacion...'
@@ -24,7 +24,7 @@ class AutentificacionAPI < Sinatra::Base
       datos = JSON.parse(request.body.read)
       if datos['login'] && datos['password']
         begin
-          usuario = @@usuario_bo.do_login(datos['login'], datos['password'])
+          usuario = @@usuario_bo.login(datos['login'], datos['password'])
           session[:usuario] = usuario
           status 200
           'Login OK'

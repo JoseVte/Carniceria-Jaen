@@ -41,7 +41,7 @@ class ProductosAPITest < MiniTest::Test
     get '/buscar/ja'
     assert_equal 200, last_response.status
     datos = JSON.parse(last_response.body)
-    assert_equal datos.length, 2
+    assert_equal datos['total'], 2
   end
 
   # Test para comprobar la llamada a la API de todos los productos
@@ -49,7 +49,7 @@ class ProductosAPITest < MiniTest::Test
     get '/all'
     assert_equal 200, last_response.status
     datos = JSON.parse(last_response.body)
-    assert_equal datos.length, 2
+    assert_equal datos['total'], 2
   end
 
   # Test para comprobar la seleccion de un producto que existe

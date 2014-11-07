@@ -30,14 +30,16 @@ class UsuariosAPITest < MiniTest::Test
 
   # Test para comprobar la llamada a la API de todos los usuarios
   def test_api_usuario_all
+    current_session.rack_session[:usuario] = 'root'
     get '/all'
     assert_equal 200, last_response.status
     datos = JSON.parse(last_response.body)
-    assert_equal datos.length, 1
+    assert_equal datos['total'], 1
   end
 
   # Test para comprobar la seleccion de un usuario que existe
   def test_api_usuario_find
+    current_session.rack_session[:usuario] = 'root'
     get '/root'
     assert_equal 200, last_response.status
     datos = JSON.parse(last_response.body)
@@ -46,6 +48,7 @@ class UsuariosAPITest < MiniTest::Test
 
   # Test para comprobar que pasa si el usuario no existe
   def test_api_usuario_error_find_no_exist
+    current_session.rack_session[:usuario] = 'root'
     get '/noExiste'
     assert_equal 404, last_response.status
     datos = last_response.body
@@ -54,6 +57,7 @@ class UsuariosAPITest < MiniTest::Test
 
   # Test para comprobar si se crea correctamente un usuario desde la API
   def test_api_usuario_new
+    current_session.rack_session[:usuario] = 'root'
     u = {:user => 'Test',
          :pass => 'Test',
          :nombre => 'Test',
@@ -161,7 +165,7 @@ class UsuariosAPITest < MiniTest::Test
     get '/root/carrito'
     assert_equal 200, last_response.status
     datos = JSON.parse(last_response.body)
-    assert_equal 1,datos.length
+    assert_equal 1,datos['total']
   end
 
   # Test para comprobar si no existe el usuario
