@@ -168,4 +168,15 @@ class UsuariosAPI < Sinatra::Base
     end
   end
 
+  # Borrar todo el carrito a la vez
+  delete '/:user/carrito/all' do
+    begin
+      msg = @@carrito_bo.delete_all_carrito(params['user'],'root')
+      status 200
+      msg
+    rescue CustomMsgException => e
+      status e.status
+      e.message
+    end
+  end
 end

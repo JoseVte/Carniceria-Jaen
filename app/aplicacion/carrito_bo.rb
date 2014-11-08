@@ -47,4 +47,16 @@ class CarritoBO
       "Se ha eliminado el producto #{id} del carrito"
     end
   end
+
+  # Borrar todo el carrito
+  def delete_all_carrito(user,login)
+    if UsuarioBO.permitted?(login,user)
+      u = @@usuario_bo.find_by_user(user,login)
+      raise CustomMsgException.new(404,"Error 404: No existe el usuario #{user}") if u.nil?
+
+      carrito = Carrito.find_by(usuarios_id: u.id)
+      carrito.productos.destroy_all
+      'Se han eliminado todos los productos del carrito'
+    end
+  end
 end
