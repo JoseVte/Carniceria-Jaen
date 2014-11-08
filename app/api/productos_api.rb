@@ -28,6 +28,13 @@ class ProductosAPI < Sinatra::Base
     @@producto_bo.ofertas.to_json
   end
 
+  # Devuelve un listado con todos los productos del proovedor
+  get '/proovedor/:id' do
+    p = @@producto_bo.select_by_proovedor(params['id'])
+    result = Utilidad.paginacion(request.env['REQUEST_PATH'],p,params)
+    result.to_json
+  end
+
   # Devuelve un listado con todos los productos que contengan la subcadena
   get '/buscar/:subcadena' do
     p = @@producto_bo.select_by_nombre(params['subcadena'])

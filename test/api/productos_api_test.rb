@@ -44,6 +44,14 @@ class ProductosAPITest < MiniTest::Test
     assert_equal datos['total'], 2
   end
 
+  # Test para buscar un producto a partir de una subcadena
+  def test_api_producto_proovedor
+    get '/proovedor/1'
+    assert_equal 200, last_response.status
+    datos = JSON.parse(last_response.body)
+    assert_equal datos['total'], 2
+  end
+
   # Test para comprobar la llamada a la API de todos los productos
   def test_api_producto_all
     get '/all'

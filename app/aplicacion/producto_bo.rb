@@ -8,6 +8,11 @@ class ProductoBO
     Producto.where(:ofertas=>true)
   end
 
+  # Busqueda por proovedor
+  def select_by_proovedor(proovedor)
+    Producto.where("proovedor_id == ?", "#{proovedor}")
+  end
+
   # Busqueda de productos por subcadena
   def select_by_nombre(subcadena)
     Producto.where("nombre LIKE ?", "%#{subcadena}%")
