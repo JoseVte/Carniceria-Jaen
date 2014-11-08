@@ -19,8 +19,8 @@ if [ -e "$DB_SCHEMA" ]; then
   rm $DB_SCHEMA
 fi
 
-rake db:migrate
-rake db:migrate RACK_ENV=test
-rake db:fixtures:load RACK_ENV=test
+bundle exec rake db:migrate
+bundle exec rake db:migrate RACK_ENV=test
+bundle exec rake db:fixtures:load RACK_ENV=test
 
 echo 'Recreacion de la base de datos completada'
