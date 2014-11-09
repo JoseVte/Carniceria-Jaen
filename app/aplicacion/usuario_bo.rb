@@ -1,12 +1,15 @@
+require 'digest/md5'
+
 # Clase que se encarga de contener todos los metodos de acceso de la BD a los Usuario
 class UsuarioBO
+  include Digest
 
-  # Metodo para comprobar si el login es correcto
+  # Metodo para comprobar si el login MD5.hexdigestes correcto
   def login(user, pass)
     begin
       u = find_by_user(user,user)
     ensure
-      raise CustomMsgException.new(401,'Error 401: Autentificacion incorrecta') if u.nil? || !(u.pass == pass)
+      raise CustomMsgException.new(401,'Error 401: Autentificacion incorrecta') if u.nil? || (u.authenticate(MD5.hexdigest(pass)) == false)
       return u.user
     end
   end
@@ -50,6 +53,8 @@ class UsuarioBO
 
     u = Usuario.new(datos)
     raise CustomMsgException.new(400,'Error 400: Los datos son incorrectos') if !u.valid?
+    u.password = MD5.hexdigest(datos[:password])
+    u.password_confirmation = MD5.hexdigest(datos[:password_confirmation])
     u.save
     c = Carrito.new({:usuarios_id => u.id})
     c.save

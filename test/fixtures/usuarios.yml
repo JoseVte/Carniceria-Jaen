@@ -1,7 +1,7 @@
 root:
   id: 1
   user: root
-  pass: root
+  password_digest: $2a$10$DLl0MAtzx/v/kJd1Do25.eV90NqF/jVMBQHnhU3pV5nmiyDhrYsCu
   nombre: Adminitrador
   apellidos: del sistema
   email: root@root.su

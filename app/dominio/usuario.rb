@@ -4,10 +4,8 @@ require 'active_record'
 class Usuario < ActiveRecord::Base
    # Validacion del nombre del usuario
   validates :user, uniqueness: true, presence: true
-# Validacion del email del usuario
+  # Validacion del email del usuario
   validates :email, uniqueness: true, presence: true
-  # Validacion de la pass del usuario
-  validates :pass, presence: true
   # Validacion del nombre del usuario
   validates :nombre, presence: true
   # Validacion de los apellidos del usuario
@@ -19,4 +17,6 @@ class Usuario < ActiveRecord::Base
 
   # Un usuario no puede tener mas de un carrito
   has_one :carrito
+
+  has_secure_password
 end

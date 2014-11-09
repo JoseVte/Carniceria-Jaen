@@ -12,14 +12,12 @@ require 'app/util/utilidad'
 
 # Clase que se encarga del acceso a la API de Usuario
 class UsuariosAPI < Sinatra::Base
-  use Rack::Session::Pool, :expire_after => 60*60
 
   # Configuracion inicial
   configure do
     puts 'configurando API de usuarios...'
     @@usuario_bo = UsuarioBO.new
     @@carrito_bo = CarritoBO.new
-    warn 'Substituir root por session'
   end
 
   # Configuracion mientras se esta desarrollando
@@ -28,10 +26,14 @@ class UsuariosAPI < Sinatra::Base
     register Sinatra::Reloader
   end
 
+  configure :test do
+    session[:usuario] = 'root'
+  end
+
   # Lista de usuarios en JSON
   get '/all' do
     begin
-      users = @@usuario_bo.all('root')
+      users = @@usuario_bo.all(session[:usuario])
       result = Utilidad.paginacion(request.env['REQUEST_PATH'],users,params)
       result.to_json
     rescue CustomMsgException => e
@@ -43,7 +45,7 @@ class UsuariosAPI < Sinatra::Base
   # Un usuario en JSON. Si no existe lanza un 404
   get '/:user' do
     begin
-      u = @@usuario_bo.find_by_user(params['user'],'root')
+      u = @@usuario_bo.find_by_user(params['user'],session[:usuario])
       status 200
       u.to_json
     rescue CustomMsgException => e
@@ -55,7 +57,8 @@ class UsuariosAPI < Sinatra::Base
   # Crea un usuario nuevo. Si ya existe o esta mal formado el formulario lanza un 400
   post '/new' do
     datos = {:user => params[:user],
-             :pass => params[:pass],
+             :password => params[:pass],
+             :password_confirmation => params[:pass_conf],
              :nombre => params[:nombre],
              :apellidos => params[:apellidos],
              :email => params[:email],
@@ -84,7 +87,10 @@ class UsuariosAPI < Sinatra::Base
 
       # Permite elegir que parametro van a ser modificados
       if !params[:pass].nil?
-        datos.store(:pass,params[:pass])
+        datos.store(:password,params[:pass])
+      end
+      if !params[:pass_conf].nil?
+        datos.store(:password_confirmation,params[:pass_conf])
       end
       if !params[:nombre].nil?
         datos.store(:nombre,params[:nombre])
@@ -103,7 +109,7 @@ class UsuariosAPI < Sinatra::Base
       end
 
       begin
-        u = @@usuario_bo.update(datos,'root')
+        u = @@usuario_bo.update(datos,session[:usuario])
         status 200
         u.to_json
       rescue CustomMsgException => e
@@ -116,7 +122,7 @@ class UsuariosAPI < Sinatra::Base
   # Borra un usuario del sistema. Si no existe devuelve un 404
   delete '/:user' do
     begin
-      msg = @@usuario_bo.delete(params['user'],'root')
+      msg = @@usuario_bo.delete(params['user'],session[:usuario])
       status 200
       msg
     rescue CustomMsgException => e
@@ -130,7 +136,7 @@ class UsuariosAPI < Sinatra::Base
   # Todos los productos del carrito
   get '/:user/carrito' do
     begin
-      c = @@carrito_bo.all(params['user'],'root')
+      c = @@carrito_bo.all(params['user'],session[:usuario])
       status 200
       result = Utilidad.paginacion(request.env['REQUEST_PATH'],c,params)
       result.to_json
@@ -147,7 +153,7 @@ class UsuariosAPI < Sinatra::Base
     }
 
     begin
-      msg = @@carrito_bo.add_prod_en_carrito(datos,'root')
+      msg = @@carrito_bo.add_prod_en_carrito(datos,session[:usuario])
       status 201
       msg
     rescue CustomMsgException => e
@@ -159,7 +165,7 @@ class UsuariosAPI < Sinatra::Base
   # Borrar un producto al carrito
   delete '/:user/carrito' do
     begin
-      msg = @@carrito_bo.delete_prod_en_carrito(params['user'],params[:prod_id],'root')
+      msg = @@carrito_bo.delete_prod_en_carrito(params['user'],params[:prod_id],session[:usuario])
       status 200
       msg
     rescue CustomMsgException => e
@@ -171,7 +177,7 @@ class UsuariosAPI < Sinatra::Base
   # Borrar todo el carrito a la vez
   delete '/:user/carrito/all' do
     begin
-      msg = @@carrito_bo.delete_all_carrito(params['user'],'root')
+      msg = @@carrito_bo.delete_all_carrito(params['user'],session[:usuario])
       status 200
       msg
     rescue CustomMsgException => e

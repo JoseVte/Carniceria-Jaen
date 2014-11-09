@@ -7,6 +7,7 @@ gem 'jwt'
 gem 'json'
 gem 'sinatra-activerecord'
 gem 'sqlite3'
+gem 'bcrypt'
 
 # Gemas para realizar los test
 group :test do

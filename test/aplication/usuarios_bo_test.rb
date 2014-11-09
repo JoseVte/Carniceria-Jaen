@@ -45,7 +45,8 @@ class UsuariosBOTest < MiniTest::Test
   # Test para crear un usuario en la BD
   def test_bo_usuario_new
     datos = {:user => 'Test',
-             :pass => 'Test',
+             :password => 'Test',
+             :password_confirmation => 'Test',
              :nombre => 'Test',
              :apellidos => 'de prueba',
              :email => 'a@a.a',

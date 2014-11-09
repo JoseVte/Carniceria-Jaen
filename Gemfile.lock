@@ -16,6 +16,7 @@ GEM
       tzinfo (~> 1.1)
     arel (5.0.1.20140414130214)
     backports (3.6.3)
+    bcrypt (3.1.9)
     builder (3.2.2)
     database_cleaner (1.3.0)
     i18n (0.6.11)
@@ -56,6 +57,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt
   database_cleaner
   json
   jwt
