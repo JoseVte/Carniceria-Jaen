@@ -5,6 +5,7 @@ require 'json'
 
 require 'app/dominio/producto'
 require 'app/aplicacion/producto_bo'
+require 'app/util/utilidad'
 
 # Clase que se encarga del acceso a la API de Producto
 class ProductosAPI < Sinatra::Base
@@ -26,14 +27,25 @@ class ProductosAPI < Sinatra::Base
     @@producto_bo.ofertas.to_json
   end
 
+  # Devuelve un listado con todos los productos del proovedor
+  get '/proovedor/:id' do
+    p = @@producto_bo.select_by_proovedor(params['id'])
+    result = Utilidad.paginacion(request.env['REQUEST_PATH'],p,params)
+    result.to_json
+  end
+
   # Devuelve un listado con todos los productos que contengan la subcadena
   get '/buscar/:subcadena' do
-    @@producto_bo.select_by_nombre(params['subcadena']).to_json
+    p = @@producto_bo.select_by_nombre(params['subcadena'])
+    result = Utilidad.paginacion(request.env['REQUEST_PATH'],p,params)
+    result.to_json
   end
 
   # Todos los productos en JSON
   get '/all' do
-    @@producto_bo.all.to_json
+    p = @@producto_bo.all
+    result = Utilidad.paginacion(request.env['REQUEST_PATH'],p,params)
+    result.to_json
   end
 
   # Un producto en JSON. Si no existe lanza un 404
@@ -58,7 +70,7 @@ class ProductosAPI < Sinatra::Base
              :proovedor_id => params['proovedor_id']
     }
     begin
-      p = @@producto_bo.create(datos,'login')
+      p = @@producto_bo.create(datos,request.env['HTTP_X_AUTH_TOKEN'])
       status 201
       p.to_json
     rescue CustomMsgException => e
@@ -101,7 +113,7 @@ class ProductosAPI < Sinatra::Base
       end
 
       begin
-        p = @@producto_bo.update(datos,'login')
+        p = @@producto_bo.update(datos,request.env['HTTP_X_AUTH_TOKEN'])
         status 200
         p.to_json
       rescue CustomMsgException => e
@@ -114,7 +126,7 @@ class ProductosAPI < Sinatra::Base
   # Borra un producto del sistema. Si no existe devuelve un 404
   delete '/:id' do
     begin
-      msg = @@producto_bo.delete(params['id'],'login')
+      msg = @@producto_bo.delete(params['id'],request.env['HTTP_X_AUTH_TOKEN'])
       status 200
       msg
     rescue CustomMsgException => e

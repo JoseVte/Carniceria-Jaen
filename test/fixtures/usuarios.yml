@@ -1,9 +1,10 @@
 root:
   id: 1
   user: root
-  pass: root
+  password_digest: $2a$10$DLl0MAtzx/v/kJd1Do25.eV90NqF/jVMBQHnhU3pV5nmiyDhrYsCu
   nombre: Adminitrador
   apellidos: del sistema
   email: root@root.su
   direccion: root
   telefono: 987654321
+  token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1c2VyIjoicm9vdCJ9.NslomWqJsEhVixDxoICYQU9_dALnZU7WMlIPbYDc04fusWKpKNU490ivcdu5S7NHhVJnBfB7ifBR6JfXh2GZbw

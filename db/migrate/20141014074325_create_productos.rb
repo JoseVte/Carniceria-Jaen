@@ -8,6 +8,7 @@ class CreateProductos < ActiveRecord::Migration
       p.float :precioKg, null:false
       p.integer :stock, :default=> 0
       p.boolean :ofertas, :default=> false
+      p.float :rebaja, :default => 0
     end
   end
 end

@@ -8,6 +8,7 @@ require 'app/dominio/carrito'
 require 'app/aplicacion/usuario_bo'
 require 'app/aplicacion/carrito_bo'
 require 'app/util/custom_msg_exception'
+require 'app/util/utilidad'
 
 # Clase que se encarga del acceso a la API de Usuario
 class UsuariosAPI < Sinatra::Base
@@ -27,13 +28,20 @@ class UsuariosAPI < Sinatra::Base
 
   # Lista de usuarios en JSON
   get '/all' do
-    @@usuario_bo.all.to_json
+    begin
+      users = @@usuario_bo.all(request.env['HTTP_X_AUTH_TOKEN'])
+      result = Utilidad.paginacion(request.env['REQUEST_PATH'],users,params)
+      result.to_json
+    rescue CustomMsgException => e
+      status e.status
+      e.message
+    end
   end
 
   # Un usuario en JSON. Si no existe lanza un 404
   get '/:user' do
     begin
-      u = @@usuario_bo.find_by_user(params['user'])
+      u = @@usuario_bo.find_by_user(params['user'],request.env['HTTP_X_AUTH_TOKEN'])
       status 200
       u.to_json
     rescue CustomMsgException => e
@@ -45,7 +53,8 @@ class UsuariosAPI < Sinatra::Base
   # Crea un usuario nuevo. Si ya existe o esta mal formado el formulario lanza un 400
   post '/new' do
     datos = {:user => params[:user],
-             :pass => params[:pass],
+             :password => params[:pass],
+             :password_confirmation => params[:pass_conf],
              :nombre => params[:nombre],
              :apellidos => params[:apellidos],
              :email => params[:email],
@@ -54,7 +63,7 @@ class UsuariosAPI < Sinatra::Base
     }
 
     begin
-      u = @@usuario_bo.create(datos,'login')
+      u = @@usuario_bo.create(datos)
       status 201
       u.to_json
     rescue CustomMsgException => e
@@ -74,7 +83,10 @@ class UsuariosAPI < Sinatra::Base
 
       # Permite elegir que parametro van a ser modificados
       if !params[:pass].nil?
-        datos.store(:pass,params[:pass])
+        datos.store(:password,params[:pass])
+      end
+      if !params[:pass_conf].nil?
+        datos.store(:password_confirmation,params[:pass_conf])
       end
       if !params[:nombre].nil?
         datos.store(:nombre,params[:nombre])
@@ -93,7 +105,7 @@ class UsuariosAPI < Sinatra::Base
       end
 
       begin
-        u = @@usuario_bo.update(datos,'login')
+        u = @@usuario_bo.update(datos,request.env['HTTP_X_AUTH_TOKEN'])
         status 200
         u.to_json
       rescue CustomMsgException => e
@@ -106,7 +118,7 @@ class UsuariosAPI < Sinatra::Base
   # Borra un usuario del sistema. Si no existe devuelve un 404
   delete '/:user' do
     begin
-      msg = @@usuario_bo.delete(params['user'],'login')
+      msg = @@usuario_bo.delete(params['user'],request.env['HTTP_X_AUTH_TOKEN'])
       status 200
       msg
     rescue CustomMsgException => e
@@ -120,9 +132,10 @@ class UsuariosAPI < Sinatra::Base
   # Todos los productos del carrito
   get '/:user/carrito' do
     begin
-      c = @@carrito_bo.all(params['user'],'login')
+      c = @@carrito_bo.all(params['user'],request.env['HTTP_X_AUTH_TOKEN'])
       status 200
-      c.to_json
+      result = Utilidad.paginacion(request.env['REQUEST_PATH'],c,params)
+      result.to_json
     rescue CustomMsgException => e
       status e.status
       e.message
@@ -136,7 +149,7 @@ class UsuariosAPI < Sinatra::Base
     }
 
     begin
-      msg = @@carrito_bo.add_prod_en_carrito(datos,'login')
+      msg = @@carrito_bo.add_prod_en_carrito(datos,request.env['HTTP_X_AUTH_TOKEN'])
       status 201
       msg
     rescue CustomMsgException => e
@@ -148,7 +161,7 @@ class UsuariosAPI < Sinatra::Base
   # Borrar un producto al carrito
   delete '/:user/carrito' do
     begin
-      msg = @@carrito_bo.delete_prod_en_carrito(params['user'],params[:prod_id],'login')
+      msg = @@carrito_bo.delete_prod_en_carrito(params['user'],params[:prod_id],request.env['HTTP_X_AUTH_TOKEN'])
       status 200
       msg
     rescue CustomMsgException => e
@@ -157,4 +170,15 @@ class UsuariosAPI < Sinatra::Base
     end
   end
 
+  # Borrar todo el carrito a la vez
+  delete '/:user/carrito/all' do
+    begin
+      msg = @@carrito_bo.delete_all_carrito(params['user'],request.env['HTTP_X_AUTH_TOKEN'])
+      status 200
+      msg
+    rescue CustomMsgException => e
+      status e.status
+      e.message
+    end
+  end
 end

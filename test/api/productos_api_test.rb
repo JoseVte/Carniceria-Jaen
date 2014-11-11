@@ -41,7 +41,15 @@ class ProductosAPITest < MiniTest::Test
     get '/buscar/ja'
     assert_equal 200, last_response.status
     datos = JSON.parse(last_response.body)
-    assert_equal datos.length, 2
+    assert_equal datos['total'], 2
+  end
+
+  # Test para buscar un producto a partir de una subcadena
+  def test_api_producto_proovedor
+    get '/proovedor/1'
+    assert_equal 200, last_response.status
+    datos = JSON.parse(last_response.body)
+    assert_equal datos['total'], 2
   end
 
   # Test para comprobar la llamada a la API de todos los productos
@@ -49,7 +57,7 @@ class ProductosAPITest < MiniTest::Test
     get '/all'
     assert_equal 200, last_response.status
     datos = JSON.parse(last_response.body)
-    assert_equal datos.length, 2
+    assert_equal datos['total'], 2
   end
 
   # Test para comprobar la seleccion de un producto que existe
@@ -74,7 +82,7 @@ class ProductosAPITest < MiniTest::Test
          :precioKg => 2
     }
 
-    post '/new', p
+    post '/new', p, 'HTTP_X_AUTH_TOKEN'=>'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1c2VyIjoicm9vdCJ9.NslomWqJsEhVixDxoICYQU9_dALnZU7WMlIPbYDc04fusWKpKNU490ivcdu5S7NHhVJnBfB7ifBR6JfXh2GZbw'
 
     assert_equal 201, last_response.status
     datos = JSON.parse(last_response.body)
@@ -85,7 +93,7 @@ class ProductosAPITest < MiniTest::Test
   def test_api_producto_error_new_data_error
     p = {:nombre => 'Test'}
 
-    post '/new', p
+    post '/new', p, 'HTTP_X_AUTH_TOKEN'=>'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1c2VyIjoicm9vdCJ9.NslomWqJsEhVixDxoICYQU9_dALnZU7WMlIPbYDc04fusWKpKNU490ivcdu5S7NHhVJnBfB7ifBR6JfXh2GZbw'
 
     assert_equal 400, last_response.status
     datos = last_response.body
@@ -98,7 +106,7 @@ class ProductosAPITest < MiniTest::Test
          :nombre => 'Test'
     }
 
-    post '/update', p
+    post '/update', p, 'HTTP_X_AUTH_TOKEN'=>'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1c2VyIjoicm9vdCJ9.NslomWqJsEhVixDxoICYQU9_dALnZU7WMlIPbYDc04fusWKpKNU490ivcdu5S7NHhVJnBfB7ifBR6JfXh2GZbw'
 
     assert_equal 200, last_response.status
     datos = JSON.parse(last_response.body)
@@ -111,7 +119,7 @@ class ProductosAPITest < MiniTest::Test
          :nombre => 'Test'
     }
 
-    post '/update', p
+    post '/update', p, 'HTTP_X_AUTH_TOKEN'=>'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1c2VyIjoicm9vdCJ9.NslomWqJsEhVixDxoICYQU9_dALnZU7WMlIPbYDc04fusWKpKNU490ivcdu5S7NHhVJnBfB7ifBR6JfXh2GZbw'
 
     assert_equal 404, last_response.status
     datos = last_response.body
@@ -121,7 +129,7 @@ class ProductosAPITest < MiniTest::Test
   # Test para comprobar que se han introducido correctamente los datos en el formulario
   def test_api_producto_error_update_data_error
     p = {:nombre => 'Test'}
-    post '/update', p
+    post '/update', p, 'HTTP_X_AUTH_TOKEN'=>'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1c2VyIjoicm9vdCJ9.NslomWqJsEhVixDxoICYQU9_dALnZU7WMlIPbYDc04fusWKpKNU490ivcdu5S7NHhVJnBfB7ifBR6JfXh2GZbw'
 
     assert_equal 400, last_response.status
     datos = last_response.body
@@ -130,7 +138,7 @@ class ProductosAPITest < MiniTest::Test
 
   # Test para comprobar si se borra el producto
   def test_api_producto_delete
-    delete '/1'
+    delete '/1','', 'HTTP_X_AUTH_TOKEN'=>'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1c2VyIjoicm9vdCJ9.NslomWqJsEhVixDxoICYQU9_dALnZU7WMlIPbYDc04fusWKpKNU490ivcdu5S7NHhVJnBfB7ifBR6JfXh2GZbw'
     assert_equal 200, last_response.status
     datos = last_response.body
     assert_equal 'Se ha borrado correctamente el producto 1', datos
@@ -138,7 +146,7 @@ class ProductosAPITest < MiniTest::Test
 
   # Test para comprobar al borrar si no existe el producto
   def test_api_producto_error_delete_no_exist
-    delete '/0'
+    delete '/0','', 'HTTP_X_AUTH_TOKEN'=>'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1c2VyIjoicm9vdCJ9.NslomWqJsEhVixDxoICYQU9_dALnZU7WMlIPbYDc04fusWKpKNU490ivcdu5S7NHhVJnBfB7ifBR6JfXh2GZbw'
     assert_equal 404, last_response.status
     datos = last_response.body
     assert_equal 'Error 404: No existe el producto con id 0', datos

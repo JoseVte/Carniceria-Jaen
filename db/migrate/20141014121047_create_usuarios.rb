@@ -6,7 +6,7 @@ class CreateUsuarios < ActiveRecord::Migration
       #Sera la clave primaria
       u.string :user, null:false
       #Estara codificada con digest
-      u.string :pass, null:false
+      u.string :password_digest, null:false
 
       #Nombre completo
       u.string :nombre, null:false
