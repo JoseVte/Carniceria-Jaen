@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141108135729) do
+ActiveRecord::Schema.define(version: 20141111084306) do
 
   create_table "carritos", force: true do |t|
     t.integer "usuarios_id"
@@ -44,14 +44,15 @@ ActiveRecord::Schema.define(version: 20141108135729) do
   end
 
   create_table "usuarios", force: true do |t|
-    t.string "user",                                                        null: false
-    t.string "password_digest",                                             null: false
-    t.string "nombre",                                                      null: false
-    t.string "apellidos",                                                   null: false
-    t.string "email",                                                       null: false
-    t.text   "direccion",                                                   null: false
-    t.string "telefono",                                                    null: false
-    t.string "url_imagen",      default: "/assets/images/missing_user.png"
+    t.string "user",                                                                    null: false
+    t.string "password_digest",                                                         null: false
+    t.string "nombre",                                                                  null: false
+    t.string "apellidos",                                                               null: false
+    t.string "email",                                                                   null: false
+    t.text   "direccion",                                                               null: false
+    t.string "telefono",                                                                null: false
+    t.string "url_imagen",                  default: "/assets/images/missing_user.png"
+    t.string "token",           limit: 512, default: ""
   end
 
 end

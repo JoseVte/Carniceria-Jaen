@@ -24,10 +24,9 @@ class AutentificacionAPI < Sinatra::Base
       datos = JSON.parse(request.body.read)
       if datos['login'] && datos['password']
         begin
-          usuario = @@usuario_bo.login(datos['login'], datos['password'])
-          session[:usuario] = usuario
+          token = @@usuario_bo.login(datos['login'], datos['password'])
           status 200
-          'Login OK'
+          {:token => token}.to_json
         rescue CustomMsgException => e
           status e.status
           e.message

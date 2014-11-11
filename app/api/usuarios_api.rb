@@ -29,7 +29,7 @@ class UsuariosAPI < Sinatra::Base
   # Lista de usuarios en JSON
   get '/all' do
     begin
-      users = @@usuario_bo.all(session[:usuario])
+      users = @@usuario_bo.all(request.env['HTTP_X_AUTH_TOKEN'])
       result = Utilidad.paginacion(request.env['REQUEST_PATH'],users,params)
       result.to_json
     rescue CustomMsgException => e
@@ -41,7 +41,7 @@ class UsuariosAPI < Sinatra::Base
   # Un usuario en JSON. Si no existe lanza un 404
   get '/:user' do
     begin
-      u = @@usuario_bo.find_by_user(params['user'],session[:usuario])
+      u = @@usuario_bo.find_by_user(params['user'],request.env['HTTP_X_AUTH_TOKEN'])
       status 200
       u.to_json
     rescue CustomMsgException => e
@@ -105,7 +105,7 @@ class UsuariosAPI < Sinatra::Base
       end
 
       begin
-        u = @@usuario_bo.update(datos,session[:usuario])
+        u = @@usuario_bo.update(datos,request.env['HTTP_X_AUTH_TOKEN'])
         status 200
         u.to_json
       rescue CustomMsgException => e
@@ -118,7 +118,7 @@ class UsuariosAPI < Sinatra::Base
   # Borra un usuario del sistema. Si no existe devuelve un 404
   delete '/:user' do
     begin
-      msg = @@usuario_bo.delete(params['user'],session[:usuario])
+      msg = @@usuario_bo.delete(params['user'],request.env['HTTP_X_AUTH_TOKEN'])
       status 200
       msg
     rescue CustomMsgException => e
@@ -132,7 +132,7 @@ class UsuariosAPI < Sinatra::Base
   # Todos los productos del carrito
   get '/:user/carrito' do
     begin
-      c = @@carrito_bo.all(params['user'],session[:usuario])
+      c = @@carrito_bo.all(params['user'],request.env['HTTP_X_AUTH_TOKEN'])
       status 200
       result = Utilidad.paginacion(request.env['REQUEST_PATH'],c,params)
       result.to_json
@@ -149,7 +149,7 @@ class UsuariosAPI < Sinatra::Base
     }
 
     begin
-      msg = @@carrito_bo.add_prod_en_carrito(datos,session[:usuario])
+      msg = @@carrito_bo.add_prod_en_carrito(datos,request.env['HTTP_X_AUTH_TOKEN'])
       status 201
       msg
     rescue CustomMsgException => e
@@ -161,7 +161,7 @@ class UsuariosAPI < Sinatra::Base
   # Borrar un producto al carrito
   delete '/:user/carrito' do
     begin
-      msg = @@carrito_bo.delete_prod_en_carrito(params['user'],params[:prod_id],session[:usuario])
+      msg = @@carrito_bo.delete_prod_en_carrito(params['user'],params[:prod_id],request.env['HTTP_X_AUTH_TOKEN'])
       status 200
       msg
     rescue CustomMsgException => e
@@ -173,7 +173,7 @@ class UsuariosAPI < Sinatra::Base
   # Borrar todo el carrito a la vez
   delete '/:user/carrito/all' do
     begin
-      msg = @@carrito_bo.delete_all_carrito(params['user'],session[:usuario])
+      msg = @@carrito_bo.delete_all_carrito(params['user'],request.env['HTTP_X_AUTH_TOKEN'])
       status 200
       msg
     rescue CustomMsgException => e

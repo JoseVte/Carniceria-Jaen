@@ -8,7 +8,7 @@ require 'app/aplicacion/carrito_bo'
 class CarritosBOTest < MiniTest::Test
 
   @@carrito_bo = CarritoBO.new
-  @@login = 'root'
+  @@token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1c2VyIjoicm9vdCJ9.NslomWqJsEhVixDxoICYQU9_dALnZU7WMlIPbYDc04fusWKpKNU490ivcdu5S7NHhVJnBfB7ifBR6JfXh2GZbw'
 
   # Configuracion de la BD
   def setup
@@ -24,14 +24,14 @@ class CarritosBOTest < MiniTest::Test
 
   # Test para comprobar todo el carrito de un usuario
   def test_bo_carrito_all
-    lista = @@carrito_bo.all('root',@@login)
+    lista = @@carrito_bo.all('root',@@token)
     assert_equal 1, lista.length
   end
 
   # Test para comprobar si no existe el usuario
   def test_bo_carrito_all_error_user_no_exist
     e = assert_raises CustomMsgException  do
-      @@carrito_bo.all('noExiste',@@login)
+      @@carrito_bo.all('noExiste',@@token)
     end
     assert_equal 'Error 404: No existe el usuario noExiste',e.message
   end
@@ -41,7 +41,7 @@ class CarritosBOTest < MiniTest::Test
     datos = { :carrito_id => 1,
               :producto_id => 2
     }
-    msg = @@carrito_bo.add_prod_en_carrito(datos,@@login)
+    msg = @@carrito_bo.add_prod_en_carrito(datos,@@token)
     assert_equal 'Añadido el producto 2 al carrito',msg
   end
 
@@ -51,7 +51,7 @@ class CarritosBOTest < MiniTest::Test
               :producto_id => 2
     }
     e = assert_raises CustomMsgException  do
-      @@carrito_bo.add_prod_en_carrito(datos,@@login)
+      @@carrito_bo.add_prod_en_carrito(datos,@@token)
     end
     assert_equal 'Error 404: No existe el usuario con id 2',e.message
   end
@@ -62,21 +62,21 @@ class CarritosBOTest < MiniTest::Test
               :producto_id => 3
     }
     e = assert_raises CustomMsgException  do
-      @@carrito_bo.add_prod_en_carrito(datos,@@login)
+      @@carrito_bo.add_prod_en_carrito(datos,@@token)
     end
     assert_equal 'Error 404: No existe el producto 3',e.message
   end
 
   # Test para borrar un producto del carrito
   def test_bo_carrito_delete_producto_to_carrito
-    msg = @@carrito_bo.delete_prod_en_carrito('root',1,@@login)
+    msg = @@carrito_bo.delete_prod_en_carrito('root',1,@@token)
     assert_equal 'Se ha eliminado el producto 1 del carrito', msg
   end
 
   # Test para comprobar si el usuario no existe
   def test_bo_carrito_delete_producto_to_carrito_error_user_no_exist
     e = assert_raises CustomMsgException  do
-      @@carrito_bo.delete_prod_en_carrito('noExiste',1,@@login)
+      @@carrito_bo.delete_prod_en_carrito('noExiste',1,@@token)
     end
     assert_equal 'Error 404: No existe el usuario noExiste', e.message
   end
@@ -84,21 +84,21 @@ class CarritosBOTest < MiniTest::Test
   # Test para comprobar si el producto no existe
   def test_bo_carrito_delete_producto_to_carrito_error_prod_no_exist
     e = assert_raises CustomMsgException  do
-      @@carrito_bo.delete_prod_en_carrito('root',0,@@login)
+      @@carrito_bo.delete_prod_en_carrito('root',0,@@token)
     end
     assert_equal 'Error 404: No existe el producto 0', e.message
   end
 
   # Test para borrar todo el carrito
   def test_bo_carrito_delete_all_carrito
-    msg = @@carrito_bo.delete_all_carrito('root',@@login)
+    msg = @@carrito_bo.delete_all_carrito('root',@@token)
     assert_equal 'Se han eliminado todos los productos del carrito', msg
   end
 
   # Test para comprobar si el usuario no existe
   def test_bo_carrito_delete_all_carrito_error_user_no_exist
     e = assert_raises CustomMsgException  do
-      @@carrito_bo.delete_all_carrito('noExiste',@@login)
+      @@carrito_bo.delete_all_carrito('noExiste',@@token)
     end
     assert_equal 'Error 404: No existe el usuario noExiste', e.message
   end

@@ -69,7 +69,7 @@ class ProovedorAPI < Sinatra::Base
              :telefono => params['telefono']
     }
     begin
-      p = @@proovedor_bo.create(datos,session[:usuario])
+      p = @@proovedor_bo.create(datos,request.env['HTTP_X_AUTH_TOKEN'])
       status 201
       p.to_json
     rescue CustomMsgException => e
@@ -112,7 +112,7 @@ class ProovedorAPI < Sinatra::Base
       end
 
       begin
-        p = @@proovedor_bo.update(datos,session[:usuario])
+        p = @@proovedor_bo.update(datos,request.env['HTTP_X_AUTH_TOKEN'])
         status 200
         p.to_json
       rescue CustomMsgException => e
@@ -125,7 +125,7 @@ class ProovedorAPI < Sinatra::Base
   # Borra un proovedor del sistema. Si no existe devuelve un 404
   delete '/:id' do
     begin
-      msg = @@proovedor_bo.delete(params['id'],session[:usuario])
+      msg = @@proovedor_bo.delete(params['id'],request.env['HTTP_X_AUTH_TOKEN'])
       status 200
       msg
     rescue CustomMsgException => e

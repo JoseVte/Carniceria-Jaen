@@ -70,7 +70,7 @@ class ProductosAPI < Sinatra::Base
              :proovedor_id => params['proovedor_id']
     }
     begin
-      p = @@producto_bo.create(datos,session[:usuario])
+      p = @@producto_bo.create(datos,request.env['HTTP_X_AUTH_TOKEN'])
       status 201
       p.to_json
     rescue CustomMsgException => e
@@ -113,7 +113,7 @@ class ProductosAPI < Sinatra::Base
       end
 
       begin
-        p = @@producto_bo.update(datos,session[:usuario])
+        p = @@producto_bo.update(datos,request.env['HTTP_X_AUTH_TOKEN'])
         status 200
         p.to_json
       rescue CustomMsgException => e
@@ -126,7 +126,7 @@ class ProductosAPI < Sinatra::Base
   # Borra un producto del sistema. Si no existe devuelve un 404
   delete '/:id' do
     begin
-      msg = @@producto_bo.delete(params['id'],session[:usuario])
+      msg = @@producto_bo.delete(params['id'],request.env['HTTP_X_AUTH_TOKEN'])
       status 200
       msg
     rescue CustomMsgException => e

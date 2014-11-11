@@ -8,7 +8,7 @@ require 'app/aplicacion/usuario_bo'
 class UsuariosBOTest < MiniTest::Test
 
   @@users_bo = UsuarioBO.new
-  @@login = 'root'
+  @@token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1c2VyIjoicm9vdCJ9.NslomWqJsEhVixDxoICYQU9_dALnZU7WMlIPbYDc04fusWKpKNU490ivcdu5S7NHhVJnBfB7ifBR6JfXh2GZbw'
 
   # Configuracion de la BD
   def setup
@@ -24,20 +24,20 @@ class UsuariosBOTest < MiniTest::Test
 
   # Test de listado total de los usuarios
   def test_bo_usuario_all
-    lista = @@users_bo.all(@@login)
+    lista = @@users_bo.all(@@token)
     assert_equal 1, lista.length
   end
 
   # Test para buscar un usuario en la BD
   def test_bo_usuario_find
-    u = @@users_bo.find_by_user 'root', @@login
+    u = @@users_bo.find_by_user 'root', @@token
     assert_equal 'root', u.user
   end
 
   # Test para comprobar si no existe el usuario
   def test_bo_usuario_find_no_exist
     e = assert_raises CustomMsgException do
-      @@users_bo.find_by_user 'noExiste', @@login
+      @@users_bo.find_by_user 'noExiste', @@token
     end
     assert_equal 'Error 404: No existe el usuario noExiste', e.message
   end
@@ -91,7 +91,7 @@ class UsuariosBOTest < MiniTest::Test
              :email => 'a@a.a'
     }
 
-    u = @@users_bo.update(datos,@@login)
+    u = @@users_bo.update(datos,@@token)
     assert_equal 'a@a.a', u.email
   end
 
@@ -102,21 +102,21 @@ class UsuariosBOTest < MiniTest::Test
     }
 
     e = assert_raises CustomMsgException do
-      @@users_bo.update(datos,@@login)
+      @@users_bo.update(datos,@@token)
     end
     assert_equal 'Error 404: No existe el usuario noExiste', e.message
   end
 
   # Test para borrar un usuario de la BD
   def test_bo_usuario_delete
-    msg = @@users_bo.delete('root',@@login)
+    msg = @@users_bo.delete('root',@@token)
     assert_equal 'Se ha borrado correctamente el usuario root', msg
   end
 
   # Test para comprobar si el usuario no existe al borrar
   def test_bo_usuario_delete_no_exist
     e = assert_raises CustomMsgException do
-      @@users_bo.delete('noExiste',@@login)
+      @@users_bo.delete('noExiste',@@token)
     end
     assert_equal 'Error 404: No existe el usuario noExiste', e.message
   end

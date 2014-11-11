@@ -19,4 +19,9 @@ class Usuario < ActiveRecord::Base
   has_one :carrito
 
   has_secure_password
+
+  #
+  def as_json(options = {})
+    super(options.merge({ except: [:password_digest, :token]}))
+  end
 end

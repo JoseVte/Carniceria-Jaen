@@ -76,7 +76,7 @@ class ProovedorAPITest < MiniTest::Test
          :telefono => '678123654'
     }
 
-    post '/new', p, 'rack.session'=>{:usuario=>'root'}
+    post '/new', p, 'HTTP_X_AUTH_TOKEN'=>'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1c2VyIjoicm9vdCJ9.NslomWqJsEhVixDxoICYQU9_dALnZU7WMlIPbYDc04fusWKpKNU490ivcdu5S7NHhVJnBfB7ifBR6JfXh2GZbw'
 
     assert_equal 201, last_response.status
     datos = JSON.parse(last_response.body)
@@ -87,7 +87,7 @@ class ProovedorAPITest < MiniTest::Test
   def test_api_proovedor_error_new_data_error
     p = {:nombre => 'Test'}
 
-    post '/new', p, 'rack.session'=>{:usuario=>'root'}
+    post '/new', p, 'HTTP_X_AUTH_TOKEN'=>'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1c2VyIjoicm9vdCJ9.NslomWqJsEhVixDxoICYQU9_dALnZU7WMlIPbYDc04fusWKpKNU490ivcdu5S7NHhVJnBfB7ifBR6JfXh2GZbw'
 
     assert_equal 400, last_response.status
     datos = last_response.body
@@ -100,7 +100,7 @@ class ProovedorAPITest < MiniTest::Test
          :nombre => 'Test'
     }
 
-    post '/update', p, 'rack.session'=>{:usuario=>'root'}
+    post '/update', p, 'HTTP_X_AUTH_TOKEN'=>'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1c2VyIjoicm9vdCJ9.NslomWqJsEhVixDxoICYQU9_dALnZU7WMlIPbYDc04fusWKpKNU490ivcdu5S7NHhVJnBfB7ifBR6JfXh2GZbw'
 
     assert_equal 200, last_response.status
     datos = JSON.parse(last_response.body)
@@ -113,7 +113,7 @@ class ProovedorAPITest < MiniTest::Test
          :nombre => 'Test'
     }
 
-    post '/update', p, 'rack.session'=>{:usuario=>'root'}
+    post '/update', p, 'HTTP_X_AUTH_TOKEN'=>'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1c2VyIjoicm9vdCJ9.NslomWqJsEhVixDxoICYQU9_dALnZU7WMlIPbYDc04fusWKpKNU490ivcdu5S7NHhVJnBfB7ifBR6JfXh2GZbw'
 
     assert_equal 404, last_response.status
     datos = last_response.body
@@ -123,7 +123,7 @@ class ProovedorAPITest < MiniTest::Test
   # Test para comprobar que se han introducido correctamente los datos en el formulario
   def test_api_proovedor_error_update_data_error
     p = {:nombre => 'Test'}
-    post '/update', p, 'rack.session'=>{:usuario=>'root'}
+    post '/update', p, 'HTTP_X_AUTH_TOKEN'=>'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1c2VyIjoicm9vdCJ9.NslomWqJsEhVixDxoICYQU9_dALnZU7WMlIPbYDc04fusWKpKNU490ivcdu5S7NHhVJnBfB7ifBR6JfXh2GZbw'
 
     assert_equal 400, last_response.status
     datos = last_response.body
@@ -132,7 +132,7 @@ class ProovedorAPITest < MiniTest::Test
 
   # Test para comprobar si se borra el proovedor
   def test_api_proovedor_delete
-    delete '/1','', 'rack.session'=>{:usuario=>'root'}
+    delete '/1','', 'HTTP_X_AUTH_TOKEN'=>'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1c2VyIjoicm9vdCJ9.NslomWqJsEhVixDxoICYQU9_dALnZU7WMlIPbYDc04fusWKpKNU490ivcdu5S7NHhVJnBfB7ifBR6JfXh2GZbw'
     assert_equal 200, last_response.status
     datos = last_response.body
     assert_equal 'Se ha borrado correctamente el proovedor 1', datos
@@ -140,7 +140,7 @@ class ProovedorAPITest < MiniTest::Test
 
   # Test para comprobar al borrar si no existe el proovedor
   def test_api_proovedor_error_delete_no_exist
-    delete '/0','', 'rack.session'=>{:usuario=>'root'}
+    delete '/0','', 'HTTP_X_AUTH_TOKEN'=>'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1c2VyIjoicm9vdCJ9.NslomWqJsEhVixDxoICYQU9_dALnZU7WMlIPbYDc04fusWKpKNU490ivcdu5S7NHhVJnBfB7ifBR6JfXh2GZbw'
     assert_equal 404, last_response.status
     datos = last_response.body
     assert_equal 'Error 404: No existe el proovedor con id 0', datos

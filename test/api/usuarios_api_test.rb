@@ -30,7 +30,7 @@ class UsuariosAPITest < MiniTest::Test
 
   # Test para comprobar la llamada a la API de todos los usuarios
   def test_api_usuario_all
-    get '/all','', 'rack.session'=>{:usuario=>'root'}
+    get '/all','', 'HTTP_X_AUTH_TOKEN'=>'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1c2VyIjoicm9vdCJ9.NslomWqJsEhVixDxoICYQU9_dALnZU7WMlIPbYDc04fusWKpKNU490ivcdu5S7NHhVJnBfB7ifBR6JfXh2GZbw'
     assert_equal 200, last_response.status
     datos = JSON.parse(last_response.body)
     assert_equal datos['total'], 1
@@ -38,7 +38,7 @@ class UsuariosAPITest < MiniTest::Test
 
   # Test para comprobar la seleccion de un usuario que existe
   def test_api_usuario_find
-    get '/root','', 'rack.session'=>{:usuario=>'root'}
+    get '/root','', 'HTTP_X_AUTH_TOKEN'=>'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1c2VyIjoicm9vdCJ9.NslomWqJsEhVixDxoICYQU9_dALnZU7WMlIPbYDc04fusWKpKNU490ivcdu5S7NHhVJnBfB7ifBR6JfXh2GZbw'
     assert_equal 200, last_response.status
     datos = JSON.parse(last_response.body)
     assert_equal 'root', datos['user']
@@ -46,7 +46,7 @@ class UsuariosAPITest < MiniTest::Test
 
   # Test para comprobar que pasa si el usuario no existe
   def test_api_usuario_error_find_no_exist
-    get '/noExiste','', 'rack.session'=>{:usuario=>'root'}
+    get '/noExiste','', 'HTTP_X_AUTH_TOKEN'=>'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1c2VyIjoicm9vdCJ9.NslomWqJsEhVixDxoICYQU9_dALnZU7WMlIPbYDc04fusWKpKNU490ivcdu5S7NHhVJnBfB7ifBR6JfXh2GZbw'
     assert_equal 404, last_response.status
     datos = last_response.body
     assert_equal datos, 'Error 404: No existe el usuario noExiste'
@@ -64,7 +64,7 @@ class UsuariosAPITest < MiniTest::Test
          :telefono => '123456789'
     }
 
-    post '/new', u, 'rack.session'=>{:usuario=>'root'}
+    post '/new', u, 'HTTP_X_AUTH_TOKEN'=>'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1c2VyIjoicm9vdCJ9.NslomWqJsEhVixDxoICYQU9_dALnZU7WMlIPbYDc04fusWKpKNU490ivcdu5S7NHhVJnBfB7ifBR6JfXh2GZbw'
 
     assert_equal 201, last_response.status
     datos = JSON.parse(last_response.body)
@@ -83,7 +83,7 @@ class UsuariosAPITest < MiniTest::Test
          :telefono => '123456789'
     }
 
-    post '/new', u, 'rack.session'=>{:usuario=>'root'}
+    post '/new', u, 'HTTP_X_AUTH_TOKEN'=>'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1c2VyIjoicm9vdCJ9.NslomWqJsEhVixDxoICYQU9_dALnZU7WMlIPbYDc04fusWKpKNU490ivcdu5S7NHhVJnBfB7ifBR6JfXh2GZbw'
 
     assert_equal 400, last_response.status
     datos = last_response.body
@@ -96,7 +96,7 @@ class UsuariosAPITest < MiniTest::Test
          :email => 'a@a.a'
     }
 
-    post '/new', u, 'rack.session'=>{:usuario=>'root'}
+    post '/new', u, 'HTTP_X_AUTH_TOKEN'=>'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1c2VyIjoicm9vdCJ9.NslomWqJsEhVixDxoICYQU9_dALnZU7WMlIPbYDc04fusWKpKNU490ivcdu5S7NHhVJnBfB7ifBR6JfXh2GZbw'
 
     assert_equal 400, last_response.status
     datos = last_response.body
@@ -109,7 +109,7 @@ class UsuariosAPITest < MiniTest::Test
          :pass => 'cambioPass'
     }
 
-    post '/update', u, 'rack.session'=>{:usuario=>'root'}
+    post '/update', u, 'HTTP_X_AUTH_TOKEN'=>'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1c2VyIjoicm9vdCJ9.NslomWqJsEhVixDxoICYQU9_dALnZU7WMlIPbYDc04fusWKpKNU490ivcdu5S7NHhVJnBfB7ifBR6JfXh2GZbw'
 
     assert_equal 200, last_response.status
     datos = JSON.parse(last_response.body)
@@ -121,7 +121,7 @@ class UsuariosAPITest < MiniTest::Test
          :pass => 'Test'
     }
 
-    post '/update', u, 'rack.session'=>{:usuario=>'root'}
+    post '/update', u, 'HTTP_X_AUTH_TOKEN'=>'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1c2VyIjoicm9vdCJ9.NslomWqJsEhVixDxoICYQU9_dALnZU7WMlIPbYDc04fusWKpKNU490ivcdu5S7NHhVJnBfB7ifBR6JfXh2GZbw'
 
     assert_equal 404, last_response.status
     datos = last_response.body
@@ -132,7 +132,7 @@ class UsuariosAPITest < MiniTest::Test
   def test_api_usuario_error_update_data_error
     u = {}
 
-    post '/update', u, 'rack.session'=>{:usuario=>'root'}
+    post '/update', u, 'HTTP_X_AUTH_TOKEN'=>'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1c2VyIjoicm9vdCJ9.NslomWqJsEhVixDxoICYQU9_dALnZU7WMlIPbYDc04fusWKpKNU490ivcdu5S7NHhVJnBfB7ifBR6JfXh2GZbw'
 
     assert_equal 400, last_response.status
     datos = last_response.body
@@ -141,7 +141,7 @@ class UsuariosAPITest < MiniTest::Test
 
   # Test para comprobar si se borra el usuario
   def test_api_usuario_delete
-    delete '/root','', 'rack.session'=>{:usuario=>'root'}
+    delete '/root','', 'HTTP_X_AUTH_TOKEN'=>'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1c2VyIjoicm9vdCJ9.NslomWqJsEhVixDxoICYQU9_dALnZU7WMlIPbYDc04fusWKpKNU490ivcdu5S7NHhVJnBfB7ifBR6JfXh2GZbw'
     assert_equal 200, last_response.status
     datos = last_response.body
     assert_equal 'Se ha borrado correctamente el usuario root', datos
@@ -149,7 +149,7 @@ class UsuariosAPITest < MiniTest::Test
 
   # Test para comprobar al borrar si no existe el usuario
   def test_api_usuario_error_delete_no_exist
-    delete '/noExiste','', 'rack.session'=>{:usuario=>'root'}
+    delete '/noExiste','', 'HTTP_X_AUTH_TOKEN'=>'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1c2VyIjoicm9vdCJ9.NslomWqJsEhVixDxoICYQU9_dALnZU7WMlIPbYDc04fusWKpKNU490ivcdu5S7NHhVJnBfB7ifBR6JfXh2GZbw'
     assert_equal 404, last_response.status
     datos = last_response.body
     assert_equal 'Error 404: No existe el usuario noExiste', datos
@@ -159,7 +159,7 @@ class UsuariosAPITest < MiniTest::Test
 
   # Test para comprobar todo el carrito de un usuario
   def test_api_carrito_all
-    get '/root/carrito','', 'rack.session'=>{:usuario=>'root'}
+    get '/root/carrito','', 'HTTP_X_AUTH_TOKEN'=>'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1c2VyIjoicm9vdCJ9.NslomWqJsEhVixDxoICYQU9_dALnZU7WMlIPbYDc04fusWKpKNU490ivcdu5S7NHhVJnBfB7ifBR6JfXh2GZbw'
     assert_equal 200, last_response.status
     datos = JSON.parse(last_response.body)
     assert_equal 1,datos['total']
@@ -167,7 +167,7 @@ class UsuariosAPITest < MiniTest::Test
 
   # Test para comprobar si no existe el usuario
   def test_api_carrito_all_error_no_exist
-    get '/noExiste/carrito','', 'rack.session'=>{:usuario=>'root'}
+    get '/noExiste/carrito','', 'HTTP_X_AUTH_TOKEN'=>'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1c2VyIjoicm9vdCJ9.NslomWqJsEhVixDxoICYQU9_dALnZU7WMlIPbYDc04fusWKpKNU490ivcdu5S7NHhVJnBfB7ifBR6JfXh2GZbw'
     assert_equal 404, last_response.status
     datos = last_response.body
     assert_equal datos, 'Error 404: No existe el usuario noExiste'
@@ -179,7 +179,7 @@ class UsuariosAPITest < MiniTest::Test
          :prod_id => 2
     }
 
-    post '/root/carrito', d, 'rack.session'=>{:usuario=>'root'}
+    post '/root/carrito', d, 'HTTP_X_AUTH_TOKEN'=>'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1c2VyIjoicm9vdCJ9.NslomWqJsEhVixDxoICYQU9_dALnZU7WMlIPbYDc04fusWKpKNU490ivcdu5S7NHhVJnBfB7ifBR6JfXh2GZbw'
     assert_equal 201, last_response.status
     datos = last_response.body
     assert_equal datos, 'Añadido el producto 2 al carrito'
@@ -191,7 +191,7 @@ class UsuariosAPITest < MiniTest::Test
          :prod_id => 2
     }
 
-    post '/root/carrito', d, 'rack.session'=>{:usuario=>'root'}
+    post '/root/carrito', d, 'HTTP_X_AUTH_TOKEN'=>'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1c2VyIjoicm9vdCJ9.NslomWqJsEhVixDxoICYQU9_dALnZU7WMlIPbYDc04fusWKpKNU490ivcdu5S7NHhVJnBfB7ifBR6JfXh2GZbw'
     assert_equal 404, last_response.status
     datos = last_response.body
     assert_equal datos, 'Error 404: No existe el usuario con id 2'
@@ -203,7 +203,7 @@ class UsuariosAPITest < MiniTest::Test
          :prod_id => 3
     }
 
-    post '/root/carrito', d, 'rack.session'=>{:usuario=>'root'}
+    post '/root/carrito', d, 'HTTP_X_AUTH_TOKEN'=>'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1c2VyIjoicm9vdCJ9.NslomWqJsEhVixDxoICYQU9_dALnZU7WMlIPbYDc04fusWKpKNU490ivcdu5S7NHhVJnBfB7ifBR6JfXh2GZbw'
     assert_equal 404, last_response.status
     datos = last_response.body
     assert_equal datos, 'Error 404: No existe el producto 3'
@@ -213,7 +213,7 @@ class UsuariosAPITest < MiniTest::Test
   def test_api_carrito_delete_producto_to_carrito
     d = {:prod_id => 1}
 
-    delete '/root/carrito', d, 'rack.session'=>{:usuario=>'root'}
+    delete '/root/carrito', d, 'HTTP_X_AUTH_TOKEN'=>'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1c2VyIjoicm9vdCJ9.NslomWqJsEhVixDxoICYQU9_dALnZU7WMlIPbYDc04fusWKpKNU490ivcdu5S7NHhVJnBfB7ifBR6JfXh2GZbw'
     assert_equal 200, last_response.status
     datos = last_response.body
     assert_equal datos, 'Se ha eliminado el producto 1 del carrito'
@@ -223,7 +223,7 @@ class UsuariosAPITest < MiniTest::Test
   def test_api_carrito_delete_producto_to_carrito_error_user_no_exist
     d = {:prod_id => 1}
 
-    delete '/noExiste/carrito', d, 'rack.session'=>{:usuario=>'root'}
+    delete '/noExiste/carrito', d, 'HTTP_X_AUTH_TOKEN'=>'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1c2VyIjoicm9vdCJ9.NslomWqJsEhVixDxoICYQU9_dALnZU7WMlIPbYDc04fusWKpKNU490ivcdu5S7NHhVJnBfB7ifBR6JfXh2GZbw'
     assert_equal 404, last_response.status
     datos = last_response.body
     assert_equal datos, 'Error 404: No existe el usuario noExiste'
@@ -233,7 +233,7 @@ class UsuariosAPITest < MiniTest::Test
   def test_api_carrito_delete_producto_to_carrito_error_prod_no_exist
     d = {:prod_id => 3}
 
-    delete '/root/carrito', d, 'rack.session'=>{:usuario=>'root'}
+    delete '/root/carrito', d, 'HTTP_X_AUTH_TOKEN'=>'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1c2VyIjoicm9vdCJ9.NslomWqJsEhVixDxoICYQU9_dALnZU7WMlIPbYDc04fusWKpKNU490ivcdu5S7NHhVJnBfB7ifBR6JfXh2GZbw'
     assert_equal 404, last_response.status
     datos = last_response.body
     assert_equal datos, 'Error 404: No existe el producto 3'
@@ -243,7 +243,7 @@ class UsuariosAPITest < MiniTest::Test
   def test_api_carrito_delete_all_carrito
     d = {:prod_id => 1}
 
-    delete '/root/carrito/all', d, 'rack.session'=>{:usuario=>'root'}
+    delete '/root/carrito/all', d, 'HTTP_X_AUTH_TOKEN'=>'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1c2VyIjoicm9vdCJ9.NslomWqJsEhVixDxoICYQU9_dALnZU7WMlIPbYDc04fusWKpKNU490ivcdu5S7NHhVJnBfB7ifBR6JfXh2GZbw'
     assert_equal 200, last_response.status
     datos = last_response.body
     assert_equal datos, 'Se han eliminado todos los productos del carrito'
@@ -253,7 +253,7 @@ class UsuariosAPITest < MiniTest::Test
   def test_api_carrito_delete_all_carrito_error_user_no_exist
     d = {:prod_id => 1}
 
-    delete '/noExiste/carrito/all', d, 'rack.session'=>{:usuario=>'root'}
+    delete '/noExiste/carrito/all', d, 'HTTP_X_AUTH_TOKEN'=>'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1c2VyIjoicm9vdCJ9.NslomWqJsEhVixDxoICYQU9_dALnZU7WMlIPbYDc04fusWKpKNU490ivcdu5S7NHhVJnBfB7ifBR6JfXh2GZbw'
     assert_equal 404, last_response.status
     datos = last_response.body
     assert_equal datos, 'Error 404: No existe el usuario noExiste'

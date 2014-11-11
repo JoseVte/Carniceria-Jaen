@@ -34,7 +34,6 @@ class AutentificacionAPITest < MiniTest::Test
     sesion =  {}
     post '/login', {:login=>'root', :password=>'root'}.to_json, 'rack.session' => sesion
     assert_equal 200, last_response.status
-    assert_equal 'root', sesion[:usuario]
   end
 
   # Test para el fomarto de JSON incorrecto
