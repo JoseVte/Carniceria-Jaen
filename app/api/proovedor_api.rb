@@ -14,7 +14,6 @@ class ProovedorAPI < Sinatra::Base
   configure do
     puts 'configurando API de proovedores...'
     @@proovedor_bo = ProovedorBO.new
-    warn 'Substituir root por session'
   end
 
   # Configuracion mientras se esta desarrollando
@@ -70,7 +69,7 @@ class ProovedorAPI < Sinatra::Base
              :telefono => params['telefono']
     }
     begin
-      p = @@proovedor_bo.create(datos,'root')
+      p = @@proovedor_bo.create(datos,session[:usuario])
       status 201
       p.to_json
     rescue CustomMsgException => e
@@ -113,7 +112,7 @@ class ProovedorAPI < Sinatra::Base
       end
 
       begin
-        p = @@proovedor_bo.update(datos,'root')
+        p = @@proovedor_bo.update(datos,session[:usuario])
         status 200
         p.to_json
       rescue CustomMsgException => e
@@ -126,7 +125,7 @@ class ProovedorAPI < Sinatra::Base
   # Borra un proovedor del sistema. Si no existe devuelve un 404
   delete '/:id' do
     begin
-      msg = @@proovedor_bo.delete(params['id'],'root')
+      msg = @@proovedor_bo.delete(params['id'],session[:usuario])
       status 200
       msg
     rescue CustomMsgException => e

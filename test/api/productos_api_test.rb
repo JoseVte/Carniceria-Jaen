@@ -82,7 +82,7 @@ class ProductosAPITest < MiniTest::Test
          :precioKg => 2
     }
 
-    post '/new', p
+    post '/new', p, 'rack.session'=>{:usuario=>'root'}
 
     assert_equal 201, last_response.status
     datos = JSON.parse(last_response.body)
@@ -93,7 +93,7 @@ class ProductosAPITest < MiniTest::Test
   def test_api_producto_error_new_data_error
     p = {:nombre => 'Test'}
 
-    post '/new', p
+    post '/new', p, 'rack.session'=>{:usuario=>'root'}
 
     assert_equal 400, last_response.status
     datos = last_response.body
@@ -106,7 +106,7 @@ class ProductosAPITest < MiniTest::Test
          :nombre => 'Test'
     }
 
-    post '/update', p
+    post '/update', p, 'rack.session'=>{:usuario=>'root'}
 
     assert_equal 200, last_response.status
     datos = JSON.parse(last_response.body)
@@ -119,7 +119,7 @@ class ProductosAPITest < MiniTest::Test
          :nombre => 'Test'
     }
 
-    post '/update', p
+    post '/update', p, 'rack.session'=>{:usuario=>'root'}
 
     assert_equal 404, last_response.status
     datos = last_response.body
@@ -129,7 +129,7 @@ class ProductosAPITest < MiniTest::Test
   # Test para comprobar que se han introducido correctamente los datos en el formulario
   def test_api_producto_error_update_data_error
     p = {:nombre => 'Test'}
-    post '/update', p
+    post '/update', p, 'rack.session'=>{:usuario=>'root'}
 
     assert_equal 400, last_response.status
     datos = last_response.body
@@ -138,7 +138,7 @@ class ProductosAPITest < MiniTest::Test
 
   # Test para comprobar si se borra el producto
   def test_api_producto_delete
-    delete '/1'
+    delete '/1','', 'rack.session'=>{:usuario=>'root'}
     assert_equal 200, last_response.status
     datos = last_response.body
     assert_equal 'Se ha borrado correctamente el producto 1', datos
@@ -146,7 +146,7 @@ class ProductosAPITest < MiniTest::Test
 
   # Test para comprobar al borrar si no existe el producto
   def test_api_producto_error_delete_no_exist
-    delete '/0'
+    delete '/0','', 'rack.session'=>{:usuario=>'root'}
     assert_equal 404, last_response.status
     datos = last_response.body
     assert_equal 'Error 404: No existe el producto con id 0', datos

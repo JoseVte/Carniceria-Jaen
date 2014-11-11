@@ -14,7 +14,6 @@ class ProductosAPI < Sinatra::Base
   configure do
     puts 'configurando API de productos...'
     @@producto_bo = ProductoBO.new
-    warn 'Substituir root por session'
   end
 
   # Configuracion mientras se esta desarrollando
@@ -71,7 +70,7 @@ class ProductosAPI < Sinatra::Base
              :proovedor_id => params['proovedor_id']
     }
     begin
-      p = @@producto_bo.create(datos,'root')
+      p = @@producto_bo.create(datos,session[:usuario])
       status 201
       p.to_json
     rescue CustomMsgException => e
@@ -114,7 +113,7 @@ class ProductosAPI < Sinatra::Base
       end
 
       begin
-        p = @@producto_bo.update(datos,'root')
+        p = @@producto_bo.update(datos,session[:usuario])
         status 200
         p.to_json
       rescue CustomMsgException => e
@@ -127,7 +126,7 @@ class ProductosAPI < Sinatra::Base
   # Borra un producto del sistema. Si no existe devuelve un 404
   delete '/:id' do
     begin
-      msg = @@producto_bo.delete(params['id'],'root')
+      msg = @@producto_bo.delete(params['id'],session[:usuario])
       status 200
       msg
     rescue CustomMsgException => e

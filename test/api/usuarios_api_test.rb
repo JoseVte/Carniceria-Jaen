@@ -30,8 +30,7 @@ class UsuariosAPITest < MiniTest::Test
 
   # Test para comprobar la llamada a la API de todos los usuarios
   def test_api_usuario_all
-    current_session.rack_session[:usuario] = 'root'
-    get '/all'
+    get '/all','', 'rack.session'=>{:usuario=>'root'}
     assert_equal 200, last_response.status
     datos = JSON.parse(last_response.body)
     assert_equal datos['total'], 1
@@ -39,8 +38,7 @@ class UsuariosAPITest < MiniTest::Test
 
   # Test para comprobar la seleccion de un usuario que existe
   def test_api_usuario_find
-    current_session.rack_session[:usuario] = 'root'
-    get '/root'
+    get '/root','', 'rack.session'=>{:usuario=>'root'}
     assert_equal 200, last_response.status
     datos = JSON.parse(last_response.body)
     assert_equal 'root', datos['user']
@@ -48,8 +46,7 @@ class UsuariosAPITest < MiniTest::Test
 
   # Test para comprobar que pasa si el usuario no existe
   def test_api_usuario_error_find_no_exist
-    current_session.rack_session[:usuario] = 'root'
-    get '/noExiste'
+    get '/noExiste','', 'rack.session'=>{:usuario=>'root'}
     assert_equal 404, last_response.status
     datos = last_response.body
     assert_equal datos, 'Error 404: No existe el usuario noExiste'
@@ -57,9 +54,9 @@ class UsuariosAPITest < MiniTest::Test
 
   # Test para comprobar si se crea correctamente un usuario desde la API
   def test_api_usuario_new
-    current_session.rack_session[:usuario] = 'root'
     u = {:user => 'Test',
          :pass => 'Test',
+         :pass_conf => 'Test',
          :nombre => 'Test',
          :apellidos => 'de prueba',
          :email => 'a@a.a',
@@ -67,7 +64,7 @@ class UsuariosAPITest < MiniTest::Test
          :telefono => '123456789'
     }
 
-    post '/new', u
+    post '/new', u, 'rack.session'=>{:usuario=>'root'}
 
     assert_equal 201, last_response.status
     datos = JSON.parse(last_response.body)
@@ -78,6 +75,7 @@ class UsuariosAPITest < MiniTest::Test
   def test_api_usuario_error_new_exist
     u = {:user => 'root',
          :pass => 'Test',
+         :pass_conf => 'Test',
          :nombre => 'Test',
          :apellidos => 'de prueba',
          :email => 'a@a.a',
@@ -85,7 +83,7 @@ class UsuariosAPITest < MiniTest::Test
          :telefono => '123456789'
     }
 
-    post '/new', u
+    post '/new', u, 'rack.session'=>{:usuario=>'root'}
 
     assert_equal 400, last_response.status
     datos = last_response.body
@@ -98,7 +96,7 @@ class UsuariosAPITest < MiniTest::Test
          :email => 'a@a.a'
     }
 
-    post '/new', u
+    post '/new', u, 'rack.session'=>{:usuario=>'root'}
 
     assert_equal 400, last_response.status
     datos = last_response.body
@@ -111,11 +109,10 @@ class UsuariosAPITest < MiniTest::Test
          :pass => 'cambioPass'
     }
 
-    post '/update', u
+    post '/update', u, 'rack.session'=>{:usuario=>'root'}
 
     assert_equal 200, last_response.status
     datos = JSON.parse(last_response.body)
-    assert_equal 'cambioPass', datos['pass']
   end
 
   # Test para comprobar si el usuario a modificar no existe
@@ -124,7 +121,7 @@ class UsuariosAPITest < MiniTest::Test
          :pass => 'Test'
     }
 
-    post '/update', u
+    post '/update', u, 'rack.session'=>{:usuario=>'root'}
 
     assert_equal 404, last_response.status
     datos = last_response.body
@@ -135,7 +132,7 @@ class UsuariosAPITest < MiniTest::Test
   def test_api_usuario_error_update_data_error
     u = {}
 
-    post '/update', u
+    post '/update', u, 'rack.session'=>{:usuario=>'root'}
 
     assert_equal 400, last_response.status
     datos = last_response.body
@@ -144,7 +141,7 @@ class UsuariosAPITest < MiniTest::Test
 
   # Test para comprobar si se borra el usuario
   def test_api_usuario_delete
-    delete '/root'
+    delete '/root','', 'rack.session'=>{:usuario=>'root'}
     assert_equal 200, last_response.status
     datos = last_response.body
     assert_equal 'Se ha borrado correctamente el usuario root', datos
@@ -152,7 +149,7 @@ class UsuariosAPITest < MiniTest::Test
 
   # Test para comprobar al borrar si no existe el usuario
   def test_api_usuario_error_delete_no_exist
-    delete '/noExiste'
+    delete '/noExiste','', 'rack.session'=>{:usuario=>'root'}
     assert_equal 404, last_response.status
     datos = last_response.body
     assert_equal 'Error 404: No existe el usuario noExiste', datos
@@ -162,7 +159,7 @@ class UsuariosAPITest < MiniTest::Test
 
   # Test para comprobar todo el carrito de un usuario
   def test_api_carrito_all
-    get '/root/carrito'
+    get '/root/carrito','', 'rack.session'=>{:usuario=>'root'}
     assert_equal 200, last_response.status
     datos = JSON.parse(last_response.body)
     assert_equal 1,datos['total']
@@ -170,7 +167,7 @@ class UsuariosAPITest < MiniTest::Test
 
   # Test para comprobar si no existe el usuario
   def test_api_carrito_all_error_no_exist
-    get '/noExiste/carrito'
+    get '/noExiste/carrito','', 'rack.session'=>{:usuario=>'root'}
     assert_equal 404, last_response.status
     datos = last_response.body
     assert_equal datos, 'Error 404: No existe el usuario noExiste'
@@ -182,7 +179,7 @@ class UsuariosAPITest < MiniTest::Test
          :prod_id => 2
     }
 
-    post '/root/carrito', d
+    post '/root/carrito', d, 'rack.session'=>{:usuario=>'root'}
     assert_equal 201, last_response.status
     datos = last_response.body
     assert_equal datos, 'Añadido el producto 2 al carrito'
@@ -194,7 +191,7 @@ class UsuariosAPITest < MiniTest::Test
          :prod_id => 2
     }
 
-    post '/root/carrito', d
+    post '/root/carrito', d, 'rack.session'=>{:usuario=>'root'}
     assert_equal 404, last_response.status
     datos = last_response.body
     assert_equal datos, 'Error 404: No existe el usuario con id 2'
@@ -206,7 +203,7 @@ class UsuariosAPITest < MiniTest::Test
          :prod_id => 3
     }
 
-    post '/root/carrito', d
+    post '/root/carrito', d, 'rack.session'=>{:usuario=>'root'}
     assert_equal 404, last_response.status
     datos = last_response.body
     assert_equal datos, 'Error 404: No existe el producto 3'
@@ -216,7 +213,7 @@ class UsuariosAPITest < MiniTest::Test
   def test_api_carrito_delete_producto_to_carrito
     d = {:prod_id => 1}
 
-    delete '/root/carrito', d
+    delete '/root/carrito', d, 'rack.session'=>{:usuario=>'root'}
     assert_equal 200, last_response.status
     datos = last_response.body
     assert_equal datos, 'Se ha eliminado el producto 1 del carrito'
@@ -226,7 +223,7 @@ class UsuariosAPITest < MiniTest::Test
   def test_api_carrito_delete_producto_to_carrito_error_user_no_exist
     d = {:prod_id => 1}
 
-    delete '/noExiste/carrito', d
+    delete '/noExiste/carrito', d, 'rack.session'=>{:usuario=>'root'}
     assert_equal 404, last_response.status
     datos = last_response.body
     assert_equal datos, 'Error 404: No existe el usuario noExiste'
@@ -236,7 +233,7 @@ class UsuariosAPITest < MiniTest::Test
   def test_api_carrito_delete_producto_to_carrito_error_prod_no_exist
     d = {:prod_id => 3}
 
-    delete '/root/carrito', d
+    delete '/root/carrito', d, 'rack.session'=>{:usuario=>'root'}
     assert_equal 404, last_response.status
     datos = last_response.body
     assert_equal datos, 'Error 404: No existe el producto 3'
@@ -246,7 +243,7 @@ class UsuariosAPITest < MiniTest::Test
   def test_api_carrito_delete_all_carrito
     d = {:prod_id => 1}
 
-    delete '/root/carrito/all', d
+    delete '/root/carrito/all', d, 'rack.session'=>{:usuario=>'root'}
     assert_equal 200, last_response.status
     datos = last_response.body
     assert_equal datos, 'Se han eliminado todos los productos del carrito'
@@ -256,7 +253,7 @@ class UsuariosAPITest < MiniTest::Test
   def test_api_carrito_delete_all_carrito_error_user_no_exist
     d = {:prod_id => 1}
 
-    delete '/noExiste/carrito/all', d
+    delete '/noExiste/carrito/all', d, 'rack.session'=>{:usuario=>'root'}
     assert_equal 404, last_response.status
     datos = last_response.body
     assert_equal datos, 'Error 404: No existe el usuario noExiste'

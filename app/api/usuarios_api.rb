@@ -26,10 +26,6 @@ class UsuariosAPI < Sinatra::Base
     register Sinatra::Reloader
   end
 
-  configure :test do
-    session[:usuario] = 'root'
-  end
-
   # Lista de usuarios en JSON
   get '/all' do
     begin
