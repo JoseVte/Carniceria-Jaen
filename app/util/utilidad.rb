@@ -1,6 +1,8 @@
 # Clase auxiliar donde guardar los metodos auxiliares
 class Utilidad
 
+  SECRET = 'ADI'
+
   # Dados una url base, unos datos que se puedan convertir en array, y los parametros de la url devuelve un JSON con los elementos indicados
   def self.paginacion(url_base, datos, params)
     inicio = 1

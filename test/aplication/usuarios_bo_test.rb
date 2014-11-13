@@ -8,8 +8,8 @@ require 'app/aplicacion/usuario_bo'
 class UsuariosBOTest < MiniTest::Test
 
   @@users_bo = UsuarioBO.new
-  @@token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1c2VyIjoicm9vdCJ9.NslomWqJsEhVixDxoICYQU9_dALnZU7WMlIPbYDc04fusWKpKNU490ivcdu5S7NHhVJnBfB7ifBR6JfXh2GZbw'
-
+  @@token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidXNlciI6InJvb3QiLCJwYXNzd29yZF9kaWdlc3QiOiIkMmEkMTAkRExsME1BdHp4L3Yva0pkMURvMjUuZVY5ME5xRi9qVk1CUUhuaFUzcFY1bm1peURocllzQ3UiLCJub21icmUiOiJBZG1pbml0cmFkb3IiLCJhcGVsbGlkb3MiOiJkZWwgc2lzdGVtYSIsImVtYWlsIjoicm9vdEByb290LnN1IiwiZGlyZWNjaW9uIjoicm9vdCIsInRlbGVmb25vIjoiOTg3NjU0MzIxIiwidXJsX2ltYWdlbiI6Ii9hc3NldHMvaW1hZ2VzL21pc3NpbmdfdXNlci5wbmcifQ.F-wE8joK_Hs6odNsx7gZItTSmL8t8HJ_TqABOOP32vk'
+  
   # Configuracion de la BD
   def setup
     ActiveRecord::Base.establish_connection(

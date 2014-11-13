@@ -29,10 +29,7 @@ class AutentificacionAPITest < MiniTest::Test
 
   # Test para el login de un usuario
   def test_login
-    #referencia local que vamos a poner como sesión. Cuando el API modifique la sesión
-    #modificará el contenido de esta referencia
-    sesion =  {}
-    post '/login', {:login=>'root', :password=>'root'}.to_json, 'rack.session' => sesion
+    post '/login', {:login=>'root', :password=>'root'}.to_json
     assert_equal 200, last_response.status
   end
 
@@ -63,9 +60,7 @@ class AutentificacionAPITest < MiniTest::Test
 
   # Test para el logout del usuario
   def test_logout
-    sesion = {}
-    get '/logout', {}, {'rack.session'=>sesion}
+    get '/logout', {}
     assert last_response.ok?
-    assert_nil sesion[:usuario]
   end
 end
