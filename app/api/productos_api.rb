@@ -24,12 +24,16 @@ class ProductosAPI < Sinatra::Base
 
   # Listado de los productos en oferta en JSON
   get '/ofertas' do
+    content_type :json
+    status 200
     @@producto_bo.ofertas.to_json
   end
 
   # Devuelve un listado con todos los productos del proovedor
   get '/proovedor/:id' do
     p = @@producto_bo.select_by_proovedor(params['id'])
+    content_type :json
+    status 200
     result = Utilidad.paginacion(request.env['REQUEST_PATH'],p,params)
     result.to_json
   end
@@ -37,6 +41,8 @@ class ProductosAPI < Sinatra::Base
   # Devuelve un listado con todos los productos que contengan la subcadena
   get '/buscar/:subcadena' do
     p = @@producto_bo.select_by_nombre(params['subcadena'])
+    content_type :json
+    status 200
     result = Utilidad.paginacion(request.env['REQUEST_PATH'],p,params)
     result.to_json
   end
@@ -44,6 +50,8 @@ class ProductosAPI < Sinatra::Base
   # Todos los productos en JSON
   get '/all' do
     p = @@producto_bo.all
+    status 200
+    content_type :json
     result = Utilidad.paginacion(request.env['REQUEST_PATH'],p,params)
     result.to_json
   end
@@ -53,6 +61,7 @@ class ProductosAPI < Sinatra::Base
     begin
       p = @@producto_bo.find_by_id(params['id'])
       status 200
+      content_type :json
       p.to_json
     rescue CustomMsgException => e
       status e.status
@@ -72,6 +81,7 @@ class ProductosAPI < Sinatra::Base
     begin
       p = @@producto_bo.create(datos,request.env['HTTP_X_AUTH_TOKEN'])
       status 201
+      content_type :json
       p.to_json
     rescue CustomMsgException => e
       status e.status
@@ -80,7 +90,7 @@ class ProductosAPI < Sinatra::Base
   end
 
   # Actualiza los campos de un producto. Si se viola alguna regla de la base de datos lanza un 400
-  post '/update' do
+  put '/update' do
     if params['id'].nil?
       status 400
       'Error 400: Falta el id en el formulario'
@@ -115,6 +125,7 @@ class ProductosAPI < Sinatra::Base
       begin
         p = @@producto_bo.update(datos,request.env['HTTP_X_AUTH_TOKEN'])
         status 200
+        content_type :json
         p.to_json
       rescue CustomMsgException => e
         status e.status

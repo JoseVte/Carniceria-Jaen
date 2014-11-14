@@ -111,7 +111,7 @@ class UsuariosAPITest < MiniTest::Test
          :pass => 'cambioPass'
     }
 
-    post '/update', u, 'HTTP_X_AUTH_TOKEN'=> @@token
+    put '/update', u, 'HTTP_X_AUTH_TOKEN'=> @@token
 
     assert_equal 200, last_response.status
     datos = JSON.parse(last_response.body)
@@ -123,7 +123,7 @@ class UsuariosAPITest < MiniTest::Test
          :pass => 'Test'
     }
 
-    post '/update', u, 'HTTP_X_AUTH_TOKEN'=> @@token
+    put '/update', u, 'HTTP_X_AUTH_TOKEN'=> @@token
 
     assert_equal 404, last_response.status
     datos = last_response.body
@@ -134,7 +134,7 @@ class UsuariosAPITest < MiniTest::Test
   def test_api_usuario_error_update_data_error
     u = {}
 
-    post '/update', u, 'HTTP_X_AUTH_TOKEN'=> @@token
+    put '/update', u, 'HTTP_X_AUTH_TOKEN'=> @@token
 
     assert_equal 400, last_response.status
     datos = last_response.body

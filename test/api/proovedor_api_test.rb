@@ -102,7 +102,7 @@ class ProovedorAPITest < MiniTest::Test
          :nombre => 'Test'
     }
 
-    post '/update', p, 'HTTP_X_AUTH_TOKEN'=> @@token
+    put '/update', p, 'HTTP_X_AUTH_TOKEN'=> @@token
 
     assert_equal 200, last_response.status
     datos = JSON.parse(last_response.body)
@@ -115,7 +115,7 @@ class ProovedorAPITest < MiniTest::Test
          :nombre => 'Test'
     }
 
-    post '/update', p, 'HTTP_X_AUTH_TOKEN'=> @@token
+    put '/update', p, 'HTTP_X_AUTH_TOKEN'=> @@token
 
     assert_equal 404, last_response.status
     datos = last_response.body
@@ -125,7 +125,7 @@ class ProovedorAPITest < MiniTest::Test
   # Test para comprobar que se han introducido correctamente los datos en el formulario
   def test_api_proovedor_error_update_data_error
     p = {:nombre => 'Test'}
-    post '/update', p, 'HTTP_X_AUTH_TOKEN'=> @@token
+    put '/update', p, 'HTTP_X_AUTH_TOKEN'=> @@token
 
     assert_equal 400, last_response.status
     datos = last_response.body
