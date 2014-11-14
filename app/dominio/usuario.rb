@@ -20,7 +20,7 @@ class Usuario < ActiveRecord::Base
 
   has_secure_password
 
-  #
+  # Metodo sobreescrito para ocultar la pass
   def as_json(options = {})
     super(options.merge({ except: [:password_digest]}))
   end

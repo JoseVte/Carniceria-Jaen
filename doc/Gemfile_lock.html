@@ -71,6 +71,8 @@
   
     <li><a href="./comandosDB_sh.html">comandosDB.sh</a>
   
+    <li><a href="./comandosDoc_sh.html">comandosDoc.sh</a>
+  
     <li><a href="./config_ru.html">config.ru</a>
   
   </ul>
@@ -85,14 +87,14 @@
 
 <pre>remote: https://rubygems.org/
 specs:
-  activemodel (4.1.6)
-    activesupport (= 4.1.6)
+  activemodel (4.1.7)
+    activesupport (= 4.1.7)
     builder (~&gt; 3.1)
-  activerecord (4.1.6)
-    activemodel (= 4.1.6)
-    activesupport (= 4.1.6)
+  activerecord (4.1.7)
+    activemodel (= 4.1.7)
+    activesupport (= 4.1.7)
     arel (~&gt; 5.0.0)
-  activesupport (4.1.6)
+  activesupport (4.1.7)
     i18n (~&gt; 0.6, &gt;= 0.6.9)
     json (~&gt; 1.7, &gt;= 1.7.7)
     minitest (~&gt; 5.1)
@@ -100,6 +102,7 @@ specs:
     tzinfo (~&gt; 1.1)
   arel (5.0.1.20140414130214)
   backports (3.6.3)
+  bcrypt (3.1.9)
   builder (3.2.2)
   database_cleaner (1.3.0)
   i18n (0.6.11)
@@ -120,7 +123,7 @@ specs:
     rack (~&gt; 1.4)
     rack-protection (~&gt; 1.4)
     tilt (~&gt; 1.3, &gt;= 1.3.4)
-  sinatra-activerecord (2.0.2)
+  sinatra-activerecord (2.0.3)
     activerecord (&gt;= 3.2)
     sinatra (~&gt; 1.0)
   sinatra-contrib (1.4.2)
@@ -130,7 +133,7 @@ specs:
     rack-test
     sinatra (~&gt; 1.4.0)
     tilt (~&gt; 1.3)
-  sqlite3 (1.3.9)
+  sqlite3 (1.3.10)
   thread_safe (0.3.4)
   tilt (1.4.1)
   tzinfo (1.2.2)
@@ -142,7 +145,8 @@ specs:
 
 <p>DEPENDENCIES</p>
 
-<pre>database_cleaner
+<pre>bcrypt
+database_cleaner
 json
 jwt
 minitest (&gt;= 5.3.4)

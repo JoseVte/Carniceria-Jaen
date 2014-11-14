@@ -71,6 +71,8 @@
   
     <li><a href="./comandosDB_sh.html">comandosDB.sh</a>
   
+    <li><a href="./comandosDoc_sh.html">comandosDoc.sh</a>
+  
     <li><a href="./config_ru.html">config.ru</a>
   
   </ul>
@@ -107,8 +109,8 @@ rm $DB_SCHEMA</pre>
 
 <p>fi</p>
 
-<p>rake db:migrate rake db:migrate RACK_ENV=test rake db:fixtures:load
-RACK_ENV=test</p>
+<p>bundle exec rake db:migrate bundle exec rake db:migrate RACK_ENV=test
+bundle exec rake db:fixtures:load RACK_ENV=test</p>
 
 <p>echo &#39;Recreacion de la base de datos completada&#39;</p>
 </main>

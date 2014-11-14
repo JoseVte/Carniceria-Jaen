@@ -1,6 +1,7 @@
 # Clase auxiliar donde guardar los metodos auxiliares
 class Utilidad
 
+  # Secreto para el JWT
   SECRET = 'ADI'
 
   # Dados una url base, unos datos que se puedan convertir en array, y los parametros de la url devuelve un JSON con los elementos indicados

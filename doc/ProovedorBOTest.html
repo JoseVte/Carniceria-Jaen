@@ -153,7 +153,7 @@ href="ProductoBO.html">ProductoBO</a></p>
 
           
           <div class="method-source-code" id="setup-source">
-            <pre><span class="ruby-comment"># File test/aplication/proovedores_bo_test.rb, line 13</span>
+            <pre><span class="ruby-comment"># File test/aplication/proovedores_bo_test.rb, line 14</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">setup</span>
   <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">establish_connection</span>(
       <span class="ruby-value">:adapter</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;sqlite3&quot;</span>,
@@ -193,7 +193,7 @@ href="ProductoBO.html">ProductoBO</a></p>
 
           
           <div class="method-source-code" id="test_bo_proovedor_all-source">
-            <pre><span class="ruby-comment"># File test/aplication/proovedores_bo_test.rb, line 39</span>
+            <pre><span class="ruby-comment"># File test/aplication/proovedores_bo_test.rb, line 40</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bo_proovedor_all</span>
   <span class="ruby-identifier">lista</span> = <span class="ruby-identifier">@@proov_bo</span>.<span class="ruby-identifier">all</span>()
   <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">1</span>, <span class="ruby-identifier">lista</span>.<span class="ruby-identifier">length</span>
@@ -227,7 +227,7 @@ href="ProductoBO.html">ProductoBO</a></p>
 
           
           <div class="method-source-code" id="test_bo_proovedor_buscar-source">
-            <pre><span class="ruby-comment"># File test/aplication/proovedores_bo_test.rb, line 25</span>
+            <pre><span class="ruby-comment"># File test/aplication/proovedores_bo_test.rb, line 26</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bo_proovedor_buscar</span>
   <span class="ruby-identifier">lista</span> = <span class="ruby-identifier">@@proov_bo</span>.<span class="ruby-identifier">select_by</span>(<span class="ruby-string">&#39;nombreEmpresa&#39;</span>,<span class="ruby-string">&#39;Josrom&#39;</span>)
   <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">1</span>, <span class="ruby-identifier">lista</span>.<span class="ruby-identifier">length</span>
@@ -261,7 +261,7 @@ href="ProductoBO.html">ProductoBO</a></p>
 
           
           <div class="method-source-code" id="test_bo_proovedor_buscar_error_no_exist-source">
-            <pre><span class="ruby-comment"># File test/aplication/proovedores_bo_test.rb, line 31</span>
+            <pre><span class="ruby-comment"># File test/aplication/proovedores_bo_test.rb, line 32</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bo_proovedor_buscar_error_no_exist</span>
   <span class="ruby-identifier">e</span> = <span class="ruby-identifier">assert_raises</span> <span class="ruby-constant">CustomMsgException</span>  <span class="ruby-keyword">do</span>
     <span class="ruby-identifier">@@proov_bo</span>.<span class="ruby-identifier">select_by</span>(<span class="ruby-string">&#39;noExiste&#39;</span>,<span class="ruby-string">&#39;Josrom&#39;</span>)
@@ -297,7 +297,7 @@ href="ProductoBO.html">ProductoBO</a></p>
 
           
           <div class="method-source-code" id="test_bo_proovedor_create-source">
-            <pre><span class="ruby-comment"># File test/aplication/proovedores_bo_test.rb, line 59</span>
+            <pre><span class="ruby-comment"># File test/aplication/proovedores_bo_test.rb, line 60</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bo_proovedor_create</span>
   <span class="ruby-identifier">datos</span> = {<span class="ruby-value">:nombreEmpresa</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Test&#39;</span>,
            <span class="ruby-value">:email</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;a@a.a&#39;</span>,
@@ -305,7 +305,7 @@ href="ProductoBO.html">ProductoBO</a></p>
            <span class="ruby-value">:telefono</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;678123654&#39;</span>
   }
 
-  <span class="ruby-identifier">p</span> = <span class="ruby-identifier">@@proov_bo</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">datos</span>,<span class="ruby-string">&#39;login&#39;</span>)
+  <span class="ruby-identifier">p</span> = <span class="ruby-identifier">@@proov_bo</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">datos</span>,<span class="ruby-identifier">@@token</span>)
   <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;Test&#39;</span>, <span class="ruby-identifier">p</span>.<span class="ruby-identifier">nombreEmpresa</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -337,9 +337,9 @@ href="ProductoBO.html">ProductoBO</a></p>
 
           
           <div class="method-source-code" id="test_bo_proovedor_delete-source">
-            <pre><span class="ruby-comment"># File test/aplication/proovedores_bo_test.rb, line 103</span>
+            <pre><span class="ruby-comment"># File test/aplication/proovedores_bo_test.rb, line 104</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bo_proovedor_delete</span>
-  <span class="ruby-identifier">msg</span> = <span class="ruby-identifier">@@proov_bo</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value">1</span>,<span class="ruby-string">&#39;login&#39;</span>)
+  <span class="ruby-identifier">msg</span> = <span class="ruby-identifier">@@proov_bo</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value">1</span>,<span class="ruby-identifier">@@token</span>)
   <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;Se ha borrado correctamente el proovedor 1&#39;</span>, <span class="ruby-identifier">msg</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -371,10 +371,10 @@ href="ProductoBO.html">ProductoBO</a></p>
 
           
           <div class="method-source-code" id="test_bo_proovedor_delete_no_exist-source">
-            <pre><span class="ruby-comment"># File test/aplication/proovedores_bo_test.rb, line 109</span>
+            <pre><span class="ruby-comment"># File test/aplication/proovedores_bo_test.rb, line 110</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bo_proovedor_delete_no_exist</span>
   <span class="ruby-identifier">e</span> = <span class="ruby-identifier">assert_raises</span> <span class="ruby-constant">CustomMsgException</span> <span class="ruby-keyword">do</span>
-    <span class="ruby-identifier">@@proov_bo</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value">0</span>,<span class="ruby-string">&#39;login&#39;</span>)
+    <span class="ruby-identifier">@@proov_bo</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value">0</span>,<span class="ruby-identifier">@@token</span>)
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;Error 404: No existe el proovedor con id 0&#39;</span>, <span class="ruby-identifier">e</span>.<span class="ruby-identifier">message</span>
 <span class="ruby-keyword">end</span></pre>
@@ -407,12 +407,12 @@ href="ProductoBO.html">ProductoBO</a></p>
 
           
           <div class="method-source-code" id="test_bo_proovedor_error_create_data_error-source">
-            <pre><span class="ruby-comment"># File test/aplication/proovedores_bo_test.rb, line 71</span>
+            <pre><span class="ruby-comment"># File test/aplication/proovedores_bo_test.rb, line 72</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bo_proovedor_error_create_data_error</span>
   <span class="ruby-identifier">datos</span> = {}
 
   <span class="ruby-identifier">e</span> = <span class="ruby-identifier">assert_raises</span> <span class="ruby-constant">CustomMsgException</span> <span class="ruby-keyword">do</span>
-    <span class="ruby-identifier">@@proov_bo</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">datos</span>,<span class="ruby-string">&#39;login&#39;</span>)
+    <span class="ruby-identifier">@@proov_bo</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">datos</span>,<span class="ruby-identifier">@@token</span>)
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;Error 400: Los datos son incorrectos&#39;</span>, <span class="ruby-identifier">e</span>.<span class="ruby-identifier">message</span>
 <span class="ruby-keyword">end</span></pre>
@@ -445,7 +445,7 @@ href="ProductoBO.html">ProductoBO</a></p>
 
           
           <div class="method-source-code" id="test_bo_proovedor_error_find_no_exist-source">
-            <pre><span class="ruby-comment"># File test/aplication/proovedores_bo_test.rb, line 51</span>
+            <pre><span class="ruby-comment"># File test/aplication/proovedores_bo_test.rb, line 52</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bo_proovedor_error_find_no_exist</span>
   <span class="ruby-identifier">e</span> = <span class="ruby-identifier">assert_raises</span> <span class="ruby-constant">CustomMsgException</span>  <span class="ruby-keyword">do</span>
     <span class="ruby-identifier">@@proov_bo</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-value">0</span>)
@@ -481,7 +481,7 @@ href="ProductoBO.html">ProductoBO</a></p>
 
           
           <div class="method-source-code" id="test_bo_proovedor_find-source">
-            <pre><span class="ruby-comment"># File test/aplication/proovedores_bo_test.rb, line 45</span>
+            <pre><span class="ruby-comment"># File test/aplication/proovedores_bo_test.rb, line 46</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bo_proovedor_find</span>
   <span class="ruby-identifier">p</span> = <span class="ruby-identifier">@@proov_bo</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-value">1</span>)
   <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;Josrom&#39;</span>,<span class="ruby-identifier">p</span>.<span class="ruby-identifier">nombreEmpresa</span>
@@ -515,13 +515,13 @@ href="ProductoBO.html">ProductoBO</a></p>
 
           
           <div class="method-source-code" id="test_bo_proovedor_update-source">
-            <pre><span class="ruby-comment"># File test/aplication/proovedores_bo_test.rb, line 81</span>
+            <pre><span class="ruby-comment"># File test/aplication/proovedores_bo_test.rb, line 82</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bo_proovedor_update</span>
   <span class="ruby-identifier">datos</span> = {<span class="ruby-value">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>,
            <span class="ruby-value">:nombre</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Test 1&#39;</span>
   }
 
-  <span class="ruby-identifier">p</span> = <span class="ruby-identifier">@@proov_bo</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">datos</span>,<span class="ruby-string">&#39;login&#39;</span>)
+  <span class="ruby-identifier">p</span> = <span class="ruby-identifier">@@proov_bo</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">datos</span>,<span class="ruby-identifier">@@token</span>)
   <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;Test 1&#39;</span>, <span class="ruby-identifier">p</span>.<span class="ruby-identifier">nombre</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -553,14 +553,14 @@ href="ProductoBO.html">ProductoBO</a></p>
 
           
           <div class="method-source-code" id="test_bo_proovedor_update_error_no_exist-source">
-            <pre><span class="ruby-comment"># File test/aplication/proovedores_bo_test.rb, line 91</span>
+            <pre><span class="ruby-comment"># File test/aplication/proovedores_bo_test.rb, line 92</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bo_proovedor_update_error_no_exist</span>
   <span class="ruby-identifier">datos</span> = {<span class="ruby-value">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>,
            <span class="ruby-value">:nombre</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Test 2&#39;</span>
   }
 
   <span class="ruby-identifier">e</span> = <span class="ruby-identifier">assert_raises</span> <span class="ruby-constant">CustomMsgException</span> <span class="ruby-keyword">do</span>
-    <span class="ruby-identifier">@@proov_bo</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">datos</span>,<span class="ruby-string">&#39;login&#39;</span>)
+    <span class="ruby-identifier">@@proov_bo</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">datos</span>,<span class="ruby-identifier">@@token</span>)
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;Error 404: No existe el proovedor con id 0&#39;</span>, <span class="ruby-identifier">e</span>.<span class="ruby-identifier">message</span>
 <span class="ruby-keyword">end</span></pre>

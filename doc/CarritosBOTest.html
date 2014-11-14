@@ -85,6 +85,10 @@
     
     <li ><a href="#method-i-test_bo_carrito_all_error_user_no_exist">#test_bo_carrito_all_error_user_no_exist</a>
     
+    <li ><a href="#method-i-test_bo_carrito_delete_all_carrito">#test_bo_carrito_delete_all_carrito</a>
+    
+    <li ><a href="#method-i-test_bo_carrito_delete_all_carrito_error_user_no_exist">#test_bo_carrito_delete_all_carrito_error_user_no_exist</a>
+    
     <li ><a href="#method-i-test_bo_carrito_delete_producto_to_carrito">#test_bo_carrito_delete_producto_to_carrito</a>
     
     <li ><a href="#method-i-test_bo_carrito_delete_producto_to_carrito_error_prod_no_exist">#test_bo_carrito_delete_producto_to_carrito_error_prod_no_exist</a>
@@ -146,7 +150,7 @@
 
           
           <div class="method-source-code" id="setup-source">
-            <pre><span class="ruby-comment"># File test/aplication/carritos_bo_test.rb, line 13</span>
+            <pre><span class="ruby-comment"># File test/aplication/carritos_bo_test.rb, line 14</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">setup</span>
   <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">establish_connection</span>(
       <span class="ruby-value">:adapter</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;sqlite3&quot;</span>,
@@ -186,12 +190,12 @@
 
           
           <div class="method-source-code" id="test_bo_carrito_add_producto_to_carrito-source">
-            <pre><span class="ruby-comment"># File test/aplication/carritos_bo_test.rb, line 39</span>
+            <pre><span class="ruby-comment"># File test/aplication/carritos_bo_test.rb, line 40</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bo_carrito_add_producto_to_carrito</span>
   <span class="ruby-identifier">datos</span> = { <span class="ruby-value">:carrito_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>,
             <span class="ruby-value">:producto_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">2</span>
   }
-  <span class="ruby-identifier">msg</span> = <span class="ruby-identifier">@@carrito_bo</span>.<span class="ruby-identifier">add_prod_en_carrito</span>(<span class="ruby-identifier">datos</span>,<span class="ruby-string">&#39;login&#39;</span>)
+  <span class="ruby-identifier">msg</span> = <span class="ruby-identifier">@@carrito_bo</span>.<span class="ruby-identifier">add_prod_en_carrito</span>(<span class="ruby-identifier">datos</span>,<span class="ruby-identifier">@@token</span>)
   <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;Añadido el producto 2 al carrito&#39;</span>,<span class="ruby-identifier">msg</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -223,13 +227,13 @@
 
           
           <div class="method-source-code" id="test_bo_carrito_add_producto_to_carrito_error_prod_no_exist-source">
-            <pre><span class="ruby-comment"># File test/aplication/carritos_bo_test.rb, line 59</span>
+            <pre><span class="ruby-comment"># File test/aplication/carritos_bo_test.rb, line 60</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bo_carrito_add_producto_to_carrito_error_prod_no_exist</span>
   <span class="ruby-identifier">datos</span> = { <span class="ruby-value">:carrito_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>,
             <span class="ruby-value">:producto_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">3</span>
   }
   <span class="ruby-identifier">e</span> = <span class="ruby-identifier">assert_raises</span> <span class="ruby-constant">CustomMsgException</span>  <span class="ruby-keyword">do</span>
-    <span class="ruby-identifier">@@carrito_bo</span>.<span class="ruby-identifier">add_prod_en_carrito</span>(<span class="ruby-identifier">datos</span>,<span class="ruby-string">&#39;login&#39;</span>)
+    <span class="ruby-identifier">@@carrito_bo</span>.<span class="ruby-identifier">add_prod_en_carrito</span>(<span class="ruby-identifier">datos</span>,<span class="ruby-identifier">@@token</span>)
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;Error 404: No existe el producto 3&#39;</span>,<span class="ruby-identifier">e</span>.<span class="ruby-identifier">message</span>
 <span class="ruby-keyword">end</span></pre>
@@ -262,13 +266,13 @@
 
           
           <div class="method-source-code" id="test_bo_carrito_add_producto_to_carrito_error_user_no_exist-source">
-            <pre><span class="ruby-comment"># File test/aplication/carritos_bo_test.rb, line 48</span>
+            <pre><span class="ruby-comment"># File test/aplication/carritos_bo_test.rb, line 49</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bo_carrito_add_producto_to_carrito_error_user_no_exist</span>
   <span class="ruby-identifier">datos</span> = { <span class="ruby-value">:carrito_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">2</span>,
             <span class="ruby-value">:producto_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">2</span>
   }
   <span class="ruby-identifier">e</span> = <span class="ruby-identifier">assert_raises</span> <span class="ruby-constant">CustomMsgException</span>  <span class="ruby-keyword">do</span>
-    <span class="ruby-identifier">@@carrito_bo</span>.<span class="ruby-identifier">add_prod_en_carrito</span>(<span class="ruby-identifier">datos</span>,<span class="ruby-string">&#39;login&#39;</span>)
+    <span class="ruby-identifier">@@carrito_bo</span>.<span class="ruby-identifier">add_prod_en_carrito</span>(<span class="ruby-identifier">datos</span>,<span class="ruby-identifier">@@token</span>)
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;Error 404: No existe el usuario con id 2&#39;</span>,<span class="ruby-identifier">e</span>.<span class="ruby-identifier">message</span>
 <span class="ruby-keyword">end</span></pre>
@@ -301,9 +305,9 @@
 
           
           <div class="method-source-code" id="test_bo_carrito_all-source">
-            <pre><span class="ruby-comment"># File test/aplication/carritos_bo_test.rb, line 25</span>
+            <pre><span class="ruby-comment"># File test/aplication/carritos_bo_test.rb, line 26</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bo_carrito_all</span>
-  <span class="ruby-identifier">lista</span> = <span class="ruby-identifier">@@carrito_bo</span>.<span class="ruby-identifier">all</span>(<span class="ruby-string">&#39;root&#39;</span>,<span class="ruby-string">&#39;login&#39;</span>)
+  <span class="ruby-identifier">lista</span> = <span class="ruby-identifier">@@carrito_bo</span>.<span class="ruby-identifier">all</span>(<span class="ruby-string">&#39;root&#39;</span>,<span class="ruby-identifier">@@token</span>)
   <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">1</span>, <span class="ruby-identifier">lista</span>.<span class="ruby-identifier">length</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -335,12 +339,82 @@
 
           
           <div class="method-source-code" id="test_bo_carrito_all_error_user_no_exist-source">
-            <pre><span class="ruby-comment"># File test/aplication/carritos_bo_test.rb, line 31</span>
+            <pre><span class="ruby-comment"># File test/aplication/carritos_bo_test.rb, line 32</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bo_carrito_all_error_user_no_exist</span>
   <span class="ruby-identifier">e</span> = <span class="ruby-identifier">assert_raises</span> <span class="ruby-constant">CustomMsgException</span>  <span class="ruby-keyword">do</span>
-    <span class="ruby-identifier">@@carrito_bo</span>.<span class="ruby-identifier">all</span>(<span class="ruby-string">&#39;noExiste&#39;</span>,<span class="ruby-string">&#39;login&#39;</span>)
+    <span class="ruby-identifier">@@carrito_bo</span>.<span class="ruby-identifier">all</span>(<span class="ruby-string">&#39;noExiste&#39;</span>,<span class="ruby-identifier">@@token</span>)
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;Error 404: No existe el usuario noExiste&#39;</span>,<span class="ruby-identifier">e</span>.<span class="ruby-identifier">message</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-test_bo_carrito_delete_all_carrito" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_bo_carrito_delete_all_carrito</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Test para borrar todo el carrito</p>
+          
+          
+
+          
+          <div class="method-source-code" id="test_bo_carrito_delete_all_carrito-source">
+            <pre><span class="ruby-comment"># File test/aplication/carritos_bo_test.rb, line 93</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bo_carrito_delete_all_carrito</span>
+  <span class="ruby-identifier">msg</span> = <span class="ruby-identifier">@@carrito_bo</span>.<span class="ruby-identifier">delete_all_carrito</span>(<span class="ruby-string">&#39;root&#39;</span>,<span class="ruby-identifier">@@token</span>)
+  <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;Se han eliminado todos los productos del carrito&#39;</span>, <span class="ruby-identifier">msg</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-test_bo_carrito_delete_all_carrito_error_user_no_exist" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_bo_carrito_delete_all_carrito_error_user_no_exist</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Test para comprobar si el usuario no existe</p>
+          
+          
+
+          
+          <div class="method-source-code" id="test_bo_carrito_delete_all_carrito_error_user_no_exist-source">
+            <pre><span class="ruby-comment"># File test/aplication/carritos_bo_test.rb, line 99</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bo_carrito_delete_all_carrito_error_user_no_exist</span>
+  <span class="ruby-identifier">e</span> = <span class="ruby-identifier">assert_raises</span> <span class="ruby-constant">CustomMsgException</span>  <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">@@carrito_bo</span>.<span class="ruby-identifier">delete_all_carrito</span>(<span class="ruby-string">&#39;noExiste&#39;</span>,<span class="ruby-identifier">@@token</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;Error 404: No existe el usuario noExiste&#39;</span>, <span class="ruby-identifier">e</span>.<span class="ruby-identifier">message</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -371,9 +445,9 @@
 
           
           <div class="method-source-code" id="test_bo_carrito_delete_producto_to_carrito-source">
-            <pre><span class="ruby-comment"># File test/aplication/carritos_bo_test.rb, line 70</span>
+            <pre><span class="ruby-comment"># File test/aplication/carritos_bo_test.rb, line 71</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bo_carrito_delete_producto_to_carrito</span>
-  <span class="ruby-identifier">msg</span> = <span class="ruby-identifier">@@carrito_bo</span>.<span class="ruby-identifier">delete_prod_en_carrito</span>(<span class="ruby-string">&#39;root&#39;</span>,<span class="ruby-value">1</span>,<span class="ruby-string">&#39;login&#39;</span>)
+  <span class="ruby-identifier">msg</span> = <span class="ruby-identifier">@@carrito_bo</span>.<span class="ruby-identifier">delete_prod_en_carrito</span>(<span class="ruby-string">&#39;root&#39;</span>,<span class="ruby-value">1</span>,<span class="ruby-identifier">@@token</span>)
   <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;Se ha eliminado el producto 1 del carrito&#39;</span>, <span class="ruby-identifier">msg</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -405,10 +479,10 @@
 
           
           <div class="method-source-code" id="test_bo_carrito_delete_producto_to_carrito_error_prod_no_exist-source">
-            <pre><span class="ruby-comment"># File test/aplication/carritos_bo_test.rb, line 84</span>
+            <pre><span class="ruby-comment"># File test/aplication/carritos_bo_test.rb, line 85</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bo_carrito_delete_producto_to_carrito_error_prod_no_exist</span>
   <span class="ruby-identifier">e</span> = <span class="ruby-identifier">assert_raises</span> <span class="ruby-constant">CustomMsgException</span>  <span class="ruby-keyword">do</span>
-    <span class="ruby-identifier">@@carrito_bo</span>.<span class="ruby-identifier">delete_prod_en_carrito</span>(<span class="ruby-string">&#39;root&#39;</span>,<span class="ruby-value">0</span>,<span class="ruby-string">&#39;login&#39;</span>)
+    <span class="ruby-identifier">@@carrito_bo</span>.<span class="ruby-identifier">delete_prod_en_carrito</span>(<span class="ruby-string">&#39;root&#39;</span>,<span class="ruby-value">0</span>,<span class="ruby-identifier">@@token</span>)
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;Error 404: No existe el producto 0&#39;</span>, <span class="ruby-identifier">e</span>.<span class="ruby-identifier">message</span>
 <span class="ruby-keyword">end</span></pre>
@@ -441,10 +515,10 @@
 
           
           <div class="method-source-code" id="test_bo_carrito_delete_producto_to_carrito_error_user_no_exist-source">
-            <pre><span class="ruby-comment"># File test/aplication/carritos_bo_test.rb, line 76</span>
+            <pre><span class="ruby-comment"># File test/aplication/carritos_bo_test.rb, line 77</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bo_carrito_delete_producto_to_carrito_error_user_no_exist</span>
   <span class="ruby-identifier">e</span> = <span class="ruby-identifier">assert_raises</span> <span class="ruby-constant">CustomMsgException</span>  <span class="ruby-keyword">do</span>
-    <span class="ruby-identifier">@@carrito_bo</span>.<span class="ruby-identifier">delete_prod_en_carrito</span>(<span class="ruby-string">&#39;noExiste&#39;</span>,<span class="ruby-value">1</span>,<span class="ruby-string">&#39;login&#39;</span>)
+    <span class="ruby-identifier">@@carrito_bo</span>.<span class="ruby-identifier">delete_prod_en_carrito</span>(<span class="ruby-string">&#39;noExiste&#39;</span>,<span class="ruby-value">1</span>,<span class="ruby-identifier">@@token</span>)
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;Error 404: No existe el usuario noExiste&#39;</span>, <span class="ruby-identifier">e</span>.<span class="ruby-identifier">message</span>
 <span class="ruby-keyword">end</span></pre>

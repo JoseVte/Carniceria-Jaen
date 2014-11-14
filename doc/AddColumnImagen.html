@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 
-<title>class CreateProductos - RDoc Documentation</title>
+<title>class AddColumnImagen - RDoc Documentation</title>
 
 <link href="./fonts.css" rel="stylesheet">
 <link href="./rdoc.css" rel="stylesheet">
@@ -81,14 +81,14 @@
   </div>
 </nav>
 
-<main role="main" aria-labelledby="class-CreateProductos">
-  <h1 id="class-CreateProductos" class="class">
-    class CreateProductos
+<main role="main" aria-labelledby="class-AddColumnImagen">
+  <h1 id="class-AddColumnImagen" class="class">
+    class AddColumnImagen
   </h1>
 
   <section class="description">
     
-<p>Añade la migracion para los productos</p>
+<p>Crea la migracion para añadir la columna de las imagenes</p>
 
   </section>
 
@@ -124,22 +124,17 @@
 
         <div class="method-description">
           
-          <p>Creamos la tabla productos</p>
+          <p>Añadimos las columnas a cada tabla</p>
           
           
 
           
           <div class="method-source-code" id="change-source">
-            <pre><span class="ruby-comment"># File db/migrate/20141014074325_create_productos.rb, line 4</span>
+            <pre><span class="ruby-comment"># File db/migrate/20141108135729_add_column_imagen.rb, line 4</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">change</span>
-  <span class="ruby-identifier">create_table</span> <span class="ruby-value">:productos</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">p</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">p</span>.<span class="ruby-identifier">string</span> <span class="ruby-value">:nombre</span>, <span class="ruby-identifier">null</span><span class="ruby-value">:false</span>
-    <span class="ruby-identifier">p</span>.<span class="ruby-identifier">text</span> <span class="ruby-value">:descripcion</span>
-    <span class="ruby-identifier">p</span>.<span class="ruby-identifier">float</span> <span class="ruby-value">:precioKg</span>, <span class="ruby-identifier">null</span><span class="ruby-value">:false</span>
-    <span class="ruby-identifier">p</span>.<span class="ruby-identifier">integer</span> <span class="ruby-value">:stock</span>, <span class="ruby-value">:default=</span><span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
-    <span class="ruby-identifier">p</span>.<span class="ruby-identifier">boolean</span> <span class="ruby-value">:ofertas</span>, <span class="ruby-value">:default=</span><span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>
-    <span class="ruby-identifier">p</span>.<span class="ruby-identifier">float</span> <span class="ruby-value">:rebaja</span>, <span class="ruby-value">:default</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
-  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">add_column</span> <span class="ruby-value">:productos</span>, <span class="ruby-value">:url_imagen</span>, <span class="ruby-value">:string</span>, <span class="ruby-value">:default</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;/assets/images/missing_prod.png&#39;</span>
+  <span class="ruby-identifier">add_column</span> <span class="ruby-value">:usuarios</span>, <span class="ruby-value">:url_imagen</span>, <span class="ruby-value">:string</span>, <span class="ruby-value">:default</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;/assets/images/missing_user.png&#39;</span>
+  <span class="ruby-identifier">add_column</span> <span class="ruby-value">:proovedors</span>, <span class="ruby-value">:url_imagen</span>, <span class="ruby-value">:string</span>, <span class="ruby-value">:default</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;/assets/images/missing_prod.png&#39;</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           

@@ -150,7 +150,7 @@
 
           
           <div class="method-source-code" id="setup-source">
-            <pre><span class="ruby-comment"># File test/aplication/usuarios_bo_test.rb, line 13</span>
+            <pre><span class="ruby-comment"># File test/aplication/usuarios_bo_test.rb, line 14</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">setup</span>
   <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">establish_connection</span>(
       <span class="ruby-value">:adapter</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;sqlite3&quot;</span>,
@@ -190,9 +190,9 @@
 
           
           <div class="method-source-code" id="test_bo_usuario_all-source">
-            <pre><span class="ruby-comment"># File test/aplication/usuarios_bo_test.rb, line 25</span>
+            <pre><span class="ruby-comment"># File test/aplication/usuarios_bo_test.rb, line 26</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bo_usuario_all</span>
-  <span class="ruby-identifier">lista</span> = <span class="ruby-identifier">@@users_bo</span>.<span class="ruby-identifier">all</span>
+  <span class="ruby-identifier">lista</span> = <span class="ruby-identifier">@@users_bo</span>.<span class="ruby-identifier">all</span>(<span class="ruby-identifier">@@token</span>)
   <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">1</span>, <span class="ruby-identifier">lista</span>.<span class="ruby-identifier">length</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -224,9 +224,9 @@
 
           
           <div class="method-source-code" id="test_bo_usuario_delete-source">
-            <pre><span class="ruby-comment"># File test/aplication/usuarios_bo_test.rb, line 109</span>
+            <pre><span class="ruby-comment"># File test/aplication/usuarios_bo_test.rb, line 111</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bo_usuario_delete</span>
-  <span class="ruby-identifier">msg</span> = <span class="ruby-identifier">@@users_bo</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-string">&#39;root&#39;</span>,<span class="ruby-string">&#39;login&#39;</span>)
+  <span class="ruby-identifier">msg</span> = <span class="ruby-identifier">@@users_bo</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-string">&#39;root&#39;</span>,<span class="ruby-identifier">@@token</span>)
   <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;Se ha borrado correctamente el usuario root&#39;</span>, <span class="ruby-identifier">msg</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -258,10 +258,10 @@
 
           
           <div class="method-source-code" id="test_bo_usuario_delete_no_exist-source">
-            <pre><span class="ruby-comment"># File test/aplication/usuarios_bo_test.rb, line 115</span>
+            <pre><span class="ruby-comment"># File test/aplication/usuarios_bo_test.rb, line 117</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bo_usuario_delete_no_exist</span>
   <span class="ruby-identifier">e</span> = <span class="ruby-identifier">assert_raises</span> <span class="ruby-constant">CustomMsgException</span> <span class="ruby-keyword">do</span>
-    <span class="ruby-identifier">@@users_bo</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-string">&#39;noExiste&#39;</span>,<span class="ruby-string">&#39;login&#39;</span>)
+    <span class="ruby-identifier">@@users_bo</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-string">&#39;noExiste&#39;</span>,<span class="ruby-identifier">@@token</span>)
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;Error 404: No existe el usuario noExiste&#39;</span>, <span class="ruby-identifier">e</span>.<span class="ruby-identifier">message</span>
 <span class="ruby-keyword">end</span></pre>
@@ -294,9 +294,9 @@
 
           
           <div class="method-source-code" id="test_bo_usuario_find-source">
-            <pre><span class="ruby-comment"># File test/aplication/usuarios_bo_test.rb, line 31</span>
+            <pre><span class="ruby-comment"># File test/aplication/usuarios_bo_test.rb, line 32</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bo_usuario_find</span>
-  <span class="ruby-identifier">u</span> = <span class="ruby-identifier">@@users_bo</span>.<span class="ruby-identifier">find_by_user</span> <span class="ruby-string">&#39;root&#39;</span>
+  <span class="ruby-identifier">u</span> = <span class="ruby-identifier">@@users_bo</span>.<span class="ruby-identifier">find_by_user</span> <span class="ruby-string">&#39;root&#39;</span>, <span class="ruby-identifier">@@token</span>
   <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;root&#39;</span>, <span class="ruby-identifier">u</span>.<span class="ruby-identifier">user</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -328,10 +328,10 @@
 
           
           <div class="method-source-code" id="test_bo_usuario_find_no_exist-source">
-            <pre><span class="ruby-comment"># File test/aplication/usuarios_bo_test.rb, line 37</span>
+            <pre><span class="ruby-comment"># File test/aplication/usuarios_bo_test.rb, line 38</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bo_usuario_find_no_exist</span>
   <span class="ruby-identifier">e</span> = <span class="ruby-identifier">assert_raises</span> <span class="ruby-constant">CustomMsgException</span> <span class="ruby-keyword">do</span>
-    <span class="ruby-identifier">@@users_bo</span>.<span class="ruby-identifier">find_by_user</span> <span class="ruby-string">&#39;noExiste&#39;</span>
+    <span class="ruby-identifier">@@users_bo</span>.<span class="ruby-identifier">find_by_user</span> <span class="ruby-string">&#39;noExiste&#39;</span>, <span class="ruby-identifier">@@token</span>
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;Error 404: No existe el usuario noExiste&#39;</span>, <span class="ruby-identifier">e</span>.<span class="ruby-identifier">message</span>
 <span class="ruby-keyword">end</span></pre>
@@ -364,10 +364,11 @@
 
           
           <div class="method-source-code" id="test_bo_usuario_new-source">
-            <pre><span class="ruby-comment"># File test/aplication/usuarios_bo_test.rb, line 45</span>
+            <pre><span class="ruby-comment"># File test/aplication/usuarios_bo_test.rb, line 46</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bo_usuario_new</span>
   <span class="ruby-identifier">datos</span> = {<span class="ruby-value">:user</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Test&#39;</span>,
-           <span class="ruby-value">:pass</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Test&#39;</span>,
+           <span class="ruby-value">:password</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Test&#39;</span>,
+           <span class="ruby-value">:password_confirmation</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Test&#39;</span>,
            <span class="ruby-value">:nombre</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Test&#39;</span>,
            <span class="ruby-value">:apellidos</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;de prueba&#39;</span>,
            <span class="ruby-value">:email</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;a@a.a&#39;</span>,
@@ -375,7 +376,7 @@
            <span class="ruby-value">:telefono</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;123456789&#39;</span>
   }
 
-  <span class="ruby-identifier">u</span> = <span class="ruby-identifier">@@users_bo</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">datos</span>,<span class="ruby-string">&#39;login&#39;</span>)
+  <span class="ruby-identifier">u</span> = <span class="ruby-identifier">@@users_bo</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">datos</span>)
   <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;Test&#39;</span>, <span class="ruby-identifier">u</span>.<span class="ruby-identifier">user</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -407,13 +408,13 @@
 
           
           <div class="method-source-code" id="test_bo_usuario_new_data_error-source">
-            <pre><span class="ruby-comment"># File test/aplication/usuarios_bo_test.rb, line 76</span>
+            <pre><span class="ruby-comment"># File test/aplication/usuarios_bo_test.rb, line 78</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bo_usuario_new_data_error</span>
   <span class="ruby-identifier">datos</span> = {<span class="ruby-value">:user</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Test&#39;</span>,
            <span class="ruby-value">:email</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;root@root.su&#39;</span>
   }
   <span class="ruby-identifier">e</span> = <span class="ruby-identifier">assert_raises</span> <span class="ruby-constant">CustomMsgException</span> <span class="ruby-keyword">do</span>
-    <span class="ruby-identifier">@@users_bo</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">datos</span>,<span class="ruby-string">&#39;login&#39;</span>)
+    <span class="ruby-identifier">@@users_bo</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">datos</span>)
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;Error 400: Los datos son incorrectos&#39;</span>, <span class="ruby-identifier">e</span>.<span class="ruby-identifier">message</span>
 <span class="ruby-keyword">end</span></pre>
@@ -446,7 +447,7 @@
 
           
           <div class="method-source-code" id="test_bo_usuario_new_exist-source">
-            <pre><span class="ruby-comment"># File test/aplication/usuarios_bo_test.rb, line 60</span>
+            <pre><span class="ruby-comment"># File test/aplication/usuarios_bo_test.rb, line 62</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bo_usuario_new_exist</span>
   <span class="ruby-identifier">datos</span> = {<span class="ruby-value">:user</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;root&#39;</span>,
            <span class="ruby-value">:pass</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Test&#39;</span>,
@@ -457,7 +458,7 @@
            <span class="ruby-value">:telefono</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;123456789&#39;</span>
   }
   <span class="ruby-identifier">e</span> = <span class="ruby-identifier">assert_raises</span> <span class="ruby-constant">CustomMsgException</span> <span class="ruby-keyword">do</span>
-    <span class="ruby-identifier">@@users_bo</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">datos</span>,<span class="ruby-string">&#39;login&#39;</span>)
+    <span class="ruby-identifier">@@users_bo</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">datos</span>)
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;Error 400: El usuario root ya existe&#39;</span>, <span class="ruby-identifier">e</span>.<span class="ruby-identifier">message</span>
 <span class="ruby-keyword">end</span></pre>
@@ -490,13 +491,13 @@
 
           
           <div class="method-source-code" id="test_bo_usuario_update-source">
-            <pre><span class="ruby-comment"># File test/aplication/usuarios_bo_test.rb, line 87</span>
+            <pre><span class="ruby-comment"># File test/aplication/usuarios_bo_test.rb, line 89</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bo_usuario_update</span>
   <span class="ruby-identifier">datos</span> = {<span class="ruby-value">:user</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;root&#39;</span>,
            <span class="ruby-value">:email</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;a@a.a&#39;</span>
   }
 
-  <span class="ruby-identifier">u</span> = <span class="ruby-identifier">@@users_bo</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">datos</span>,<span class="ruby-string">&#39;login&#39;</span>)
+  <span class="ruby-identifier">u</span> = <span class="ruby-identifier">@@users_bo</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">datos</span>,<span class="ruby-identifier">@@token</span>)
   <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;a@a.a&#39;</span>, <span class="ruby-identifier">u</span>.<span class="ruby-identifier">email</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -528,14 +529,14 @@
 
           
           <div class="method-source-code" id="test_bo_usuario_update_no_exist-source">
-            <pre><span class="ruby-comment"># File test/aplication/usuarios_bo_test.rb, line 97</span>
+            <pre><span class="ruby-comment"># File test/aplication/usuarios_bo_test.rb, line 99</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bo_usuario_update_no_exist</span>
   <span class="ruby-identifier">datos</span> = {<span class="ruby-value">:user</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;noExiste&#39;</span>,
            <span class="ruby-value">:email</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;a@a.asdf&#39;</span>
   }
 
   <span class="ruby-identifier">e</span> = <span class="ruby-identifier">assert_raises</span> <span class="ruby-constant">CustomMsgException</span> <span class="ruby-keyword">do</span>
-    <span class="ruby-identifier">@@users_bo</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">datos</span>,<span class="ruby-string">&#39;login&#39;</span>)
+    <span class="ruby-identifier">@@users_bo</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">datos</span>,<span class="ruby-identifier">@@token</span>)
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;Error 404: No existe el usuario noExiste&#39;</span>, <span class="ruby-identifier">e</span>.<span class="ruby-identifier">message</span>
 <span class="ruby-keyword">end</span></pre>

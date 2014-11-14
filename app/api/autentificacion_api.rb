@@ -43,8 +43,6 @@ class AutentificacionAPI < Sinatra::Base
 
   # Metodo para desloguearse
   get '/logout' do
-    if session[:usuario]
-      session[:usuario] = nil
-    end
+    status 200
   end
 end
