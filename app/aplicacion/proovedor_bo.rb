@@ -6,12 +6,12 @@ class ProovedorBO
   # Busca en el campo dado la cadena dada
   def select_by(campo,cadena)
     raise CustomMsgException.new(404,"Error 404: El campo #{campo} no existe") if !Proovedor.column_names.include?(campo)
-    Proovedor.where("#{campo} LIKE ?", "%#{cadena}%")
+    Proovedor.where("#{campo} LIKE ?", "%#{cadena}%").order('created_at DESC')
   end
 
   # Todos los proovedores
   def all
-    Proovedor.all
+    Proovedor.all.order('created_at DESC')
   end
 
   # Devuelve el proovedor concreto

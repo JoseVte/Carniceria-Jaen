@@ -32,7 +32,7 @@ class UsuarioBO
   def all(token)
     # Solo se le permite el acceso al admin
     if UsuarioBO.permitted?(token,'root')
-      Usuario.all
+      Usuario.all.order('created_at DESC')
     end
   end
 

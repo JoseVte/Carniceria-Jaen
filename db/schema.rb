@@ -23,35 +23,41 @@ ActiveRecord::Schema.define(version: 20141108135729) do
   end
 
   create_table "productos", force: true do |t|
-    t.string  "nombre",                                                   null: false
-    t.text    "descripcion"
-    t.float   "precioKg",                                                 null: false
-    t.integer "stock",        default: 0
-    t.boolean "ofertas",      default: false
-    t.float   "rebaja",       default: 0.0
-    t.integer "proovedor_id"
-    t.string  "url_imagen",   default: "/assets/images/missing_prod.png"
+    t.string   "nombre",                                                   null: false
+    t.text     "descripcion"
+    t.float    "precioKg",                                                 null: false
+    t.integer  "stock",        default: 0
+    t.boolean  "ofertas",      default: false
+    t.float    "rebaja",       default: 0.0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "proovedor_id"
+    t.string   "url_imagen",   default: "/assets/images/missing_prod.png"
   end
 
   create_table "proovedors", force: true do |t|
-    t.string "nombreEmpresa",                                             null: false
-    t.string "nombre"
-    t.string "apellidos"
-    t.string "email",                                                     null: false
-    t.text   "direccion",                                                 null: false
-    t.string "telefono",                                                  null: false
-    t.string "url_imagen",    default: "/assets/images/missing_prod.png"
+    t.string   "nombreEmpresa",                                             null: false
+    t.string   "nombre"
+    t.string   "apellidos"
+    t.string   "email",                                                     null: false
+    t.text     "direccion",                                                 null: false
+    t.string   "telefono",                                                  null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "url_imagen",    default: "/assets/images/missing_prod.png"
   end
 
   create_table "usuarios", force: true do |t|
-    t.string "user",                                                        null: false
-    t.string "password_digest",                                             null: false
-    t.string "nombre",                                                      null: false
-    t.string "apellidos",                                                   null: false
-    t.string "email",                                                       null: false
-    t.text   "direccion",                                                   null: false
-    t.string "telefono",                                                    null: false
-    t.string "url_imagen",      default: "/assets/images/missing_user.png"
+    t.string   "user",                                                        null: false
+    t.string   "password_digest",                                             null: false
+    t.string   "nombre",                                                      null: false
+    t.string   "apellidos",                                                   null: false
+    t.string   "email",                                                       null: false
+    t.text     "direccion",                                                   null: false
+    t.string   "telefono",                                                    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "url_imagen",      default: "/assets/images/missing_user.png"
   end
 
 end

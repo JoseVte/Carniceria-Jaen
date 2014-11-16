@@ -15,6 +15,8 @@ class CreateProovedores < ActiveRecord::Migration
       p.string :email, null:false
       p.text :direccion, null:false
       p.string :telefono, null:false
+
+      p.timestamps
     end
 
     # Añadimos la columna de proovedores
