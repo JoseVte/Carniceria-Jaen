@@ -27,6 +27,7 @@ class ProovedorAPI < Sinatra::Base
     begin
       p = @@proovedor_bo.select_by(params['campo'],params['cadena'])
       status 200
+      content_type :json
       result = Utilidad.paginacion(request.env['REQUEST_PATH'],p,params)
       result.to_json
     rescue CustomMsgException => e
@@ -39,6 +40,8 @@ class ProovedorAPI < Sinatra::Base
   get '/all' do
     begin
       p = @@proovedor_bo.all
+      status 200
+      content_type :json
       result = Utilidad.paginacion(request.env['REQUEST_PATH'],p,params)
       result.to_json
     rescue CustomMsgException => e
@@ -52,6 +55,7 @@ class ProovedorAPI < Sinatra::Base
     begin
       p = @@proovedor_bo.find_by_id(params['id'])
       status 200
+      content_type :json
       p.to_json
     rescue CustomMsgException => e
       status e.status
@@ -71,6 +75,7 @@ class ProovedorAPI < Sinatra::Base
     begin
       p = @@proovedor_bo.create(datos,request.env['HTTP_X_AUTH_TOKEN'])
       status 201
+      content_type :json
       p.to_json
     rescue CustomMsgException => e
       status e.status
@@ -79,7 +84,7 @@ class ProovedorAPI < Sinatra::Base
   end
 
   # Actualiza los campos de un proovedor. Si se viola alguna regla de la base de datos lanza un 400
-  post '/update' do
+  put '/update' do
     if params['id'].nil?
       status 400
       'Error 400: Falta el id en el formulario'
@@ -114,6 +119,7 @@ class ProovedorAPI < Sinatra::Base
       begin
         p = @@proovedor_bo.update(datos,request.env['HTTP_X_AUTH_TOKEN'])
         status 200
+        content_type :json
         p.to_json
       rescue CustomMsgException => e
         status e.status

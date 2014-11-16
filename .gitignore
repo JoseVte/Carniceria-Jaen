@@ -2,3 +2,6 @@
 .DS_Store
 .buildpath
 .project
+/db/cf_development.sqlite3
+/db/cf_test.sqlite3
+/db/schema.rb

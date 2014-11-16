@@ -5,22 +5,22 @@ class ProductoBO
 
   # Funcion que devuelve una lista de los productos en oferta
   def ofertas
-    Producto.where(:ofertas=>true)
+    Producto.where(:ofertas=>true).order('created_at DESC')
   end
 
   # Busqueda por proovedor
   def select_by_proovedor(proovedor)
-    Producto.where("proovedor_id == ?", "#{proovedor}")
+    Producto.where("proovedor_id == ?", "#{proovedor}").order('created_at DESC')
   end
 
   # Busqueda de productos por subcadena
   def select_by_nombre(subcadena)
-    Producto.where("nombre LIKE ?", "%#{subcadena}%")
+    Producto.where("nombre LIKE ?", "%#{subcadena}%").order('created_at DESC')
   end
 
   # Todos los productos
   def all
-    Producto.all
+    Producto.all.order('created_at DESC')
   end
 
   # Devuelve un producto concreto

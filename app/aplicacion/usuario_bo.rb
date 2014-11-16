@@ -11,17 +11,17 @@ class UsuarioBO
       u = Usuario.find_by(:user => user)
     ensure
       raise CustomMsgException.new(401,'Error 401: Autentificacion incorrecta') if u.nil? || (u.authenticate(MD5.hexdigest(pass)) == false)
-      return u.token
+      return JWT.encode(u.attributes,Utilidad::SECRET)
     end
   end
 
   # Comprobar si el usuario tiene permisos para acceder a la funcionalidad
   def self.permitted?(token,user_who_wants_to_access)
-    u =  Usuario.find_by(:token => token)
+    u =  JWT.decode(token,Utilidad::SECRET)
     if !u.nil?
-      if u.user == 'root'
+      if u[0]['user'] == 'root'
         return true
-      elsif u.user == user_who_wants_to_access
+      elsif u[0]['user'] == user_who_wants_to_access
         return true
       end
     end
@@ -32,7 +32,7 @@ class UsuarioBO
   def all(token)
     # Solo se le permite el acceso al admin
     if UsuarioBO.permitted?(token,'root')
-      Usuario.all
+      Usuario.all.order('created_at DESC')
     end
   end
 
@@ -54,7 +54,6 @@ class UsuarioBO
     raise CustomMsgException.new(400,'Error 400: Los datos son incorrectos') if !u.valid?
     u.password = MD5.hexdigest(datos[:password])
     u.password_confirmation = MD5.hexdigest(datos[:password_confirmation])
-    u.token = JWT.encode({:user => u.user},MD5.hexdigest(u.user),'HS512')
     u.save
     c = Carrito.new({:usuarios_id => u.id})
     c.save

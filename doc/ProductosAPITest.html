@@ -110,6 +110,8 @@
     
     <li ><a href="#method-i-test_api_producto_ofertas">#test_api_producto_ofertas</a>
     
+    <li ><a href="#method-i-test_api_producto_proovedor">#test_api_producto_proovedor</a>
+    
     <li ><a href="#method-i-test_api_producto_update">#test_api_producto_update</a>
     
   </ul>
@@ -168,7 +170,7 @@ href="ProductosAPI.html">ProductosAPI</a></p>
 
           
           <div class="method-source-code" id="app-source">
-            <pre><span class="ruby-comment"># File test/api/productos_api_test.rb, line 15</span>
+            <pre><span class="ruby-comment"># File test/api/productos_api_test.rb, line 17</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">app</span>
   <span class="ruby-constant">ProductosAPI</span>
 <span class="ruby-keyword">end</span></pre>
@@ -201,7 +203,7 @@ href="ProductosAPI.html">ProductosAPI</a></p>
 
           
           <div class="method-source-code" id="setup-source">
-            <pre><span class="ruby-comment"># File test/api/productos_api_test.rb, line 20</span>
+            <pre><span class="ruby-comment"># File test/api/productos_api_test.rb, line 22</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">setup</span>
   <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">establish_connection</span>(
       <span class="ruby-value">:adapter</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;sqlite3&quot;</span>,
@@ -241,12 +243,12 @@ href="ProductosAPI.html">ProductosAPI</a></p>
 
           
           <div class="method-source-code" id="test_api_producto_all-source">
-            <pre><span class="ruby-comment"># File test/api/productos_api_test.rb, line 48</span>
+            <pre><span class="ruby-comment"># File test/api/productos_api_test.rb, line 58</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">test_api_producto_all</span>
   <span class="ruby-identifier">get</span> <span class="ruby-string">&#39;/all&#39;</span>
   <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">200</span>, <span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">status</span>
   <span class="ruby-identifier">datos</span> = <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">body</span>)
-  <span class="ruby-identifier">assert_equal</span> <span class="ruby-identifier">datos</span>.<span class="ruby-identifier">length</span>, <span class="ruby-value">2</span>
+  <span class="ruby-identifier">assert_equal</span> <span class="ruby-identifier">datos</span>[<span class="ruby-string">&#39;total&#39;</span>], <span class="ruby-value">2</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -277,12 +279,12 @@ href="ProductosAPI.html">ProductosAPI</a></p>
 
           
           <div class="method-source-code" id="test_api_producto_buscar-source">
-            <pre><span class="ruby-comment"># File test/api/productos_api_test.rb, line 40</span>
+            <pre><span class="ruby-comment"># File test/api/productos_api_test.rb, line 42</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">test_api_producto_buscar</span>
   <span class="ruby-identifier">get</span> <span class="ruby-string">&#39;/buscar/ja&#39;</span>
   <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">200</span>, <span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">status</span>
   <span class="ruby-identifier">datos</span> = <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">body</span>)
-  <span class="ruby-identifier">assert_equal</span> <span class="ruby-identifier">datos</span>.<span class="ruby-identifier">length</span>, <span class="ruby-value">2</span>
+  <span class="ruby-identifier">assert_equal</span> <span class="ruby-identifier">datos</span>[<span class="ruby-string">&#39;total&#39;</span>], <span class="ruby-value">2</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -313,9 +315,9 @@ href="ProductosAPI.html">ProductosAPI</a></p>
 
           
           <div class="method-source-code" id="test_api_producto_delete-source">
-            <pre><span class="ruby-comment"># File test/api/productos_api_test.rb, line 132</span>
+            <pre><span class="ruby-comment"># File test/api/productos_api_test.rb, line 142</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">test_api_producto_delete</span>
-  <span class="ruby-identifier">delete</span> <span class="ruby-string">&#39;/1&#39;</span>
+  <span class="ruby-identifier">delete</span> <span class="ruby-string">&#39;/1&#39;</span>,<span class="ruby-string">&#39;&#39;</span>, <span class="ruby-string">&#39;HTTP_X_AUTH_TOKEN&#39;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-identifier">@@token</span>
   <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">200</span>, <span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">status</span>
   <span class="ruby-identifier">datos</span> = <span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">body</span>
   <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;Se ha borrado correctamente el producto 1&#39;</span>, <span class="ruby-identifier">datos</span>
@@ -349,9 +351,9 @@ href="ProductosAPI.html">ProductosAPI</a></p>
 
           
           <div class="method-source-code" id="test_api_producto_error_delete_no_exist-source">
-            <pre><span class="ruby-comment"># File test/api/productos_api_test.rb, line 140</span>
+            <pre><span class="ruby-comment"># File test/api/productos_api_test.rb, line 150</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">test_api_producto_error_delete_no_exist</span>
-  <span class="ruby-identifier">delete</span> <span class="ruby-string">&#39;/0&#39;</span>
+  <span class="ruby-identifier">delete</span> <span class="ruby-string">&#39;/0&#39;</span>,<span class="ruby-string">&#39;&#39;</span>, <span class="ruby-string">&#39;HTTP_X_AUTH_TOKEN&#39;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-identifier">@@token</span>
   <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">404</span>, <span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">status</span>
   <span class="ruby-identifier">datos</span> = <span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">body</span>
   <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;Error 404: No existe el producto con id 0&#39;</span>, <span class="ruby-identifier">datos</span>
@@ -385,7 +387,7 @@ href="ProductosAPI.html">ProductosAPI</a></p>
 
           
           <div class="method-source-code" id="test_api_producto_error_find_no_exist-source">
-            <pre><span class="ruby-comment"># File test/api/productos_api_test.rb, line 64</span>
+            <pre><span class="ruby-comment"># File test/api/productos_api_test.rb, line 74</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">test_api_producto_error_find_no_exist</span>
   <span class="ruby-identifier">get</span> <span class="ruby-string">&#39;/0&#39;</span>
   <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">404</span>, <span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">status</span>
@@ -422,11 +424,11 @@ formulario</p>
 
           
           <div class="method-source-code" id="test_api_producto_error_new_data_error-source">
-            <pre><span class="ruby-comment"># File test/api/productos_api_test.rb, line 85</span>
+            <pre><span class="ruby-comment"># File test/api/productos_api_test.rb, line 95</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">test_api_producto_error_new_data_error</span>
   <span class="ruby-identifier">p</span> = {<span class="ruby-value">:nombre</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Test&#39;</span>}
 
-  <span class="ruby-identifier">post</span> <span class="ruby-string">&#39;/new&#39;</span>, <span class="ruby-identifier">p</span>
+  <span class="ruby-identifier">post</span> <span class="ruby-string">&#39;/new&#39;</span>, <span class="ruby-identifier">p</span>, <span class="ruby-string">&#39;HTTP_X_AUTH_TOKEN&#39;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-identifier">@@token</span>
 
   <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">400</span>, <span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">status</span>
   <span class="ruby-identifier">datos</span> = <span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">body</span>
@@ -462,10 +464,10 @@ formulario</p>
 
           
           <div class="method-source-code" id="test_api_producto_error_update_data_error-source">
-            <pre><span class="ruby-comment"># File test/api/productos_api_test.rb, line 122</span>
+            <pre><span class="ruby-comment"># File test/api/productos_api_test.rb, line 132</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">test_api_producto_error_update_data_error</span>
   <span class="ruby-identifier">p</span> = {<span class="ruby-value">:nombre</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Test&#39;</span>}
-  <span class="ruby-identifier">post</span> <span class="ruby-string">&#39;/update&#39;</span>, <span class="ruby-identifier">p</span>
+  <span class="ruby-identifier">put</span> <span class="ruby-string">&#39;/update&#39;</span>, <span class="ruby-identifier">p</span>, <span class="ruby-string">&#39;HTTP_X_AUTH_TOKEN&#39;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-identifier">@@token</span>
 
   <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">400</span>, <span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">status</span>
   <span class="ruby-identifier">datos</span> = <span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">body</span>
@@ -500,13 +502,13 @@ formulario</p>
 
           
           <div class="method-source-code" id="test_api_producto_error_update_no_exist-source">
-            <pre><span class="ruby-comment"># File test/api/productos_api_test.rb, line 109</span>
+            <pre><span class="ruby-comment"># File test/api/productos_api_test.rb, line 119</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">test_api_producto_error_update_no_exist</span>
   <span class="ruby-identifier">p</span> = {<span class="ruby-value">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>,
        <span class="ruby-value">:nombre</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Test&#39;</span>
   }
 
-  <span class="ruby-identifier">post</span> <span class="ruby-string">&#39;/update&#39;</span>, <span class="ruby-identifier">p</span>
+  <span class="ruby-identifier">put</span> <span class="ruby-string">&#39;/update&#39;</span>, <span class="ruby-identifier">p</span>, <span class="ruby-string">&#39;HTTP_X_AUTH_TOKEN&#39;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-identifier">@@token</span>
 
   <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">404</span>, <span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">status</span>
   <span class="ruby-identifier">datos</span> = <span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">body</span>
@@ -541,7 +543,7 @@ formulario</p>
 
           
           <div class="method-source-code" id="test_api_producto_find-source">
-            <pre><span class="ruby-comment"># File test/api/productos_api_test.rb, line 56</span>
+            <pre><span class="ruby-comment"># File test/api/productos_api_test.rb, line 66</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">test_api_producto_find</span>
   <span class="ruby-identifier">get</span> <span class="ruby-string">&#39;/1&#39;</span>
   <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">200</span>, <span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">status</span>
@@ -577,13 +579,13 @@ formulario</p>
 
           
           <div class="method-source-code" id="test_api_producto_new-source">
-            <pre><span class="ruby-comment"># File test/api/productos_api_test.rb, line 72</span>
+            <pre><span class="ruby-comment"># File test/api/productos_api_test.rb, line 82</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">test_api_producto_new</span>
   <span class="ruby-identifier">p</span> = {<span class="ruby-value">:nombre</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Test&#39;</span>,
        <span class="ruby-value">:precioKg</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">2</span>
   }
 
-  <span class="ruby-identifier">post</span> <span class="ruby-string">&#39;/new&#39;</span>, <span class="ruby-identifier">p</span>
+  <span class="ruby-identifier">post</span> <span class="ruby-string">&#39;/new&#39;</span>, <span class="ruby-identifier">p</span>, <span class="ruby-string">&#39;HTTP_X_AUTH_TOKEN&#39;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-identifier">@@token</span>
 
   <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">201</span>, <span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">status</span>
   <span class="ruby-identifier">datos</span> = <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">body</span>)
@@ -618,12 +620,48 @@ formulario</p>
 
           
           <div class="method-source-code" id="test_api_producto_ofertas-source">
-            <pre><span class="ruby-comment"># File test/api/productos_api_test.rb, line 32</span>
+            <pre><span class="ruby-comment"># File test/api/productos_api_test.rb, line 34</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">test_api_producto_ofertas</span>
   <span class="ruby-identifier">get</span> <span class="ruby-string">&#39;/ofertas&#39;</span>
   <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">200</span>, <span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">status</span>
   <span class="ruby-identifier">datos</span> = <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">body</span>)
   <span class="ruby-identifier">assert_equal</span> <span class="ruby-identifier">datos</span>.<span class="ruby-identifier">length</span>, <span class="ruby-value">1</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-test_api_producto_proovedor" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_api_producto_proovedor</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Test para buscar un producto a partir de una subcadena</p>
+          
+          
+
+          
+          <div class="method-source-code" id="test_api_producto_proovedor-source">
+            <pre><span class="ruby-comment"># File test/api/productos_api_test.rb, line 50</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_api_producto_proovedor</span>
+  <span class="ruby-identifier">get</span> <span class="ruby-string">&#39;/proovedor/1&#39;</span>
+  <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">200</span>, <span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">status</span>
+  <span class="ruby-identifier">datos</span> = <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">body</span>)
+  <span class="ruby-identifier">assert_equal</span> <span class="ruby-identifier">datos</span>[<span class="ruby-string">&#39;total&#39;</span>], <span class="ruby-value">2</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -654,13 +692,13 @@ formulario</p>
 
           
           <div class="method-source-code" id="test_api_producto_update-source">
-            <pre><span class="ruby-comment"># File test/api/productos_api_test.rb, line 96</span>
+            <pre><span class="ruby-comment"># File test/api/productos_api_test.rb, line 106</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">test_api_producto_update</span>
   <span class="ruby-identifier">p</span> = {<span class="ruby-value">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>,
        <span class="ruby-value">:nombre</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Test&#39;</span>
   }
 
-  <span class="ruby-identifier">post</span> <span class="ruby-string">&#39;/update&#39;</span>, <span class="ruby-identifier">p</span>
+  <span class="ruby-identifier">put</span> <span class="ruby-string">&#39;/update&#39;</span>, <span class="ruby-identifier">p</span>, <span class="ruby-string">&#39;HTTP_X_AUTH_TOKEN&#39;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-identifier">@@token</span>
 
   <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">200</span>, <span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">status</span>
   <span class="ruby-identifier">datos</span> = <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">body</span>)

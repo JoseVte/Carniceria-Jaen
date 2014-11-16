@@ -77,6 +77,10 @@
     
     <li ><a href="#method-i-all">#all</a>
     
+    <li ><a href="#method-i-comprar">#comprar</a>
+    
+    <li ><a href="#method-i-delete_all_carrito">#delete_all_carrito</a>
+    
     <li ><a href="#method-i-delete_prod_en_carrito">#delete_prod_en_carrito</a>
     
   </ul>
@@ -135,18 +139,20 @@
 
           
           <div class="method-source-code" id="add_prod_en_carrito-source">
-            <pre><span class="ruby-comment"># File app/aplicacion/carrito_bo.rb, line 19</span>
+            <pre><span class="ruby-comment"># File app/aplicacion/carrito_bo.rb, line 21</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">add_prod_en_carrito</span>(<span class="ruby-identifier">datos</span>,<span class="ruby-identifier">login</span>)
-  <span class="ruby-identifier">raise</span> <span class="ruby-constant">CustomMsgException</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">404</span>,<span class="ruby-node">&quot;Error 404: No existe el usuario con id #{datos[:carrito_id]}&quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-constant">Usuario</span>.<span class="ruby-identifier">find_by</span>(<span class="ruby-identifier">id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">datos</span>[<span class="ruby-value">:carrito_id</span>]).<span class="ruby-identifier">nil?</span>
-  <span class="ruby-identifier">raise</span> <span class="ruby-constant">CustomMsgException</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">404</span>,<span class="ruby-node">&quot;Error 404: No existe el producto #{datos[:producto_id]}&quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-constant">Producto</span>.<span class="ruby-identifier">find_by</span>(<span class="ruby-identifier">id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">datos</span>[<span class="ruby-value">:producto_id</span>]).<span class="ruby-identifier">nil?</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-constant">UsuarioBO</span>.<span class="ruby-identifier">permitted?</span>(<span class="ruby-identifier">login</span>,<span class="ruby-constant">Usuario</span>.<span class="ruby-identifier">find_by</span>(<span class="ruby-identifier">id</span><span class="ruby-value">:datos</span>[<span class="ruby-value">:carrito_id</span>]))
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">CustomMsgException</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">404</span>,<span class="ruby-node">&quot;Error 404: No existe el usuario con id #{datos[:carrito_id]}&quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-constant">Usuario</span>.<span class="ruby-identifier">find_by</span>(<span class="ruby-identifier">id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">datos</span>[<span class="ruby-value">:carrito_id</span>]).<span class="ruby-identifier">nil?</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">CustomMsgException</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">404</span>,<span class="ruby-node">&quot;Error 404: No existe el producto #{datos[:producto_id]}&quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-constant">Producto</span>.<span class="ruby-identifier">find_by</span>(<span class="ruby-identifier">id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">datos</span>[<span class="ruby-value">:producto_id</span>]).<span class="ruby-identifier">nil?</span>
 
-  <span class="ruby-identifier">carrito</span> = <span class="ruby-constant">Carrito</span>.<span class="ruby-identifier">find_by</span>(<span class="ruby-identifier">usuarios_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">datos</span>[<span class="ruby-value">:carrito_id</span>])
-  <span class="ruby-identifier">producto</span> = <span class="ruby-constant">Producto</span>.<span class="ruby-identifier">find_by</span>(<span class="ruby-identifier">id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">datos</span>[<span class="ruby-value">:producto_id</span>])
+    <span class="ruby-identifier">carrito</span> = <span class="ruby-constant">Carrito</span>.<span class="ruby-identifier">find_by</span>(<span class="ruby-identifier">usuarios_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">datos</span>[<span class="ruby-value">:carrito_id</span>])
+    <span class="ruby-identifier">producto</span> = <span class="ruby-constant">Producto</span>.<span class="ruby-identifier">find_by</span>(<span class="ruby-identifier">id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">datos</span>[<span class="ruby-value">:producto_id</span>])
 
-  <span class="ruby-identifier">raise</span> <span class="ruby-constant">CustomMsgException</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">400</span>,<span class="ruby-string">&#39;Error 400: Ya esta en el carrito&#39;</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">carrito</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-identifier">producto</span>)
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">CustomMsgException</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">400</span>,<span class="ruby-string">&#39;Error 400: Ya esta en el carrito&#39;</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">carrito</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-identifier">producto</span>)
 
-  <span class="ruby-identifier">carrito</span>.<span class="ruby-identifier">productos</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">producto</span>
-  <span class="ruby-keyword">return</span> <span class="ruby-node">&quot;Añadido el producto #{datos[:producto_id]} al carrito&quot;</span>
+    <span class="ruby-identifier">carrito</span>.<span class="ruby-identifier">productos</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">producto</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-node">&quot;Añadido el producto #{datos[:producto_id]} al carrito&quot;</span>
+  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -179,11 +185,96 @@
           <div class="method-source-code" id="all-source">
             <pre><span class="ruby-comment"># File app/aplicacion/carrito_bo.rb, line 10</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">all</span>(<span class="ruby-identifier">usuario</span>,<span class="ruby-identifier">login</span>)
-  <span class="ruby-identifier">u</span> = <span class="ruby-identifier">@@usuario_bo</span>.<span class="ruby-identifier">find_by_user</span>(<span class="ruby-identifier">usuario</span>)
-  <span class="ruby-identifier">raise</span> <span class="ruby-constant">CustomMsgException</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">404</span>,<span class="ruby-node">&quot;Error 404: No existe el usuario #{usuario}&quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">u</span>.<span class="ruby-identifier">nil?</span>
-  <span class="ruby-identifier">carrito</span> = <span class="ruby-constant">Carrito</span>.<span class="ruby-identifier">find_by</span>(<span class="ruby-identifier">usuarios_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">u</span>.<span class="ruby-identifier">id</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-constant">UsuarioBO</span>.<span class="ruby-identifier">permitted?</span>(<span class="ruby-identifier">login</span>,<span class="ruby-identifier">usuario</span>)
+    <span class="ruby-identifier">u</span> = <span class="ruby-identifier">@@usuario_bo</span>.<span class="ruby-identifier">find_by_user</span>(<span class="ruby-identifier">usuario</span>,<span class="ruby-identifier">login</span>)
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">CustomMsgException</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">404</span>,<span class="ruby-node">&quot;Error 404: No existe el usuario #{usuario}&quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">u</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-identifier">carrito</span> = <span class="ruby-constant">Carrito</span>.<span class="ruby-identifier">find_by</span>(<span class="ruby-identifier">usuarios_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">u</span>.<span class="ruby-identifier">id</span>)
 
-  <span class="ruby-identifier">carrito</span>.<span class="ruby-identifier">productos</span>.<span class="ruby-identifier">to_ary</span>
+    <span class="ruby-identifier">carrito</span>.<span class="ruby-identifier">productos</span>.<span class="ruby-identifier">to_ary</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-comprar" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">comprar</span><span
+            class="method-args">(user,login)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Compra todos los productos que estan actualmente en el carrito</p>
+          
+          
+
+          
+          <div class="method-source-code" id="comprar-source">
+            <pre><span class="ruby-comment"># File app/aplicacion/carrito_bo.rb, line 37</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">comprar</span>(<span class="ruby-identifier">user</span>,<span class="ruby-identifier">login</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-constant">UsuarioBO</span>.<span class="ruby-identifier">permitted?</span>(<span class="ruby-identifier">login</span>,<span class="ruby-identifier">user</span>)
+    <span class="ruby-identifier">u</span> = <span class="ruby-identifier">@@usuario_bo</span>.<span class="ruby-identifier">find_by_user</span>(<span class="ruby-identifier">user</span>,<span class="ruby-identifier">login</span>)
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">CustomMsgException</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">404</span>,<span class="ruby-node">&quot;Error 404: No existe el usuario #{user}&quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">u</span>.<span class="ruby-identifier">nil?</span>
+
+    <span class="ruby-identifier">carrito</span> = <span class="ruby-constant">Carrito</span>.<span class="ruby-identifier">find_by</span>(<span class="ruby-identifier">usuarios_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">u</span>.<span class="ruby-identifier">id</span>)
+
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">CustomMsgException</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">400</span>,<span class="ruby-string">&quot;Error 400: El carrito esta vacio&quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">carrito</span>.<span class="ruby-identifier">productos</span>.<span class="ruby-identifier">empty?</span>
+
+    <span class="ruby-identifier">carrito</span>.<span class="ruby-identifier">productos</span>.<span class="ruby-identifier">destroy_all</span>
+    <span class="ruby-string">&#39;Se han comprado todos los productos&#39;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-delete_all_carrito" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">delete_all_carrito</span><span
+            class="method-args">(user,login)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Borrar todo el carrito</p>
+          
+          
+
+          
+          <div class="method-source-code" id="delete_all_carrito-source">
+            <pre><span class="ruby-comment"># File app/aplicacion/carrito_bo.rb, line 67</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">delete_all_carrito</span>(<span class="ruby-identifier">user</span>,<span class="ruby-identifier">login</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-constant">UsuarioBO</span>.<span class="ruby-identifier">permitted?</span>(<span class="ruby-identifier">login</span>,<span class="ruby-identifier">user</span>)
+    <span class="ruby-identifier">u</span> = <span class="ruby-identifier">@@usuario_bo</span>.<span class="ruby-identifier">find_by_user</span>(<span class="ruby-identifier">user</span>,<span class="ruby-identifier">login</span>)
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">CustomMsgException</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">404</span>,<span class="ruby-node">&quot;Error 404: No existe el usuario #{user}&quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">u</span>.<span class="ruby-identifier">nil?</span>
+
+    <span class="ruby-identifier">carrito</span> = <span class="ruby-constant">Carrito</span>.<span class="ruby-identifier">find_by</span>(<span class="ruby-identifier">usuarios_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">u</span>.<span class="ruby-identifier">id</span>)
+    <span class="ruby-identifier">carrito</span>.<span class="ruby-identifier">productos</span>.<span class="ruby-identifier">destroy_all</span>
+    <span class="ruby-string">&#39;Se han eliminado todos los productos del carrito&#39;</span>
+  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -214,17 +305,19 @@
 
           
           <div class="method-source-code" id="delete_prod_en_carrito-source">
-            <pre><span class="ruby-comment"># File app/aplicacion/carrito_bo.rb, line 33</span>
+            <pre><span class="ruby-comment"># File app/aplicacion/carrito_bo.rb, line 52</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">delete_prod_en_carrito</span>(<span class="ruby-identifier">user</span>,<span class="ruby-identifier">id</span>,<span class="ruby-identifier">login</span>)
-  <span class="ruby-identifier">u</span> = <span class="ruby-identifier">@@usuario_bo</span>.<span class="ruby-identifier">find_by_user</span>(<span class="ruby-identifier">user</span>)
-  <span class="ruby-identifier">raise</span> <span class="ruby-constant">CustomMsgException</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">404</span>,<span class="ruby-node">&quot;Error 404: No existe el usuario #{user}&quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">u</span>.<span class="ruby-identifier">nil?</span>
-  <span class="ruby-identifier">raise</span> <span class="ruby-constant">CustomMsgException</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">404</span>,<span class="ruby-node">&quot;Error 404: No existe el producto #{id}&quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-constant">Producto</span>.<span class="ruby-identifier">find_by</span>(<span class="ruby-identifier">id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">id</span>).<span class="ruby-identifier">nil?</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-constant">UsuarioBO</span>.<span class="ruby-identifier">permitted?</span>(<span class="ruby-identifier">login</span>,<span class="ruby-identifier">user</span>)
+    <span class="ruby-identifier">u</span> = <span class="ruby-identifier">@@usuario_bo</span>.<span class="ruby-identifier">find_by_user</span>(<span class="ruby-identifier">user</span>,<span class="ruby-identifier">login</span>)
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">CustomMsgException</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">404</span>,<span class="ruby-node">&quot;Error 404: No existe el usuario #{user}&quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">u</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">CustomMsgException</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">404</span>,<span class="ruby-node">&quot;Error 404: No existe el producto #{id}&quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-constant">Producto</span>.<span class="ruby-identifier">find_by</span>(<span class="ruby-identifier">id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">id</span>).<span class="ruby-identifier">nil?</span>
 
-  <span class="ruby-identifier">carrito</span> = <span class="ruby-constant">Carrito</span>.<span class="ruby-identifier">find_by</span>(<span class="ruby-identifier">usuarios_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">u</span>.<span class="ruby-identifier">id</span>)
-  <span class="ruby-identifier">producto</span> = <span class="ruby-constant">Producto</span>.<span class="ruby-identifier">find_by</span>(<span class="ruby-identifier">id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">id</span>)
+    <span class="ruby-identifier">carrito</span> = <span class="ruby-constant">Carrito</span>.<span class="ruby-identifier">find_by</span>(<span class="ruby-identifier">usuarios_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">u</span>.<span class="ruby-identifier">id</span>)
+    <span class="ruby-identifier">producto</span> = <span class="ruby-constant">Producto</span>.<span class="ruby-identifier">find_by</span>(<span class="ruby-identifier">id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">id</span>)
 
-  <span class="ruby-identifier">carrito</span>.<span class="ruby-identifier">productos</span>.<span class="ruby-identifier">destroy</span>(<span class="ruby-identifier">producto</span>)
-  <span class="ruby-node">&quot;Se ha eliminado el producto #{id} del carrito&quot;</span>
+    <span class="ruby-identifier">carrito</span>.<span class="ruby-identifier">productos</span>.<span class="ruby-identifier">destroy</span>(<span class="ruby-identifier">producto</span>)
+    <span class="ruby-node">&quot;Se ha eliminado el producto #{id} del carrito&quot;</span>
+  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           

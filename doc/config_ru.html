@@ -54,15 +54,6 @@
   </div>
 
   
-<div class="nav-section">
-  <h3>Table of Contents</h3>
-
-  <ul class="link-list" role="directory">
-    <li><a href="#label-begin">begin</a>
-    <li><a href="#label-end">end</a>
-  </ul>
-</div>
-
 
   <div id="project-metadata">
     <div id="fileindex-section" class="nav-section">
@@ -79,6 +70,8 @@
     <li><a href="./Rakefile.html">Rakefile</a>
   
     <li><a href="./comandosDB_sh.html">comandosDB.sh</a>
+  
+    <li><a href="./comandosDoc_sh.html">comandosDoc.sh</a>
   
     <li><a href="./config_ru.html">config.ru</a>
   
@@ -101,37 +94,31 @@ proyecto $LOAD_PATH &lt;&lt; File.expand_path(__dir__)</p>
 &#39;app/api/usuarios_api&#39; require &#39;app/api/proovedor_api&#39;
 require &#39;app/api/autentificacion_api&#39;</p>
 
+<p>use Rack::Session::Pool</p>
+
 <p># URI de la API de productos map &#39;/api/producto&#39; do</p>
 
-<pre>use Rack::Session::Pool
-run ProductosAPI</pre>
+<pre>run ProductosAPI</pre>
 
 <p>end</p>
 
 <p># URI de la API de usuarios y carritos map &#39;/api/usuario&#39; do</p>
 
-<pre>use Rack::Session::Pool
-run UsuariosAPI</pre>
+<pre>run UsuariosAPI</pre>
 
 <p>end</p>
 
 <p># URI de la API de proovedores map &#39;/api/proovedor&#39; do</p>
 
-<pre>use Rack::Session::Pool
-run ProovedorAPI</pre>
+<pre>run ProovedorAPI</pre>
 
 <p>end</p>
 
-<h1 id="label-begin">begin<span><a href="#label-begin">&para;</a> <a href="#documentation">&uarr;</a></span></h1>
+<p># URI de la API de autentificacion map &#39;/api/autentificacion&#39; do</p>
 
-<p>map &#39;/api/autentificacion&#39; do</p>
-
-<pre>use Rack::Session::Pool
-run AutentificacionAPI</pre>
+<pre>run AutentificacionAPI</pre>
 
 <p>end</p>
-
-<h1 id="label-end">end<span><a href="#label-end">&para;</a> <a href="#documentation">&uarr;</a></span></h1>
 </main>
 
 

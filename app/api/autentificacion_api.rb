@@ -26,6 +26,7 @@ class AutentificacionAPI < Sinatra::Base
         begin
           token = @@usuario_bo.login(datos['login'], datos['password'])
           status 200
+          content_type :json
           {:token => token}.to_json
         rescue CustomMsgException => e
           status e.status
@@ -43,8 +44,6 @@ class AutentificacionAPI < Sinatra::Base
 
   # Metodo para desloguearse
   get '/logout' do
-    if session[:usuario]
-      session[:usuario] = nil
-    end
+    status 200
   end
 end

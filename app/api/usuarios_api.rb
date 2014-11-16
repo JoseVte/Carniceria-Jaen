@@ -30,6 +30,8 @@ class UsuariosAPI < Sinatra::Base
   get '/all' do
     begin
       users = @@usuario_bo.all(request.env['HTTP_X_AUTH_TOKEN'])
+      status 200
+      content_type :json
       result = Utilidad.paginacion(request.env['REQUEST_PATH'],users,params)
       result.to_json
     rescue CustomMsgException => e
@@ -43,6 +45,7 @@ class UsuariosAPI < Sinatra::Base
     begin
       u = @@usuario_bo.find_by_user(params['user'],request.env['HTTP_X_AUTH_TOKEN'])
       status 200
+      content_type :json
       u.to_json
     rescue CustomMsgException => e
       status e.status
@@ -65,6 +68,7 @@ class UsuariosAPI < Sinatra::Base
     begin
       u = @@usuario_bo.create(datos)
       status 201
+      content_type :json
       u.to_json
     rescue CustomMsgException => e
       status e.status
@@ -73,7 +77,7 @@ class UsuariosAPI < Sinatra::Base
   end
 
   # Actualiza los campos de un usuario. Si se viola alguna regla de la base de datos lanza un 400
-  post '/update' do
+  put '/update' do
     # Es necesario el nombre del usuario
     if params[:user].nil?
       status 400
@@ -107,6 +111,7 @@ class UsuariosAPI < Sinatra::Base
       begin
         u = @@usuario_bo.update(datos,request.env['HTTP_X_AUTH_TOKEN'])
         status 200
+        content_type :json
         u.to_json
       rescue CustomMsgException => e
         status e.status
@@ -134,6 +139,7 @@ class UsuariosAPI < Sinatra::Base
     begin
       c = @@carrito_bo.all(params['user'],request.env['HTTP_X_AUTH_TOKEN'])
       status 200
+      content_type :json
       result = Utilidad.paginacion(request.env['REQUEST_PATH'],c,params)
       result.to_json
     rescue CustomMsgException => e
@@ -151,6 +157,19 @@ class UsuariosAPI < Sinatra::Base
     begin
       msg = @@carrito_bo.add_prod_en_carrito(datos,request.env['HTTP_X_AUTH_TOKEN'])
       status 201
+      content_type :json
+      msg
+    rescue CustomMsgException => e
+      status e.status
+      e.message
+    end
+  end
+
+  # Accion de comprar todo el carrito
+  put '/:user/comprar' do
+    begin
+      msg = @@carrito_bo.comprar(params['user'],request.env['HTTP_X_AUTH_TOKEN'])
+      status 200
       msg
     rescue CustomMsgException => e
       status e.status

@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 
-<title>Gemfile - RDoc Documentation</title>
+<title>comandosDoc.sh - RDoc Documentation</title>
 
 <link href="./fonts.css" rel="stylesheet">
 <link href="./rdoc.css" rel="stylesheet">
@@ -81,21 +81,22 @@
   </div>
 </nav>
 
-<main role="main" aria-label="Page Gemfile">
+<main role="main" aria-label="Page comandosDoc.sh">
 
-<p>source &#39;<a href="https://rubygems.org">rubygems.org</a>&#39;</p>
+<p>#!/bin/sh</p>
 
-<p>gem &#39;sinatra&#39; gem &#39;sinatra-contrib&#39; gem &#39;rake&#39; gem
-&#39;jwt&#39; gem &#39;json&#39; gem &#39;sinatra-activerecord&#39; gem
-&#39;sqlite3&#39; gem &#39;bcrypt&#39;</p>
+<p>DOC=doc</p>
 
-<p># Gemas para realizar los test group :test do</p>
+<p>if [ -d “$DOC” ]; then</p>
 
-<pre>gem &#39;minitest&#39;, &#39;&gt;=5.3.4&#39;
-gem &#39;mocha&#39;
-gem &#39;database_cleaner&#39;</pre>
+<pre>echo &#39;Borrando documentacion anticuada&#39;
+rm -r $DOC</pre>
 
-<p>end</p>
+<p>fi</p>
+
+<p>rdoc –all</p>
+
+<p>echo &#39;Creada la nueva documentacion&#39;</p>
 </main>
 
 

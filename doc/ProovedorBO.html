@@ -143,7 +143,7 @@
           <div class="method-source-code" id="all-source">
             <pre><span class="ruby-comment"># File app/aplicacion/proovedor_bo.rb, line 13</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">all</span>
-  <span class="ruby-constant">Proovedor</span>.<span class="ruby-identifier">all</span>
+  <span class="ruby-constant">Proovedor</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;created_at DESC&#39;</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -176,12 +176,14 @@
           <div class="method-source-code" id="create-source">
             <pre><span class="ruby-comment"># File app/aplicacion/proovedor_bo.rb, line 25</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>(<span class="ruby-identifier">datos</span>,<span class="ruby-identifier">login</span>)
-  <span class="ruby-identifier">p</span> = <span class="ruby-constant">Proovedor</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">datos</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-constant">UsuarioBO</span>.<span class="ruby-identifier">permitted?</span>(<span class="ruby-identifier">login</span>,<span class="ruby-string">&#39;root&#39;</span>)
+    <span class="ruby-identifier">p</span> = <span class="ruby-constant">Proovedor</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">datos</span>)
 
-  <span class="ruby-identifier">raise</span> <span class="ruby-constant">CustomMsgException</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">400</span>,<span class="ruby-string">&#39;Error 400: Los datos son incorrectos&#39;</span>) <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">p</span>.<span class="ruby-identifier">valid?</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">CustomMsgException</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">400</span>,<span class="ruby-string">&#39;Error 400: Los datos son incorrectos&#39;</span>) <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">p</span>.<span class="ruby-identifier">valid?</span>
 
-  <span class="ruby-identifier">p</span>.<span class="ruby-identifier">save</span>
-  <span class="ruby-identifier">p</span>
+    <span class="ruby-identifier">p</span>.<span class="ruby-identifier">save</span>
+    <span class="ruby-identifier">p</span>
+  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -212,12 +214,14 @@
 
           
           <div class="method-source-code" id="delete-source">
-            <pre><span class="ruby-comment"># File app/aplicacion/proovedor_bo.rb, line 46</span>
+            <pre><span class="ruby-comment"># File app/aplicacion/proovedor_bo.rb, line 50</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">delete</span>(<span class="ruby-identifier">id</span>, <span class="ruby-identifier">login</span>)
-  <span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">id</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-constant">UsuarioBO</span>.<span class="ruby-identifier">permitted?</span>(<span class="ruby-identifier">login</span>,<span class="ruby-string">&#39;root&#39;</span>)
+    <span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">id</span>)
 
-  <span class="ruby-constant">Proovedor</span>.<span class="ruby-identifier">destroy_all</span>(<span class="ruby-identifier">id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">id</span>)
-  <span class="ruby-keyword">return</span> <span class="ruby-node">&quot;Se ha borrado correctamente el proovedor #{id}&quot;</span>
+    <span class="ruby-constant">Proovedor</span>.<span class="ruby-identifier">destroy_all</span>(<span class="ruby-identifier">id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">id</span>)
+    <span class="ruby-keyword">return</span> <span class="ruby-node">&quot;Se ha borrado correctamente el proovedor #{id}&quot;</span>
+  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -286,7 +290,7 @@
             <pre><span class="ruby-comment"># File app/aplicacion/proovedor_bo.rb, line 7</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">select_by</span>(<span class="ruby-identifier">campo</span>,<span class="ruby-identifier">cadena</span>)
   <span class="ruby-identifier">raise</span> <span class="ruby-constant">CustomMsgException</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">404</span>,<span class="ruby-node">&quot;Error 404: El campo #{campo} no existe&quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">Proovedor</span>.<span class="ruby-identifier">column_names</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">campo</span>)
-  <span class="ruby-constant">Proovedor</span>.<span class="ruby-identifier">where</span>(<span class="ruby-node">&quot;#{campo} LIKE ?&quot;</span>, <span class="ruby-node">&quot;%#{cadena}%&quot;</span>)
+  <span class="ruby-constant">Proovedor</span>.<span class="ruby-identifier">where</span>(<span class="ruby-node">&quot;#{campo} LIKE ?&quot;</span>, <span class="ruby-node">&quot;%#{cadena}%&quot;</span>).<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;created_at DESC&#39;</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -317,15 +321,17 @@
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/aplicacion/proovedor_bo.rb, line 35</span>
+            <pre><span class="ruby-comment"># File app/aplicacion/proovedor_bo.rb, line 37</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>(<span class="ruby-identifier">datos</span>, <span class="ruby-identifier">login</span>)
-  <span class="ruby-identifier">p</span> = <span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">datos</span>[<span class="ruby-value">:id</span>])
+  <span class="ruby-keyword">if</span> <span class="ruby-constant">UsuarioBO</span>.<span class="ruby-identifier">permitted?</span>(<span class="ruby-identifier">login</span>,<span class="ruby-string">&#39;root&#39;</span>)
+    <span class="ruby-identifier">p</span> = <span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">datos</span>[<span class="ruby-value">:id</span>])
 
-  <span class="ruby-identifier">datos</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value">:id</span>)
-  <span class="ruby-identifier">raise</span> <span class="ruby-constant">CustomMsgException</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">500</span>,<span class="ruby-string">&#39;Error 500: No se ha podido modificar&#39;</span>) <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">p</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">datos</span>)
+    <span class="ruby-identifier">datos</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value">:id</span>)
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">CustomMsgException</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">500</span>,<span class="ruby-string">&#39;Error 500: No se ha podido modificar&#39;</span>) <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">p</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">datos</span>)
 
-  <span class="ruby-identifier">p</span>.<span class="ruby-identifier">save</span>
-  <span class="ruby-identifier">p</span>
+    <span class="ruby-identifier">p</span>.<span class="ruby-identifier">save</span>
+    <span class="ruby-identifier">p</span>
+  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           

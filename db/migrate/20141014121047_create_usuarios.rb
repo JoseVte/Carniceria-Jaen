@@ -16,6 +16,8 @@ class CreateUsuarios < ActiveRecord::Migration
       #De momento solo una direccion y un telefono
       u.text :direccion,null:false
       u.string :telefono, null:false
+
+      u.timestamps
     end
   end
 end
