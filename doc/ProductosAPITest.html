@@ -467,7 +467,7 @@ formulario</p>
             <pre><span class="ruby-comment"># File test/api/productos_api_test.rb, line 132</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">test_api_producto_error_update_data_error</span>
   <span class="ruby-identifier">p</span> = {<span class="ruby-value">:nombre</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Test&#39;</span>}
-  <span class="ruby-identifier">post</span> <span class="ruby-string">&#39;/update&#39;</span>, <span class="ruby-identifier">p</span>, <span class="ruby-string">&#39;HTTP_X_AUTH_TOKEN&#39;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-identifier">@@token</span>
+  <span class="ruby-identifier">put</span> <span class="ruby-string">&#39;/update&#39;</span>, <span class="ruby-identifier">p</span>, <span class="ruby-string">&#39;HTTP_X_AUTH_TOKEN&#39;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-identifier">@@token</span>
 
   <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">400</span>, <span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">status</span>
   <span class="ruby-identifier">datos</span> = <span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">body</span>
@@ -508,7 +508,7 @@ formulario</p>
        <span class="ruby-value">:nombre</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Test&#39;</span>
   }
 
-  <span class="ruby-identifier">post</span> <span class="ruby-string">&#39;/update&#39;</span>, <span class="ruby-identifier">p</span>, <span class="ruby-string">&#39;HTTP_X_AUTH_TOKEN&#39;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-identifier">@@token</span>
+  <span class="ruby-identifier">put</span> <span class="ruby-string">&#39;/update&#39;</span>, <span class="ruby-identifier">p</span>, <span class="ruby-string">&#39;HTTP_X_AUTH_TOKEN&#39;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-identifier">@@token</span>
 
   <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">404</span>, <span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">status</span>
   <span class="ruby-identifier">datos</span> = <span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">body</span>
@@ -698,7 +698,7 @@ formulario</p>
        <span class="ruby-value">:nombre</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Test&#39;</span>
   }
 
-  <span class="ruby-identifier">post</span> <span class="ruby-string">&#39;/update&#39;</span>, <span class="ruby-identifier">p</span>, <span class="ruby-string">&#39;HTTP_X_AUTH_TOKEN&#39;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-identifier">@@token</span>
+  <span class="ruby-identifier">put</span> <span class="ruby-string">&#39;/update&#39;</span>, <span class="ruby-identifier">p</span>, <span class="ruby-string">&#39;HTTP_X_AUTH_TOKEN&#39;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-identifier">@@token</span>
 
   <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">200</span>, <span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">status</span>
   <span class="ruby-identifier">datos</span> = <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">body</span>)

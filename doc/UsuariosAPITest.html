@@ -98,6 +98,12 @@
     
     <li ><a href="#method-i-test_api_carrito_all_error_no_exist">#test_api_carrito_all_error_no_exist</a>
     
+    <li ><a href="#method-i-test_api_carrito_comprar">#test_api_carrito_comprar</a>
+    
+    <li ><a href="#method-i-test_api_carrito_comprar_error_carrito_empty">#test_api_carrito_comprar_error_carrito_empty</a>
+    
+    <li ><a href="#method-i-test_api_carrito_comprar_error_user_no_exist">#test_api_carrito_comprar_error_user_no_exist</a>
+    
     <li ><a href="#method-i-test_api_carrito_delete_all_carrito">#test_api_carrito_delete_all_carrito</a>
     
     <li ><a href="#method-i-test_api_carrito_delete_all_carrito_error_user_no_exist">#test_api_carrito_delete_all_carrito_error_user_no_exist</a>
@@ -432,6 +438,115 @@ href="UsuariosAPI.html">UsuariosAPI</a></p>
       </div>
 
     
+      <div id="method-i-test_api_carrito_comprar" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_api_carrito_comprar</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Test para añadir un producto al carrito</p>
+          
+          
+
+          
+          <div class="method-source-code" id="test_api_carrito_comprar-source">
+            <pre><span class="ruby-comment"># File test/api/usuarios_api_test.rb, line 261</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_api_carrito_comprar</span>
+  <span class="ruby-identifier">put</span> <span class="ruby-string">&#39;/root/comprar&#39;</span>, <span class="ruby-string">&#39;&#39;</span>, <span class="ruby-string">&#39;HTTP_X_AUTH_TOKEN&#39;</span>=<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">@@token</span>
+  <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">200</span>, <span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">status</span>
+  <span class="ruby-identifier">datos</span> = <span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">body</span>
+  <span class="ruby-identifier">assert_equal</span> <span class="ruby-identifier">datos</span>, <span class="ruby-string">&#39;Se han comprado todos los productos&#39;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-test_api_carrito_comprar_error_carrito_empty" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_api_carrito_comprar_error_carrito_empty</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Test para comprobar si el usuario no existe</p>
+          
+          
+
+          
+          <div class="method-source-code" id="test_api_carrito_comprar_error_carrito_empty-source">
+            <pre><span class="ruby-comment"># File test/api/usuarios_api_test.rb, line 277</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_api_carrito_comprar_error_carrito_empty</span>
+  <span class="ruby-identifier">delete</span> <span class="ruby-string">&#39;/root/carrito/all&#39;</span>, <span class="ruby-string">&#39;&#39;</span>, <span class="ruby-string">&#39;HTTP_X_AUTH_TOKEN&#39;</span>=<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">@@token</span>
+  <span class="ruby-identifier">put</span> <span class="ruby-string">&#39;/root/comprar&#39;</span>, <span class="ruby-string">&#39;&#39;</span>, <span class="ruby-string">&#39;HTTP_X_AUTH_TOKEN&#39;</span>=<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">@@token</span>
+  <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">400</span>, <span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">status</span>
+  <span class="ruby-identifier">datos</span> = <span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">body</span>
+  <span class="ruby-identifier">assert_equal</span> <span class="ruby-identifier">datos</span>, <span class="ruby-string">&#39;Error 400: El carrito esta vacio&#39;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-test_api_carrito_comprar_error_user_no_exist" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_api_carrito_comprar_error_user_no_exist</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Test para comprobar si el usuario no existe</p>
+          
+          
+
+          
+          <div class="method-source-code" id="test_api_carrito_comprar_error_user_no_exist-source">
+            <pre><span class="ruby-comment"># File test/api/usuarios_api_test.rb, line 269</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_api_carrito_comprar_error_user_no_exist</span>
+  <span class="ruby-identifier">put</span> <span class="ruby-string">&#39;/noExiste/comprar&#39;</span>, <span class="ruby-string">&#39;&#39;</span>, <span class="ruby-string">&#39;HTTP_X_AUTH_TOKEN&#39;</span>=<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">@@token</span>
+  <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">404</span>, <span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">status</span>
+  <span class="ruby-identifier">datos</span> = <span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">body</span>
+  <span class="ruby-identifier">assert_equal</span> <span class="ruby-identifier">datos</span>, <span class="ruby-string">&#39;Error 404: No existe el usuario noExiste&#39;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
       <div id="method-i-test_api_carrito_delete_all_carrito" class="method-detail ">
         
         <div class="method-heading">
@@ -453,9 +568,7 @@ href="UsuariosAPI.html">UsuariosAPI</a></p>
           <div class="method-source-code" id="test_api_carrito_delete_all_carrito-source">
             <pre><span class="ruby-comment"># File test/api/usuarios_api_test.rb, line 245</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">test_api_carrito_delete_all_carrito</span>
-  <span class="ruby-identifier">d</span> = {<span class="ruby-value">:prod_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>}
-
-  <span class="ruby-identifier">delete</span> <span class="ruby-string">&#39;/root/carrito/all&#39;</span>, <span class="ruby-identifier">d</span>, <span class="ruby-string">&#39;HTTP_X_AUTH_TOKEN&#39;</span>=<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">@@token</span>
+  <span class="ruby-identifier">delete</span> <span class="ruby-string">&#39;/root/carrito/all&#39;</span>, <span class="ruby-string">&#39;&#39;</span>, <span class="ruby-string">&#39;HTTP_X_AUTH_TOKEN&#39;</span>=<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">@@token</span>
   <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">200</span>, <span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">status</span>
   <span class="ruby-identifier">datos</span> = <span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">body</span>
   <span class="ruby-identifier">assert_equal</span> <span class="ruby-identifier">datos</span>, <span class="ruby-string">&#39;Se han eliminado todos los productos del carrito&#39;</span>
@@ -489,11 +602,9 @@ href="UsuariosAPI.html">UsuariosAPI</a></p>
 
           
           <div class="method-source-code" id="test_api_carrito_delete_all_carrito_error_user_no_exist-source">
-            <pre><span class="ruby-comment"># File test/api/usuarios_api_test.rb, line 255</span>
+            <pre><span class="ruby-comment"># File test/api/usuarios_api_test.rb, line 253</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">test_api_carrito_delete_all_carrito_error_user_no_exist</span>
-  <span class="ruby-identifier">d</span> = {<span class="ruby-value">:prod_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>}
-
-  <span class="ruby-identifier">delete</span> <span class="ruby-string">&#39;/noExiste/carrito/all&#39;</span>, <span class="ruby-identifier">d</span>, <span class="ruby-string">&#39;HTTP_X_AUTH_TOKEN&#39;</span>=<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">@@token</span>
+  <span class="ruby-identifier">delete</span> <span class="ruby-string">&#39;/noExiste/carrito/all&#39;</span>, <span class="ruby-string">&#39;&#39;</span>, <span class="ruby-string">&#39;HTTP_X_AUTH_TOKEN&#39;</span>=<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">@@token</span>
   <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">404</span>, <span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">status</span>
   <span class="ruby-identifier">datos</span> = <span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">body</span>
   <span class="ruby-identifier">assert_equal</span> <span class="ruby-identifier">datos</span>, <span class="ruby-string">&#39;Error 404: No existe el usuario noExiste&#39;</span>
@@ -879,7 +990,7 @@ formulario</p>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">test_api_usuario_error_update_data_error</span>
   <span class="ruby-identifier">u</span> = {}
 
-  <span class="ruby-identifier">post</span> <span class="ruby-string">&#39;/update&#39;</span>, <span class="ruby-identifier">u</span>, <span class="ruby-string">&#39;HTTP_X_AUTH_TOKEN&#39;</span>=<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">@@token</span>
+  <span class="ruby-identifier">put</span> <span class="ruby-string">&#39;/update&#39;</span>, <span class="ruby-identifier">u</span>, <span class="ruby-string">&#39;HTTP_X_AUTH_TOKEN&#39;</span>=<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">@@token</span>
 
   <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">400</span>, <span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">status</span>
   <span class="ruby-identifier">datos</span> = <span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">body</span>
@@ -920,7 +1031,7 @@ formulario</p>
        <span class="ruby-value">:pass</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Test&#39;</span>
   }
 
-  <span class="ruby-identifier">post</span> <span class="ruby-string">&#39;/update&#39;</span>, <span class="ruby-identifier">u</span>, <span class="ruby-string">&#39;HTTP_X_AUTH_TOKEN&#39;</span>=<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">@@token</span>
+  <span class="ruby-identifier">put</span> <span class="ruby-string">&#39;/update&#39;</span>, <span class="ruby-identifier">u</span>, <span class="ruby-string">&#39;HTTP_X_AUTH_TOKEN&#39;</span>=<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">@@token</span>
 
   <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">404</span>, <span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">status</span>
   <span class="ruby-identifier">datos</span> = <span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">body</span>
@@ -1044,7 +1155,7 @@ formulario</p>
        <span class="ruby-value">:pass</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;cambioPass&#39;</span>
   }
 
-  <span class="ruby-identifier">post</span> <span class="ruby-string">&#39;/update&#39;</span>, <span class="ruby-identifier">u</span>, <span class="ruby-string">&#39;HTTP_X_AUTH_TOKEN&#39;</span>=<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">@@token</span>
+  <span class="ruby-identifier">put</span> <span class="ruby-string">&#39;/update&#39;</span>, <span class="ruby-identifier">u</span>, <span class="ruby-string">&#39;HTTP_X_AUTH_TOKEN&#39;</span>=<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">@@token</span>
 
   <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">200</span>, <span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">status</span>
   <span class="ruby-identifier">datos</span> = <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">last_response</span>.<span class="ruby-identifier">body</span>)

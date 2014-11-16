@@ -55,7 +55,7 @@ post '{host}/api/producto/new'
 ### Actualizar producto
 Se debe ser __Administrador__. Actualiza los datos de un producto:  
 ```
-post '{host}/api/producto/update'
+put '{host}/api/producto/update'
 ```
 ### Borrar producto
 Se debe ser __Administrador__. Borra un producto:  
@@ -95,7 +95,7 @@ get '{host}/api/usuario/:user'
 ### Actualizar usuario
 Se debe estar __registrado__. Modifica el usuario actual:  
 ```
-post '{host}/api/usuario/update'
+put '{host}/api/usuario/update'
 ```
 ### Borrar usuario
 Se debe estar __registrado__. Borra el usuario actual:  
@@ -115,6 +115,11 @@ get '{host}/api/usuario/:user/carrito'
 Se debe estar __registrado__. Añade un producto al carrito del usuario actual:  
 ```
 post '{host}/api/usuario/:user/carrito'
+```
+### Comprar todo el carrito
+Se debe estar __registrado__. Compra todos los productos que estan actualmente en el carrito:
+```
+put '{host}/api/usuario/:user/comprar'
 ```
 ### Borrar en el carrito
 Se debe estar __registrado__. Elimina un producto del carrito del usuario actual:  
@@ -148,7 +153,7 @@ post '{host}/api/proovedor/new'
 ### Actualizar proovedor
 Se debe ser __Administrador__. Actualiza los datos de un proovedor:  
 ```
-post '{host}/api/proovedor/update'
+put '{host}/api/proovedor/update'
 ```
 ### Borrar proovedor
 Se debe ser __Administrador__. Borra un proovedor:  

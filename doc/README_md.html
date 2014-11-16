@@ -79,6 +79,7 @@
     <li><a href="#label-Carrito">Carrito</a>
     <li><a href="#label-Todo+el+carrito">Todo el carrito</a>
     <li><a href="#label-A%C3%B1adir+al+carrito">Añadir al carrito</a>
+    <li><a href="#label-Comprar+todo+el+carrito">Comprar todo el carrito</a>
     <li><a href="#label-Borrar+en+el+carrito">Borrar en el carrito</a>
     <li><a href="#label-Proovedor">Proovedor</a>
     <li><a href="#label-Busqueda">Busqueda</a>
@@ -211,7 +212,7 @@ get &#39;{host}/api/producto/ofertas&#39; </code></p>
 <h3 id="label-Actualizar+producto">Actualizar producto<span><a href="#label-Actualizar+producto">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 
 <p>Se debe ser <strong>Administrador</strong>. Actualiza los datos de un
-producto:<br> <code> post &#39;{host}/api/producto/update&#39; </code></p>
+producto:<br> <code> put &#39;{host}/api/producto/update&#39; </code></p>
 
 <h3 id="label-Borrar+producto">Borrar producto<span><a href="#label-Borrar+producto">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 
@@ -252,7 +253,7 @@ usuarios:<br> <code> get &#39;{host}/api/usuario/all&#39; </code></p>
 <h3 id="label-Actualizar+usuario">Actualizar usuario<span><a href="#label-Actualizar+usuario">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 
 <p>Se debe estar <strong>registrado</strong>. Modifica el usuario actual:<br>
-<code> post &#39;{host}/api/usuario/update&#39; </code></p>
+<code> put &#39;{host}/api/usuario/update&#39; </code></p>
 
 <h3 id="label-Borrar+usuario">Borrar usuario<span><a href="#label-Borrar+usuario">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 
@@ -273,6 +274,12 @@ actual:<br> <code> get &#39;{host}/api/usuario/:user/carrito&#39; </code></p>
 <p>Se debe estar <strong>registrado</strong>. Añade un producto al carrito del
 usuario actual:<br> <code> post &#39;{host}/api/usuario/:user/carrito&#39;
 </code></p>
+
+<h3 id="label-Comprar+todo+el+carrito">Comprar todo el carrito<span><a href="#label-Comprar+todo+el+carrito">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+
+<p>Se debe estar <strong>registrado</strong>. Compra todos los productos que
+estan actualmente en el carrito: <code> put
+&#39;{host}/api/usuario/:user/comprar&#39; </code></p>
 
 <h3 id="label-Borrar+en+el+carrito">Borrar en el carrito<span><a href="#label-Borrar+en+el+carrito">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 
@@ -307,7 +314,7 @@ del usuario actual:<br> <code> delete
 <h3 id="label-Actualizar+proovedor">Actualizar proovedor<span><a href="#label-Actualizar+proovedor">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 
 <p>Se debe ser <strong>Administrador</strong>. Actualiza los datos de un
-proovedor:<br> <code> post &#39;{host}/api/proovedor/update&#39; </code></p>
+proovedor:<br> <code> put &#39;{host}/api/proovedor/update&#39; </code></p>
 
 <h3 id="label-Borrar+proovedor">Borrar proovedor<span><a href="#label-Borrar+proovedor">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 
