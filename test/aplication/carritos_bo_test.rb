@@ -102,4 +102,27 @@ class CarritosBOTest < MiniTest::Test
     end
     assert_equal 'Error 404: No existe el usuario noExiste', e.message
   end
+
+  # Test para comprar todo
+  def test_bo_carrito_comprar
+    msg = @@carrito_bo.comprar('root',@@token)
+    assert_equal 'Se han comprado todos los productos', msg
+  end
+
+  # Test para comprobar si el usuario no existe
+  def test_bo_carrito_comprar_error_user_no_exist
+    e = assert_raises CustomMsgException  do
+      @@carrito_bo.comprar('noExiste',@@token)
+    end
+    assert_equal 'Error 404: No existe el usuario noExiste', e.message
+  end
+
+  # Test para comprobar si el carrito esta vacio
+  def test_bo_carrito_comprar_error_carrito_empty
+    e = assert_raises CustomMsgException  do
+      @@carrito_bo.delete_all_carrito('root',@@token)
+      @@carrito_bo.comprar('root',@@token)
+    end
+    assert_equal 'Error 400: El carrito esta vacio', e.message
+  end
 end

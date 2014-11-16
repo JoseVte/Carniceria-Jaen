@@ -243,9 +243,7 @@ class UsuariosAPITest < MiniTest::Test
 
   # Test para añadir un producto al carrito
   def test_api_carrito_delete_all_carrito
-    d = {:prod_id => 1}
-
-    delete '/root/carrito/all', d, 'HTTP_X_AUTH_TOKEN'=> @@token
+    delete '/root/carrito/all', '', 'HTTP_X_AUTH_TOKEN'=> @@token
     assert_equal 200, last_response.status
     datos = last_response.body
     assert_equal datos, 'Se han eliminado todos los productos del carrito'
@@ -253,11 +251,34 @@ class UsuariosAPITest < MiniTest::Test
 
   # Test para comprobar si el usuario no existe
   def test_api_carrito_delete_all_carrito_error_user_no_exist
-    d = {:prod_id => 1}
-
-    delete '/noExiste/carrito/all', d, 'HTTP_X_AUTH_TOKEN'=> @@token
+    delete '/noExiste/carrito/all', '', 'HTTP_X_AUTH_TOKEN'=> @@token
     assert_equal 404, last_response.status
     datos = last_response.body
     assert_equal datos, 'Error 404: No existe el usuario noExiste'
+  end
+
+  # Test para añadir un producto al carrito
+  def test_api_carrito_comprar
+    put '/root/comprar', '', 'HTTP_X_AUTH_TOKEN'=> @@token
+    assert_equal 200, last_response.status
+    datos = last_response.body
+    assert_equal datos, 'Se han comprado todos los productos'
+  end
+
+  # Test para comprobar si el usuario no existe
+  def test_api_carrito_comprar_error_user_no_exist
+    put '/noExiste/comprar', '', 'HTTP_X_AUTH_TOKEN'=> @@token
+    assert_equal 404, last_response.status
+    datos = last_response.body
+    assert_equal datos, 'Error 404: No existe el usuario noExiste'
+  end
+
+  # Test para comprobar si el usuario no existe
+  def test_api_carrito_comprar_error_carrito_empty
+    delete '/root/carrito/all', '', 'HTTP_X_AUTH_TOKEN'=> @@token
+    put '/root/comprar', '', 'HTTP_X_AUTH_TOKEN'=> @@token
+    assert_equal 400, last_response.status
+    datos = last_response.body
+    assert_equal datos, 'Error 400: El carrito esta vacio'
   end
 end

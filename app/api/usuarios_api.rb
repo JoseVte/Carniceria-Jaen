@@ -165,6 +165,18 @@ class UsuariosAPI < Sinatra::Base
     end
   end
 
+  # Accion de comprar todo el carrito
+  put '/:user/comprar' do
+    begin
+      msg = @@carrito_bo.comprar(params['user'],request.env['HTTP_X_AUTH_TOKEN'])
+      status 200
+      msg
+    rescue CustomMsgException => e
+      status e.status
+      e.message
+    end
+  end
+
   # Borrar un producto al carrito
   delete '/:user/carrito' do
     begin

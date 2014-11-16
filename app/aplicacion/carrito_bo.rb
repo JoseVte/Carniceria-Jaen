@@ -33,6 +33,21 @@ class CarritoBO
     end
   end
 
+  # Compra todos los productos que estan actualmente en el carrito
+  def comprar(user,login)
+    if UsuarioBO.permitted?(login,user)
+      u = @@usuario_bo.find_by_user(user,login)
+      raise CustomMsgException.new(404,"Error 404: No existe el usuario #{user}") if u.nil?
+
+      carrito = Carrito.find_by(usuarios_id: u.id)
+
+      raise CustomMsgException.new(400,"Error 400: El carrito esta vacio") if carrito.productos.empty?
+
+      carrito.productos.destroy_all
+      'Se han comprado todos los productos'
+    end
+  end
+
   # Borra un producto de un carrito
   def delete_prod_en_carrito(user,id,login)
     if UsuarioBO.permitted?(login,user)
