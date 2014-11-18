@@ -1,0 +1,36 @@
+<div id="plantilla_ofertas">
+    <main class="container">
+        {{#.}}
+            <div id="prod_oferta_{{id}}" class="col-sm-2" align="center">
+                <img src="{{url_imagen}}" height="128px" width="128px"><br>
+                <b>{{nombre}}</b><br>
+                <em>{{rebaja}} %</em><br>
+                <a href="javascript:get_producto_detalles({{id}})">Detalles</a>
+            </div>
+        {{/.}}
+    </main>
+</div>
+
+<div id="plantilla_paginacion">
+    <main class="container">
+        {{#contenido}}
+            <div id="prod_{{id}}" class="col-sm-2" align="center">
+                <img src="{{url_imagen}}" height="128px" width="128px"><br>
+                <b>{{nombre}}</b><br>
+                <a href="javascript:get_producto_detalles({{id}})">Detalles</a>
+            </div>
+        {{/contenido}}
+        <a href="{{link.href}}">Actual</a>
+    </main>
+</div>
+
+<div id="plantilla_detalles">
+    <img src="{{url_imagen}}"><br>
+    <b>{{nombre}}</b><br>
+    {{descripcion}}<br>
+    {{precioKg}}<br>
+    {{stock}}<br>
+    {{rebaja}}<br>
+
+    <em>{{fecha_js}}</em><br>
+</div>

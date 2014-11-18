@@ -21,6 +21,8 @@ fi
 
 bundle exec rake db:migrate
 bundle exec rake db:migrate RACK_ENV=test
+
+bundle exec rake db:fixtures:load RACK_ENV=development
 bundle exec rake db:fixtures:load RACK_ENV=test
 
 echo 'Recreacion de la base de datos completada'

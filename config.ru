@@ -10,6 +10,7 @@ require 'app/api/productos_api'
 require 'app/api/usuarios_api'
 require 'app/api/proovedor_api'
 require 'app/api/autentificacion_api'
+require 'app/web/servidor_web'
 
 use Rack::Session::Pool
 
@@ -31,4 +32,8 @@ end
 # URI de la API de autentificacion
 map '/api/autentificacion' do
   run AutentificacionAPI
+end
+
+map '/web' do
+  run ServidorWeb
 end
