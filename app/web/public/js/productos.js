@@ -1,11 +1,8 @@
 /**
  * Created by josrom on 18/11/14.
  */
-window.onload = function(){
-    get_ofertas();
-    get_productos();
-}
 
+//Productos en oferta
 function get_ofertas(){
     var request = new XMLHttpRequest();
     request.open("GET","/api/producto/ofertas",true);
@@ -81,6 +78,6 @@ function mostrar_detalles(producto){
     $("#prod_" + producto.id).load("templates/productoTemplate.mustache #plantilla_detalles", function() {
         var plantilla = document.getElementById("plantilla_detalles").innerHTML;
 
-        $("#").html(Mustache.render(plantilla, producto));//Antes de que se acabe la etiqueta
+        $("#prod_" + producto.id).html(Mustache.render(plantilla, producto));//Antes de que se acabe la etiqueta
     });
 }

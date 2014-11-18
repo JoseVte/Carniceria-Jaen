@@ -2,7 +2,7 @@
     <main class="container">
         {{#.}}
             <div id="prod_oferta_{{id}}" class="col-sm-2" align="center">
-                <img src="{{url_imagen}}" height="128px" width="128px"><br>
+                <img src="{{url_imagen}}" height="128px" width="128px" class="img-responsive"><br>
                 <b>{{nombre}}</b><br>
                 <em>{{rebaja}} %</em><br>
                 <a href="javascript:get_producto_detalles({{id}})">Detalles</a>
@@ -13,19 +13,20 @@
 
 <div id="plantilla_paginacion">
     <main class="container">
+        <span class="badge">{{total}}</span>
         {{#contenido}}
             <div id="prod_{{id}}" class="col-sm-2" align="center">
-                <img src="{{url_imagen}}" height="128px" width="128px"><br>
+                <img src="{{url_imagen}}" height="128px" width="128px" class="img-responsive"><br>
                 <b>{{nombre}}</b><br>
                 <a href="javascript:get_producto_detalles({{id}})">Detalles</a>
             </div>
         {{/contenido}}
-        <a href="{{link.href}}">Actual</a>
     </main>
+    <a href="{{link.href}}">Actual</a>
 </div>
 
 <div id="plantilla_detalles">
-    <img src="{{url_imagen}}"><br>
+    <img src="{{url_imagen}}" class="img-responsive"><br>
     <b>{{nombre}}</b><br>
     {{descripcion}}<br>
     {{precioKg}}<br>

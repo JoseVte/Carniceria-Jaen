@@ -4,19 +4,57 @@
     <meta charset="UTF-8">
     <title>Carniceria Jáen</title>
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<h1>Página principal</h1>
-<div id="ofertas">
-</div>
+<header class="panel-heading">
+    <h1><img src="img/logo.ico">Carniceria Jáen</h1>
+</header>
+
+<nav class="nav navbar-default" role="navigation">
+    <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Buscar productos">
+        </div>
+        <button type="submit" class="btn btn-default">Enviar</button>
+    </form>
+
+    <div id="login" class="navbar-right col-lg-3" onmouseover="menu_login('mostrar')" onmouseout="menu_login('ocultar')"><h3>Login</h3>
+        <form id="form_login" class="form-horizontal" role="form">
+            <div class="form-group">
+                <label for="inputPassword" class="col-lg-3 control-label">Usuario</label>
+                <div class="col-lg-8">
+                    <input type="text" class="form-control" id="inputUser" placeholder="Nombre del usuario"><br>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputPassword" class="col-lg-3 control-label">Contraseña</label>
+                <div class="col-lg-8">
+                    <input type="password" class="form-control" id="inputPassword" placeholder="Contraseña">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Registrarse</button>
+            <button type="submit" class="btn btn-info">Login</button>
+        </form>
+    </div>
+</nav>
+<main id="body" class="panel-body">
+    <section id="ofertas">
+    </section>
 <hr>
-<div id="productos">
-</div>
+    <section id="productos">
+    </section>
+</main>
+
+<footer class="panel-footer">
+&copy; ADI 2014
+</footer>
 
 <!-- Las librerias antes que nuestro codigo -->
 <script src="js/lib/mustache.js"></script>
 <script src="js/lib/jquery-1.11.1.min.js"></script>
 <script src="js/productos.js"></script>
+<script src="js/utilidades.js"></script>
 
 </body>
 </html>
