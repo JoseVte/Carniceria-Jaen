@@ -1,0 +1,28 @@
+<div id="plantilla_login_ok">
+    <img src="{{url_imagen}}" class="img-responsive" height="48px" width="48px">
+    <a href="javascript:get_datos_user()"><h4>{{nombre}}<br>{{apellidos}}</h4></a>
+    <a href="javascript:get_carrito()">Ver carrito</a><br>
+    <a href="javascript:logout()">Cerrar sesión</a>
+</div>
+
+<div id="plantilla_logout">
+    <h3>Login</h3>
+    <form id="form_login" class="form-horizontal" role="form" style="display: none">
+        <div class="form-group">
+            <label for="inputPassword" class="col-lg-3 control-label">Usuario</label>
+            <div class="col-lg-8">
+                <input type="text" class="form-control" id="inputUser" placeholder="Nombre del usuario"><br>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputPassword" class="col-lg-3 control-label">Contraseña</label>
+            <div class="col-lg-8">
+                <input type="password" class="form-control" id="inputPassword" placeholder="Contraseña">
+            </div>
+        </div>
+        <!-- TODO Añadir funcion para ir al form de registro-->
+        <input type="button" class="btn btn-primary" value="Registrarse">
+        <!-- TODO Añadir funcion para realizar el login-->
+        <input type="button" class="btn btn-info" value="Login" id="button_login">
+    </form>
+</div>

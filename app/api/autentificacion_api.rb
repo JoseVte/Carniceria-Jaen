@@ -27,7 +27,10 @@ class AutentificacionAPI < Sinatra::Base
           token = @@usuario_bo.login(datos['login'], datos['password'])
           status 200
           content_type :json
-          {:token => token}.to_json
+          {
+              :user => @@usuario_bo.find_by_user(datos['login'],token),
+              :token => token
+          }.to_json
         rescue CustomMsgException => e
           status e.status
           e.message

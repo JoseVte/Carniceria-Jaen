@@ -75,9 +75,9 @@ function mostrar_detalles(producto){
     producto.fecha_js = new Date(producto.created_at).toLocaleDateString();
     producto.fecha_js = new Date(producto.updated_at).toLocaleDateString();
 
-    $("#prod_" + producto.id).load("templates/productoTemplate.mustache #plantilla_detalles", function() {
+    $("#body").load("templates/productoTemplate.mustache #plantilla_detalles", function() {
         var plantilla = document.getElementById("plantilla_detalles").innerHTML;
 
-        $("#prod_" + producto.id).html(Mustache.render(plantilla, producto));//Antes de que se acabe la etiqueta
+        $("#body").html(Mustache.render(plantilla, producto));//Antes de que se acabe la etiqueta
     });
 }
