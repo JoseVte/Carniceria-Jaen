@@ -6,8 +6,8 @@
 </div>
 
 <div id="plantilla_logout">
-    <h3>Login</h3>
-    <form id="form_login" class="form-horizontal" role="form" style="display: none">
+    <div id="click_login"><h4>Login</h4></div>
+    <div id="form_login" class="panel-body" role="form" style="display: none">
         <div class="form-group">
             <label for="inputPassword" class="col-lg-3 control-label">Usuario</label>
             <div class="col-lg-8">
@@ -20,9 +20,15 @@
                 <input type="password" class="form-control" id="inputPassword" placeholder="Contraseña">
             </div>
         </div>
+        <div class="checkbox">
+            <label>
+                <input id="check_recordar" type="checkbox" class="checkbox" value="">
+                No cerrar sesión
+            </label>
+        </div>
+        <br>
         <!-- TODO Añadir funcion para ir al form de registro-->
         <input type="button" class="btn btn-primary" value="Registrarse">
-        <!-- TODO Añadir funcion para realizar el login-->
         <input type="button" class="btn btn-info" value="Login" id="button_login">
-    </form>
+    </div>
 </div>

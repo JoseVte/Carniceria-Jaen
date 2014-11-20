@@ -220,10 +220,10 @@
   background-repeat: repeat-x;
 }
 .navbar-default {
-  background-image: -webkit-linear-gradient(top, #fff 0%, #f8f8f8 100%);
-  background-image:      -o-linear-gradient(top, #fff 0%, #f8f8f8 100%);
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#f8f8f8));
-  background-image:         linear-gradient(to bottom, #fff 0%, #f8f8f8 100%);
+  background-image: -webkit-linear-gradient(top, #f8e1ad 0%, #f89653 100%);
+  background-image:      -o-linear-gradient(top, #f8e1ad 0%, #f89653 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#f8e1ad), to(#f89653));
+  background-image:         linear-gradient(to bottom, #f8e1ad 0%, #f89653 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#fff8f8f8', GradientType=0);
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
   background-repeat: repeat-x;
@@ -405,6 +405,7 @@
   text-shadow: none;
 }
 .panel {
+  border-color: #f89653;
   -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
           box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
 }

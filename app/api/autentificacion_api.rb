@@ -8,6 +8,7 @@ class AutentificacionAPI < Sinatra::Base
   
   # Configuracion inicial
   configure do
+    register Sinatra::ActiveRecordExtension
     puts 'activando autentificacion...'
     @@usuario_bo = UsuarioBO.new
   end

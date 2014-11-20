@@ -4,6 +4,7 @@
 
 //Login
 function login() {
+    console.log('jhhjjhjh');
     var request = new XMLHttpRequest();
     request.onreadystatechange = callback_login;
     request.open("POST","/api/autentificacion/login",true);
@@ -15,8 +16,10 @@ function callback_login(){
     if(this.readyState == 4) {
         if(this.status == 200) {
             var json = JSON.parse(this.responseText);
-            localStorage.setItem('usuario',$("#inputUser")[0].value);
+            localStorage.setItem('usuario',$("#inputUser").val());
+            localStorage.setItem('usuarioObj',JSON.stringify(json.user));
             localStorage.setItem('token',json.token);
+            localStorage.setItem('recordar',$("#check_recordar").is(':checked'));
             mostrar_login_ok(json.user);
         }
     }

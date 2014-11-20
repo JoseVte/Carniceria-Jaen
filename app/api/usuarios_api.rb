@@ -15,6 +15,7 @@ class UsuariosAPI < Sinatra::Base
 
   # Configuracion inicial
   configure do
+    register Sinatra::ActiveRecordExtension
     puts 'configurando API de usuarios...'
     @@usuario_bo = UsuarioBO.new
     @@carrito_bo = CarritoBO.new

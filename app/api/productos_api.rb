@@ -12,6 +12,7 @@ class ProductosAPI < Sinatra::Base
 
   # Configuracion inicial
   configure do
+    register Sinatra::ActiveRecordExtension
     puts 'configurando API de productos...'
     @@producto_bo = ProductoBO.new
   end

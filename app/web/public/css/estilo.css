@@ -1,0 +1,16 @@
+#row_nav{
+    position: relative;
+}
+
+#login{
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 99;
+    margin-right: 15px;
+    text-align: center;
+}
+
+#click_login > h4{
+    /*font-size: 26px;*/
+}

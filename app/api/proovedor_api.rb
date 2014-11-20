@@ -12,6 +12,7 @@ class ProovedorAPI < Sinatra::Base
 
   # Configuracion inicial
   configure do
+    register Sinatra::ActiveRecordExtension
     puts 'configurando API de proovedores...'
     @@proovedor_bo = ProovedorBO.new
   end
