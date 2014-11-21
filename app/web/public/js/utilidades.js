@@ -7,7 +7,7 @@ $(document).ready(function(){
     $(document).on('click', "#inicio", principal);
     $(document).on('click', "#button_login", login);
     $(document).on('click', "#button_open_registro", open_registro);
-    $(document).on('click', "#button_registrarse", registro_completado);
+    $(document).on('click', "#button_registrarse", registro);
     $(document).on('click', "#click_login", toggle_login);
 });
 
@@ -35,7 +35,7 @@ function registro_completado(){
     $("#body").load("templates/registroTemplate.mustache #plantilla_redir", function() {
         var plantilla = document.getElementById("plantilla_redir").innerHTML;
         $("#body").html(Mustache.render(plantilla));
-        //setTimeout ("principal()", 3000); //tiempo en milisegundos
+        setTimeout ("principal()", 3000); //tiempo en milisegundos
     })
 }
 
@@ -47,13 +47,13 @@ function toggle_login() {
     if(form.style.display == "block"){
         setTimeout(function(){form.style.display = "none";},0);
         fx(login,[
-            {'inicio':260,'fin':100,'u':'px','propCSS':'width'},
+            {'inicio':280,'fin':100,'u':'px','propCSS':'width'},
             {'inicio':250,'fin':45,'u':'px','propCSS':'height'},
             {'inicio':1,'fin':1,'u':'','propCSS':'opacity'}
         ],1000,true,desacelerado);
     }else{
         fx(login,[
-            {'inicio':100,'fin':260,'u':'px','propCSS':'width'},
+            {'inicio':100,'fin':280,'u':'px','propCSS':'width'},
             {'inicio':45,'fin':250,'u':'px','propCSS':'height'},
             {'inicio':1,'fin':1,'u':'','propCSS':'opacity'}
         ],1000,true,desacelerado);
@@ -64,14 +64,15 @@ function toggle_login() {
 //Vista de cuando se esta logueado
 function mostrar_login_ok(user){
     var token = localStorage.getItem('token');
+    var login = $("#login");
 
     if(token != null){
-        $("#login").load("templates/loginTemplate.mustache #plantilla_login_ok", function() {
+        login.load("templates/loginTemplate.mustache #plantilla_login_ok", function() {
             var plantilla = document.getElementById("plantilla_login_ok").innerHTML;
-            $("#login").html(Mustache.render(plantilla,user));
-            $("#login").css('width','260px');
-            $("#login").css('height','105px');
-            $("#login").css('top','-60px');
+            login.html(Mustache.render(plantilla,user));
+            login.css('width','260px');
+            login.css('height','105px');
+            login.css('top','-60px');
         });
     }
 }
@@ -79,15 +80,16 @@ function mostrar_login_ok(user){
 //Vista de cuando no se esta logueado
 function mostrar_logout(){
     var token = localStorage.getItem('token');
-    var recordar = localStorage.getItem('recordar')
+    var recordar = localStorage.getItem('recordar');
+    var login = $("#login");
 
     if(token == null && recordar == null){
-        $("#login").load("templates/loginTemplate.mustache #plantilla_logout", function() {
+        login.load("templates/loginTemplate.mustache #plantilla_logout", function() {
             var plantilla = document.getElementById("plantilla_logout").innerHTML;
-            $("#login").html(Mustache.render(plantilla));
-            $("#login").css('width','100px');
-            $("#login").css('height','45px');
-            $("#login").css('top','0px');
+            login.html(Mustache.render(plantilla));
+            login.css('width','100px');
+            login.css('height','45px');
+            login.css('top','0px');
         })
     }else{
         mostrar_login_ok(JSON.parse(localStorage.getItem('usuarioObj')));
@@ -95,10 +97,51 @@ function mostrar_logout(){
 }
 
 
+//Validacion del form del login
+function validar_form() {
+    var errorLogin = $('#errorLogin');
+    var loginUser = $('#login_user');
+    var loginPass = $('#login_pass');
+    var login = $("#login");
+
+    errorLogin.html("");
+    errorLogin.load("templates/loginTemplate.mustache #plantilla_error", function () {
+        var plantilla = document.getElementById('plantilla_error').innerHTML;
+        loginUser.removeClass('has-warning');
+        loginPass.removeClass('has-warning');
+
+        if ($("#inputUser").val() == "") {
+            errorLogin.html(Mustache.render(plantilla,
+                    {icon:"fa-warning", class: "alert-warning",error: "Por favor, introduzca el usuario"}));
+            loginUser.addClass('has-warning');
+            fx(login, [
+                {'inicio': 280, 'fin': 280, 'u': 'px', 'propCSS': 'width'},
+                {'inicio': 250, 'fin': 320, 'u': 'px', 'propCSS': 'height'},
+                {'inicio': 1, 'fin': 1, 'u': '', 'propCSS': 'opacity'}
+            ], 1000, true, desacelerado);
+            return false;
+
+        }
+
+        if ($("#inputPassword").val() == "") {
+            errorLogin.html(Mustache.render(plantilla,
+                    {icon:"fa-warning",class: "alert-warning",error: "Por favor, introduzca la contraseña"}));
+            loginPass.addClass('has-warning');
+            fx(login, [
+                {'inicio': 280, 'fin': 280, 'u': 'px', 'propCSS': 'width'},
+                {'inicio': 250, 'fin': 320, 'u': 'px', 'propCSS': 'height'},
+                {'inicio': 1, 'fin': 1, 'u': '', 'propCSS': 'opacity'}
+            ], 1000, true, desacelerado);
+            return false;
+
+        }
+        return true;
+    })
+}
+
 //Funcion para mostrar el panel
 function transicion(curva,ms,callback){
     this.ant=0.01;
-    this.done_=false;
     var _this=this;
     this.start=new Date().getTime();
     this.init=function(){
@@ -112,7 +155,7 @@ function transicion(curva,ms,callback){
             callback(_this.next());
             _this.init();
         },13);
-    }
+    };
     this.next=function(){
         var now=new Date().getTime();
         if((now-this.start)>ms)

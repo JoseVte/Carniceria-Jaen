@@ -20,19 +20,20 @@ function callback_registro() {
 }
 
 function datos_registro(){
-    var json = '{"user":"'+ $("#inputUser").val() +
+    return '{"user":"'+ $("#inputUser").val() +
         '", "password":"'+ $("#inputPassword").val() +
         '"}';
-    return json
 }
 
 //Login
 function login() {
-    var request = new XMLHttpRequest();
-    request.onreadystatechange = callback_login;
-    request.open("POST","/api/autentificacion/login",true);
-    request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    request.send(datos_login())
+    if(validar_form()){
+        var request = new XMLHttpRequest();
+        request.onreadystatechange = callback_login;
+        request.open("POST","/api/autentificacion/login",true);
+        request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        request.send(datos_login())
+    }
 }
 
 function callback_login(){
@@ -49,9 +50,8 @@ function callback_login(){
 }
 
 function datos_login(){
-    var json = '{"login":"'+ $("#inputUser")[0].value +
+    return '{"login":"'+ $("#inputUser")[0].value +
         '", "password":"'+ $("#inputPassword")[0].value+'"}';
-    return json
 }
 
 //Logout

@@ -10,12 +10,15 @@
 
 <div id="plantilla_logout">
     <div id="click_login"><h4>Login</h4></div>
-    <div id="form_login" class="panel-body" role="form" style="display: none">
-        <div class="form-group input-group">
+    <form id="form_login" class="panel-body" role="form" style="display: none">
+        <div class="form-group">
+            <div id="errorLogin"></div>
+        </div>
+        <div class="form-group input-group" id="login_user">
             <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
             <input type="text" class="form-control" id="inputUser" placeholder="Nombre del usuario">
         </div>
-        <div class="form-group input-group">
+        <div class="form-group input-group" id="login_pass">
             <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
             <input type="password" class="form-control" id="inputPassword" placeholder="Contraseña">
         </div>
@@ -25,8 +28,18 @@
                 No cerrar sesión
             </label>
         </div>
-        <br>
-        <input type="button" class="btn btn-info" value="Registrarse" id="button_open_registro">
-        <input type="button" class="btn btn-primary" value="Login" id="button_login">
+        <div class="form-group">
+            <input type="button" class="btn btn-info" value="Registrarse" id="button_open_registro">
+            <input type="button" class="btn btn-primary" value="Login" id="button_login">
+        </div>
+    </form>
+</div>
+
+<div id="plantilla_error">
+    <div class="alert {{class}}">
+        <div class="alert-link">
+            <i class="fa {{icon}}"></i>
+            {{error}}
+        </div>
     </div>
 </div>
