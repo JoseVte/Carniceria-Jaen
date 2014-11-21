@@ -2,6 +2,30 @@
  * Created by josrom on 18/11/14.
  */
 
+//Registro
+function registro(){
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = callback_registro;
+    request.open("POST","/api/usuario/new",true);
+    request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    request.send(datos_registro())
+}
+
+function callback_registro() {
+    if (this.readyState == 4) {
+        if (this.status == 201) {
+            registro_completado()
+        }
+    }
+}
+
+function datos_registro(){
+    var json = '{"user":"'+ $("#inputUser").val() +
+        '", "password":"'+ $("#inputPassword").val() +
+        '"}';
+    return json
+}
+
 //Login
 function login() {
     var request = new XMLHttpRequest();

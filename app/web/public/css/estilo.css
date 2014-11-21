@@ -46,3 +46,13 @@
 .row{
     margin-right: 0px;
 }
+
+.redir{
+    text-align: center;
+    font-size: 16px;
+}
+
+.redir > .fa-check{
+    color: lightgreen;
+    margin: 0px 10px;
+}

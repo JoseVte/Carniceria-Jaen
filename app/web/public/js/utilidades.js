@@ -6,9 +6,12 @@ $(document).ready(function(){
     principal();
     $(document).on('click', "#inicio", principal);
     $(document).on('click', "#button_login", login);
+    $(document).on('click', "#button_open_registro", open_registro);
+    $(document).on('click', "#button_registrarse", registro_completado);
     $(document).on('click', "#click_login", toggle_login);
 });
 
+//Carga la vista principal
 function principal(){
     $("#body").load("templates/inicioTemplate.mustache #plantilla_inicio", function() {
         var plantilla = document.getElementById("plantilla_inicio").innerHTML;
@@ -18,6 +21,25 @@ function principal(){
     })
 }
 
+//Vista de formulario de registro
+function open_registro(){
+    toggle_login();
+    $("#body").load("templates/registroTemplate.mustache #plantilla_registro", function() {
+        var plantilla = document.getElementById("plantilla_registro").innerHTML;
+        $("#body").html(Mustache.render(plantilla));
+    })
+}
+
+//Vista cuando se ha registrado correctamente
+function registro_completado(){
+    $("#body").load("templates/registroTemplate.mustache #plantilla_redir", function() {
+        var plantilla = document.getElementById("plantilla_redir").innerHTML;
+        $("#body").html(Mustache.render(plantilla));
+        //setTimeout ("principal()", 3000); //tiempo en milisegundos
+    })
+}
+
+//Animacion para mostrar-ocultar el menu de login
 function toggle_login() {
     var form = document.getElementById("form_login");
     var login = document.getElementById("login");
@@ -39,6 +61,7 @@ function toggle_login() {
     }
 }
 
+//Vista de cuando se esta logueado
 function mostrar_login_ok(user){
     var token = localStorage.getItem('token');
 
@@ -53,6 +76,7 @@ function mostrar_login_ok(user){
     }
 }
 
+//Vista de cuando no se esta logueado
 function mostrar_logout(){
     var token = localStorage.getItem('token');
     var recordar = localStorage.getItem('recordar')
