@@ -26,13 +26,13 @@ function toggle_login() {
         setTimeout(function(){form.style.display = "none";},0);
         fx(login,[
             {'inicio':260,'fin':100,'u':'px','propCSS':'width'},
-            {'inicio':250,'fin':50,'u':'px','propCSS':'height'},
+            {'inicio':250,'fin':45,'u':'px','propCSS':'height'},
             {'inicio':1,'fin':1,'u':'','propCSS':'opacity'}
         ],1000,true,desacelerado);
     }else{
         fx(login,[
             {'inicio':100,'fin':260,'u':'px','propCSS':'width'},
-            {'inicio':50,'fin':250,'u':'px','propCSS':'height'},
+            {'inicio':45,'fin':250,'u':'px','propCSS':'height'},
             {'inicio':1,'fin':1,'u':'','propCSS':'opacity'}
         ],1000,true,desacelerado);
         setTimeout(function(){form.style.display = "block";},1000)
@@ -47,7 +47,7 @@ function mostrar_login_ok(user){
             var plantilla = document.getElementById("plantilla_login_ok").innerHTML;
             $("#login").html(Mustache.render(plantilla,user));
             $("#login").css('width','260px');
-            $("#login").css('height','110px');
+            $("#login").css('height','105px');
             $("#login").css('top','-60px');
         });
     }
@@ -62,7 +62,7 @@ function mostrar_logout(){
             var plantilla = document.getElementById("plantilla_logout").innerHTML;
             $("#login").html(Mustache.render(plantilla));
             $("#login").css('width','100px');
-            $("#login").css('height','50px');
+            $("#login").css('height','45px');
             $("#login").css('top','0px');
         })
     }else{

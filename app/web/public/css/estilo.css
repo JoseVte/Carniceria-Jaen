@@ -20,9 +20,11 @@
     z-index: 99;
     margin-right: 15px;
     text-align: center;
+    width: 100px;
+    height: 45px;
 }
 
-#click_login{
+#click_login, #inicio{
     cursor: pointer;
 }
 
@@ -31,5 +33,16 @@
 }
 
 .panel-heading{
-    height: 135px;
+    height: 145px;
+    background-image: -webkit-linear-gradient(top, #f8e1ad 0%, #f8c390 100%);
+    background-image:      -o-linear-gradient(top, #f8e1ad 0%, #f8c390 100%);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#f8e1ad), to(#f8c390));
+    background-image:         linear-gradient(to bottom, #f8e1ad 0%, #f8c390 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#fff8f8f8', GradientType=0);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+    background-repeat: repeat-x;
+}
+
+.row{
+    margin-right: 0px;
 }

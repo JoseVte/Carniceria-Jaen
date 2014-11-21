@@ -73,7 +73,6 @@ function callback_datos_user(){
 function mostrar_user(user){
     var token = localStorage.getItem('token');
 
-    //TODO Meter una plantilla para el login
     if(token != null){
         $("#body").load("templates/usuarioTemplate.mustache #plantilla_detalles", function(){
             var plantilla = document.getElementById("plantilla_detalles").innerHTML;
