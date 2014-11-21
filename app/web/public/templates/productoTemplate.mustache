@@ -1,13 +1,17 @@
 <div id="plantilla_ofertas">
     <main class="container">
-        {{#.}}
-            <div id="prod_oferta_{{id}}" class="col-sm-2" align="center">
-                <img src="{{url_imagen}}" height="128px" width="128px" class="img-responsive"><br>
+        <div class="scroll_horizontal">
+        <table><tr>
+        <!--{{#.}}-->
+            <td id="prod_oferta_{{id}}" align="center" style="padding-left: 10px; padding-right: 10px">
+                <img src="{{url_imagen}}" height="128px" width="128px" class="img-rounded"><br>
                 <b>{{nombre}}</b><br>
                 <em>{{rebaja}} %</em><br>
                 <a href="javascript:get_producto_detalles({{id}})">Detalles</a>
-            </div>
-        {{/.}}
+            </td>
+        <!--{{/.}}-->
+        </tr></table>
+        </div>
     </main>
 </div>
 

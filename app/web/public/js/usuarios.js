@@ -4,7 +4,6 @@
 
 //Login
 function login() {
-    console.log('jhhjjhjh');
     var request = new XMLHttpRequest();
     request.onreadystatechange = callback_login;
     request.open("POST","/api/autentificacion/login",true);

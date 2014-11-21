@@ -1,13 +1,22 @@
 /**
  * Created by josrom on 18/11/14.
  */
-window.onload = function(){
+$(document).ready(function(){
     mostrar_logout();
-    get_ofertas();
-    get_productos();
-    $(document).on('click', "#button_login" ,login);
+    principal();
+    $(document).on('click', "#inicio", principal);
+    $(document).on('click', "#button_login", login);
     $(document).on('click', "#click_login", toggle_login);
-};
+});
+
+function principal(){
+    $("#body").load("templates/inicioTemplate.mustache #plantilla_inicio", function() {
+        var plantilla = document.getElementById("plantilla_inicio").innerHTML;
+        $("#body").html(Mustache.render(plantilla));
+        get_ofertas();
+        get_productos();
+    })
+}
 
 function toggle_login() {
     var form = document.getElementById("form_login");
@@ -52,6 +61,9 @@ function mostrar_logout(){
         $("#login").load("templates/loginTemplate.mustache #plantilla_logout", function() {
             var plantilla = document.getElementById("plantilla_logout").innerHTML;
             $("#login").html(Mustache.render(plantilla));
+            $("#login").css('width','100px');
+            $("#login").css('height','50px');
+            $("#login").css('top','0px');
         })
     }else{
         mostrar_login_ok(JSON.parse(localStorage.getItem('usuarioObj')));

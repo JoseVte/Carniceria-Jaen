@@ -1,7 +1,12 @@
+@font-face {
+    font-family: 'Nunito';
+    src: url(../fonts/Nunito-Regular.ttf) format("truetype");
+}
+
 #titulo{
     margin-top: 0px;
     margin-bottom: 0px;
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Nunito';
 }
 
 #row_nav{
@@ -19,6 +24,10 @@
 
 #click_login{
     cursor: pointer;
+}
+
+.scroll_horizontal{
+    overflow:scroll;
 }
 
 .panel-heading{
