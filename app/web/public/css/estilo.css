@@ -1,3 +1,9 @@
+#titulo{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-family: 'Nunito', sans-serif;
+}
+
 #row_nav{
     position: relative;
 }
@@ -11,6 +17,10 @@
     text-align: center;
 }
 
-#click_login > h4{
-    /*font-size: 26px;*/
+#click_login{
+    cursor: pointer;
+}
+
+.panel-heading{
+    height: 135px;
 }

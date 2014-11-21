@@ -16,14 +16,14 @@ function toggle_login() {
     if(form.style.display == "block"){
         setTimeout(function(){form.style.display = "none";},0);
         fx(login,[
-            {'inicio':400,'fin':100,'u':'px','propCSS':'width'},
-            {'inicio':270,'fin':50,'u':'px','propCSS':'height'},
+            {'inicio':260,'fin':100,'u':'px','propCSS':'width'},
+            {'inicio':250,'fin':50,'u':'px','propCSS':'height'},
             {'inicio':1,'fin':1,'u':'','propCSS':'opacity'}
         ],1000,true,desacelerado);
     }else{
         fx(login,[
-            {'inicio':100,'fin':400,'u':'px','propCSS':'width'},
-            {'inicio':50,'fin':270,'u':'px','propCSS':'height'},
+            {'inicio':100,'fin':260,'u':'px','propCSS':'width'},
+            {'inicio':50,'fin':250,'u':'px','propCSS':'height'},
             {'inicio':1,'fin':1,'u':'','propCSS':'opacity'}
         ],1000,true,desacelerado);
         setTimeout(function(){form.style.display = "block";},1000)
@@ -33,11 +33,13 @@ function toggle_login() {
 function mostrar_login_ok(user){
     var token = localStorage.getItem('token');
 
-    //TODO Meter una plantilla para el login
     if(token != null){
         $("#login").load("templates/loginTemplate.mustache #plantilla_login_ok", function() {
             var plantilla = document.getElementById("plantilla_login_ok").innerHTML;
             $("#login").html(Mustache.render(plantilla,user));
+            $("#login").css('width','260px');
+            $("#login").css('height','110px');
+            $("#login").css('top','-60px');
         });
     }
 }
