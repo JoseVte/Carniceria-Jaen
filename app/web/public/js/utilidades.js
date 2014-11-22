@@ -61,12 +61,59 @@ function toggle_login() {
     }
 }
 
+//Comprobamos si hay credenciales guardadas y si son validas
+function have_credentiales(){
+    //Comprobamos si esta en local, sino buscamos en la cookie y las guardamos en local
+    var arrayLocal = [localStorage.getItem('token'),localStorage.getItem('usuarioObj'),localStorage.getItem('usuario')];
+
+    var item,aux = true;
+    for(item in arrayLocal){
+        if(arrayLocal[item] == null || arrayLocal [item] == "undefined")
+            aux = false;
+    }
+
+    if(aux == false){
+        var arrayCookie = new Array();
+        arrayCookie['usuario'] = $.cookie('usuario');
+        arrayCookie['token'] = $.cookie('token');
+        $.cookie.json = true;
+        arrayCookie['usuarioObj'] = $.cookie('usuarioObj');
+        $.cookie.json = false;
+        aux = true;
+
+        for(item in arrayCookie){
+            if(arrayCookie[item] == null)
+                aux = false;
+        }
+
+        //Si todo esta correcto en la cookie la guardamos en local
+        if(aux){
+            localStorage.setItem('usuario',arrayCookie['usuario']);
+            localStorage.setItem('usuarioObj',JSON.stringify(arrayCookie['usuarioObj']));
+            localStorage.setItem('token',arrayCookie['token']);
+        }else{
+            delete_credenciales()
+        }
+    }
+
+    return aux;
+}
+
+//Borramos todas las credenciales del programa
+function delete_credenciales(){
+    localStorage.removeItem('usuario');
+    localStorage.removeItem('usuarioObj');
+    localStorage.removeItem('token');
+    $.removeCookie('usuario');
+    $.removeCookie('usuarioObj');
+    $.removeCookie('token');
+}
+
 //Vista de cuando se esta logueado
 function mostrar_login_ok(user){
-    var token = localStorage.getItem('token');
     var login = $("#login");
 
-    if(token != null){
+    if(have_credentiales()){
         login.load("templates/loginTemplate.mustache #plantilla_login_ok", function() {
             var plantilla = document.getElementById("plantilla_login_ok").innerHTML;
             login.html(Mustache.render(plantilla,user));
@@ -79,23 +126,23 @@ function mostrar_login_ok(user){
 
 //Vista de cuando no se esta logueado
 function mostrar_logout(){
-    var token = localStorage.getItem('token');
-    var recordar = localStorage.getItem('recordar');
     var login = $("#login");
 
-    if(token == null && recordar == null){
-        login.load("templates/loginTemplate.mustache #plantilla_logout", function() {
+    if (!have_credentiales()) {
+        login.load("templates/loginTemplate.mustache #plantilla_logout", function () {
             var plantilla = document.getElementById("plantilla_logout").innerHTML;
             login.html(Mustache.render(plantilla));
-            login.css('width','100px');
-            login.css('height','45px');
-            login.css('top','0px');
+            login.css('width', '100px');
+            login.css('height', '45px');
+            login.css('top', '0px');
         })
-    }else{
-        mostrar_login_ok(JSON.parse(localStorage.getItem('usuarioObj')));
+    } else {
+        $.cookie.json = true;
+        var usuarioObj = JSON.parse(localStorage.getItem('usuarioObj'));
+        $.cookie.json = false;
+        mostrar_login_ok(usuarioObj);
     }
 }
-
 
 //Validacion del form del login
 function validar_form() {
@@ -104,39 +151,41 @@ function validar_form() {
     var loginPass = $('#login_pass');
     var login = $("#login");
 
+    if ($("#inputUser").val() == "" || $("#inputPassword").val() == "") {
+        errorLogin.load("templates/loginTemplate.mustache #plantilla_error", function () {
+            var plantilla = document.getElementById('plantilla_error').innerHTML;
+            loginUser.removeClass('has-warning');
+            loginPass.removeClass('has-warning');
+
+            if ($("#inputUser").val() == "") {
+                errorLogin.html(Mustache.render(plantilla,
+                    {icon: "fa-warning", class: "alert-warning", error: "Por favor, introduzca el usuario"}));
+                loginUser.addClass('has-warning');
+                fx(login, [
+                    {'inicio': 280, 'fin': 280, 'u': 'px', 'propCSS': 'width'},
+                    {'inicio': 250, 'fin': 320, 'u': 'px', 'propCSS': 'height'},
+                    {'inicio': 1, 'fin': 1, 'u': '', 'propCSS': 'opacity'}
+                ], 1000, true, desacelerado);
+                return false;
+
+            }
+
+            if ($("#inputPassword").val() == "") {
+                errorLogin.html(Mustache.render(plantilla,
+                    {icon: "fa-warning", class: "alert-warning", error: "Por favor, introduzca la contraseña"}));
+                loginPass.addClass('has-warning');
+                fx(login, [
+                    {'inicio': 280, 'fin': 280, 'u': 'px', 'propCSS': 'width'},
+                    {'inicio': 250, 'fin': 320, 'u': 'px', 'propCSS': 'height'},
+                    {'inicio': 1, 'fin': 1, 'u': '', 'propCSS': 'opacity'}
+                ], 1000, true, desacelerado);
+                return false;
+
+            }
+        });
+    }
     errorLogin.html("");
-    errorLogin.load("templates/loginTemplate.mustache #plantilla_error", function () {
-        var plantilla = document.getElementById('plantilla_error').innerHTML;
-        loginUser.removeClass('has-warning');
-        loginPass.removeClass('has-warning');
-
-        if ($("#inputUser").val() == "") {
-            errorLogin.html(Mustache.render(plantilla,
-                    {icon:"fa-warning", class: "alert-warning",error: "Por favor, introduzca el usuario"}));
-            loginUser.addClass('has-warning');
-            fx(login, [
-                {'inicio': 280, 'fin': 280, 'u': 'px', 'propCSS': 'width'},
-                {'inicio': 250, 'fin': 320, 'u': 'px', 'propCSS': 'height'},
-                {'inicio': 1, 'fin': 1, 'u': '', 'propCSS': 'opacity'}
-            ], 1000, true, desacelerado);
-            return false;
-
-        }
-
-        if ($("#inputPassword").val() == "") {
-            errorLogin.html(Mustache.render(plantilla,
-                    {icon:"fa-warning",class: "alert-warning",error: "Por favor, introduzca la contraseña"}));
-            loginPass.addClass('has-warning');
-            fx(login, [
-                {'inicio': 280, 'fin': 280, 'u': 'px', 'propCSS': 'width'},
-                {'inicio': 250, 'fin': 320, 'u': 'px', 'propCSS': 'height'},
-                {'inicio': 1, 'fin': 1, 'u': '', 'propCSS': 'opacity'}
-            ], 1000, true, desacelerado);
-            return false;
-
-        }
-        return true;
-    })
+    return true;
 }
 
 //Funcion para mostrar el panel

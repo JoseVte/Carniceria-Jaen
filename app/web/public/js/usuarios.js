@@ -40,18 +40,26 @@ function callback_login(){
     if(this.readyState == 4) {
         if(this.status == 200) {
             var json = JSON.parse(this.responseText);
+            //Borramos todos los datos guardados ya existentes para evitar conflictos
+            delete_credenciales();
             localStorage.setItem('usuario',$("#inputUser").val());
             localStorage.setItem('usuarioObj',JSON.stringify(json.user));
             localStorage.setItem('token',json.token);
-            localStorage.setItem('recordar',$("#check_recordar").is(':checked'));
+            if($("#check_recordar").is(':checked')){
+                $.cookie("usuario", $("#inputUser").val());
+                $.cookie.json = true;
+                $.cookie("usuarioObj", json.user);
+                $.cookie.json = false;
+                $.cookie("token", json.token);
+            }
             mostrar_login_ok(json.user);
         }
     }
 }
 
 function datos_login(){
-    return '{"login":"'+ $("#inputUser")[0].value +
-        '", "password":"'+ $("#inputPassword")[0].value+'"}';
+    return '{"login":"'+ $("#inputUser").val() +
+        '", "password":"'+ $("#inputPassword").val() + '"}';
 }
 
 //Logout
@@ -65,7 +73,7 @@ function logout() {
 function callback_logout(){
     if(this.readyState == 4) {
         if(this.status == 200) {
-            localStorage.clear();
+            delete_credenciales();
             mostrar_logout();
         }
     }
