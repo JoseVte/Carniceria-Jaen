@@ -116,7 +116,8 @@ function mostrar_login_ok(user){
     if(have_credentiales()){
         login.load("templates/loginTemplate.mustache #plantilla_login_ok", function() {
             var plantilla = document.getElementById("plantilla_login_ok").innerHTML;
-            login.html(Mustache.render(plantilla,user));
+            var partial = {img_perfil: '<img src="{{url_imagen}}" class="img-circle" height="48px" width="48px">'}
+            login.html(Mustache.render(plantilla.replace('&gt;','>'),user,partial));
             login.css('width','260px');
             login.css('height','105px');
             login.css('top','-60px');

@@ -75,6 +75,7 @@ function callback_logout(){
         if(this.status == 200) {
             delete_credenciales();
             mostrar_logout();
+            principal();
         }
     }
 }
@@ -108,8 +109,8 @@ function mostrar_user(user){
     if(token != null){
         $("#body").load("templates/usuarioTemplate.mustache #plantilla_detalles", function(){
             var plantilla = document.getElementById("plantilla_detalles").innerHTML;
-
-            $("#body").html(Mustache.render(plantilla,user))
+            var partial = {img_perfil: '<img src="{{url_imagen}}" class="img-responsive">'}
+            $("#body").html(Mustache.render(plantilla.replace('&gt;','>'),user,partial))
         })
     }
 }
