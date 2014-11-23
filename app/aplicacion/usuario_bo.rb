@@ -17,12 +17,14 @@ class UsuarioBO
 
   # Comprobar si el usuario tiene permisos para acceder a la funcionalidad
   def self.permitted?(token,user_who_wants_to_access)
-    u =  JWT.decode(token,Utilidad::SECRET)
-    if !u.nil?
-      if u[0]['user'] == 'root'
-        return true
-      elsif u[0]['user'] == user_who_wants_to_access
-        return true
+    if !token.nil?
+      u =  JWT.decode(token,Utilidad::SECRET)
+      if !u.nil?
+        if u[0]['user'] == 'root'
+          return true
+        elsif u[0]['user'] == user_who_wants_to_access
+          return true
+        end
       end
     end
     raise CustomMsgException.new(403,'Error 403: Acceso prohibido')

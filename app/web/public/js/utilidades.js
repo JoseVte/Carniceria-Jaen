@@ -7,7 +7,7 @@ $(document).ready(function(){
     $(document).on('click', "#inicio", principal);
     $(document).on('click', "#button_login", login);
     $(document).on('click', "#button_open_registro", open_registro);
-    $(document).on('click', "#button_registrarse", registro);
+    $(document).on('click', "#button_registro_parte_1", validar_registro);
     $(document).on('click', "#click_login", toggle_login);
 });
 
@@ -28,6 +28,21 @@ function open_registro(){
         var plantilla = document.getElementById("plantilla_registro").innerHTML;
         $("#body").html(Mustache.render(plantilla));
     })
+}
+
+//Valida los datos de la primera parte del registro
+function validar_registro(){
+    var user = $("#input_user_registro").val();
+    var helpUser = $("#help_user");
+    var icon = $("#icon_help_user");
+
+    helpUser.html("");
+    icon.removeClass("glyphicon-warning-sign");
+
+    if(user == ""){
+        helpUser.html("Escriba el nombre de usuario");
+        icon.addClass("glyphicon-warning-sign");
+    }
 }
 
 //Vista cuando se ha registrado correctamente
