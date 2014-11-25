@@ -30,6 +30,12 @@ class UsuarioBO
     raise CustomMsgException.new(403,'Error 403: Acceso prohibido')
   end
 
+  # Comprobar si un usuario existe o no
+  def exists?(campo, cadena)
+    exist = Usuario.where("#{campo} LIKE ?", "#{cadena}")
+    return !exist.empty?
+  end
+
   # Devuelve una lista de todos los usuarios
   def all(token)
     # Solo se le permite el acceso al admin

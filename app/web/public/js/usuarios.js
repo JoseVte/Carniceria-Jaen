@@ -25,6 +25,50 @@ function datos_registro(){
         '"}';
 }
 
+function user_exist(user){
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function(){
+        if (this.readyState == 4) {
+            var exist = false;
+            if(this.status == 200){
+                exist=true;
+            }
+            mostrar_resultado(exist, 'user');
+        }
+    };
+    request.open("GET","/api/usuario/exists/user/"+user,true);
+    request.send();
+}
+
+function email_exist(email){
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function(){
+        if (this.readyState == 4) {
+            var exist = false;
+            if(this.status == 200){
+                exist=true;
+            }
+            mostrar_resultado(exist, 'email');
+        }
+    };
+    request.open("GET","/api/usuario/exists/email/"+email,true);
+    request.send();
+}
+
+function mostrar_resultado(exist, campo){
+    if(exist && campo == "user"){
+        $("#help_user").html("El usuario ya existe");
+        $("#help_user").addClass("alert alert-danger");
+        $("#icon_help_user").addClass("glyphicon-remove");
+    }
+
+    if(exist && campo == "email"){
+        $("#help_email").html("El email ya existe");
+        $("#help_email").addClass("alert alert-danger");
+        $("#icon_help_email").addClass("glyphicon-remove");
+    }
+}
+
 //Login
 function login() {
     if(validar_form()){

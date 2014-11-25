@@ -54,6 +54,15 @@ class UsuariosAPI < Sinatra::Base
     end
   end
 
+  # Comprobar si un usuario existe o no
+  get '/exists/:campo/:cadena' do
+    if(@@usuario_bo.exists?(params[:campo],params[:cadena]))
+      status 200
+    else
+      status 404
+    end
+  end
+
   # Crea un usuario nuevo. Si ya existe o esta mal formado el formulario lanza un 400
   post '/new' do
     datos = {:user => params[:user],

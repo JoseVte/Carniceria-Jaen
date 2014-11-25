@@ -1,34 +1,54 @@
 <!-- TODO Crear la plantilla del form de registro-->
 <div id="plantilla_registro">
-    <form id="form_registro" class="form-horizontal">
+    <form id="form_registro_registro_1" class="form-horizontal">
         <fieldset>
             <legend>Registro</legend>
-            <div class="row" id="registro_parte_1">
+            <div class="row" id="registro_row_1_parte_1">
                 <div class="form-group col-md-6">
                     <div class="form-group input-group" id="registro_user">
                         <span class="input-group-addon"><i class="fa fa-user fa-fw"></i>Nombre de usuario</span>
                         <input type="text" class="form-control" id="input_user_registro" placeholder="Nombre del usuario">
-                        <span class="help-block" id="help_user"></span>
                         <span class="glyphicon form-control-feedback" id="icon_help_user"></span>
                     </div>
+                </div>
+                <div class="form-group col-md-4">
+                    <div class="help-block" id="help_user"></div>
+                </div>
+            </div>
+            <div class="row" id="registro_row_2_parte_1">
+                <div class="form-group col-md-6">
                     <div class="form-group input-group" id="registro_pass">
                         <span class="input-group-addon"><i class="fa fa-key fa-fw"></i>Contraseña</span>
                         <input type="password" class="form-control" id="input_pass_registro" placeholder="Contraseña">
-                        <span class="help-block" id="help_pass"></span>
                         <span class="glyphicon form-control-feedback" id="icon_help_pass"></span>
                     </div>
+                </div>
+                <div class="form-group col-md-4">
+                    <div class="help-block" id="help_pass"></div>
+                </div>
+            </div>
+            <div class="row" id="registro_row_3_parte_1">
+                <div class="form-group col-md-6">
                     <div class="form-group input-group" id="registro_pass_2">
                         <span class="input-group-addon"><i class="fa fa-key fa-fw"></i>Repetir contraseña</span>
                         <input type="password" class="form-control" id="input_pass_2_registro" placeholder="Repetir contraseña">
-                        <span class="help-block" id="help_pass_2"></span>
                         <span class="glyphicon form-control-feedback" id="icon_help_pass_2"></span>
                     </div>
+                </div>
+                <div class="form-group col-md-4">
+                    <div class="help-block" id="help_pass_2"></div>
+                </div>
+            </div>
+            <div class="row" id="registro_row_4_parte_1">
+                <div class="form-group col-md-6">
                     <div class="form-group input-group" id="registro_email">
-                        <span class="input-group-addon"><i class="fa fa-email fa-fw"></i>Email</span>
+                        <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i>Email</span>
                         <input placeholder="Email" class="form-control" id="input_email_registro" type="email"/>
-                        <span class="help-block" id="help_email"></span>
                         <span class="glyphicon form-control-feedback" id="icon_help_email"></span>
                     </div>
+                </div>
+                <div class="form-group col-md-4">
+                    <div class="help-block" id="help_email"></div>
                 </div>
             </div>
             <input type="button" id="button_registro_parte_1" class="btn btn-primary" value="Siguiente">

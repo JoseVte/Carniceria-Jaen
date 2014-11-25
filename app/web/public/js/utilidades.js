@@ -6,8 +6,8 @@ $(document).ready(function(){
     principal();
     $(document).on('click', "#inicio", principal);
     $(document).on('click', "#button_login", login);
-    $(document).on('click', "#button_open_registro", open_registro);
-    $(document).on('click', "#button_registro_parte_1", validar_registro);
+    $(document).on('click', "#button_open_registro", mostrar_registro_parte_1);
+    $(document).on('click', "#button_registro_parte_1", validar_registro_parte_1);
     $(document).on('click', "#click_login", toggle_login);
 });
 
@@ -21,8 +21,8 @@ function principal(){
     })
 }
 
-//Vista de formulario de registro
-function open_registro(){
+//Vista de la primera parte formulario de registro
+function mostrar_registro_parte_1(){
     toggle_login();
     $("#body").load("templates/registroTemplate.mustache #plantilla_registro", function() {
         var plantilla = document.getElementById("plantilla_registro").innerHTML;
@@ -31,18 +31,69 @@ function open_registro(){
 }
 
 //Valida los datos de la primera parte del registro
-function validar_registro(){
-    var user = $("#input_user_registro").val();
-    var helpUser = $("#help_user");
-    var icon = $("#icon_help_user");
+function validar_registro_parte_1(e){
+    e.preventDefault();
+    var correcto = true,campo;
+    var arrayDatos = new Array();
+    var arrayForm = new Array();
+    arrayForm['user'] = 'Escriba el nombre de usuario';
+    arrayForm['pass'] = 'Escriba la contraseña';
+    arrayForm['pass_2'] = 'Escriba la confimacion de la contraseña';
+    arrayForm['email'] = 'Escriba el email de contacto';
 
-    helpUser.html("");
-    icon.removeClass("glyphicon-warning-sign");
+    for(campo in arrayForm){
+        var valorCampo = $("#input_"+campo+"_registro").val();
+        var helper = $("#help_"+campo);
+        var icon = $("#icon_help_"+campo);
 
-    if(user == ""){
-        helpUser.html("Escriba el nombre de usuario");
-        icon.addClass("glyphicon-warning-sign");
+        helper.html("");
+        helper.removeClass("alert alert-warning alert-error");
+        icon.removeClass("glyphicon-warning-sign glyphicon-remove");
+
+        if(valorCampo == ""){
+            helper.html(arrayForm[campo]);
+            helper.addClass("alert alert-warning");
+            icon.addClass("glyphicon-warning-sign");
+        } else {
+            arrayDatos[campo] = valorCampo;
+            switch(campo){
+                case 'user':
+                    user_exist(valorCampo);
+                    break;
+                case 'pass':
+                case 'pass_2':
+                    if($("#input_pass_registro").val() != "" &&  $("#input_pass_2_registro").val() != "") {
+                        if ($("#input_pass_registro").val() != $("#input_pass_2_registro").val()) {
+                            helper.html("Las contraseñas deben coincidir");
+                            helper.addClass("alert alert-danger");
+                            icon.addClass("glyphicon-remove");
+                        }
+                    }
+                    break;
+                case 'email':
+                    var regExp = /[\w-\.]{3,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
+                    if(!valorCampo.match(regExp)){
+                        helper.html("Introduzca un email valido");
+                        helper.addClass("alert alert-danger");
+                        icon.addClass("glyphicon-remove");
+                    }else{
+                        email_exist(valorCampo);
+                    }
+                    break;
+            }
+        }
+
+        correcto = (helper.html() == "")
     }
+
+    if(correcto){
+        mostrar_registro_parte_2(arrayDatos)
+    }
+}
+
+//Vista de la segunda parte del formulario
+function mostrar_registro_parte_2(datosParte1){
+    registro_completado();
 }
 
 //Vista cuando se ha registrado correctamente
@@ -61,18 +112,21 @@ function toggle_login() {
 
     if(form.style.display == "block"){
         setTimeout(function(){form.style.display = "none";},0);
+        $('#errorLogin').html("");
+        $('#login_user').removeClass('has-warning');
+        $('#login_pass').removeClass('has-warning');
         fx(login,[
             {'inicio':280,'fin':100,'u':'px','propCSS':'width'},
             {'inicio':250,'fin':45,'u':'px','propCSS':'height'},
             {'inicio':1,'fin':1,'u':'','propCSS':'opacity'}
-        ],1000,true,desacelerado);
+        ],200,true,desacelerado);
     }else{
         fx(login,[
             {'inicio':100,'fin':280,'u':'px','propCSS':'width'},
             {'inicio':45,'fin':250,'u':'px','propCSS':'height'},
             {'inicio':1,'fin':1,'u':'','propCSS':'opacity'}
-        ],1000,true,desacelerado);
-        setTimeout(function(){form.style.display = "block";},1000)
+        ],200,true,desacelerado);
+        setTimeout(function(){form.style.display = "block";},200)
     }
 }
 
@@ -165,7 +219,7 @@ function validar_form() {
     var errorLogin = $('#errorLogin');
     var loginUser = $('#login_user');
     var loginPass = $('#login_pass');
-    var login = $("#login");
+    var login = document.getElementById("login");
 
     if ($("#inputUser").val() == "" || $("#inputPassword").val() == "") {
         errorLogin.load("templates/loginTemplate.mustache #plantilla_error", function () {
@@ -181,7 +235,7 @@ function validar_form() {
                     {'inicio': 280, 'fin': 280, 'u': 'px', 'propCSS': 'width'},
                     {'inicio': 250, 'fin': 320, 'u': 'px', 'propCSS': 'height'},
                     {'inicio': 1, 'fin': 1, 'u': '', 'propCSS': 'opacity'}
-                ], 1000, true, desacelerado);
+                ], 200, true, desacelerado);
                 return false;
 
             }
@@ -194,7 +248,7 @@ function validar_form() {
                     {'inicio': 280, 'fin': 280, 'u': 'px', 'propCSS': 'width'},
                     {'inicio': 250, 'fin': 320, 'u': 'px', 'propCSS': 'height'},
                     {'inicio': 1, 'fin': 1, 'u': '', 'propCSS': 'opacity'}
-                ], 1000, true, desacelerado);
+                ], 200, true, desacelerado);
                 return false;
 
             }
