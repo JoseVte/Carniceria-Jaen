@@ -1,6 +1,6 @@
 <!-- TODO Crear la plantilla del form de registro-->
-<div id="plantilla_registro">
-    <form id="form_registro_registro_1" class="form-horizontal">
+<div id="plantilla_registro_1">
+    <form id="form_registro_1" class="form-horizontal">
         <fieldset>
             <legend>Registro</legend>
             <div class="row" id="registro_row_1_parte_1">
@@ -56,13 +56,83 @@
     </form>
 </div>
 
+<div id="plantilla_registro_2">
+    <form id="form_registro_2" class="form-horizontal">
+        <fieldset>
+            <legend>Registro</legend>
+            <!--{{#datos}}-->
+            <input type="hidden" value="{{.}}">
+            <!--{{/datos}}-->
+            <div class="row" id="registro_row_1_parte_2">
+                <div class="form-group col-md-6">
+                    <div class="form-group input-group" id="registro_nombre">
+                        <span class="input-group-addon">Nombre</span>
+                        <input placeholder="Nombre" class="form-control" id="input_nombre_registro" type="text"/>
+                        <span class="glyphicon form-control-feedback" id="icon_help_nombre"></span>
+                    </div>
+                </div>
+                <div class="form-group col-md-4">
+                    <div class="help-block" id="help_nombre"></div>
+                </div>
+            </div>
+            <div class="row" id="registro_row_2_parte_2">
+                <div class="form-group col-md-6">
+                    <div class="form-group input-group" id="registro_apellidos">
+                        <span class="input-group-addon">Apellidos</span>
+                        <input placeholder="Apellidos" class="form-control" id="input_apellidos_registro" type="text"/>
+                        <span class="glyphicon form-control-feedback" id="icon_help_apellidos"></span>
+                    </div>
+                </div>
+                <div class="form-group col-md-4">
+                    <div class="help-block" id="help_apellidos"></div>
+                </div>
+            </div>
+            <div class="row" id="registro_row_3_parte_2">
+                <div class="form-group col-md-6">
+                    <div class="form-group input-group" id="registro_direccion">
+                        <span class="input-group-addon">Direccion</span>
+                        <input placeholder="Direccion" class="form-control" id="input_direccion_registro" type=""/>
+                        <span class="glyphicon form-control-feedback" id="icon_help_direccion"></span>
+                    </div>
+                </div>
+                <div class="form-group col-md-4">
+                    <div class="help-block" id="help_direccion"></div>
+                </div>
+            </div>
+            <div class="row" id="registro_row_4_parte_2">
+                <div class="form-group col-md-6">
+                    <div class="form-group input-group" id="registro_telefono">
+                        <span class="input-group-addon">Telefono</span>
+                        <input placeholder="Telefono" class="form-control" id="input_telefono_registro" type="tel"/>
+                        <span class="glyphicon form-control-feedback" id="icon_help_telefono"></span>
+                    </div>
+                </div>
+                <div class="form-group col-md-4">
+                    <div class="help-block" id="help_telefono"></div>
+                </div>
+            </div>
+            <div class="row" id="registro_row_5_parte_2">
+                <div class="form-group col-md-6">
+                    <div class="form-group input-group" id="registro_imagen">
+                        <span class="input-group-addon">Imagen</span>
+                        <input value="img/missing_user.png" class="form-control" id="input_imagen_registro" type="file"/>
+                        <span class="glyphicon form-control-feedback" id="icon_help_imagen"></span>
+                    </div>
+                    <br>
+                    <img src="img/missing_user.png" width="70px" height="70px" id="preview">
+                    <input class="btn btn-default" type="button" id="borrar_imagen_registro" value="Borrar">
+                </div>
+                <div class="form-group col-md-4">
+                    <div class="help-block" id="help_imagen"></div>
+                </div>
+            </div>
+            <input type="button" id="button_registro_parte_2" class="btn btn-primary" value="Siguiente">
+        </fieldset>
+    </form>
+</div>
 
-<div class="col-md-6">
-    nombre
-    apellidos
-    direccion
-    telefono
-    imagen
+<div id="plantilla_confirmacion">
+
 </div>
 
 <div id="plantilla_redir">

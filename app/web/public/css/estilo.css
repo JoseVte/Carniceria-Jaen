@@ -48,22 +48,32 @@
     color: lightgreen;
     margin: 0px 10px;
 }
-#form_registro_registro_1{
+#form_registro_1, #form_registro_2{
     margin: 10px 20px;
 }
-#form_registro_registro_1 > fieldset > div > div > div > span.input-group-addon{
+#form_registro_1 > fieldset > div > div > div > span.input-group-addon{
     width: 165px;
     text-align: justify;
 }
-#form_registro_registro_1 > fieldset > div > div > div > span > i{
+#form_registro_2 > fieldset > div > div > div > span.input-group-addon{
+    width: 100px;
+    text-align: justify;
+}
+#form_registro_1 > fieldset > div > div > div > span > i, #form_registro_2 > fieldset > div > div > div > span > i{
     margin-right: 5px;
 }
-/*TODO preguntar para saber si se puede hacer de otra forma*/
-#form_registro_registro_1 > fieldset > div > div > div > input{
+#form_registro_1 > fieldset > div > div > div > input{
     width: 365px;
     border-radius: 0px 4px 4px 0px;
 }
-#form_registro_registro_1 > fieldset > div > div > div.help-block{
+#form_registro_2 > fieldset > div > div > div > input{
+    width: 400px;
+    border-radius: 0px 4px 4px 0px;
+}
+#form_registro_2 > fieldset > div > div > input{
+    margin-left: 20px;
+}
+#form_registro_1 > fieldset > div > div > div.help-block, #form_registro_2 > fieldset > div > div > div.help-block{
     height: 30px;
     padding: 4px 10px;
     margin: 0px;

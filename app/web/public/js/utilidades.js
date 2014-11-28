@@ -8,7 +8,11 @@ $(document).ready(function(){
     $(document).on('click', "#button_login", login);
     $(document).on('click', "#button_open_registro", mostrar_registro_parte_1);
     $(document).on('click', "#button_registro_parte_1", validar_registro_parte_1);
+    $(document).on('click', "#button_registro_parte_2", validar_registro_parte_2);
+    $(document).on('change', "#input_imagen_registro", validar_imagen);
+    $(document).on('click', "#borrar_imagen_registro", borrar_imagen);
     $(document).on('click', "#click_login", toggle_login);
+    mostrar_registro_parte_2({datos:['usuario','pass','pass','email@asdf.es']});
 });
 
 //Carga la vista principal
@@ -24,16 +28,14 @@ function principal(){
 //Vista de la primera parte formulario de registro
 function mostrar_registro_parte_1(){
     toggle_login();
-    $("#body").load("templates/registroTemplate.mustache #plantilla_registro", function() {
-        var plantilla = document.getElementById("plantilla_registro").innerHTML;
+    $("#body").load("templates/registroTemplate.mustache #plantilla_registro_1", function() {
+        var plantilla = document.getElementById("plantilla_registro_1").innerHTML;
         $("#body").html(Mustache.render(plantilla));
     })
 }
-
 //Valida los datos de la primera parte del registro
 function validar_registro_parte_1(e){
     e.preventDefault();
-    var correcto = true,campo;
     var arrayDatos = new Array();
     var arrayForm = new Array();
     arrayForm['user'] = 'Escriba el nombre de usuario';
@@ -41,61 +43,49 @@ function validar_registro_parte_1(e){
     arrayForm['pass_2'] = 'Escriba la confimacion de la contraseña';
     arrayForm['email'] = 'Escriba el email de contacto';
 
-    for(campo in arrayForm){
-        var valorCampo = $("#input_"+campo+"_registro").val();
-        var helper = $("#help_"+campo);
-        var icon = $("#icon_help_"+campo);
-
-        helper.html("");
-        helper.removeClass("alert alert-warning alert-error");
-        icon.removeClass("glyphicon-warning-sign glyphicon-remove");
-
-        if(valorCampo == ""){
-            helper.html(arrayForm[campo]);
-            helper.addClass("alert alert-warning");
-            icon.addClass("glyphicon-warning-sign");
-        } else {
-            arrayDatos[campo] = valorCampo;
-            switch(campo){
-                case 'user':
-                    user_exist(valorCampo);
-                    break;
-                case 'pass':
-                case 'pass_2':
-                    if($("#input_pass_registro").val() != "" &&  $("#input_pass_2_registro").val() != "") {
-                        if ($("#input_pass_registro").val() != $("#input_pass_2_registro").val()) {
-                            helper.html("Las contraseñas deben coincidir");
-                            helper.addClass("alert alert-danger");
-                            icon.addClass("glyphicon-remove");
-                        }
-                    }
-                    break;
-                case 'email':
-                    var regExp = /[\w-\.]{3,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
-                    if(!valorCampo.match(regExp)){
-                        helper.html("Introduzca un email valido");
-                        helper.addClass("alert alert-danger");
-                        icon.addClass("glyphicon-remove");
-                    }else{
-                        email_exist(valorCampo);
-                    }
-                    break;
-            }
-        }
-
-        correcto = (helper.html() == "")
-    }
+    var correcto = bucle_form(arrayForm,arrayDatos);
 
     if(correcto){
-        mostrar_registro_parte_2(arrayDatos)
+        mostrar_registro_parte_2({'datos':arrayDatos})
     }
 }
 
 //Vista de la segunda parte del formulario
 function mostrar_registro_parte_2(datosParte1){
-    registro_completado();
+    $("#body").load("templates/registroTemplate.mustache #plantilla_registro_2", function() {
+        var plantilla = document.getElementById("plantilla_registro_2").innerHTML;
+        $("#body").html(Mustache.render(plantilla,datosParte1));
+    })
+}
+//Valida los datos de la segunda parte del registro
+function validar_registro_parte_2(){
+    var arrayDatos= new Array();
+    var arrayForm = new Array();
+    arrayForm['nombre'] = 'Escriba su nombre';
+    arrayForm['apellidos'] = 'Escriba sus apellidos';
+    arrayForm['direccion'] = 'Escriba su direccion';
+    arrayForm['telefono'] = 'Escriba un telefono';
+    arrayForm['imagen'] = '';
+
+    var correcto = bucle_form(arrayForm,arrayDatos);
+
+    if(correcto){
+        var arrayDatos1 = $("input[type='hidden']").val();
+        var arrayDatosCompleto = {
+            datos1:arrayDatos1,
+            datos2:arrayDatos
+        };
+        mostrar_registro_resumen(arrayDatosCompleto);
+    }
 }
 
+//Vista de todos los datos del registro
+function mostrar_registro_resumen(arrayDatos){
+    $("#body").load("templates/registroTemplate.mustache #plantilla_confirmacion", function() {
+        var plantilla = document.getElementById("plantilla_confirmacion").innerHTML;
+        $("#body").html(plantilla,arrayDatos);
+    })
+}
 //Vista cuando se ha registrado correctamente
 function registro_completado(){
     $("#body").load("templates/registroTemplate.mustache #plantilla_redir", function() {
@@ -167,7 +157,6 @@ function have_credentiales(){
 
     return aux;
 }
-
 //Borramos todas las credenciales del programa
 function delete_credenciales(){
     localStorage.removeItem('usuario');
@@ -185,7 +174,7 @@ function mostrar_login_ok(user){
     if(have_credentiales()){
         login.load("templates/loginTemplate.mustache #plantilla_login_ok", function() {
             var plantilla = document.getElementById("plantilla_login_ok").innerHTML;
-            var partial = {img_perfil: '<img src="{{url_imagen}}" class="img-circle" height="48px" width="48px">'}
+            var partial = {img_perfil: '<img src="{{url_imagen}}" class="img-circle" height="48px" width="48px">'};
             login.html(Mustache.render(plantilla.replace('&gt;','>'),user,partial));
             login.css('width','260px');
             login.css('height','105px');
@@ -193,7 +182,6 @@ function mostrar_login_ok(user){
         });
     }
 }
-
 //Vista de cuando no se esta logueado
 function mostrar_logout(){
     var login = $("#login");
@@ -282,7 +270,6 @@ function transicion(curva,ms,callback){
         return this.ant=curva((now-this.start+.001)/ms,this.ant);
     }
 }
-
 function fx(obj,efectos,ms,cola,curva){
     if(!window.globalIntervalo)
         window.globalIntervalo=1;
@@ -321,10 +308,129 @@ function fx(obj,efectos,ms,cola,curva){
     t.init();
     t=null;
 }
-
 function desacelerado(p,ant){
     var maxValue=1, minValue=.001, totalP=1, k=.25;
     var delta = maxValue - minValue;
     var stepp = minValue+(Math.pow(((1 / totalP) * p), k) * delta);
     return stepp;
+}
+
+//Funciones auxiliares para validar los formularios del registro
+function bucle_form(arrayForm, arrayDatos){
+    var correcto = true, campo, i = 0;
+
+    for(campo in arrayForm){
+        var valorCampo = $("#input_"+campo+"_registro").val();
+        var helper = $("#help_"+campo);
+        var icon = $("#icon_help_"+campo);
+
+        helper.html("");
+        helper.removeClass("alert alert-warning alert-danger");
+        icon.removeClass("glyphicon-warning-sign glyphicon-remove");
+
+        if(valorCampo == "" && campo != "imagen"){
+            helper.html(arrayForm[campo]);
+            helper.addClass("alert alert-warning");
+            icon.addClass("glyphicon-warning-sign");
+        } else if(campo == "imagen") {
+            validar_imagen();
+        } else {
+            validar_servidor(campo,valorCampo,helper,icon);
+            arrayDatos[i] = valorCampo;
+            i++;
+        }
+
+        if((helper.html() == "") && correcto)
+            correcto = true;
+        else
+            correcto = false;
+    }
+
+    return correcto;
+}
+function validar_servidor(campo,valorCampo,helper,icon){
+    switch(campo){
+        case 'user':
+            user_exist(valorCampo);
+            break;
+        case 'pass':
+        case 'pass_2':
+            if($("#input_pass_registro").val() != "" &&  $("#input_pass_2_registro").val() != "") {
+                if ($("#input_pass_registro").val() != $("#input_pass_2_registro").val()) {
+                    helper.html("Las contraseñas deben coincidir");
+                    helper.addClass("alert alert-danger");
+                    icon.addClass("glyphicon-remove");
+                }
+            }
+            break;
+        case 'email':
+            var regExp = /[\w-\.]{3,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
+            if(!valorCampo.match(regExp)){
+                helper.html("Introduzca un email valido");
+                helper.addClass("alert alert-danger");
+                icon.addClass("glyphicon-remove");
+            }else{
+                email_exist(valorCampo);
+            }
+            break;
+        case 'telefono':
+            var regExpNum = /^[0-9]{9}$/;
+            var regExpNumComp =  /^\(\+\d{2,3}\)\d{9}$/;
+            if(!(!valorCampo.match(regExpNum) ^ !valorCampo.match(regExpNumComp))){
+                helper.html("Introduzca un telefono valido");
+                helper.addClass("alert alert-danger");
+                icon.addClass("glyphicon-remove");
+            }
+            break;
+    }
+}
+function validar_imagen(){
+    var foto = document.getElementById("input_imagen_registro").files[0];
+    var url_imagen;
+    var helper = $("#help_imagen");
+    var icon = $("#icon_help_imagen");
+    if(foto == null) {
+        url_imagen = document.getElementById("input_imagen_registro").defaultValue;
+    } else if(!foto.type.match("image.")){ //Solo subir imagenes
+        helper.html("Suba una imagen");
+        helper.addClass("alert alert-danger");
+        icon.addClass("glyphicon-remove");
+    } else if(foto.size > 1048576) { //No debe ser mayor que un MB
+        helper.html("Imagen demasiado grande");
+        helper.addClass("alert alert-danger");
+        icon.addClass("glyphicon-remove");
+    } else {
+        url_imagen = "img/usuarios/"+$("input[type='hidden']").val()+".png";
+
+        var reader = new FileReader();
+        reader.onload = (function(archivo) {
+            return function(e) {
+                var preview = document.getElementById("preview");
+                var datos = e.target.result;
+                preview.src = datos;
+                preview.title = escape(archivo.name);
+            };
+        })(foto);
+
+        reader.readAsDataURL(foto);
+    }
+    return url_imagen;
+}
+function borrar_imagen(){
+    $("#input_imagen_registro").val("");
+    $("#preview").attr("src","img/missing_user.png");
+    $("#preview").attr("title","");
+}
+function upload_imagen(datos){
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function(){
+        if (this.readyState == 4) {
+            if(this.status == 200){
+                console.log('Imagen subida');
+            }
+        }
+    };
+    request.open("POST","/web/upload",true);
+    request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    request.send(datos)
 }

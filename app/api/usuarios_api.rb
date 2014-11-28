@@ -59,7 +59,7 @@ class UsuariosAPI < Sinatra::Base
     if(@@usuario_bo.exists?(params[:campo],params[:cadena]))
       status 200
     else
-      status 404
+      status 203
     end
   end
 
