@@ -12,8 +12,26 @@ $(document).ready(function(){
     $(document).on('change', "#input_imagen_registro", validar_imagen);
     $(document).on('click', "#borrar_imagen_registro", borrar_imagen);
     $(document).on('click', "#click_login", toggle_login);
-    mostrar_registro_parte_2({datos:['usuario','pass','pass','email@asdf.es']});
+    $(document).on('click', "#buttom_registro_edit", mostrar_registro_parte_1);
+    $(document).on('click', "#buttom_registro_completar", registro_completado);
+    datosFormRegistro = {
+        datos1: [
+            {campo: 'user', valor: 'usuario'},
+            {campo: 'pass', valor: 'pass'},
+            {campo: 'pass_2', valor: 'pass'},
+            {campo: 'email', valor: 'email@asdf.es'}],
+        datos2: [
+            {campo: 'nombre', valor: 'jose'},
+            {campo: 'apellidos', valor: 'orts'},
+            {campo: 'direccion', valor: 'asdf'},
+            {campo: 'telefono', valor: '987654321'}],
+        imagen: {url: "img/missing_user.png", title: "", src: "img/missing_user.png"}
+    };
+    mostrar_registro_resumen()
 });
+
+//Variable global del registro
+var datosFormRegistro;
 
 //Carga la vista principal
 function principal(){
@@ -29,6 +47,7 @@ function principal(){
 function mostrar_registro_parte_1(){
     toggle_login();
     $("#body").load("templates/registroTemplate.mustache #plantilla_registro_1", function() {
+        datosFormRegistro = {};
         var plantilla = document.getElementById("plantilla_registro_1").innerHTML;
         $("#body").html(Mustache.render(plantilla));
     })
@@ -46,15 +65,18 @@ function validar_registro_parte_1(e){
     var correcto = bucle_form(arrayForm,arrayDatos);
 
     if(correcto){
-        mostrar_registro_parte_2({'datos':arrayDatos})
+        datosFormRegistro = {
+            'datos1': arrayDatos
+        };
+        mostrar_registro_parte_2()
     }
 }
 
 //Vista de la segunda parte del formulario
-function mostrar_registro_parte_2(datosParte1){
+function mostrar_registro_parte_2() {
     $("#body").load("templates/registroTemplate.mustache #plantilla_registro_2", function() {
         var plantilla = document.getElementById("plantilla_registro_2").innerHTML;
-        $("#body").html(Mustache.render(plantilla,datosParte1));
+        $("#body").html(Mustache.render(plantilla));
     })
 }
 //Valida los datos de la segunda parte del registro
@@ -70,28 +92,32 @@ function validar_registro_parte_2(){
     var correcto = bucle_form(arrayForm,arrayDatos);
 
     if(correcto){
-        var arrayDatos1 = $("input[type='hidden']").val();
-        var arrayDatosCompleto = {
-            datos1:arrayDatos1,
-            datos2:arrayDatos
+        datosFormRegistro.datos2 = arrayDatos;
+        datosFormRegistro.imagen = {
+            url: validar_imagen(),
+            title: $("#preview").attr('title'),
+            src: $("#preview").attr('src')
         };
-        mostrar_registro_resumen(arrayDatosCompleto);
+        mostrar_registro_resumen();
     }
 }
 
 //Vista de todos los datos del registro
-function mostrar_registro_resumen(arrayDatos){
+function mostrar_registro_resumen() {
     $("#body").load("templates/registroTemplate.mustache #plantilla_confirmacion", function() {
         var plantilla = document.getElementById("plantilla_confirmacion").innerHTML;
-        $("#body").html(plantilla,arrayDatos);
+        var partial = {img: '<img src="{{imagen.src}}" title="{{imagen.title}}" class="img-circle" height="70px" width="70px">'};
+        $("#body").html(Mustache.render(plantilla.replace('&gt;', '>'), datosFormRegistro, partial));
     })
 }
 //Vista cuando se ha registrado correctamente
-function registro_completado(){
+function registro_completado(e) {
+    e.preventDefault();
     $("#body").load("templates/registroTemplate.mustache #plantilla_redir", function() {
         var plantilla = document.getElementById("plantilla_redir").innerHTML;
         $("#body").html(Mustache.render(plantilla));
-        setTimeout ("principal()", 3000); //tiempo en milisegundos
+        registrar_usuario(datosFormRegistro);
+        datosFormRegistro = {};
     })
 }
 
@@ -311,8 +337,7 @@ function fx(obj,efectos,ms,cola,curva){
 function desacelerado(p,ant){
     var maxValue=1, minValue=.001, totalP=1, k=.25;
     var delta = maxValue - minValue;
-    var stepp = minValue+(Math.pow(((1 / totalP) * p), k) * delta);
-    return stepp;
+    return minValue + (Math.pow(((1 / totalP) * p), k) * delta); //stepp
 }
 
 //Funciones auxiliares para validar los formularios del registro
@@ -332,11 +357,12 @@ function bucle_form(arrayForm, arrayDatos){
             helper.html(arrayForm[campo]);
             helper.addClass("alert alert-warning");
             icon.addClass("glyphicon-warning-sign");
-        } else if(campo == "imagen") {
-            validar_imagen();
-        } else {
+        } else if (campo != "imagen") {
             validar_servidor(campo,valorCampo,helper,icon);
-            arrayDatos[i] = valorCampo;
+            arrayDatos[i] = {
+                campo: campo,
+                valor: valorCampo
+            };
             i++;
         }
 
@@ -406,8 +432,7 @@ function validar_imagen(){
         reader.onload = (function(archivo) {
             return function(e) {
                 var preview = document.getElementById("preview");
-                var datos = e.target.result;
-                preview.src = datos;
+                preview.src = e.target.result;
                 preview.title = escape(archivo.name);
             };
         })(foto);
@@ -418,8 +443,7 @@ function validar_imagen(){
 }
 function borrar_imagen(){
     $("#input_imagen_registro").val("");
-    $("#preview").attr("src","img/missing_user.png");
-    $("#preview").attr("title","");
+    $("#preview").attr({src: "img/missing_user.png", title: ""});
 }
 function upload_imagen(datos){
     var request = new XMLHttpRequest();

@@ -3,26 +3,39 @@
  */
 
 //Registro
-function registro(){
+function registrar_usuario(datosFormRegistro) {
+    // TODO Cambiar por ajax todo
     var request = new XMLHttpRequest();
     request.onreadystatechange = callback_registro;
     request.open("POST","/api/usuario/new",true);
-    request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    request.send(datos_registro())
+    request.setRequestHeader("Content-Type", "multipart/form-data");
+    request.send(datos_registro(datosFormRegistro))
 }
 
 function callback_registro() {
     if (this.readyState == 4) {
         if (this.status == 201) {
+            //TODO Arreglar subida de imagenes
+            //upload_imagen();
             registro_completado()
         }
     }
 }
 
-function datos_registro(){
-    return '{"user":"'+ $("#inputUser").val() +
-        '", "password":"'+ $("#inputPassword").val() +
-        '"}';
+function datos_registro(datosFormRegistro) {
+    var i, datos1 = datosFormRegistro.datos1, datos2 = datosFormRegistro.datos2;
+    var datos = {};
+    for (i = 0; i < datos1.length; i++) {
+        datos[datos1[i].campo] = datos1[i].valor;
+    }
+
+    for (i = 0; i < datos2.length; i++) {
+        datos[datos2[i].campo] = datos2[i].valor;
+    }
+
+    datos.url_imagen = datosFormRegistro.imagen.url;
+
+    return datos;
 }
 
 function user_exist(user){
@@ -153,7 +166,7 @@ function mostrar_user(user){
     if(token != null){
         $("#body").load("templates/usuarioTemplate.mustache #plantilla_detalles", function(){
             var plantilla = document.getElementById("plantilla_detalles").innerHTML;
-            var partial = {img_perfil: '<img src="{{url_imagen}}" class="img-responsive">'}
+            var partial = {img_perfil: '<img src="{{url_imagen}}" class="img-responsive">'};
             $("#body").html(Mustache.render(plantilla.replace('&gt;','>'),user,partial))
         })
     }

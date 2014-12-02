@@ -14,24 +14,26 @@ require 'app/web/servidor_web'
 
 use Rack::Session::Pool
 
-# URI de la API de productos
-map '/api/producto' do
-  run ProductosAPI
-end
+map '/api' do
+  # URI de la API de productos
+  map '/producto' do
+    run ProductosAPI
+  end
 
-# URI de la API de usuarios y carritos
-map '/api/usuario' do
-  run UsuariosAPI
-end
+  # URI de la API de usuarios y carritos
+  map '/usuario' do
+    run UsuariosAPI
+  end
 
-# URI de la API de proovedores
-map '/api/proovedor' do
-  run ProovedorAPI
-end
+  # URI de la API de proovedores
+  map '/proovedor' do
+    run ProovedorAPI
+  end
 
-# URI de la API de autentificacion
-map '/api/autentificacion' do
-  run AutentificacionAPI
+  # URI de la API de autentificacion
+  map '/autentificacion' do
+    run AutentificacionAPI
+  end
 end
 
 map '/web' do

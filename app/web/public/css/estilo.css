@@ -4,8 +4,8 @@
 }
 
 #titulo{
-    margin-top: 0px;
-    margin-bottom: 0px;
+    margin-top: 0;
+    margin-bottom: 0;
     font-family: 'Nunito';
 }
 #row_nav{
@@ -16,10 +16,10 @@
     right: 0;
     top: 0;
     z-index: 99;
-    margin-right: 15px;
+    margin-right: 15;
     text-align: center;
-    width: 100px;
-    height: 45px;
+    width: 100;
+    height: 45;
 }
 #click_login, #inicio{
     cursor: pointer;
@@ -28,7 +28,7 @@
     overflow:scroll;
 }
 .panel-heading{
-    height: 145px;
+    height: 145;
     background-image: -webkit-linear-gradient(top, #f8e1ad 0%, #f8c390 100%);
     background-image:      -o-linear-gradient(top, #f8e1ad 0%, #f8c390 100%);
     background-image: -webkit-gradient(linear, left top, left bottom, from(#f8e1ad), to(#f8c390));
@@ -38,47 +38,112 @@
     background-repeat: repeat-x;
 }
 .row{
-    margin-right: 0px;
+    margin-right: 0;
 }
 .redir{
     text-align: center;
-    font-size: 16px;
+    font-size: 16;
 }
 .redir > .fa-check{
     color: lightgreen;
-    margin: 0px 10px;
+    margin: 0 10;
 }
 #form_registro_1, #form_registro_2{
-    margin: 10px 20px;
+    margin: 10 20;
 }
 #form_registro_1 > fieldset > div > div > div > span.input-group-addon{
-    width: 165px;
+    width: 165;
     text-align: justify;
 }
 #form_registro_2 > fieldset > div > div > div > span.input-group-addon{
-    width: 100px;
+    width: 100;
     text-align: justify;
 }
 #form_registro_1 > fieldset > div > div > div > span > i, #form_registro_2 > fieldset > div > div > div > span > i{
-    margin-right: 5px;
+    margin-right: 5;
 }
 #form_registro_1 > fieldset > div > div > div > input{
-    width: 365px;
-    border-radius: 0px 4px 4px 0px;
+    width: 365;
+    border-radius: 0 4 4 0;
 }
 #form_registro_2 > fieldset > div > div > div > input{
-    width: 400px;
-    border-radius: 0px 4px 4px 0px;
+    width: 400;
+    border-radius: 0 4 4 0;
 }
 #form_registro_2 > fieldset > div > div > input{
-    margin-left: 20px;
+    margin-left: 20;
 }
 #form_registro_1 > fieldset > div > div > div.help-block, #form_registro_2 > fieldset > div > div > div.help-block{
-    height: 30px;
-    padding: 4px 10px;
-    margin: 0px;
-    width: 290px;
+    height: 30;
+    padding: 4 10;
+    margin: 0;
+    width: 290;
 }
 .form-group.col-md-6{
-    padding: 0px 60px;
+    padding: 0 60;
+}
+
+#form_registro_resumen {
+    padding: 0 20;
+}
+
+#form_registro_resumen > div {
+    padding: 0;
+    border-bottom-color: rgb(248, 150, 83);
+    border-bottom-left-radius: 4;
+    border-bottom-right-radius: 4;
+    border-bottom-style: solid;
+    border-bottom-width: 1;
+    border-image-outset: 0;
+    border-image-repeat: stretch;
+    border-image-slice: 100%;
+    border-image-source: none;
+    border-image-width: 1;
+    border-left-color: rgb(248, 150, 83);
+    border-left-style: solid;
+    border-left-width: 1;
+    border-right-color: rgb(248, 150, 83);
+    border-right-style: solid;
+    border-right-width: 1;
+    border-top-color: rgb(248, 150, 83);
+    border-top-left-radius: 4;
+    border-top-right-radius: 4;
+    border-top-style: solid;
+    border-top-width: 1;
+    box-shadow: rgba(0, 0, 0, 0.0470588) 0 1 2 0;
+    box-sizing: border-box;
+    color: rgb(51, 51, 51);
+}
+
+#form_registro_resumen > div > div.panel-heading {
+    height: auto;
+    background-color: rgb(245, 245, 245);
+    background-image: linear-gradient(rgb(248, 225, 173) 0%, rgb(248, 195, 144) 100%);
+    background-repeat: repeat-x;
+    border-bottom-color: rgb(221, 221, 221);
+    border-left-color: rgb(221, 221, 221);
+    border-right-color: rgb(221, 221, 221);
+    border-top-color: rgb(221, 221, 221);
+    border-top-left-radius: 3;
+    border-top-right-radius: 3;
+    box-sizing: border-box;
+    color: rgb(51, 51, 51);
+    display: block;
+    padding-bottom: 10;
+    padding-left: 15;
+    padding-right: 15;
+
+}
+
+.form_registro_campo {
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.form_registro_valor {
+}
+
+#form_registro_resumen > div > div > div {
+    text-align: center;
+    padding: 10 0;
 }
