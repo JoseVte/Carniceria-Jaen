@@ -1,6 +1,7 @@
 /**
  * Created by josrom on 18/11/14.
  */
+//Cargar todos los metodos de la pagina
 $(document).ready(function(){
     mostrar_logout();
     principal();
@@ -14,24 +15,7 @@ $(document).ready(function(){
     $(document).on('click', "#click_login", toggle_login);
     $(document).on('click', "#buttom_registro_edit", mostrar_registro_parte_1);
     $(document).on('click', "#buttom_registro_completar", registro_completado);
-    datosFormRegistro = {
-        datos1: [
-            {campo: 'user', valor: 'usuario'},
-            {campo: 'pass', valor: 'pass'},
-            {campo: 'pass_2', valor: 'pass'},
-            {campo: 'email', valor: 'email@asdf.es'}],
-        datos2: [
-            {campo: 'nombre', valor: 'jose'},
-            {campo: 'apellidos', valor: 'orts'},
-            {campo: 'direccion', valor: 'asdf'},
-            {campo: 'telefono', valor: '987654321'}],
-        imagen: {url: "img/missing_user.png", title: "", src: "img/missing_user.png"}
-    };
-    mostrar_registro_resumen()
 });
-
-//Variable global del registro
-var datosFormRegistro;
 
 //Carga la vista principal
 function principal(){
@@ -43,7 +27,14 @@ function principal(){
     })
 }
 
-//Vista de la primera parte formulario de registro
+/**********************************************************/
+/***************** Registro de usuario ********************/
+/**********************************************************/
+
+//Variable global del registro
+var datosFormRegistro;
+
+//Metodos de la primera parte formulario de registro
 function mostrar_registro_parte_1(){
     toggle_login();
     $("#body").load("templates/registroTemplate.mustache #plantilla_registro_1", function() {
@@ -52,11 +43,9 @@ function mostrar_registro_parte_1(){
         $("#body").html(Mustache.render(plantilla));
     })
 }
-//Valida los datos de la primera parte del registro
-function validar_registro_parte_1(e){
-    e.preventDefault();
-    var arrayDatos = new Array();
-    var arrayForm = new Array();
+function validar_registro_parte_1() {
+    var arrayDatos = [];
+    var arrayForm = [];
     arrayForm['user'] = 'Escriba el nombre de usuario';
     arrayForm['pass'] = 'Escriba la contraseña';
     arrayForm['pass_2'] = 'Escriba la confimacion de la contraseña';
@@ -72,17 +61,16 @@ function validar_registro_parte_1(e){
     }
 }
 
-//Vista de la segunda parte del formulario
+//Metodos de la segunda parte del formulario
 function mostrar_registro_parte_2() {
     $("#body").load("templates/registroTemplate.mustache #plantilla_registro_2", function() {
         var plantilla = document.getElementById("plantilla_registro_2").innerHTML;
         $("#body").html(Mustache.render(plantilla));
     })
 }
-//Valida los datos de la segunda parte del registro
 function validar_registro_parte_2(){
-    var arrayDatos= new Array();
-    var arrayForm = new Array();
+    var arrayDatos = [];
+    var arrayForm = [];
     arrayForm['nombre'] = 'Escriba su nombre';
     arrayForm['apellidos'] = 'Escriba sus apellidos';
     arrayForm['direccion'] = 'Escriba su direccion';
@@ -102,7 +90,7 @@ function validar_registro_parte_2(){
     }
 }
 
-//Vista de todos los datos del registro
+//Metodos de la confirmacion del formulario
 function mostrar_registro_resumen() {
     $("#body").load("templates/registroTemplate.mustache #plantilla_confirmacion", function() {
         var plantilla = document.getElementById("plantilla_confirmacion").innerHTML;
@@ -110,9 +98,7 @@ function mostrar_registro_resumen() {
         $("#body").html(Mustache.render(plantilla.replace('&gt;', '>'), datosFormRegistro, partial));
     })
 }
-//Vista cuando se ha registrado correctamente
-function registro_completado(e) {
-    e.preventDefault();
+function registro_completado() {
     $("#body").load("templates/registroTemplate.mustache #plantilla_redir", function() {
         var plantilla = document.getElementById("plantilla_redir").innerHTML;
         $("#body").html(Mustache.render(plantilla));
@@ -120,6 +106,148 @@ function registro_completado(e) {
         datosFormRegistro = {};
     })
 }
+
+//Funciones auxiliares para validar los formularios del registro
+function bucle_form(arrayForm, arrayDatos) {
+    var correcto = true, campo, i = 0;
+
+    for (campo in arrayForm) {
+        var valorCampo = $("#input_" + campo + "_registro").val();
+        var helper = $("#help_" + campo);
+        var icon = $("#icon_help_" + campo);
+
+        helper.html("");
+        helper.removeClass("alert alert-warning alert-danger");
+        icon.removeClass("glyphicon-warning-sign glyphicon-remove");
+
+        if (valorCampo == "" && campo != "imagen") {
+            helper.html(arrayForm[campo]);
+            helper.addClass("alert alert-warning");
+            icon.addClass("glyphicon-warning-sign");
+        } else if (campo != "imagen") {
+            validar_servidor(campo, valorCampo, helper, icon);
+            arrayDatos[i] = {
+                campo: campo,
+                valor: valorCampo
+            };
+            i++;
+        }
+
+        if ((helper.html() == "") && correcto)
+            correcto = true;
+        else
+            correcto = false;
+    }
+
+    return correcto;
+}
+function validar_servidor(campo, valorCampo, helper, icon) {
+    switch (campo) {
+        case 'user':
+            user_exist(valorCampo);
+            break;
+        case 'pass':
+        case 'pass_2':
+            var pass = $("#input_pass_registro");
+            var pass2 = $("#input_pass_2_registro");
+            if (pass.val() != "" && pass2.val() != "") {
+                if (pass.val() != pass2.val()) {
+                    helper.html("Las contraseñas deben coincidir");
+                    helper.addClass("alert alert-danger");
+                    icon.addClass("glyphicon-remove");
+                }
+            }
+            break;
+        case 'email':
+            if (!checkEmail(valorCampo)) {
+                helper.html("Introduzca un email valido");
+                helper.addClass("alert alert-danger");
+                icon.addClass("glyphicon-remove");
+            } else {
+                email_exist(valorCampo);
+            }
+            break;
+        case 'telefono':
+            var regExpNum = /^[0-9]{9}$/;
+            var regExpNumComp = /^\(\+\d{2,3}\)\d{9}$/;
+            if (!(!valorCampo.match(regExpNum) ^ !valorCampo.match(regExpNumComp))) {
+                helper.html("Introduzca un telefono valido");
+                helper.addClass("alert alert-danger");
+                icon.addClass("glyphicon-remove");
+            }
+            break;
+    }
+}
+function checkEmail(email) {
+    var sQtext = '[^\\x0d\\x22\\x5c\\x80-\\xff]';
+    var sDtext = '[^\\x0d\\x5b-\\x5d\\x80-\\xff]';
+    var sAtom = '[^\\x00-\\x20\\x22\\x28\\x29\\x2c\\x2e\\x3a-\\x3c\\x3e\\x40\\x5b-\\x5d\\x7f-\\xff]+';
+    var sQuotedPair = '\\x5c[\\x00-\\x7f]';
+    var sDomainLiteral = '\\x5b(' + sDtext + '|' + sQuotedPair + ')*\\x5d';
+    var sQuotedString = '\\x22(' + sQtext + '|' + sQuotedPair + ')*\\x22';
+    var sDomain_ref = sAtom;
+    var sSubDomain = '(' + sDomain_ref + '|' + sDomainLiteral + ')';
+    var sWord = '(' + sAtom + '|' + sQuotedString + ')';
+    var sDomain = sSubDomain + '(\\x2e' + sSubDomain + ')*';
+    var sLocalPart = sWord + '(\\x2e' + sWord + ')*';
+    var sAddrSpec = sLocalPart + '\\x40' + sDomain; // complete RFC822 email address spec
+    var sValidEmail = '^' + sAddrSpec + '$'; // as whole string
+    var regExpEmail = new RegExp(sValidEmail);
+
+    return regExpEmail.test(email);
+}
+function validar_imagen() {
+    var foto = document.getElementById("input_imagen_registro").files[0];
+    var url_imagen;
+    var helper = $("#help_imagen");
+    var icon = $("#icon_help_imagen");
+    if (foto == null) {
+        url_imagen = document.getElementById("input_imagen_registro").defaultValue;
+    } else if (!foto.type.match("image.")) { //Solo subir imagenes
+        helper.html("Suba una imagen");
+        helper.addClass("alert alert-danger");
+        icon.addClass("glyphicon-remove");
+    } else if (foto.size > 1048576) { //No debe ser mayor que un MB
+        helper.html("Imagen demasiado grande");
+        helper.addClass("alert alert-danger");
+        icon.addClass("glyphicon-remove");
+    } else {
+        url_imagen = "img/usuarios/" + $("input[type='hidden']").val() + ".png";
+
+        var reader = new FileReader();
+        reader.onload = (function (archivo) {
+            return function (e) {
+                var preview = document.getElementById("preview");
+                preview.src = e.target.result;
+                preview.title = escape(archivo.name);
+            };
+        })(foto);
+
+        reader.readAsDataURL(foto);
+    }
+    return url_imagen;
+}
+function borrar_imagen() {
+    $("#input_imagen_registro").val("");
+    $("#preview").attr({src: "img/missing_user.png", title: ""});
+}
+function upload_imagen(datos) {
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function () {
+        if (this.readyState == 4) {
+            if (this.status == 200) {
+                console.log('Imagen subida');
+            }
+        }
+    };
+    request.open("POST", "/web/upload", true);
+    request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    request.send(datos)
+}
+
+/**********************************************************/
+/***************** Login de usuario ***********************/
+/**********************************************************/
 
 //Animacion para mostrar-ocultar el menu de login
 function toggle_login() {
@@ -146,90 +274,8 @@ function toggle_login() {
     }
 }
 
-//Comprobamos si hay credenciales guardadas y si son validas
-function have_credentiales(){
-    //Comprobamos si esta en local, sino buscamos en la cookie y las guardamos en local
-    var arrayLocal = [localStorage.getItem('token'),localStorage.getItem('usuarioObj'),localStorage.getItem('usuario')];
-
-    var item,aux = true;
-    for(item in arrayLocal){
-        if(arrayLocal[item] == null || arrayLocal [item] == "undefined")
-            aux = false;
-    }
-
-    if(aux == false){
-        var arrayCookie = new Array();
-        arrayCookie['usuario'] = $.cookie('usuario');
-        arrayCookie['token'] = $.cookie('token');
-        $.cookie.json = true;
-        arrayCookie['usuarioObj'] = $.cookie('usuarioObj');
-        $.cookie.json = false;
-        aux = true;
-
-        for(item in arrayCookie){
-            if(arrayCookie[item] == null)
-                aux = false;
-        }
-
-        //Si todo esta correcto en la cookie la guardamos en local
-        if(aux){
-            localStorage.setItem('usuario',arrayCookie['usuario']);
-            localStorage.setItem('usuarioObj',JSON.stringify(arrayCookie['usuarioObj']));
-            localStorage.setItem('token',arrayCookie['token']);
-        }else{
-            delete_credenciales()
-        }
-    }
-
-    return aux;
-}
-//Borramos todas las credenciales del programa
-function delete_credenciales(){
-    localStorage.removeItem('usuario');
-    localStorage.removeItem('usuarioObj');
-    localStorage.removeItem('token');
-    $.removeCookie('usuario');
-    $.removeCookie('usuarioObj');
-    $.removeCookie('token');
-}
-
-//Vista de cuando se esta logueado
-function mostrar_login_ok(user){
-    var login = $("#login");
-
-    if(have_credentiales()){
-        login.load("templates/loginTemplate.mustache #plantilla_login_ok", function() {
-            var plantilla = document.getElementById("plantilla_login_ok").innerHTML;
-            var partial = {img_perfil: '<img src="{{url_imagen}}" class="img-circle" height="48px" width="48px">'};
-            login.html(Mustache.render(plantilla.replace('&gt;','>'),user,partial));
-            login.css('width','260px');
-            login.css('height','105px');
-            login.css('top','-60px');
-        });
-    }
-}
-//Vista de cuando no se esta logueado
-function mostrar_logout(){
-    var login = $("#login");
-
-    if (!have_credentiales()) {
-        login.load("templates/loginTemplate.mustache #plantilla_logout", function () {
-            var plantilla = document.getElementById("plantilla_logout").innerHTML;
-            login.html(Mustache.render(plantilla));
-            login.css('width', '100px');
-            login.css('height', '45px');
-            login.css('top', '0px');
-        })
-    } else {
-        $.cookie.json = true;
-        var usuarioObj = JSON.parse(localStorage.getItem('usuarioObj'));
-        $.cookie.json = false;
-        mostrar_login_ok(usuarioObj);
-    }
-}
-
 //Validacion del form del login
-function validar_form() {
+function validar_form_login() {
     var errorLogin = $('#errorLogin');
     var loginUser = $('#login_user');
     var loginPass = $('#login_pass');
@@ -272,7 +318,96 @@ function validar_form() {
     return true;
 }
 
-//Funcion para mostrar el panel
+//Vista de cuando se esta logueado
+function mostrar_login_ok(user){
+    var login = $("#login");
+
+    if(have_credentiales()){
+        login.load("templates/loginTemplate.mustache #plantilla_login_ok", function() {
+            var plantilla = document.getElementById("plantilla_login_ok").innerHTML;
+            var partial = {img_perfil: '<img src="{{url_imagen}}" class="img-circle" height="48px" width="48px">'};
+            login.html(Mustache.render(plantilla.replace('&gt;','>'),user,partial));
+            login.css('width','260px');
+            login.css('height','105px');
+            login.css('top','-60px');
+        });
+    }
+}
+//Vista de cuando no se esta logueado
+function mostrar_logout(){
+    var login = $("#login");
+
+    if (!have_credentiales()) {
+        login.load("templates/loginTemplate.mustache #plantilla_logout", function () {
+            var plantilla = document.getElementById("plantilla_logout").innerHTML;
+            login.html(Mustache.render(plantilla));
+            login.css('width', '100px');
+            login.css('height', '45px');
+            login.css('top', '0px');
+        })
+    } else {
+        $.cookie.json = true;
+        var usuarioObj = JSON.parse(localStorage.getItem('usuarioObj'));
+        $.cookie.json = false;
+        mostrar_login_ok(usuarioObj);
+    }
+}
+
+/**********************************************************/
+/***************** Gestion de credenciales ****************/
+/**********************************************************/
+
+//Comprobamos si hay credenciales guardadas y si son validas
+function have_credentiales() {
+    //Comprobamos si esta en local, sino buscamos en la cookie y las guardamos en local
+    var arrayLocal = [localStorage.getItem('token'), localStorage.getItem('usuarioObj'), localStorage.getItem('usuario')];
+
+    var item, aux = true;
+    for (item in arrayLocal) {
+        if (arrayLocal[item] == null || arrayLocal [item] == "undefined")
+            aux = false;
+    }
+
+    if (aux == false) {
+        var arrayCookie = [];
+        arrayCookie['usuario'] = $.cookie('usuario');
+        arrayCookie['token'] = $.cookie('token');
+        $.cookie.json = true;
+        arrayCookie['usuarioObj'] = $.cookie('usuarioObj');
+        $.cookie.json = false;
+        aux = true;
+
+        for (item in arrayCookie) {
+            if (arrayCookie[item] == null)
+                aux = false;
+        }
+
+        //Si todo esta correcto en la cookie la guardamos en local
+        if (aux) {
+            localStorage.setItem('usuario', arrayCookie['usuario']);
+            localStorage.setItem('usuarioObj', JSON.stringify(arrayCookie['usuarioObj']));
+            localStorage.setItem('token', arrayCookie['token']);
+        } else {
+            delete_credenciales()
+        }
+    }
+
+    return aux;
+}
+//Borramos todas las credenciales del programa
+function delete_credenciales() {
+    localStorage.removeItem('usuario');
+    localStorage.removeItem('usuarioObj');
+    localStorage.removeItem('token');
+    $.removeCookie('usuario');
+    $.removeCookie('usuarioObj');
+    $.removeCookie('token');
+}
+
+/**********************************************************/
+/***************** Animacion de los menus *****************/
+/**********************************************************/
+
 function transicion(curva,ms,callback){
     this.ant=0.01;
     var _this=this;
@@ -338,123 +473,4 @@ function desacelerado(p,ant){
     var maxValue=1, minValue=.001, totalP=1, k=.25;
     var delta = maxValue - minValue;
     return minValue + (Math.pow(((1 / totalP) * p), k) * delta); //stepp
-}
-
-//Funciones auxiliares para validar los formularios del registro
-function bucle_form(arrayForm, arrayDatos){
-    var correcto = true, campo, i = 0;
-
-    for(campo in arrayForm){
-        var valorCampo = $("#input_"+campo+"_registro").val();
-        var helper = $("#help_"+campo);
-        var icon = $("#icon_help_"+campo);
-
-        helper.html("");
-        helper.removeClass("alert alert-warning alert-danger");
-        icon.removeClass("glyphicon-warning-sign glyphicon-remove");
-
-        if(valorCampo == "" && campo != "imagen"){
-            helper.html(arrayForm[campo]);
-            helper.addClass("alert alert-warning");
-            icon.addClass("glyphicon-warning-sign");
-        } else if (campo != "imagen") {
-            validar_servidor(campo,valorCampo,helper,icon);
-            arrayDatos[i] = {
-                campo: campo,
-                valor: valorCampo
-            };
-            i++;
-        }
-
-        if((helper.html() == "") && correcto)
-            correcto = true;
-        else
-            correcto = false;
-    }
-
-    return correcto;
-}
-function validar_servidor(campo,valorCampo,helper,icon){
-    switch(campo){
-        case 'user':
-            user_exist(valorCampo);
-            break;
-        case 'pass':
-        case 'pass_2':
-            if($("#input_pass_registro").val() != "" &&  $("#input_pass_2_registro").val() != "") {
-                if ($("#input_pass_registro").val() != $("#input_pass_2_registro").val()) {
-                    helper.html("Las contraseñas deben coincidir");
-                    helper.addClass("alert alert-danger");
-                    icon.addClass("glyphicon-remove");
-                }
-            }
-            break;
-        case 'email':
-            var regExp = /[\w-\.]{3,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
-            if(!valorCampo.match(regExp)){
-                helper.html("Introduzca un email valido");
-                helper.addClass("alert alert-danger");
-                icon.addClass("glyphicon-remove");
-            }else{
-                email_exist(valorCampo);
-            }
-            break;
-        case 'telefono':
-            var regExpNum = /^[0-9]{9}$/;
-            var regExpNumComp =  /^\(\+\d{2,3}\)\d{9}$/;
-            if(!(!valorCampo.match(regExpNum) ^ !valorCampo.match(regExpNumComp))){
-                helper.html("Introduzca un telefono valido");
-                helper.addClass("alert alert-danger");
-                icon.addClass("glyphicon-remove");
-            }
-            break;
-    }
-}
-function validar_imagen(){
-    var foto = document.getElementById("input_imagen_registro").files[0];
-    var url_imagen;
-    var helper = $("#help_imagen");
-    var icon = $("#icon_help_imagen");
-    if(foto == null) {
-        url_imagen = document.getElementById("input_imagen_registro").defaultValue;
-    } else if(!foto.type.match("image.")){ //Solo subir imagenes
-        helper.html("Suba una imagen");
-        helper.addClass("alert alert-danger");
-        icon.addClass("glyphicon-remove");
-    } else if(foto.size > 1048576) { //No debe ser mayor que un MB
-        helper.html("Imagen demasiado grande");
-        helper.addClass("alert alert-danger");
-        icon.addClass("glyphicon-remove");
-    } else {
-        url_imagen = "img/usuarios/"+$("input[type='hidden']").val()+".png";
-
-        var reader = new FileReader();
-        reader.onload = (function(archivo) {
-            return function(e) {
-                var preview = document.getElementById("preview");
-                preview.src = e.target.result;
-                preview.title = escape(archivo.name);
-            };
-        })(foto);
-
-        reader.readAsDataURL(foto);
-    }
-    return url_imagen;
-}
-function borrar_imagen(){
-    $("#input_imagen_registro").val("");
-    $("#preview").attr({src: "img/missing_user.png", title: ""});
-}
-function upload_imagen(datos){
-    var request = new XMLHttpRequest();
-    request.onreadystatechange = function(){
-        if (this.readyState == 4) {
-            if(this.status == 200){
-                console.log('Imagen subida');
-            }
-        }
-    };
-    request.open("POST","/web/upload",true);
-    request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    request.send(datos)
 }

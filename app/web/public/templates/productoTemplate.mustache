@@ -1,8 +1,8 @@
-
-    <div id="plantilla_ofertas">
-        <main class="container">
-            <div class="scroll_horizontal">
-                <table><tr>
+<div id="plantilla_ofertas">
+    <main class="container">
+        <div class="scroll_horizontal">
+            <table>
+                <tr>
                 <!--{{#.}}-->
                     <td id="prod_oferta_{{id}}" align="center" style="padding-left: 10px; padding-right: 10px">
                         {{> img_ofertas}}<br>
@@ -11,34 +11,35 @@
                         <a href="javascript:get_producto_detalles({{id}})">Detalles</a>
                     </td>
                         <!--{{/.}}-->
-                </tr></table>
+                </tr>
+            </table>
+        </div>
+    </main>
+</div>
+<!-- TODO Arreglar el total-->
+<div id="plantilla_paginacion">
+    <main class="container">
+        <span class="badge">{{total}}</span>
+        {{#contenido}}
+            <div id="prod_{{id}}" class="col-sm-2" align="center">
+                {{> img_pag}}<br>
+                <b>{{nombre}}</b><br>
+                <a href="javascript:get_producto_detalles({{id}})">Detalles</a>
             </div>
-        </main>
-    </div>
-    <!-- TODO Arreglar el total-->
-    <div id="plantilla_paginacion">
-        <main class="container">
-            <span class="badge">{{total}}</span>
-            {{#contenido}}
-                <div id="prod_{{id}}" class="col-sm-2" align="center">
-                    {{> img_pag}}<br>
-                    <b>{{nombre}}</b><br>
-                    <a href="javascript:get_producto_detalles({{id}})">Detalles</a>
-                </div>
-            {{/contenido}}
-        </main>
-        <!-- TODO Añadir los links a anterior y posterior (usar bootstrap)-->
-        <a href="{{link.href}}">Actual</a>
-    </div>
+        {{/contenido}}
+    </main>
+    <!-- TODO Añadir los links a anterior y posterior (usar bootstrap)-->
+    <a href="{{link.href}}">Actual</a>
+</div>
 
-    <!-- TODO Reformar para poner la imagen a un lado y los datos al otro-->
-    <div id="plantilla_detalles">
-        {{> img_detalles}}<br>
-        <b>{{nombre}}</b><br>
-        {{descripcion}}<br>
-        {{precioKg}}<br>
-        {{stock}}<br>
-        {{rebaja}}<br>
+<!-- TODO Reformar para poner la imagen a un lado y los datos al otro-->
+<div id="plantilla_detalles">
+    {{> img_detalles}}<br>
+    <b>{{nombre}}</b><br>
+    {{descripcion}}<br>
+    {{precioKg}}<br>
+    {{stock}}<br>
+    {{rebaja}}<br>
 
-        <em>{{fecha_js}}</em><br>
-    </div>
+    <em>{{fecha_js}}</em><br>
+</div>

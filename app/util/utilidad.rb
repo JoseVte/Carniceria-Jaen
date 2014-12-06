@@ -4,6 +4,9 @@ class Utilidad
   # Secreto para el JWT
   SECRET = 'ADI'
 
+  # Tiempo para expirar
+  EXPIRE = 1000*60*60*24
+
   # Dados una url base, unos datos que se puedan convertir en array, y los parametros de la url devuelve un JSON con los elementos indicados
   def self.paginacion(url_base, datos, params)
     inicio = 1

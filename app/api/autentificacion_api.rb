@@ -30,7 +30,8 @@ class AutentificacionAPI < Sinatra::Base
           content_type :json
           {
               :user => @@usuario_bo.find_by_user(datos['login'],token),
-              :token => token
+              :token => token,
+              :expire => Utilidad::EXPIRE
           }.to_json
         rescue CustomMsgException => e
           status e.status

@@ -10,21 +10,27 @@ class UsuarioBO
     begin
       u = Usuario.find_by(:user => user)
     ensure
-      raise CustomMsgException.new(401,'Error 401: Autentificacion incorrecta') if u.nil? || (u.authenticate(MD5.hexdigest(pass)) == false)
-      return JWT.encode(u.attributes,Utilidad::SECRET)
+      raise CustomMsgException.new(401, 'Error 401: Autentificacion incorrecta') if u.nil? || !u.authenticate(MD5.hexdigest(pass))
+      atrib = u.attributes
+      atrib.store("exp", Time.now.to_i+Utilidad::EXPIRE/1000)
+      return JWT.encode(atrib, Utilidad::SECRET)
     end
   end
 
   # Comprobar si el usuario tiene permisos para acceder a la funcionalidad
   def self.permitted?(token,user_who_wants_to_access)
     if !token.nil?
-      u =  JWT.decode(token,Utilidad::SECRET)
-      if !u.nil?
-        if u[0]['user'] == 'root'
-          return true
-        elsif u[0]['user'] == user_who_wants_to_access
-          return true
+      begin
+        u = JWT.decode(token, Utilidad::SECRET)
+        if !u.nil?
+          if u[0]['user'] == 'root'
+            return true
+          elsif u[0]['user'] == user_who_wants_to_access
+            return true
+          end
         end
+      rescue JWT::ExpiredSignature
+        raise CustomMsgException.new(408, 'Error 408: La sesion ha caducado')
       end
     end
     raise CustomMsgException.new(403,'Error 403: Acceso prohibido')
@@ -33,7 +39,7 @@ class UsuarioBO
   # Comprobar si un usuario existe o no
   def exists?(campo, cadena)
     exist = Usuario.where("#{campo} LIKE ?", "#{cadena}")
-    return !exist.empty?
+    !exist.empty?
   end
 
   # Devuelve una lista de todos los usuarios
