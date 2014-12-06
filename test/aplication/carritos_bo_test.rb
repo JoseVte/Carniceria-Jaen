@@ -59,12 +59,12 @@ class CarritosBOTest < MiniTest::Test
   # Test para comprobar si el producto no existe
   def test_bo_carrito_add_producto_to_carrito_error_prod_no_exist
     datos = { :carrito_id => 1,
-              :producto_id => 3
+              :producto_id => 0
     }
     e = assert_raises CustomMsgException  do
       @@carrito_bo.add_prod_en_carrito(datos,@@token)
     end
-    assert_equal 'Error 404: No existe el producto 3',e.message
+    assert_equal 'Error 404: No existe el producto 0', e.message
   end
 
   # Test para borrar un producto del carrito

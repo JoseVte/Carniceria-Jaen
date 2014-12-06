@@ -35,7 +35,7 @@ class ProductosAPITest < MiniTest::Test
     get '/ofertas'
     assert_equal 200, last_response.status
     datos = JSON.parse(last_response.body)
-    assert_equal datos.length, 1
+    assert_equal 9, datos.length
   end
 
   # Test para buscar un producto a partir de una subcadena
@@ -43,7 +43,7 @@ class ProductosAPITest < MiniTest::Test
     get '/buscar/ja'
     assert_equal 200, last_response.status
     datos = JSON.parse(last_response.body)
-    assert_equal datos['total'], 2
+    assert_equal 9, datos['total']
   end
 
   # Test para buscar un producto a partir de una subcadena
@@ -51,7 +51,7 @@ class ProductosAPITest < MiniTest::Test
     get '/proovedor/1'
     assert_equal 200, last_response.status
     datos = JSON.parse(last_response.body)
-    assert_equal datos['total'], 2
+    assert_equal 10, datos['total']
   end
 
   # Test para comprobar la llamada a la API de todos los productos
@@ -59,7 +59,7 @@ class ProductosAPITest < MiniTest::Test
     get '/all'
     assert_equal 200, last_response.status
     datos = JSON.parse(last_response.body)
-    assert_equal datos['total'], 2
+    assert_equal 10, datos['total']
   end
 
   # Test para comprobar la seleccion de un producto que existe
