@@ -16,3 +16,5 @@ Rake::TestTask.new do |t|
   t.verbose = true
 end
 
+require 'jasmine'
+load 'jasmine/tasks/jasmine.rake'

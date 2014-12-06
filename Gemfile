@@ -14,4 +14,5 @@ group :test do
   gem 'minitest', '>=5.3.4'
   gem 'mocha'
   gem 'database_cleaner'
+  gem 'jasmine'
 end
