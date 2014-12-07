@@ -17,6 +17,13 @@ $(document).ready(function(){
     $(document).on('click', "#buttom_registro_completar", registro_completado);
 });
 
+//Las credenciales estan el las cookies
+$(window).on('beforeunload', function () {
+    localStorage.removeItem('usuario');
+    localStorage.removeItem('usuarioObj');
+    localStorage.removeItem('token');
+});
+
 //Carga la vista principal
 function principal(){
     $("#body").load("templates/inicioTemplate.mustache #plantilla_inicio", function() {
@@ -360,33 +367,27 @@ function mostrar_logout(){
 //Comprobamos si hay credenciales guardadas y si son validas
 function have_credentiales() {
     //Comprobamos si esta en local, sino buscamos en la cookie y las guardamos en local
-    var arrayLocal = [localStorage.getItem('token'), localStorage.getItem('usuarioObj'), localStorage.getItem('usuario')];
+    var items = ['token', 'usuarioObj', 'usuario'];
+    var aux = true;
 
-    var item, aux = true;
-    for (item in arrayLocal) {
-        if (arrayLocal[item] == null || arrayLocal [item] == "undefined")
+    for (var i = 0; i < items.length; i++) {
+        if (localStorage.getItem(items[i]) == null || localStorage.getItem(items[i]) == "undefined")
             aux = false;
     }
 
     if (aux == false) {
         var arrayCookie = [];
-        arrayCookie['usuario'] = $.cookie('usuario');
-        arrayCookie['token'] = $.cookie('token');
-        $.cookie.json = true;
-        arrayCookie['usuarioObj'] = $.cookie('usuarioObj');
-        $.cookie.json = false;
         aux = true;
-
-        for (item in arrayCookie) {
-            if (arrayCookie[item] == null)
+        for (var i = 0; i < items.length; i++) {
+            arrayCookie[i] = $.cookie(items[i]);
+            if (arrayCookie[i] == null)
                 aux = false;
         }
-
         //Si todo esta correcto en la cookie la guardamos en local
         if (aux) {
-            localStorage.setItem('usuario', arrayCookie['usuario']);
-            localStorage.setItem('usuarioObj', JSON.stringify(arrayCookie['usuarioObj']));
-            localStorage.setItem('token', arrayCookie['token']);
+            for (var i = 0; i < items.length; i++) {
+                localStorage.setItem(items[i], arrayCookie[i]);
+            }
         } else {
             delete_credenciales()
         }

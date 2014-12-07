@@ -80,7 +80,7 @@ function login() {
         $.ajax({
             type: "POST",
             url: "/api/autentificacion/login",
-            data: datos_login(),
+            data: JSON.stringify(datos_login()),
             contentType: "application/x-www-form-urlencoded",
             success: function (json) {
                 var user = JSON.stringify(json.user);
@@ -95,9 +95,7 @@ function login() {
                 localStorage.setItem('token', json.token);
                 if ($("#check_recordar").is(':checked')) {
                     $.cookie("usuario", json.user.user, expire);
-                    $.cookie.json = true;
                     $.cookie("usuarioObj", user, expire);
-                    $.cookie.json = false;
                     $.cookie("token", json.token, expire);
                 }
                 mostrar_login_ok(json.user);
@@ -109,8 +107,10 @@ function login() {
     }
 }
 function datos_login(){
-    return '{"login":"'+ $("#inputUser").val() +
-        '", "password":"'+ $("#inputPassword").val() + '"}';
+    return {
+        login: $("#inputUser").val(),
+        password: $("#inputPassword").val()
+    };
 }
 
 function logout() {
