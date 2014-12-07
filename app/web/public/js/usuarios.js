@@ -140,8 +140,7 @@ function get_datos_user(){
             success: function (data) {
                 $("#body").load("templates/usuarioTemplate.mustache #plantilla_detalles", function () {
                     var plantilla = document.getElementById("plantilla_detalles").innerHTML;
-                    var partial = {img_perfil: '<img src="{{url_imagen}}" class="img-responsive">'};
-                    $("#body").html(Mustache.render(plantilla.replace('&gt;', '>'), data, partial))
+                    $("#body").html(Mustache.render(plantilla.replace('&gt;', '>'), data, partial_img_detalles))
                 })
             },
             error: function (xhr) {

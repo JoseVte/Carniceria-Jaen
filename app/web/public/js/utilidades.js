@@ -24,6 +24,12 @@ $(window).on('beforeunload', function () {
     localStorage.removeItem('token');
 });
 
+//Todos los 'partial' para mustache
+var partial_img_perfil = {img: '<img src="{{url_imagen}}" class="img-circle" height="48px" width="48px">'};
+var partial_img_reg = {img: '<img src="{{imagen.src}}" title="{{imagen.title}}" class="img-circle" height="70px" width="70px">'};
+var partial_img_detalles = {img_detalles: '<img src="{{url_imagen}}" class="img-responsive img-rounded">'};
+var partial_img_productos = {img: '<img src="{{url_imagen}}" height="128px" width="128px" class="img-rounded">'};
+
 //Carga la vista principal
 function principal(){
     $("#body").load("templates/inicioTemplate.mustache #plantilla_inicio", function() {
@@ -101,8 +107,7 @@ function validar_registro_parte_2(){
 function mostrar_registro_resumen() {
     $("#body").load("templates/registroTemplate.mustache #plantilla_confirmacion", function() {
         var plantilla = document.getElementById("plantilla_confirmacion").innerHTML;
-        var partial = {img: '<img src="{{imagen.src}}" title="{{imagen.title}}" class="img-circle" height="70px" width="70px">'};
-        $("#body").html(Mustache.render(plantilla.replace('&gt;', '>'), datosFormRegistro, partial));
+        $("#body").html(Mustache.render(plantilla.replace('&gt;', '>'), datosFormRegistro, partial_img_reg));
     })
 }
 function registro_completado() {
@@ -332,8 +337,7 @@ function mostrar_login_ok(user){
     if(have_credentiales()){
         login.load("templates/loginTemplate.mustache #plantilla_login_ok", function() {
             var plantilla = document.getElementById("plantilla_login_ok").innerHTML;
-            var partial = {img_perfil: '<img src="{{url_imagen}}" class="img-circle" height="48px" width="48px">'};
-            login.html(Mustache.render(plantilla.replace('&gt;','>'),user,partial));
+            login.html(Mustache.render(plantilla.replace('&gt;', '>'), user, partial_img_perfil));
             login.css('width','260px');
             login.css('height','105px');
             login.css('top','-60px');

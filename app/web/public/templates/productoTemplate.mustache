@@ -5,7 +5,7 @@
                 <tr>
                 <!--{{#.}}-->
                     <td id="prod_oferta_{{id}}" align="center" style="padding-left: 10px; padding-right: 10px">
-                        {{> img_ofertas}}<br>
+                        {{> img}}<br>
                         <b>{{nombre}}</b><br>
                         <em>{{rebaja}} %</em><br>
                         <a href="javascript:get_producto_detalles({{id}})">Detalles</a>
@@ -22,7 +22,7 @@
         <span class="badge">{{total}}</span>
         {{#contenido}}
             <div id="prod_{{id}}" class="col-sm-2" align="center">
-                {{> img_pag}}<br>
+                {{> img}}<br>
                 <b>{{nombre}}</b><br>
                 <a href="javascript:get_producto_detalles({{id}})">Detalles</a>
             </div>

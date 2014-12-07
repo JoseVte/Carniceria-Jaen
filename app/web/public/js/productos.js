@@ -19,8 +19,7 @@ function mostrar_ofertas(ofertas){
 
     $("#ofertas").load("templates/productoTemplate.mustache #plantilla_ofertas", function() {
         var plantilla = document.getElementById("plantilla_ofertas").innerHTML;
-        var partial = {img_ofertas: '<img src="{{url_imagen}}" height="128px" width="128px" class="img-rounded">'};
-        var html = Mustache.render(plantilla.replace('&gt;','>'),ofertas,partial);
+        var html = Mustache.render(plantilla.replace('&gt;', '>'), ofertas, partial_img_productos);
         $("#ofertas").html(html);
     });
 }
@@ -38,8 +37,7 @@ function get_productos(){
 function mostrar_productos(all){
     $("#productos").load("templates/productoTemplate.mustache #plantilla_paginacion", function() {
         var plantilla = document.getElementById("plantilla_paginacion").innerHTML;
-        var partial = {img_pag: '<img src="{{url_imagen}}" height="128px" width="128px" class="img-responsive">'};
-        $("#productos").html(Mustache.render(plantilla.replace('&gt;','>'),all,partial));
+        $("#productos").html(Mustache.render(plantilla.replace('&gt;', '>'), all, partial_img_productos));
     });
 }
 
@@ -62,7 +60,6 @@ function mostrar_detalles(producto){
 
     $("#body").load("templates/productoTemplate.mustache #plantilla_detalles", function() {
         var plantilla = document.getElementById("plantilla_detalles").innerHTML;
-        var partial = {img_detalles: '<img src="{{url_imagen}}" class="img-responsive">'};
-        $("#body").html(Mustache.render(plantilla.replace('&gt;','>'), producto, partial));//Antes de que se acabe la etiqueta
+        $("#body").html(Mustache.render(plantilla.replace('&gt;', '>'), producto, partial_img_detalles));//Antes de que se acabe la etiqueta
     });
 }
