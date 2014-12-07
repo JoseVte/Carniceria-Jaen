@@ -8,7 +8,7 @@
                         {{> img}}<br>
                         <b>{{nombre}}</b><br>
                         <em>{{rebaja}} %</em><br>
-                        <a href="javascript:get_producto_detalles({{id}})">Detalles</a>
+                        <a href="javascript:get_producto_detalles({{id}})" id="prod{{id}}">Detalles</a>
                     </td>
                         <!--{{/.}}-->
                 </tr>
@@ -24,7 +24,7 @@
             <div id="prod_{{id}}" class="col-sm-2" align="center">
                 {{> img}}<br>
                 <b>{{nombre}}</b><br>
-                <a href="javascript:get_producto_detalles({{id}})">Detalles</a>
+                <a href="javascript:get_producto_detalles({{id}})" id="prod{{id}}">Detalles</a>
             </div>
         {{/contenido}}
     </main>
