@@ -43,10 +43,16 @@ class UsuarioBO
   end
 
   # Devuelve una lista de todos los usuarios
-  def all(token)
+  def all(token, params)
     # Solo se le permite el acceso al admin
     if UsuarioBO.permitted?(token,'root')
-      Usuario.all.order('created_at DESC')
+      {
+          datos: Usuario.all
+                     .offset(params[:inicio])
+                     .limit(params[:cantidad])
+                     .order('created_at DESC'),
+          total: Usuario.count()
+      }
     end
   end
 

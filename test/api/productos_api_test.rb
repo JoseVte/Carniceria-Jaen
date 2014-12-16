@@ -43,7 +43,7 @@ class ProductosAPITest < MiniTest::Test
     get '/buscar/ja'
     assert_equal 200, last_response.status
     datos = JSON.parse(last_response.body)
-    assert_equal 9, datos['total']
+    assert_equal 8, datos['contenido'].length
   end
 
   # Test para buscar un producto a partir de una subcadena

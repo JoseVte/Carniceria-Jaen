@@ -24,14 +24,14 @@ class CarritosBOTest < MiniTest::Test
 
   # Test para comprobar todo el carrito de un usuario
   def test_bo_carrito_all
-    lista = @@carrito_bo.all('root',@@token)
+    lista = @@carrito_bo.all('root', @@token, {})[:datos]
     assert_equal 1, lista.length
   end
 
   # Test para comprobar si no existe el usuario
   def test_bo_carrito_all_error_user_no_exist
     e = assert_raises CustomMsgException  do
-      @@carrito_bo.all('noExiste',@@token)
+      @@carrito_bo.all('noExiste', @@token, {})
     end
     assert_equal 'Error 404: No existe el usuario noExiste',e.message
   end

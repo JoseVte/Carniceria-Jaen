@@ -30,19 +30,19 @@ class ProductosBOTest < MiniTest::Test
 
   # Test para buscar un producto a partir del proovedor
   def test_bo_producto_proovedor
-    lista = @@prod_bo.select_by_proovedor('1')
+    lista = @@prod_bo.select_by_proovedor('1', {})[:datos]
     assert_equal 10, lista.length
   end
 
   # Test para buscar un producto a partir de una subcadena
   def test_bo_producto_buscar
-    lista = @@prod_bo.select_by_nombre('ja')
+    lista = @@prod_bo.select_by_nombre('ja', {})[:datos]
     assert_equal 9, lista.length
   end
 
   # Test para listar todos los productos
   def test_bo_producto_all
-    lista = @@prod_bo.all()
+    lista = @@prod_bo.all({})[:datos]
     assert_equal 10, lista.length
   end
 

@@ -6,3 +6,5 @@
 /db/cf_test.sqlite3
 /db/schema.rb
 *.komodoproject
+carniceria.sublime-workspace
+carniceria.sublime-project

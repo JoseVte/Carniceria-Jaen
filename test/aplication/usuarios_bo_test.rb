@@ -24,7 +24,7 @@ class UsuariosBOTest < MiniTest::Test
 
   # Test de listado total de los usuarios
   def test_bo_usuario_all
-    lista = @@users_bo.all(@@token)
+    lista = @@users_bo.all(@@token, {})[:datos]
     assert_equal 1, lista.length
   end
 

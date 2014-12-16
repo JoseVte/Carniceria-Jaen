@@ -30,10 +30,11 @@ class UsuariosAPI < Sinatra::Base
   # Lista de usuarios en JSON
   get '/all' do
     begin
-      users = @@usuario_bo.all(request.env['HTTP_X_AUTH_TOKEN'])
+      params_parseados = Utilidad.parse_params(params)
+      users = @@usuario_bo.all(request.env['HTTP_X_AUTH_TOKEN'], params_parseados)
       status 200
       content_type :json
-      result = Utilidad.paginacion(request.env['REQUEST_PATH'],users,params)
+      result = Utilidad.paginacion(request.env['REQUEST_PATH'], users, params_parseados)
       result.to_json
     rescue CustomMsgException => e
       status e.status
@@ -147,10 +148,11 @@ class UsuariosAPI < Sinatra::Base
   # Todos los productos del carrito
   get '/:user/carrito' do
     begin
-      c = @@carrito_bo.all(params['user'],request.env['HTTP_X_AUTH_TOKEN'])
+      params_parseados = Utilidad.parse_params(params)
+      c = @@carrito_bo.all(params['user'], request.env['HTTP_X_AUTH_TOKEN'], params_parseados)
       status 200
       content_type :json
-      result = Utilidad.paginacion(request.env['REQUEST_PATH'],c,params)
+      result = Utilidad.paginacion(request.env['REQUEST_PATH'], c, params_parseados)
       result.to_json
     rescue CustomMsgException => e
       status e.status

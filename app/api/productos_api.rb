@@ -32,28 +32,31 @@ class ProductosAPI < Sinatra::Base
 
   # Devuelve un listado con todos los productos del proovedor
   get '/proovedor/:id' do
-    p = @@producto_bo.select_by_proovedor(params['id'])
+    params_parseados = Utilidad.parse_params(params)
+    p = @@producto_bo.select_by_proovedor(params['id'], params_parseados)
     content_type :json
     status 200
-    result = Utilidad.paginacion(request.env['REQUEST_PATH'],p,params)
+    result = Utilidad.paginacion(request.env['REQUEST_PATH'], p, params_parseados)
     result.to_json
   end
 
   # Devuelve un listado con todos los productos que contengan la subcadena
   get '/buscar/:subcadena' do
-    p = @@producto_bo.select_by_nombre(params['subcadena'])
+    params_parseados = Utilidad.parse_params(params)
+    p = @@producto_bo.select_by_nombre(params['subcadena'], params_parseados)
     content_type :json
     status 200
-    result = Utilidad.paginacion(request.env['REQUEST_PATH'],p,params)
+    result = Utilidad.paginacion(request.env['REQUEST_PATH'], p, params_parseados)
     result.to_json
   end
 
   # Todos los productos en JSON
   get '/all' do
-    p = @@producto_bo.all
+    params_parseados = Utilidad.parse_params(params)
+    p = @@producto_bo.all(params_parseados)
     status 200
     content_type :json
-    result = Utilidad.paginacion(request.env['REQUEST_PATH'],p,params)
+    result = Utilidad.paginacion(request.env['REQUEST_PATH'], p, params_parseados)
     result.to_json
   end
 
