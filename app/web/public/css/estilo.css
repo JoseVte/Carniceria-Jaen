@@ -27,7 +27,8 @@
 .scroll_horizontal{
     overflow:scroll;
 }
-.panel-heading{
+
+header.panel-heading {
     height: 145px;
     background-image: -webkit-linear-gradient(top, #f8e1ad 0%, #f8c390 100%);
     background-image:      -o-linear-gradient(top, #f8e1ad 0%, #f8c390 100%);
@@ -115,10 +116,13 @@
     color: rgb(51, 51, 51);
 }
 
-#form_registro_resumen > div > div.panel-heading {
+.panel-default > .panel-heading {
     height: auto;
     background-color: rgb(245, 245, 245);
-    background-image: linear-gradient(rgb(248, 225, 173) 0%, rgb(248, 195, 144) 100%);
+    background-image: -webkit-linear-gradient(top, #f8e1ad 0%, #f8c390 100%);
+    background-image: -o-linear-gradient(top, #f8e1ad 0%, #f8c390 100%);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#f8e1ad), to(#f8c390));
+    background-image: linear-gradient(to bottom, #f8e1ad 0%, #f8c390 100%);
     background-repeat: repeat-x;
     border-bottom-color: rgb(221, 221, 221);
     border-left-color: rgb(221, 221, 221);
@@ -132,7 +136,18 @@
     padding-bottom: 10px;
     padding-left: 15px;
     padding-right: 15px;
+}
 
+.panel-footer {
+    overflow: hidden;
+}
+
+#self {
+    text-align: center;
+}
+
+#next {
+    text-align: right;
 }
 
 .form_registro_campo {

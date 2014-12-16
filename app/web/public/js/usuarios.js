@@ -149,3 +149,34 @@ function get_datos_user(){
         });
     }
 }
+
+/**********************************************************/
+/***************** Añadir al carrito **********************/
+/**********************************************************/
+
+function add_prod_carrito(id){
+    var user = JSON.parse(localStorage.getItem('usuarioObj'));
+    var token = localStorage.getItem('token');
+
+    if(token != null && user != null){
+        $.ajax({
+            type: "POST",
+            url: "/api/usuario/" + user.user + "/carrito",
+            data: {
+                user_id: user.id,
+                prod_id: id
+            },
+            headers: {
+                'X-Auth-Token': token
+            },
+            success: function(msg){
+                console.log(msg);
+                $.notify(msg);
+            },
+            error: function (xhr) {
+                console.log(xhr.responseText);
+            }
+        })
+    }
+}
+

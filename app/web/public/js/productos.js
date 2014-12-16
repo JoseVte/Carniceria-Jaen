@@ -34,6 +34,12 @@ function get_productos(){
             mostrar_productos(data)
         });
 }
+function get_productos_url(url) {
+    $.get(url)
+        .success(function (data) {
+            mostrar_productos(data)
+        });
+}
 function mostrar_productos(all){
     $("#productos").load("templates/productoTemplate.mustache #plantilla_paginacion", function() {
         var plantilla = document.getElementById("plantilla_paginacion").innerHTML;
@@ -63,3 +69,25 @@ function mostrar_detalles(producto){
         $("#body").html(Mustache.render(plantilla.replace('&gt;', '>'), producto, partial_img_detalles));//Antes de que se acabe la etiqueta
     });
 }
+
+/**********************************************************/
+/***************** Buscar productos ***********************/
+/**********************************************************/
+
+function search_producto() {
+    var search = $('#search').val();
+
+    if (search != "") {
+        $.get("/api/producto/buscar/" + search)
+            .success(function (data) {
+                mostrar_busqueda(data)
+            });
+    }
+}
+function mostrar_busqueda(data) {
+    $("#body").load("templates/productoTemplate.mustache #plantilla_paginacion", function () {
+        var plantilla = document.getElementById("plantilla_paginacion").innerHTML;
+        $("#body").html(Mustache.render(plantilla.replace('&gt;', '>'), data, partial_img_productos));
+    });
+}
+

@@ -5,6 +5,7 @@
 $(document).ready(function(){
     mostrar_logout();
     principal();
+    $(document).on('click', '#button_search', search_producto);
     $(document).on('click', "#inicio", principal);
     $(document).on('click', "#button_login", login);
     $(document).on('click', "#button_open_registro", mostrar_registro_parte_1);
