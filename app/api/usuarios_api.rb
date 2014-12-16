@@ -167,7 +167,6 @@ class UsuariosAPI < Sinatra::Base
     begin
       msg = @@carrito_bo.add_prod_en_carrito(datos,request.env['HTTP_X_AUTH_TOKEN'])
       status 201
-      content_type :json
       msg
     rescue CustomMsgException => e
       status e.status

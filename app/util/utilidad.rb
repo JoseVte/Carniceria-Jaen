@@ -31,7 +31,7 @@ class Utilidad
     if inicio.to_i > 1
       aux=1
       if inicio.to_i-cantidad.to_i>0
-        aux=inicio
+        aux= (inicio.to_i-cantidad.to_i)
       end
       result.store(:link_prev,{:rel => 'prev',:href => "#{url_base}?inicio=#{aux}&cantidad=#{cantidad}"})
     end

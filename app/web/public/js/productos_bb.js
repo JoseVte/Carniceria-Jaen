@@ -128,6 +128,7 @@ var CatalogoView = Backbone.View.extend({
         productoRouter.show(e.currentTarget.id.slice(4));
     },
     pagina: function (e) {
+        // TODO Arreglar la paginacion de backbone
         e.preventDefault();
         console.log(e.currentTarget.value)
     },
