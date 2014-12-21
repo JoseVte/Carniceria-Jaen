@@ -197,22 +197,22 @@ function checkEmail(email) {
     return regExpEmail.test(email);
 }
 function validar_imagen() {
-    var foto = document.getElementById("input_imagen_registro").files[0];
+    var foto = $("#input_imagen_registro")[0].files[0];
     var url_imagen;
     var helper = $("#help_imagen");
     var icon = $("#icon_help_imagen");
     if (foto == null) {
-        url_imagen = document.getElementById("input_imagen_registro").defaultValue;
+        url_imagen = $("#input_imagen_registro")[0].defaultValue;
     } else if (!foto.type.match("image.")) { //Solo subir imagenes
         helper.html("Suba una imagen");
         helper.addClass("alert alert-danger");
         icon.addClass("glyphicon-remove");
-    } else if (foto.size > 1048576) { //No debe ser mayor que un MB
+    } else if (foto.size > 1048576) { //No debe ser mayor que un 1MB
         helper.html("Imagen demasiado grande");
         helper.addClass("alert alert-danger");
         icon.addClass("glyphicon-remove");
     } else {
-        url_imagen = "img/usuarios/" + $("input[type='hidden']").val() + ".png";
+        url_imagen = "img/usuarios/" + datosFormRegistro.datos1.user + ".png";
 
         var reader = new FileReader();
         reader.onload = (function (archivo) {
@@ -232,17 +232,19 @@ function borrar_imagen() {
     $("#preview").attr({src: "img/missing_user.png", title: ""});
 }
 function upload_imagen(datos) {
-    var request = new XMLHttpRequest();
-    request.onreadystatechange = function () {
-        if (this.readyState == 4) {
-            if (this.status == 200) {
-                console.log('Imagen subida');
-            }
+    $.ajax({
+        type: 'POST',
+        url: "/web/upload",
+        data: datos,
+        success: function (msg) {
+            console.log(msg);
+            $.notify(msg);
+        },
+        error: function (xhr) {
+            console.log(xhr.responseText);
+            $.notify(xhr.responseText, 'error');
         }
-    };
-    request.open("POST", "/web/upload", true);
-    request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    request.send(datos)
+    });
 }
 
 /**********************************************************/

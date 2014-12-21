@@ -12,11 +12,12 @@ function registrar_usuario(datosFormRegistro) {
         .done(function (data) {
             console.log(data);
             //TODO Arreglar subida de imagenes
-            //upload_imagen();
+            //upload_imagen(datosFormRegistro.imagen);
             principal()
         })
         .fail(function (xhr) {
             console.log(xhr.responseText);
+            $.notify(xhr.responseText, 'error');
         });
 }
 function datos_registro(datosFormRegistro) {
@@ -102,6 +103,7 @@ function login() {
             },
             error: function (xhr) {
                 console.log(xhr.responseText);
+                $.notify(xhr.responseText, 'error');
             }
         });
     }
@@ -127,10 +129,10 @@ function logout() {
 /**********************************************************/
 
 function get_datos_user(){
-    var user = localStorage.getItem('usuario');
-    var token = localStorage.getItem('token');
+    if (have_credentiales()) {
+        var user = localStorage.getItem('usuario');
+        var token = localStorage.getItem('token');
 
-    if(token != null && user != null){
         $.ajax({
             type: "GET",
             url: "/api/usuario/" + user,
@@ -147,6 +149,8 @@ function get_datos_user(){
                 console.log(xhr.responseText);
             }
         });
+    } else {
+        $.notify('Error en las credenciales. Reloguee', 'error')
     }
 }
 
@@ -155,10 +159,10 @@ function get_datos_user(){
 /**********************************************************/
 
 function add_prod_carrito(id){
-    var user = JSON.parse(localStorage.getItem('usuarioObj'));
-    var token = localStorage.getItem('token');
+    if (have_credentiales()) {
+        var user = JSON.parse(localStorage.getItem('usuarioObj'));
+        var token = localStorage.getItem('token');
 
-    if(token != null && user != null){
         $.ajax({
             type: "POST",
             url: "/api/usuario/" + user.user + "/carrito",
@@ -175,8 +179,11 @@ function add_prod_carrito(id){
             },
             error: function (xhr) {
                 console.log(xhr.responseText);
+                $.notify(xhr.responseText, 'error');
             }
         })
+    } else {
+        $.notify('Debe estar logueado para comprar', 'error')
     }
 }
 

@@ -1,5 +1,6 @@
 require 'sinatra/base'
 require 'sinatra/reloader'
+require 'rmagick'
 
 class ServidorWeb < Sinatra::Base
   get '/' do
@@ -7,11 +8,14 @@ class ServidorWeb < Sinatra::Base
   end
 
   post '/upload' do
-    datos = JSON.parse(request.body.read)
     # TODO preguntar porque no guarda la imagen
-    imagen = File.new(datos['imagen']['path'], 'w')
-    imagen.puts(datos['imagen']['tempfile'].read)
-    imagen.close
+    url = params['url']
+    uri = params['src']
+
+    image = Magick::Image.from_blob(Base64.decode64(uri))
+    image[0].write(url) {
+      self.format = "png"
+    }
   end
 
 end
