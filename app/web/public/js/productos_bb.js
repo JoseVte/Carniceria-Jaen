@@ -34,10 +34,13 @@ var ProductoRouter = Backbone.Router.extend({
     routes: {
         "producto": "root",
         "producto/:id": "show",
-        "producto/ofertas": "ofertas"
+        "producto/ofertas": "ofertas",
+        "producto/search/:cadena": search
     },
-    root: function () {
+    root: function (url) {
+        url || (url = "/api/producto/all");
         var datosProductos = new Catalogo();
+        datosProductos.url = url;
         datosProductos.fetch({
             success: function () {
                 var productos = new CatalogoView();
@@ -68,6 +71,17 @@ var ProductoRouter = Backbone.Router.extend({
                 ofertas.render();
             }
         });
+    },
+    search: function (cadena) {
+        var model = new Catalogo();
+        var datosBusqueda = model.filtrar_por_nombre(cadena);
+        datosBusqueda.fetch({
+            success: function () {
+                var productos = new CatalogoView();
+                productos.productos = datosBusqueda;
+                productos.render();
+            }
+        })
     }
 });
 
@@ -109,9 +123,10 @@ var Catalogo = Backbone.Collection.extend({
     model: Producto,
     url: "../api/producto/all",
     filtrar_por_nombre: function (cadena) {
-        return this.filter(function (modelo) {
+        var filtered = this.filter(function (modelo) {
             return modelo.get('nombre').indexOf(cadena) >= 0
-        })
+        });
+        return new Producto(filtered);
     }
 });
 var CatalogoView = Backbone.View.extend({
@@ -120,8 +135,10 @@ var CatalogoView = Backbone.View.extend({
     id_template: '#plantilla_paginacion',
     partial: partial_img_productos,
     events: {
-        'click div>a': 'detail',
-        'click #productos>a': 'pagina'
+        'click main>div>a': 'detail',
+        'click #next>a': 'pagina',
+        'click #self>a': 'pagina',
+        'click #prev>a': 'pagina'
     },
     detail: function (e) {
         e.preventDefault();
@@ -130,7 +147,8 @@ var CatalogoView = Backbone.View.extend({
     pagina: function (e) {
         // TODO Arreglar la paginacion de backbone
         e.preventDefault();
-        console.log(e.currentTarget.value)
+        var url = e.currentTarget.href.replace("javascript:get_productos_url('", '').replace("')", '');
+        productoRouter.root(url);
     },
     render: function () {
         var that = this;
