@@ -42,7 +42,7 @@ class Utilidad
 
   # Dados el principio y la cantidad, devuelve un array con los parametros
   def self.parse_params(params)
-    inicio = 1
+    inicio = 0
     if !params[:inicio].nil?
       inicio = params[:inicio]
     end
