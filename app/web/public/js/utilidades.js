@@ -78,9 +78,9 @@ function validar_registro_parte_2(){
     arrayForm['telefono'] = 'Escriba un telefono';
     arrayForm['imagen'] = '';
 
-    var correcto = bucle_form(arrayForm,arrayDatos);
+    bucle_form(arrayForm, arrayDatos);
 
-    if(correcto){
+    if (comprobar_errores(arrayForm)) {
         datosFormRegistro.datos2 = arrayDatos;
         datosFormRegistro.imagen = {
             url: validar_imagen(),
@@ -109,9 +109,9 @@ function registro_completado() {
 
 //Funciones auxiliares para validar los formularios del registro
 function bucle_form(arrayForm, arrayDatos) {
-    var correcto = true, campo, i = 0;
+    var i = 0;
 
-    for (campo in arrayForm) {
+    for (var campo in arrayForm) {
         var valorCampo = $("#input_" + campo + "_registro").val();
         var helper = $("#help_" + campo);
         var icon = $("#icon_help_" + campo);
@@ -132,11 +132,6 @@ function bucle_form(arrayForm, arrayDatos) {
             };
             i++;
         }
-
-        if ((helper.html() == "") && correcto)
-            correcto = true;
-        else
-            correcto = false;
     }
 
     return correcto;
@@ -176,6 +171,18 @@ function validar_servidor(campo, valorCampo, helper, icon) {
                 icon.addClass("glyphicon-remove");
             }
             break;
+    }
+}
+function comprobar_errores(arrayForm) {
+    var correcto = true;
+
+    for (var campo in arrayForm) {
+        var helper = $("#help_" + campo);
+
+        if ((helper.html() == "") && correcto)
+            correcto = true;
+        else
+            correcto = false;
     }
 }
 function checkEmail(email) {
