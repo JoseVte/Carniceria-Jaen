@@ -11,7 +11,7 @@ class ProovedorBO
                    .offset(params[:inicio])
                    .limit(params[:cantidad])
                    .order('created_at DESC'),
-        total: Proovedor.count()
+        total: Proovedor.where("#{campo} LIKE ?", "%#{cadena}%").count()
     }
   end
 

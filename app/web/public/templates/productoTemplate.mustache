@@ -43,17 +43,17 @@
         <div class="panel-footer">
             <div id="{{link_prev.rel}}" class="col-xs-4">
                 {{#link_prev}}
-                    <a href="javascript:get_productos_url('{{link_prev.href}}')"><i
+                    <a href="javascript:{{> funcion}}('{{link_prev.href}}')"><i
                             class="fa fa-chevron-circle-left"></i> Anterior</a>
                 {{/link_prev}}
             </div>
             <div id="{{link.rel}}" class="col-xs-4">
-                <a href="javascript:get_productos_url('{{link.href}}')"><i class="fa fa-chevron-circle-up"></i> Actual
+                <a href="javascript:{{> funcion}}('{{link.href}}')"><i class="fa fa-chevron-circle-up"></i> Actual
                     <i class="fa fa-chevron-circle-up"></i></a>
             </div>
             <div id="{{link_next.rel}}" class="col-xs-4">
                 {{#link_next}}
-                    <a href="javascript:get_productos_url('{{link_next.href}}')">Siguiente <i
+                    <a href="javascript:{{> funcion}}('{{link_next.href}}')">Siguiente <i
                             class="fa fa-chevron-circle-right"></i></a>
                 {{/link_next}}
             </div>

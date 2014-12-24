@@ -28,13 +28,8 @@ function mostrar_ofertas(ofertas){
 /***************** Todos los productos ********************/
 /**********************************************************/
 
-function get_productos(){
-    $.get("/api/producto/all")
-        .success(function (data) {
-            mostrar_productos(data)
-        });
-}
 function get_productos_url(url) {
+    url || (url = "/api/producto/all");
     $.get(url)
         .success(function (data) {
             mostrar_productos(data)
@@ -43,6 +38,7 @@ function get_productos_url(url) {
 function mostrar_productos(all){
     $("#productos").load("templates/productoTemplate.mustache #plantilla_paginacion", function() {
         var plantilla = document.getElementById("plantilla_paginacion").innerHTML;
+        partial_img_productos.funcion = "get_productos_url";
         $("#productos").html(Mustache.render(plantilla.replace('&gt;', '>'), all, partial_img_productos));
     });
 }
@@ -74,11 +70,16 @@ function mostrar_detalles(producto){
 /***************** Buscar productos ***********************/
 /**********************************************************/
 
-function search_producto() {
+function search_producto(url) {
     var search = $('#search').val();
 
-    if (search != "") {
+    if (search != "" && (url instanceof Object)) {
         $.get("/api/producto/buscar/" + search)
+            .success(function (data) {
+                mostrar_busqueda(data)
+            });
+    } else if (!(url instanceof Object)) {
+        $.get(url)
             .success(function (data) {
                 mostrar_busqueda(data)
             });
@@ -87,6 +88,7 @@ function search_producto() {
 function mostrar_busqueda(data) {
     $("#body").load("templates/productoTemplate.mustache #plantilla_paginacion", function () {
         var plantilla = document.getElementById("plantilla_paginacion").innerHTML;
+        partial_img_productos.funcion = "search_producto";
         $("#body").html(Mustache.render(plantilla.replace('&gt;', '>'), data, partial_img_productos));
     });
 }

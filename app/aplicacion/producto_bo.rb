@@ -15,7 +15,7 @@ class ProductoBO
                    .offset(params[:inicio])
                    .limit(params[:cantidad])
                    .order('created_at DESC'),
-        total: Producto.count()
+        total: Producto.where("proovedor_id == ?", "#{proovedor}").count()
     }
   end
 
@@ -26,7 +26,7 @@ class ProductoBO
                    .offset(params[:inicio])
                    .limit(params[:cantidad])
                    .order('created_at DESC'),
-        total: Producto.count()
+        total: Producto.where("nombre LIKE ?", "%#{subcadena}%").count()
     }
   end
 

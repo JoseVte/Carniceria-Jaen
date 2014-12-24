@@ -24,7 +24,7 @@ function principal(){
         var plantilla = document.getElementById("plantilla_inicio").innerHTML;
         $("#body").html(Mustache.render(plantilla));
         get_ofertas();
-        get_productos();
+        get_productos_url();
     })
 }
 
