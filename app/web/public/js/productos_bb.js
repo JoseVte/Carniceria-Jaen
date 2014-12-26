@@ -244,7 +244,7 @@ var CRUDView = Backbone.View.extend({
         $.get('/api/producto/' + id).success(function (data) {
             that.$el.load(that.url_template, function () {
                 that.template = $(accion).html().replace('&gt;', '>');
-                that.$el.html(Mustache.render(that.template, data));
+                that.$el.html(Mustache.render(that.template, data, partial_img_productos));
             });
             return that;
         });

@@ -22,6 +22,9 @@ $(document).ready(function () {
     $(document).on('click', "#click_crud", function () {
         productoRouter.crud();
     });
+    $(document).on('click', "#update_crud", function () {
+        productoRouter.update(datosForm('#form_update_crud'));
+    });
 
     Backbone.history.start();
 });
@@ -376,11 +379,14 @@ function mostrar_logout() {
 /**********************************************************/
 
 function datosForm(form) {
-}
-function enviar_datos() {
-    var datos = datosForm('form_crear');
-    var p = new Producto(datos);
-    p.crear();
+    var inputs = $(form + " input");
+    var datos = {
+        'desc': $(form + " textarea").val()
+    };
+    for (var i = 0; i < inputs.length; i++) {
+        datos[inputs[i].id.replace('_input', '')] = inputs[i].value;
+    }
+    return datos;
 }
 
 /**********************************************************/
