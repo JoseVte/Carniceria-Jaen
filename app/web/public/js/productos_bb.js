@@ -32,12 +32,16 @@ var Producto = Backbone.Model.extend({
 
 var ProductoRouter = Backbone.Router.extend({
     routes: {
-        "producto": "root",
+        "all/:url": "all",
         "producto/:id": "show",
-        "producto/ofertas": "ofertas",
-        "producto/search/:cadena": search
+        "ofertas": "ofertas",
+        "search/:cadena": "search",
+        "crud": "crud",
+        "new": "crear",
+        "update": "update",
+        "delete": "delete"
     },
-    root: function (url) {
+    all: function (url) {
         url || (url = "/api/producto/all");
         var datosProductos = new Catalogo();
         datosProductos.url = url;
@@ -82,6 +86,24 @@ var ProductoRouter = Backbone.Router.extend({
                 productos.render();
             }
         })
+    },
+    crud: function (url) {
+        url || (url = "/api/producto/all");
+        var model = new Catalogo();
+        model.url = url;
+        model.fetch({
+            success: function () {
+                var productos = new CRUDView();
+                productos.productos = model;
+                productos.render();
+            }
+        })
+    },
+    crear: function () {
+    },
+    update: function () {
+    },
+    delete: function () {
     }
 });
 
@@ -103,6 +125,7 @@ var OfertasView = Backbone.View.extend({
     },
     detail: function (e) {
         e.preventDefault();
+        productoRouter.navigate('producto/' + e.currentTarget.id.slice(4));
         productoRouter.show(e.currentTarget.id.slice(4));
     },
     render: function () {
@@ -142,13 +165,14 @@ var CatalogoView = Backbone.View.extend({
     },
     detail: function (e) {
         e.preventDefault();
+        productoRouter.navigate('producto/' + e.currentTarget.id.slice(4));
         productoRouter.show(e.currentTarget.id.slice(4));
     },
     pagina: function (e) {
-        // TODO Arreglar la paginacion de backbone
         e.preventDefault();
-        var url = e.currentTarget.href.replace("javascript:get_productos_url('", '').replace("')", '');
-        productoRouter.root(url);
+        var url = e.currentTarget.href.replace("javascript:", '').replace("get_productos_url", '').replace("('", '').replace("')", '');
+        productoRouter.navigate('all/' + url.replace("/api/producto/all", ''));
+        productoRouter.all(url);
     },
     render: function () {
         var that = this;
@@ -174,6 +198,65 @@ var DetallesProducto = Backbone.View.extend({
         this.$el.load(this.url_template, function () {
             that.template = $(that.id_template).html().replace('&gt;', '>');
             that.$el.html(Mustache.render(that.template, that.datos.toJSON(), that.partial));
+        });
+        return this;
+    }
+});
+
+/**********************************************************/
+/***************** CRUD de productos **********************/
+/**********************************************************/
+
+var CRUDView = Backbone.View.extend({
+    el: "#body",
+    url_template: 'templates/CRUDTemplate.mustache',
+    id_template: '#menu',
+    modal_template: '#modal_generic',
+    partial: partial_img_productos,
+    events: {
+        'click #crear>a': 'crear',
+        'click .detail>button': 'detail',
+        'click .update>button': 'update',
+        'click .delete>button': 'delete'
+    },
+    crear: function (e) {
+    },
+    detail: function (e) {
+        var button = e.currentTarget;
+        var accion = button.dataset.action;
+        var id = button.dataset.id;
+        var that = this;
+
+        $.get('/api/producto/' + id).success(function (data) {
+            that.$el.load(that.url_template, function () {
+                that.template = $(accion).html().replace('&gt;', '>');
+                that.$el.html(Mustache.render(that.template, data));
+            });
+            return that;
+        });
+    },
+    update: function (e) {
+        var button = e.currentTarget;
+        var accion = button.dataset.action;
+        var id = button.dataset.id;
+        var that = this;
+
+        $.get('/api/producto/' + id).success(function (data) {
+            that.$el.load(that.url_template, function () {
+                that.template = $(accion).html().replace('&gt;', '>');
+                that.$el.html(Mustache.render(that.template, data));
+            });
+            return that;
+        });
+    },
+    delete: function (e) {
+    },
+    render: function () {
+        var that = this;
+        this.$el.load(this.url_template, function () {
+            that.template = $(that.id_template).html().replace('&gt;', '>');
+            that.partial.funcion = "productoRouter.crud";
+            that.$el.html(Mustache.render(that.template, that.productos.toJSON()[0], that.partial));
         });
         return this;
     }

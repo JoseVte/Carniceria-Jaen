@@ -1,0 +1,110 @@
+<div id="menu" xmlns="http://www.w3.org/1999/html">
+    <div id="crear">
+        <a href="#">Crear producto nuevo</a>
+    </div>
+    <table class="table table-hover table-striped table-condensed table-responsive">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Descripcion</th>
+            <th>Precio/Kg</th>
+            <th>Stock</th>
+            <th>Oferta</th>
+            <th>Rebaja</th>
+            <th>Proovedor</th>
+            <th>Fecha creacion</th>
+            <th>Fecha de modificacion</th>
+            <th style="text-align: center">DETALLES</th>
+            <th style="text-align: center">EDITAR</th>
+            <th style="text-align: center">BORRAR</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!--{{#contenido}}-->
+        <tr id="prod_{{id}}">
+            <td class="id"><b>{{id}}</b></td>
+            <td><b>{{nombre}}</b></td>
+            <td>{{descripcion}}</td>
+            <td style="text-align: right">{{precioKg}} €/Kg</td>
+            <td style="text-align: right">{{stock}}</td>
+            <td style="text-align: right">{{rebaja}} %</td>
+            <td style="text-align: center">{{ofertas}}</td>
+            <td style="text-align: center">{{proovedor_id}}</td>
+            <td>{{created_at}}</td>
+            <td>{{updated_at}}</td>
+            <td class="detail">
+                <button type="button" class="btn btn-primary" data-action="#detail" data-id="{{id}}">
+                    Detalles
+                </button>
+            </td>
+            <td class="editar">
+                <button type="button" class="btn btn-primary" data-action="#update" data-id="{{id}}">
+                    Modificar
+                </button>
+            </td>
+            <td class="borrar">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_crud"
+                        data-whatever="delete_{{id}}">
+                    Borrar
+                </button>
+            </td>
+        </tr>
+                <!--{{/contenido}}-->
+        </tbody>
+    </table>
+
+    <!--TODO ponerlo bonito -->
+    <div class="panel-footer">
+        <div id="{{link_prev.rel}}" class="col-xs-4">
+            {{#link_prev}}
+                <a href="javascript:{{> funcion}}('{{link_prev.href}}')"><i
+                        class="fa fa-chevron-circle-left"></i> Anterior</a>
+            {{/link_prev}}
+        </div>
+        <div id="{{link.rel}}" class="col-xs-4">
+            <a href="javascript:{{> funcion}}('{{link.href}}')"><i class="fa fa-chevron-circle-up"></i> Actual
+                <i class="fa fa-chevron-circle-up"></i></a>
+        </div>
+        <div id="{{link_next.rel}}" class="col-xs-4">
+            {{#link_next}}
+                <a href="javascript:{{> funcion}}('{{link_next.href}}')">Siguiente <i
+                        class="fa fa-chevron-circle-right"></i></a>
+            {{/link_next}}
+        </div>
+    </div>
+</div>
+
+<div id="detail">
+    <h4 class="modal-title" id="detail-modal">Detalles</h4>
+
+    <div>
+        <b>{{id}}</b><br>
+        <b>{{nombre}}</b><br>
+        {{descripcion}}<br>
+        {{precioKg}}<br>
+        {{stock}}<br>
+        {{rebaja}} %<br>
+        {{ofertas}}<br>
+        {{proovedor_id}}<br>
+        {{created_at}}<br>
+        {{updated_at}}<br>
+    </div>
+</div>
+
+<div id="update">
+    <h4 class="modal-title" id="detail-modal">Modificar</h4>
+
+    <div>
+        <b>{{id}}</b><br>
+        <b>{{nombre}}</b><br>
+        {{descripcion}}<br>
+        {{precioKg}}<br>
+        {{stock}}<br>
+        {{rebaja}} %<br>
+        {{ofertas}}<br>
+        {{proovedor_id}}<br>
+        {{created_at}}<br>
+        {{updated_at}}<br>
+    </div>
+</div>

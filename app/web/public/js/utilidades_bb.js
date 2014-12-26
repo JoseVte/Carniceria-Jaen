@@ -19,6 +19,10 @@ $(document).ready(function () {
     $(document).on('click', "#buttom_registro_edit", mostrar_registro_parte_1);
     $(document).on('click', "#buttom_registro_completar", registro_completado);
 
+    $(document).on('click', "#click_crud", function () {
+        productoRouter.crud();
+    });
+
     Backbone.history.start();
 });
 
@@ -27,7 +31,7 @@ function principal() {
     $("#body").load("templates/inicioTemplate.mustache #plantilla_inicio", function () {
         productoRouter = new ProductoRouter();
 
-        productoRouter.root();
+        productoRouter.all();
         productoRouter.ofertas();
     })
 }
@@ -137,8 +141,6 @@ function bucle_form(arrayForm, arrayDatos) {
             i++;
         }
     }
-
-    return correcto;
 }
 function validar_servidor(campo, valorCampo, helper, icon) {
     switch (campo) {
@@ -367,6 +369,18 @@ function mostrar_logout() {
         $.cookie.json = false;
         mostrar_login_ok(usuarioObj);
     }
+}
+
+/**********************************************************/
+/***************** CRUD de productos **********************/
+/**********************************************************/
+
+function datosForm(form) {
+}
+function enviar_datos() {
+    var datos = datosForm('form_crear');
+    var p = new Producto(datos);
+    p.crear();
 }
 
 /**********************************************************/
