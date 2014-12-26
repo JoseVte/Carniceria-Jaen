@@ -108,7 +108,25 @@ var ProductoRouter = Backbone.Router.extend({
             }
         })
     },
-    crear: function () {
+    crear: function (datos) {
+        var model = new Producto();
+        //TODO los datos no se pasan
+
+        model.on('invalid', function (model, errors) {
+            _.each(errors, function (error, i) {
+                $.notify(error.msg, 'error');
+            })
+        });
+
+        model.save(datos)
+            .success(function (msg) {
+                console.log(msg);
+                $.notify(msg);
+            })
+            .fail(function (xhr) {
+                console.log(xhr.responseText);
+                $.notify(xhr.responseText, 'error');
+            });
     },
     update: function (datos) {
         var model = new Producto();
@@ -252,12 +270,21 @@ var CRUDView = Backbone.View.extend({
     modal_template: '#modal_generic',
     partial: partial_img_productos,
     events: {
-        'click #crear>a': 'crear',
+        'click #new>button': 'crear',
         'click .detail>button': 'detail',
         'click .update>button': 'update',
         'click .delete>button': 'delete'
     },
     crear: function (e) {
+        var button = e.currentTarget;
+        var accion = button.dataset.action;
+        var that = this;
+
+        that.$el.load(that.url_template, function () {
+            that.template = $(accion).html().replace('&gt;', '>');
+            that.$el.html(Mustache.render(that.template));
+        });
+        return that;
     },
     detail: function (e) {
         var button = e.currentTarget;
