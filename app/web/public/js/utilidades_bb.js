@@ -25,6 +25,9 @@ $(document).ready(function () {
     $(document).on('click', "#update_crud", function () {
         productoRouter.update(datosForm('#form_update_crud'));
     });
+    $(document).on('click', "#button_delete_ok", function () {
+        productoRouter.delete($('#id').html());
+    });
 
     Backbone.history.start();
 });
@@ -381,11 +384,12 @@ function mostrar_logout() {
 function datosForm(form) {
     var inputs = $(form + " input");
     var datos = {
-        'desc': $(form + " textarea").val()
+        'descripcion': $(form + " textarea").val()
     };
     for (var i = 0; i < inputs.length; i++) {
         datos[inputs[i].id.replace('_input', '')] = inputs[i].value;
     }
+    datos['url_imagen'] = inputs[9].attributes[0].value;
     return datos;
 }
 

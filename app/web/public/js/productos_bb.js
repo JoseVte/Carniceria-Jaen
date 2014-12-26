@@ -3,6 +3,8 @@
  */
 var Producto = Backbone.Model.extend({
     urlRoot: '../api/producto',
+    urlCreate: '../api/producto/new',
+    urlUpdate: '../api/producto/update',
     defaults: {
         stock: 0,
         ofertas: false,
@@ -11,22 +13,29 @@ var Producto = Backbone.Model.extend({
     },
     validate: function (attrs) {
         var errores = [];
-        if (!attrs.nombre)
-            errores.push("Falta nombre");
-        if (!attrs.precioKg)
-            errores.push("Faltan precioKg");
+        if (!attrs.nombre || attrs.nombre == "")
+            errores.push({msg: "Falta nombre"});
+        if (!attrs.precioKg || attrs.precioKg == "")
+            errores.push({msg: "Faltan precioKg"});
         if (errores.length > 0)
             return errores;
     },
-    crear: function () {
-        return this.save(null, {
-            success: function (model, response, opts) {
-                console.log('Producto ' + model.id + ' creado correctamente')
-            },
-            error: function (model, xhr, opts) {
-                console.log("Error al crear, status: " + xhr.status + " response: " + xhr.responseText)
-            }
-        })
+    sync: function (method, model, options) {
+        if (method == 'GET' || method == 'DELETE')
+            options.url = model.urlRoot;
+        else if (method == 'PUT')
+            options.url = model.urlUpdate;
+        else if (method == 'POST')
+            options.url = model.urlCreate;
+
+        return Backbone.sync(method, model, options);
+    },
+    save: function (attributes, options) {
+        options = _.defaults((options || {}), {
+            url: this.urlUpdate,
+            headers: {'X-Auth-Token': localStorage.getItem('token')}
+        });
+        return Backbone.Model.prototype.save.call(this, attributes, options);
     }
 });
 
@@ -39,7 +48,7 @@ var ProductoRouter = Backbone.Router.extend({
         "crud": "crud",
         "new": "crear",
         "update": "update",
-        "delete": "delete"
+        "delete/:id": "delete"
     },
     all: function (url) {
         url || (url = "/api/producto/all");
@@ -101,9 +110,38 @@ var ProductoRouter = Backbone.Router.extend({
     },
     crear: function () {
     },
-    update: function () {
+    update: function (datos) {
+        var model = new Producto();
+        //TODO los datos no se pasan
+
+        model.on('invalid', function (model, errors) {
+            _.each(errors, function (error, i) {
+                $.notify(error.msg, 'error');
+            })
+        });
+
+        model.save(datos)
+            .success(function (msg) {
+                console.log(msg);
+                $.notify(msg);
+            })
+            .fail(function (xhr) {
+                console.log(xhr.responseText);
+                $.notify(xhr.responseText, 'error');
+            });
     },
-    delete: function () {
+    delete: function (id) {
+        var model = new Producto({id: id});
+
+        model.destroy({headers: {'X-Auth-Token': localStorage.getItem('token')}})
+            .success(function (msg) {
+                console.log(msg);
+                $.notify(msg);
+            })
+            .fail(function (xhr) {
+                console.log(xhr.responseText);
+                $.notify(xhr.responseText, 'error');
+            });
     }
 });
 
@@ -250,6 +288,18 @@ var CRUDView = Backbone.View.extend({
         });
     },
     delete: function (e) {
+        var button = e.currentTarget;
+        var accion = button.dataset.action;
+        var id = button.dataset.id;
+        var that = this;
+
+        $.get('/api/producto/' + id).success(function (data) {
+            that.$el.load(that.url_template, function () {
+                that.template = $(accion).html().replace('&gt;', '>');
+                that.$el.html(Mustache.render(that.template, data));
+            });
+            return that;
+        });
     },
     render: function () {
         var that = this;

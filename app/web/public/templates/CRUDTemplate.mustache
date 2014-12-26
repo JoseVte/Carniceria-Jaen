@@ -44,8 +44,7 @@
                 </button>
             </td>
             <td class="delete">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_crud"
-                        data-whatever="delete_{{id}}">
+                <button type="button" class="btn btn-primary" data-action="#delete" data-id="{{id}}">
                     Borrar
                 </button>
             </td>
@@ -77,26 +76,16 @@
 
 <div id="detail">
     <h4 class="modal-title">Detalles</h4>
-
     <div class="row">
         <div class="col-xs-2">ID:</div>{{id}}<br>
-
         <div class="col-xs-2">Nombre:</div>{{nombre}}<br>
-
         <div class="col-xs-2">Descricion:</div>{{descripcion}}<br>
-
         <div class="col-xs-2">Precio/Kg:</div>{{precioKg}} €/Kg<br>
-
         <div class="col-xs-2">Stock:</div>{{stock}}<br>
-
         <div class="col-xs-2">Rebajado:</div>{{rebaja}} %<br>
-
         <div class="col-xs-2">Oferta:</div>{{ofertas}}<br>
-
         <div class="col-xs-2">Nº proovedor:</div>{{proovedor_id}}<br>
-
         <div class="col-xs-2">Creado el:</div>{{created_at}}<br>
-
         <div class="col-xs-2">Modificado el:</div>{{updated_at}}<br>
     </div>
 </div>
@@ -192,4 +181,17 @@
         </div>
         <button type="button" class="btn btn-primary" id="update_crud">Modificar</button>
     </form>
+</div>
+
+<div id="delete">
+    <h4 class="modal-title">Borrar</h4>
+
+    <div class="row">
+        <div class="col-xs-4">¿Quieres borrar el producto <span id="id">{{id}}</span> ({{nombre}})?</div>
+        <br>
+
+        <div class="col-xs-4">
+            <input type="button" id="button_delete_ok" class="btn btn-primary" value="Si">
+        </div>
+    </div>
 </div>
