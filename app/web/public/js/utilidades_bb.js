@@ -389,7 +389,8 @@ function datosForm(form) {
     for (var i = 0; i < inputs.length; i++) {
         datos[inputs[i].id.replace('_input', '')] = inputs[i].value;
     }
-    datos['url_imagen'] = inputs[9].attributes[0].value;
+    datos['ofertas'] = $("input:checked")[0].checked;
+    datos['url_imagen'] = $('input[type=file]')[0].defaultValue;
     return datos;
 }
 

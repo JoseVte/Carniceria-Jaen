@@ -95,46 +95,51 @@ class ProductosAPI < Sinatra::Base
 
   # Actualiza los campos de un producto. Si se viola alguna regla de la base de datos lanza un 400
   put '/update' do
-    if params['id'].nil?
-      status 400
-      'Error 400: Falta el id en el formulario'
-    else
-      datos = {:id => params['id']}
+    datos = {}
+    begin
+      datos = JSON.parse(request.body.read)
+    rescue Exception => e
+      if params['id'].nil?
+        status 400
+        'Error 400: Falta el id en el formulario'
+      else
+        datos = {:id => params['id']}
 
-      # Permite elegir que parametro van a ser modificados
-      if !params['nombre'].nil?
-        datos.store('nombre',params['nombre'])
-      end
+        # Permite elegir que parametro van a ser modificados
+        if !params['nombre'].nil?
+          datos.store('nombre', params['nombre'])
+        end
 
-      if !params['descripcion'].nil?
-        datos.store('descripcion',params['descripcion'])
-      end
+        if !params['descripcion'].nil?
+          datos.store('descripcion', params['descripcion'])
+        end
 
-      if !params['precioKg'].nil?
-        datos.store('precioKg',params['precioKg'])
-      end
+        if !params['precioKg'].nil?
+          datos.store('precioKg', params['precioKg'])
+        end
 
-      if !params['stock'].nil?
-        datos.store('stock',params['stock'])
-      end
+        if !params['stock'].nil?
+          datos.store('stock', params['stock'])
+        end
 
-      if !params['ofertas'].nil?
-        datos.store('ofertas',params['ofertas'])
-      end
+        if !params['ofertas'].nil?
+          datos.store('ofertas', params['ofertas'])
+        end
 
-      if !params['proovedor_id'].nil?
-        datos.store('proovedor_id',params['proovedor_id'])
+        if !params['proovedor_id'].nil?
+          datos.store('proovedor_id', params['proovedor_id'])
+        end
       end
+    end
 
-      begin
-        p = @@producto_bo.update(datos,request.env['HTTP_X_AUTH_TOKEN'])
-        status 200
-        content_type :json
-        p.to_json
-      rescue CustomMsgException => e
-        status e.status
-        e.message
-      end
+    begin
+      p = @@producto_bo.update(datos, request.env['HTTP_X_AUTH_TOKEN'])
+      status 200
+      content_type :json
+      p.to_json
+    rescue CustomMsgException => e
+      status e.status
+      e.message
     end
   end
 

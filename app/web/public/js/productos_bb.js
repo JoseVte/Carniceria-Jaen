@@ -129,7 +129,7 @@ var ProductoRouter = Backbone.Router.extend({
             });
     },
     update: function (datos) {
-        var model = new Producto();
+        var model = new Producto(datos);
         //TODO los datos no se pasan
 
         model.on('invalid', function (model, errors) {
@@ -138,7 +138,7 @@ var ProductoRouter = Backbone.Router.extend({
             })
         });
 
-        model.save(datos)
+        model.save()
             .success(function (msg) {
                 console.log(msg);
                 $.notify(msg);

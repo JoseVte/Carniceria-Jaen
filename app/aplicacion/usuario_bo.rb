@@ -19,7 +19,7 @@ class UsuarioBO
 
   # Comprobar si el usuario tiene permisos para acceder a la funcionalidad
   def self.permitted?(token,user_who_wants_to_access)
-    if !token.nil?
+    if !token.nil? && token!='null'
       begin
         u = JWT.decode(token, Utilidad::SECRET)
         if !u.nil?
