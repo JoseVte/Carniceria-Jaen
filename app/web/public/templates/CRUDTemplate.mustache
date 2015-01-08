@@ -78,12 +78,12 @@
 <div id="create">
     <h4 class="modal-title" id="detail-modal">Crear</h4>
 
-    <form id="form_update_crud">
+    <form id="form_create_crud">
         <div class="row">
             <div class="col-xs-6">
                 <div class="form-group">
                     <label for="nombre_input">Nombre</label>
-                    <input type="text" class="form-control" id="nombre_input" placeholder="Nombre del producto">
+                    <input type="text" class="form-control valids" id="nombre_input" placeholder="Nombre del producto">
                     <span class="help-block" id="help_nombre_input"></span>
                 </div>
                 <div class="form-group">
@@ -94,37 +94,37 @@
                 </div>
                 <div class="form-group">
                     <label for="precioKg_input">Precio</label>
-
                     <div class="input-group">
-                        <input type="text" class="form-control" id="precioKg_input" placeholder="Precio del producto">
+                        <input type="text" class="form-control valids" id="precioKg_input"
+                               placeholder="Precio del producto">
                         <span class="input-group-addon">€/Kg</span>
                     </div>
                     <span class="help-block" id="help_precioKg_input"></span>
                 </div>
                 <div class="form-group">
                     <label for="stock_input">Stock</label>
-                    <input type="text" class="form-control" id="stock_input" placeholder="Stock del producto">
+                    <input type="text" class="form-control valids" id="stock_input" placeholder="Stock del producto">
                     <span class="help-block" id="help_stock_input"></span>
                 </div>
                 <div class="form-group">
                     <label for="proovedor_id_input">Nº proovedor</label>
-                    <input type="text" class="form-control" id="proovedor_id_input" placeholder="Numero del proovedor">
+                    <input type="text" class="form-control valids" id="proovedor_id_input"
+                           placeholder="Numero del proovedor">
                     <span class="help-block" id="help_proovedor_id_input"></span>
                 </div>
             </div>
             <div class="col-xs-6">
                 <div class="form-group">
                     <label for="rebaja_input">Rebaja</label>
-
                     <div class="input-group">
-                        <input type="text" class="form-control" id="rebaja_input" placeholder="Rebaja del producto">
+                        <input type="text" class="form-control valids" id="rebaja_input"
+                               placeholder="Rebaja del producto">
                         <span class="input-group-addon">%</span>
                     </div>
                     <span class="help-block" id="help_rebaja_input"></span>
                 </div>
                 <div class="form-group">
                     <label for="ofertas_input">Oferta</label>
-
                     <div class="checkbox">
                         <label>
                             <input type="checkbox" id="ofertas_input">Oferta
@@ -134,12 +134,12 @@
                 </div>
                 <div class="form-group input-group">
                     <label for="url_imagen_input">Imagen</label>
-                    <input value="img/missing_prod.png" class="form-control" id="url_imagen_input" type="file"/>
+                    <input value="img/missing_prod.png" class="form-control valids" id="url_imagen_input" type="file"/>
                     <span class="help-block" id="help_url_imagen_input"></span>
                 </div>
             </div>
         </div>
-        <button type="button" class="btn btn-primary" id="update_crud">Crear</button>
+        <button type="button" class="btn btn-primary" id="create_crud">Crear</button>
     </form>
 </div>
 
@@ -167,59 +167,56 @@
             <div class="col-xs-6">
                 <div class="form-group">
                     <label for="id_input">ID</label>
-                    <input type="text" class="form-control" id="id_input" placeholder="ID del producto" value="{{id}}"
-                           disabled>
+                    <input type="text" class="form-control valids" id="id_input" placeholder="ID del producto"
+                           value="{{id}}" disabled>
                     <span class="help-block" id="help_id_input"></span>
                 </div>
                 <div class="form-group">
                     <label for="nombre_input">Nombre</label>
-                    <input type="text" class="form-control" id="nombre_input" placeholder="Nombre del producto"
+                    <input type="text" class="form-control valids" id="nombre_input" placeholder="Nombre del producto"
                            value="{{nombre}}">
                     <span class="help-block" id="help_nombre_input"></span>
                 </div>
                 <div class="form-group">
                     <label for="descripcion_input">Descripcion</label>
-                    <textarea placeholder="Descripcion del producto" class="form-control"
+                    <textarea placeholder="Descripcion del producto" class="form-control valids"
                               id="descripcion_input">{{descripcion}}</textarea>
                     <span class="help-block" id="help_descripcion_input"></span>
                 </div>
                 <div class="form-group">
                     <label for="precioKg_input">Precio</label>
-
                     <div class="input-group">
-                        <input type="text" class="form-control" id="precioKg_input" placeholder="Precio del producto"
-                               value="{{precioKg}}">
+                        <input type="text" class="form-control valids" id="precioKg_input"
+                               placeholder="Precio del producto" value="{{precioKg}}">
                         <span class="input-group-addon">€/Kg</span>
                     </div>
                     <span class="help-block" id="help_precioKg_input"></span>
                 </div>
                 <div class="form-group">
                     <label for="stock_input">Stock</label>
-                    <input type="text" class="form-control" id="stock_input" placeholder="Stock del producto"
+                    <input type="text" class="form-control valids" id="stock_input" placeholder="Stock del producto"
                            value="{{stock}}">
                     <span class="help-block" id="help_stock_input"></span>
                 </div>
                 <div class="form-group">
                     <label for="proovedor_id_input">Nº proovedor</label>
-                    <input type="text" class="form-control" id="proovedor_id_input" placeholder="Numero del proovedor"
-                           value="{{proovedor_id}}">
+                    <input type="text" class="form-control valids" id="proovedor_id_input"
+                           placeholder="Numero del proovedor" value="{{proovedor_id}}">
                     <span class="help-block" id="help_proovedor_id_input"></span>
                 </div>
             </div>
             <div class="col-xs-6">
                 <div class="form-group">
                     <label for="rebaja_input">Rebaja</label>
-
                     <div class="input-group">
-                        <input type="text" class="form-control" id="rebaja_input" placeholder="Rebaja del producto"
-                               value="{{rebaja}}">
+                        <input type="text" class="form-control valids" id="rebaja_input"
+                               placeholder="Rebaja del producto" value="{{rebaja}}">
                         <span class="input-group-addon">%</span>
                     </div>
                     <span class="help-block" id="help_rebaja_input"></span>
                 </div>
                 <div class="form-group">
                     <label for="ofertas_input">Oferta</label>
-
                     <div class="checkbox">
                         <label>
                             <input type="checkbox" id="ofertas_input" checked="{{ofertas}}" value="{{ofertas}}">Oferta
@@ -241,7 +238,7 @@
                 </div>
                 <div class="form-group input-group">
                     <label for="url_imagen_input">Imagen</label>
-                    <input value="{{url_imagen}}" class="form-control" id="url_imagen_input" type="file"/>
+                    <input value="{{url_imagen}}" class="form-control valids" id="url_imagen_input" type="file"/>
                     <span class="help-block" id="help_url_imagen_input"></span>
                     <br>
                     {{> img}}

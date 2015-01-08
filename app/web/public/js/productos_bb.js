@@ -30,7 +30,14 @@ var Producto = Backbone.Model.extend({
 
         return Backbone.sync(method, model, options);
     },
-    save: function (attributes, options) {
+    saveCreate: function (attributes, options) {
+        options = _.defaults((options || {}), {
+            url: this.urlCreate,
+            headers: {'X-Auth-Token': localStorage.getItem('token')}
+        });
+        return Backbone.Model.prototype.save.call(this, attributes, options);
+    },
+    saveUpdate: function (attributes, options) {
         options = _.defaults((options || {}), {
             url: this.urlUpdate,
             headers: {'X-Auth-Token': localStorage.getItem('token')}
@@ -109,8 +116,7 @@ var ProductoRouter = Backbone.Router.extend({
         })
     },
     crear: function (datos) {
-        var model = new Producto();
-        //TODO los datos no se pasan
+        var model = new Producto(datos);
 
         model.on('invalid', function (model, errors) {
             _.each(errors, function (error, i) {
@@ -118,10 +124,10 @@ var ProductoRouter = Backbone.Router.extend({
             })
         });
 
-        model.save(datos)
-            .success(function (msg) {
-                console.log(msg);
-                $.notify(msg);
+        model.saveCreate()
+            .success(function (json) {
+                console.log('Creacion con exito');
+                $.notify('Creacion con exito');
             })
             .fail(function (xhr) {
                 console.log(xhr.responseText);
@@ -130,7 +136,6 @@ var ProductoRouter = Backbone.Router.extend({
     },
     update: function (datos) {
         var model = new Producto(datos);
-        //TODO los datos no se pasan
 
         model.on('invalid', function (model, errors) {
             _.each(errors, function (error, i) {
@@ -138,10 +143,10 @@ var ProductoRouter = Backbone.Router.extend({
             })
         });
 
-        model.save()
-            .success(function (msg) {
-                console.log(msg);
-                $.notify(msg);
+        model.saveUpdate()
+            .success(function (json) {
+                console.log('Actualizacion con exito');
+                $.notify('Actualizacion con exito');
             })
             .fail(function (xhr) {
                 console.log(xhr.responseText);

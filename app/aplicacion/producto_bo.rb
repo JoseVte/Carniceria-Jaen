@@ -63,9 +63,9 @@ class ProductoBO
   # Modifica un producto a partir del id
   def update(datos, login)
     if UsuarioBO.permitted?(login,'root')
-      p = find_by_id(datos[:id])
+      p = find_by_id(datos['id'])
 
-      datos.delete(:id)
+      datos.delete('id')
       raise CustomMsgException.new(500,'Error 500: No se ha podido modificar') if !p.update(datos)
 
       p.save

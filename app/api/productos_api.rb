@@ -75,13 +75,19 @@ class ProductosAPI < Sinatra::Base
 
   # Crea un producto nuevo. Si ya existe o esta mal formado el formulario lanza un 400
   post '/new' do
-    datos = {:nombre => params['nombre'],
+    datos = {}
+    begin
+      datos = JSON.parse(request.body.read)
+    rescue Exception => e
+      datos = {:nombre => params['nombre'],
              :descripcion => params['descripcion'],
              :precioKg => params['precioKg'],
              :stock => params['stock'],
              :ofertas => params['ofertas'],
              :proovedor_id => params['proovedor_id']
-    }
+      }
+    end
+
     begin
       p = @@producto_bo.create(datos,request.env['HTTP_X_AUTH_TOKEN'])
       status 201
@@ -103,7 +109,7 @@ class ProductosAPI < Sinatra::Base
         status 400
         'Error 400: Falta el id en el formulario'
       else
-        datos = {:id => params['id']}
+        datos = {'id' => params['id']}
 
         # Permite elegir que parametro van a ser modificados
         if !params['nombre'].nil?

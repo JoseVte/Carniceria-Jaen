@@ -22,6 +22,9 @@ $(document).ready(function () {
     $(document).on('click', "#click_crud", function () {
         productoRouter.crud();
     });
+    $(document).on('click', "#create_crud", function () {
+        productoRouter.crear(datosForm('#form_create_crud'));
+    });
     $(document).on('click', "#update_crud", function () {
         productoRouter.update(datosForm('#form_update_crud'));
     });
@@ -382,14 +385,14 @@ function mostrar_logout() {
 /**********************************************************/
 
 function datosForm(form) {
-    var inputs = $(form + " input");
+    var inputs = $(form + " .valids");
     var datos = {
         'descripcion': $(form + " textarea").val()
     };
     for (var i = 0; i < inputs.length; i++) {
         datos[inputs[i].id.replace('_input', '')] = inputs[i].value;
     }
-    datos['ofertas'] = $("input:checked")[0].checked;
+    datos['ofertas'] = $("input:checkbox")[0].checked;
     datos['url_imagen'] = $('input[type=file]')[0].defaultValue;
     return datos;
 }
