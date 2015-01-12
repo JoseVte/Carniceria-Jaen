@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>jasmine-jquery.js - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../../";
+</script>
+
+<script src="../../../js/jquery.js"></script>
+<script src="../../../js/darkfish.js"></script>
+
+<link href="../../../css/fonts.css" rel="stylesheet">
+<link href="../../../css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="file">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../../table_of_contents.html#pages">Pages</a>
+    <a href="../../../table_of_contents.html#classes">Classes</a>
+    <a href="../../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="project-metadata">
+    <div id="fileindex-section" class="nav-section">
+  <h3>Pages</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../../../Gemfile.html">Gemfile</a>
+  
+    <li><a href="../../../Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="../../../README_md.html">README</a>
+  
+    <li><a href="../../../Rakefile.html">Rakefile</a>
+  
+    <li><a href="../../../app/web/public/css/bootstrap-theme_css.html">bootstrap-theme.css</a>
+  
+    <li><a href="../../../app/web/public/css/bootstrap-theme_css_map.html">bootstrap-theme.css.map</a>
+  
+    <li><a href="../../../app/web/public/css/bootstrap-theme_min_css.html">bootstrap-theme.min.css</a>
+  
+    <li><a href="../../../app/web/public/css/bootstrap_css.html">bootstrap.css</a>
+  
+    <li><a href="../../../app/web/public/css/bootstrap_css_map.html">bootstrap.css.map</a>
+  
+    <li><a href="../../../app/web/public/css/bootstrap_min_css.html">bootstrap.min.css</a>
+  
+    <li><a href="../../../app/web/public/css/estilo_css.html">estilo.css</a>
+  
+    <li><a href="../../../app/web/public/css/font-awesome_css.html">font-awesome.css</a>
+  
+    <li><a href="../../../app/web/public/css/font-awesome_min_css.html">font-awesome.min.css</a>
+  
+    <li><a href="../../../app/web/public/css/notify_css.html">notify.css</a>
+  
+    <li><a href="../../../app/web/public/fonts/fontawesome-webfont_svg.html">fontawesome-webfont.svg</a>
+  
+    <li><a href="../../../app/web/public/fonts/glyphicons-halflings-regular_svg.html">glyphicons-halflings-regular.svg</a>
+  
+    <li><a href="../../../app/web/public/humans_txt.html">humans</a>
+  
+    <li><a href="../../../app/web/public/index_html.html">index.html</a>
+  
+    <li><a href="../../../app/web/public/index_bb_html.html">index_bb.html</a>
+  
+    <li><a href="../../../app/web/public/js/constantes_js.html">constantes.js</a>
+  
+    <li><a href="../../../app/web/public/js/lib/backbone_js.html">backbone.js</a>
+  
+    <li><a href="../../../app/web/public/js/lib/bootstrap_min_js.html">bootstrap.min.js</a>
+  
+    <li><a href="../../../app/web/public/js/lib/jquery-1_11_1_js.html">jquery-1.11.1.js</a>
+  
+    <li><a href="../../../app/web/public/js/lib/jquery-1_11_1_min_js.html">jquery-1.11.1.min.js</a>
+  
+    <li><a href="../../../app/web/public/js/lib/jquery-1_11_1_min_map.html">jquery-1.11.1.min.map</a>
+  
+    <li><a href="../../../app/web/public/js/lib/jquery_cookie_js.html">jquery.cookie.js</a>
+  
+    <li><a href="../../../app/web/public/js/lib/mustache_js.html">mustache.js</a>
+  
+    <li><a href="../../../app/web/public/js/lib/notify_js.html">notify.js</a>
+  
+    <li><a href="../../../app/web/public/js/lib/underscore-min_js.html">underscore-min.js</a>
+  
+    <li><a href="../../../app/web/public/js/lib/underscore-min_map.html">underscore-min.map</a>
+  
+    <li><a href="../../../app/web/public/js/lib/zepto_min_js.html">zepto.min.js</a>
+  
+    <li><a href="../../../app/web/public/js/productos_js.html">productos.js</a>
+  
+    <li><a href="../../../app/web/public/js/productos_bb_js.html">productos_bb.js</a>
+  
+    <li><a href="../../../app/web/public/js/usuarios_js.html">usuarios.js</a>
+  
+    <li><a href="../../../app/web/public/js/utilidades_js.html">utilidades.js</a>
+  
+    <li><a href="../../../app/web/public/js/utilidades_bb_js.html">utilidades_bb.js</a>
+  
+    <li><a href="../../../app/web/public/less/bordered-pulled_less.html">bordered-pulled.less</a>
+  
+    <li><a href="../../../app/web/public/less/core_less.html">core.less</a>
+  
+    <li><a href="../../../app/web/public/less/fixed-width_less.html">fixed-width.less</a>
+  
+    <li><a href="../../../app/web/public/less/font-awesome_less.html">font-awesome.less</a>
+  
+    <li><a href="../../../app/web/public/less/icons_less.html">icons.less</a>
+  
+    <li><a href="../../../app/web/public/less/larger_less.html">larger.less</a>
+  
+    <li><a href="../../../app/web/public/less/list_less.html">list.less</a>
+  
+    <li><a href="../../../app/web/public/less/mixins_less.html">mixins.less</a>
+  
+    <li><a href="../../../app/web/public/less/path_less.html">path.less</a>
+  
+    <li><a href="../../../app/web/public/less/rotated-flipped_less.html">rotated-flipped.less</a>
+  
+    <li><a href="../../../app/web/public/less/spinning_less.html">spinning.less</a>
+  
+    <li><a href="../../../app/web/public/less/stacked_less.html">stacked.less</a>
+  
+    <li><a href="../../../app/web/public/less/variables_less.html">variables.less</a>
+  
+    <li><a href="../../../app/web/public/robots_txt.html">robots</a>
+  
+    <li><a href="../../../app/web/public/scss/_bordered-pulled_scss.html">_bordered-pulled.scss</a>
+  
+    <li><a href="../../../app/web/public/scss/_core_scss.html">_core.scss</a>
+  
+    <li><a href="../../../app/web/public/scss/_fixed-width_scss.html">_fixed-width.scss</a>
+  
+    <li><a href="../../../app/web/public/scss/_icons_scss.html">_icons.scss</a>
+  
+    <li><a href="../../../app/web/public/scss/_larger_scss.html">_larger.scss</a>
+  
+    <li><a href="../../../app/web/public/scss/_list_scss.html">_list.scss</a>
+  
+    <li><a href="../../../app/web/public/scss/_mixins_scss.html">_mixins.scss</a>
+  
+    <li><a href="../../../app/web/public/scss/_path_scss.html">_path.scss</a>
+  
+    <li><a href="../../../app/web/public/scss/_rotated-flipped_scss.html">_rotated-flipped.scss</a>
+  
+    <li><a href="../../../app/web/public/scss/_spinning_scss.html">_spinning.scss</a>
+  
+    <li><a href="../../../app/web/public/scss/_stacked_scss.html">_stacked.scss</a>
+  
+    <li><a href="../../../app/web/public/scss/_variables_scss.html">_variables.scss</a>
+  
+    <li><a href="../../../app/web/public/scss/font-awesome_scss.html">font-awesome.scss</a>
+  
+    <li><a href="../../../app/web/public/templates/CRUDTemplate_mustache.html">CRUDTemplate.mustache</a>
+  
+    <li><a href="../../../app/web/public/templates/inicioTemplate_mustache.html">inicioTemplate.mustache</a>
+  
+    <li><a href="../../../app/web/public/templates/loginTemplate_mustache.html">loginTemplate.mustache</a>
+  
+    <li><a href="../../../app/web/public/templates/productoTemplate_mustache.html">productoTemplate.mustache</a>
+  
+    <li><a href="../../../app/web/public/templates/registroTemplate_mustache.html">registroTemplate.mustache</a>
+  
+    <li><a href="../../../app/web/public/templates/usuarioTemplate_mustache.html">usuarioTemplate.mustache</a>
+  
+    <li><a href="../../../carniceria_sublime-project.html">carniceria.sublime-project</a>
+  
+    <li><a href="../../../carniceria_sublime-workspace.html">carniceria.sublime-workspace</a>
+  
+    <li><a href="../../../comandosDB_sh.html">comandosDB.sh</a>
+  
+    <li><a href="../../../comandosDoc_sh.html">comandosDoc.sh</a>
+  
+    <li><a href="../../../config_ru.html">config.ru</a>
+  
+    <li><a href="../../../proyecto-carniceria_komodoproject.html">proyecto-carniceria.komodoproject</a>
+  
+    <li><a href="../../../spec/javascripts/fixtures/detalles_proyecto_html.html">detalles_proyecto.html</a>
+  
+    <li><a href="../../../spec/javascripts/helpers/jasmine-jquery_js.html">jasmine-jquery.js</a>
+  
+    <li><a href="../../../spec/javascripts/helpers/lib/jquery-2_1_1_min_js.html">jquery-2.1.1.min.js</a>
+  
+    <li><a href="../../../spec/javascripts/helpers/lib/mock-ajax_js.html">mock-ajax.js</a>
+  
+    <li><a href="../../../spec/javascripts/principalSpec_js.html">principalSpec.js</a>
+  
+    <li><a href="../../../spec/javascripts/proyectos_spec_js.html">proyectos_spec.js</a>
+  
+    <li><a href="../../../spec/javascripts/saludo_spec_js.html">saludo_spec.js</a>
+  
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-label="Page spec/javascripts/helpers/jasmine-jquery.js">
+
+<pre> !
+Jasmine-jQuery: a set of jQuery helpers for Jasmine tests.
+
+Version 2.0.5
+
+https://github.com/velesin/jasmine-jquery
+
+Copyright (c) 2010-2014 Wojciech Zawistowski, Travis Jeffery
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+&quot;Software&quot;), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</pre>
+
+<p>+function (window, jasmine, $) {</p>
+
+<pre>&quot;use strict&quot;;
+
+jasmine.spiedEventsKey = function (selector, eventName) {
+    return [$(selector).selector, eventName].toString()
+};
+
+jasmine.getFixtures = function () {
+    return jasmine.currentFixtures_ = jasmine.currentFixtures_ || new jasmine.Fixtures()
+};
+
+jasmine.getStyleFixtures = function () {
+    return jasmine.currentStyleFixtures_ = jasmine.currentStyleFixtures_ || new jasmine.StyleFixtures()
+};
+
+jasmine.Fixtures = function () {
+    this.containerId = &#39;jasmine-fixtures&#39;;
+    this.fixturesCache_ = {};
+    this.fixturesPath = &#39;spec/javascripts/fixtures&#39;
+};
+
+jasmine.Fixtures.prototype.set = function (html) {
+    this.cleanUp();
+    return this.createContainer_(html)
+};
+
+jasmine.Fixtures.prototype.appendSet = function (html) {
+    this.addToContainer_(html)
+};
+
+jasmine.Fixtures.prototype.preload = function () {
+    this.read.apply(this, arguments)
+};
+
+jasmine.Fixtures.prototype.load = function () {
+    this.cleanUp();
+    this.createContainer_(this.read.apply(this, arguments))
+};
+
+jasmine.Fixtures.prototype.appendLoad = function () {
+    this.addToContainer_(this.read.apply(this, arguments))
+};
+
+jasmine.Fixtures.prototype.read = function () {
+    var htmlChunks = []
+        , fixtureUrls = arguments;
+
+    for (var urlCount = fixtureUrls.length, urlIndex = 0; urlIndex &lt; urlCount; urlIndex++) {
+        htmlChunks.push(this.getFixtureHtml_(fixtureUrls[urlIndex]))
+    }
+
+    return htmlChunks.join(&#39;&#39;)
+};
+
+jasmine.Fixtures.prototype.clearCache = function () {
+    this.fixturesCache_ = {}
+};
+
+jasmine.Fixtures.prototype.cleanUp = function () {
+    $(&#39;#&#39; + this.containerId).remove()
+};
+
+jasmine.Fixtures.prototype.sandbox = function (attributes) {
+    var attributesToSet = attributes || {};
+    return $(&#39;&lt;div id=&quot;sandbox&quot; /&gt;&#39;).attr(attributesToSet)
+};
+
+jasmine.Fixtures.prototype.createContainer_ = function (html) {
+    var container = $(&#39;&lt;div&gt;&#39;)
+        .attr(&#39;id&#39;, this.containerId)
+        .html(html);
+
+    $(document.body).append(container);
+    return container
+};
+
+jasmine.Fixtures.prototype.addToContainer_ = function (html) {
+    var container = $(document.body).find(&#39;#&#39; + this.containerId).append(html);
+
+    if (!container.length) {
+        this.createContainer_(html)
+    }
+};
+
+jasmine.Fixtures.prototype.getFixtureHtml_ = function (url) {
+    if (typeof this.fixturesCache_[url] === &#39;undefined&#39;) {
+        this.loadFixtureIntoCache_(url)
+    }
+    return this.fixturesCache_[url]
+};
+
+jasmine.Fixtures.prototype.loadFixtureIntoCache_ = function (relativeUrl) {
+    var self = this
+        , url = this.makeFixtureUrl_(relativeUrl)
+        , htmlText = &#39;&#39;
+        , request = $.ajax({
+            async: false, // must be synchronous to guarantee that no tests are run before fixture is loaded
+            cache: false,
+            url: url,
+            success: function (data, status, $xhr) {
+                htmlText = $xhr.responseText
+            }
+        }).fail(function ($xhr, status, err) {
+            throw new Error(&#39;Fixture could not be loaded: &#39; + url + &#39; (status: &#39; + status + &#39;, message: &#39; + err.message + &#39;)&#39;)
+        });
+
+    var scripts = $($.parseHTML(htmlText, true)).find(&#39;script[src]&#39;) || [];
+
+    scripts.each(function () {
+        $.ajax({
+            async: false, // must be synchronous to guarantee that no tests are run before fixture is loaded
+            cache: false,
+            dataType: &#39;script&#39;,
+            url: $(this).attr(&#39;src&#39;),
+            success: function (data, status, $xhr) {
+                htmlText += &#39;&lt;script&gt;&#39; + $xhr.responseText + &#39;&lt;/script&gt;&#39;
+            },
+            error: function ($xhr, status, err) {
+                throw new Error(&#39;Script could not be loaded: &#39; + scriptSrc + &#39; (status: &#39; + status + &#39;, message: &#39; + err.message + &#39;)&#39;)
+            }
+        });
+    });
+
+    self.fixturesCache_[relativeUrl] = htmlText;
+};
+
+jasmine.Fixtures.prototype.makeFixtureUrl_ = function (relativeUrl) {
+    return this.fixturesPath.match(&#39;/$&#39;) ? this.fixturesPath + relativeUrl : this.fixturesPath + &#39;/&#39; + relativeUrl
+};
+
+jasmine.Fixtures.prototype.proxyCallTo_ = function (methodName, passedArguments) {
+    return this[methodName].apply(this, passedArguments)
+};
+
+jasmine.StyleFixtures = function () {
+    this.fixturesCache_ = {};
+    this.fixturesNodes_ = [];
+    this.fixturesPath = &#39;spec/javascripts/fixtures&#39;
+};
+
+jasmine.StyleFixtures.prototype.set = function (css) {
+    this.cleanUp();
+    this.createStyle_(css)
+};
+
+jasmine.StyleFixtures.prototype.appendSet = function (css) {
+    this.createStyle_(css)
+};
+
+jasmine.StyleFixtures.prototype.preload = function () {
+    this.read_.apply(this, arguments)
+};
+
+jasmine.StyleFixtures.prototype.load = function () {
+    this.cleanUp();
+    this.createStyle_(this.read_.apply(this, arguments))
+};
+
+jasmine.StyleFixtures.prototype.appendLoad = function () {
+    this.createStyle_(this.read_.apply(this, arguments))
+};
+
+jasmine.StyleFixtures.prototype.cleanUp = function () {
+    while (this.fixturesNodes_.length) {
+        this.fixturesNodes_.pop().remove()
+    }
+};
+
+jasmine.StyleFixtures.prototype.createStyle_ = function (html) {
+    var styleText = $(&#39;&lt;div&gt;&lt;/div&gt;&#39;).html(html).text()
+        , style = $(&#39;&lt;style&gt;&#39; + styleText + &#39;&lt;/style&gt;&#39;);
+
+    this.fixturesNodes_.push(style);
+    $(&#39;head&#39;).append(style)
+};
+
+jasmine.StyleFixtures.prototype.clearCache = jasmine.Fixtures.prototype.clearCache;
+jasmine.StyleFixtures.prototype.read_ = jasmine.Fixtures.prototype.read;
+jasmine.StyleFixtures.prototype.getFixtureHtml_ = jasmine.Fixtures.prototype.getFixtureHtml_;
+jasmine.StyleFixtures.prototype.loadFixtureIntoCache_ = jasmine.Fixtures.prototype.loadFixtureIntoCache_;
+jasmine.StyleFixtures.prototype.makeFixtureUrl_ = jasmine.Fixtures.prototype.makeFixtureUrl_;
+jasmine.StyleFixtures.prototype.proxyCallTo_ = jasmine.Fixtures.prototype.proxyCallTo_;
+
+jasmine.getJSONFixtures = function () {
+    return jasmine.currentJSONFixtures_ = jasmine.currentJSONFixtures_ || new jasmine.JSONFixtures()
+};
+
+jasmine.JSONFixtures = function () {
+    this.fixturesCache_ = {};
+    this.fixturesPath = &#39;spec/javascripts/fixtures/json&#39;
+};
+
+jasmine.JSONFixtures.prototype.load = function () {
+    this.read.apply(this, arguments);
+    return this.fixturesCache_
+};
+
+jasmine.JSONFixtures.prototype.read = function () {
+    var fixtureUrls = arguments;
+
+    for (var urlCount = fixtureUrls.length, urlIndex = 0; urlIndex &lt; urlCount; urlIndex++) {
+        this.getFixtureData_(fixtureUrls[urlIndex])
+    }
+
+    return this.fixturesCache_
+};
+
+jasmine.JSONFixtures.prototype.clearCache = function () {
+    this.fixturesCache_ = {}
+};
+
+jasmine.JSONFixtures.prototype.getFixtureData_ = function (url) {
+    if (!this.fixturesCache_[url]) this.loadFixtureIntoCache_(url);
+    return this.fixturesCache_[url]
+};
+
+jasmine.JSONFixtures.prototype.loadFixtureIntoCache_ = function (relativeUrl) {
+    var self = this
+        , url = this.fixturesPath.match(&#39;/$&#39;) ? this.fixturesPath + relativeUrl : this.fixturesPath + &#39;/&#39; + relativeUrl;
+
+    $.ajax({
+        async: false, // must be synchronous to guarantee that no tests are run before fixture is loaded
+        cache: false,
+        dataType: &#39;json&#39;,
+        url: url,
+        success: function (data) {
+            self.fixturesCache_[relativeUrl] = data
+        },
+        error: function ($xhr, status, err) {
+            throw new Error(&#39;JSONFixture could not be loaded: &#39; + url + &#39; (status: &#39; + status + &#39;, message: &#39; + err.message + &#39;)&#39;)
+        }
+    })
+};
+
+jasmine.JSONFixtures.prototype.proxyCallTo_ = function (methodName, passedArguments) {
+    return this[methodName].apply(this, passedArguments)
+};
+
+jasmine.jQuery = function () {
+};
+
+jasmine.jQuery.browserTagCaseIndependentHtml = function (html) {
+    return $(&#39;&lt;div/&gt;&#39;).append(html).html()
+};
+
+jasmine.jQuery.elementToString = function (element) {
+    return $(element).map(function () {
+        return this.outerHTML;
+    }).toArray().join(&#39;, &#39;)
+};
+
+var data = {
+    spiedEvents: {}
+    , handlers: []
+};
+
+jasmine.jQuery.events = {
+    spyOn: function (selector, eventName) {
+        var handler = function (e) {
+            data.spiedEvents[jasmine.spiedEventsKey(selector, eventName)] = jasmine.util.argsToArray(arguments)
+        };
+
+        $(selector).on(eventName, handler);
+        data.handlers.push(handler);
+
+        return {
+            selector: selector,
+            eventName: eventName,
+            handler: handler,
+            reset: function () {
+                delete data.spiedEvents[jasmine.spiedEventsKey(selector, eventName)]
+            }
+        }
+    },
+
+    args: function (selector, eventName) {
+        var actualArgs = data.spiedEvents[jasmine.spiedEventsKey(selector, eventName)];
+
+        if (!actualArgs) {
+            throw &quot;There is no spy for &quot; + eventName + &quot; on &quot; + selector.toString() + &quot;. Make sure to create a spy using spyOnEvent.&quot;
+        }
+
+        return actualArgs
+    },
+
+    wasTriggered: function (selector, eventName) {
+        return !!(data.spiedEvents[jasmine.spiedEventsKey(selector, eventName)])
+    },
+
+    wasTriggeredWith: function (selector, eventName, expectedArgs, util, customEqualityTesters) {
+        var actualArgs = jasmine.jQuery.events.args(selector, eventName).slice(1);
+
+        if (Object.prototype.toString.call(expectedArgs) !== &#39;[object Array]&#39;)
+            actualArgs = actualArgs[0];
+
+        return util.equals(expectedArgs, actualArgs, customEqualityTesters)
+    },
+
+    wasPrevented: function (selector, eventName) {
+        var args = data.spiedEvents[jasmine.spiedEventsKey(selector, eventName)]
+            , e = args ? args[0] : undefined;
+
+        return e &amp;&amp; e.isDefaultPrevented()
+    },
+
+    wasStopped: function (selector, eventName) {
+        var args = data.spiedEvents[jasmine.spiedEventsKey(selector, eventName)]
+            , e = args ? args[0] : undefined;
+        return e &amp;&amp; e.isPropagationStopped()
+    },
+
+    cleanUp: function () {
+        data.spiedEvents = {};
+        data.handlers = []
+    }
+};
+
+var hasProperty = function (actualValue, expectedValue) {
+    if (expectedValue === undefined)
+        return actualValue !== undefined;
+
+    return actualValue === expectedValue
+};
+
+beforeEach(function () {
+    jasmine.addMatchers({
+        toHaveClass: function () {
+            return {
+                compare: function (actual, className) {
+                    return {pass: $(actual).hasClass(className)}
+                }
+            }
+        },
+
+        toHaveCss: function () {
+            return {
+                compare: function (actual, css) {
+                    for (var prop in css) {
+                        var value = css[prop]
+                        // see issue #147 on gh
+                            ;
+                        if (value === &#39;auto&#39; &amp;&amp; $(actual).get(0).style[prop] === &#39;auto&#39;) continue;
+                        if ($(actual).css(prop) !== value) return {pass: false}
+                    }
+                    return {pass: true}
+                }
+            }
+        },
+
+        toBeVisible: function () {
+            return {
+                compare: function (actual) {
+                    return {pass: $(actual).is(&#39;:visible&#39;)}
+                }
+            }
+        },
+
+        toBeHidden: function () {
+            return {
+                compare: function (actual) {
+                    return {pass: $(actual).is(&#39;:hidden&#39;)}
+                }
+            }
+        },
+
+        toBeSelected: function () {
+            return {
+                compare: function (actual) {
+                    return {pass: $(actual).is(&#39;:selected&#39;)}
+                }
+            }
+        },
+
+        toBeChecked: function () {
+            return {
+                compare: function (actual) {
+                    return {pass: $(actual).is(&#39;:checked&#39;)}
+                }
+            }
+        },
+
+        toBeEmpty: function () {
+            return {
+                compare: function (actual) {
+                    return {pass: $(actual).is(&#39;:empty&#39;)}
+                }
+            }
+        },
+
+        toBeInDOM: function () {
+            return {
+                compare: function (actual) {
+                    return {pass: $.contains(document.documentElement, $(actual)[0])}
+                }
+            }
+        },
+
+        toExist: function () {
+            return {
+                compare: function (actual) {
+                    return {pass: $(actual).length}
+                }
+            }
+        },
+
+        toHaveLength: function () {
+            return {
+                compare: function (actual, length) {
+                    return {pass: $(actual).length === length}
+                }
+            }
+        },
+
+        toHaveAttr: function () {
+            return {
+                compare: function (actual, attributeName, expectedAttributeValue) {
+                    return {pass: hasProperty($(actual).attr(attributeName), expectedAttributeValue)}
+                }
+            }
+        },
+
+        toHaveProp: function () {
+            return {
+                compare: function (actual, propertyName, expectedPropertyValue) {
+                    return {pass: hasProperty($(actual).prop(propertyName), expectedPropertyValue)}
+                }
+            }
+        },
+
+        toHaveId: function () {
+            return {
+                compare: function (actual, id) {
+                    return {pass: $(actual).attr(&#39;id&#39;) == id}
+                }
+            }
+        },
+
+        toHaveHtml: function () {
+            return {
+                compare: function (actual, html) {
+                    return {pass: $(actual).html() == jasmine.jQuery.browserTagCaseIndependentHtml(html)}
+                }
+            }
+        },
+
+        toContainHtml: function () {
+            return {
+                compare: function (actual, html) {
+                    var actualHtml = $(actual).html()
+                        , expectedHtml = jasmine.jQuery.browserTagCaseIndependentHtml(html);
+
+                    return {pass: (actualHtml.indexOf(expectedHtml) &gt;= 0)}
+                }
+            }
+        },
+
+        toHaveText: function () {
+            return {
+                compare: function (actual, text) {
+                    var actualText = $(actual).text();
+                    var trimmedText = $.trim(actualText);
+
+                    if (text &amp;&amp; $.isFunction(text.test)) {
+                        return {pass: text.test(actualText) || text.test(trimmedText)}
+                    } else {
+                        return {pass: (actualText == text || trimmedText == text)}
+                    }
+                }
+            }
+        },
+
+        toContainText: function () {
+            return {
+                compare: function (actual, text) {
+                    var trimmedText = $.trim($(actual).text());
+
+                    if (text &amp;&amp; $.isFunction(text.test)) {
+                        return {pass: text.test(trimmedText)}
+                    } else {
+                        return {pass: trimmedText.indexOf(text) != -1}
+                    }
+                }
+            }
+        },
+
+        toHaveValue: function () {
+            return {
+                compare: function (actual, value) {
+                    return {pass: $(actual).val() === value}
+                }
+            }
+        },
+
+        toHaveData: function () {
+            return {
+                compare: function (actual, key, expectedValue) {
+                    return {pass: hasProperty($(actual).data(key), expectedValue)}
+                }
+            }
+        },
+
+        toContainElement: function () {
+            return {
+                compare: function (actual, selector) {
+                    if (window.debug) debugger;
+                    return {pass: $(actual).find(selector).length}
+                }
+            }
+        },
+
+        toBeMatchedBy: function () {
+            return {
+                compare: function (actual, selector) {
+                    return {pass: $(actual).filter(selector).length}
+                }
+            }
+        },
+
+        toBeDisabled: function () {
+            return {
+                compare: function (actual, selector) {
+                    return {pass: $(actual).is(&#39;:disabled&#39;)}
+                }
+            }
+        },
+
+        toBeFocused: function (selector) {
+            return {
+                compare: function (actual, selector) {
+                    return {pass: $(actual)[0] === $(actual)[0].ownerDocument.activeElement}
+                }
+            }
+        },
+
+        toHandle: function () {
+            return {
+                compare: function (actual, event) {
+                    var events = $._data($(actual).get(0), &quot;events&quot;);
+
+                    if (!events || !event || typeof event !== &quot;string&quot;) {
+                        return {pass: false}
+                    }
+
+                    var namespaces = event.split(&quot;.&quot;)
+                        , eventType = namespaces.shift()
+                        , sortedNamespaces = namespaces.slice(0).sort()
+                        , namespaceRegExp = new RegExp(&quot;(^|\\.)&quot; + sortedNamespaces.join(&quot;\\.(?:.*\\.)?&quot;) + &quot;(\\.|$)&quot;);
+
+                    if (events[eventType] &amp;&amp; namespaces.length) {
+                        for (var i = 0; i &lt; events[eventType].length; i++) {
+                            var namespace = events[eventType][i].namespace;
+
+                            if (namespaceRegExp.test(namespace))
+                                return {pass: true}
+                        }
+                    } else {
+                        return {pass: (events[eventType] &amp;&amp; events[eventType].length &gt; 0)}
+                    }
+
+                    return {pass: false}
+                }
+            }
+        },
+
+        toHandleWith: function () {
+            return {
+                compare: function (actual, eventName, eventHandler) {
+                    var normalizedEventName = eventName.split(&#39;.&#39;)[0]
+                        , stack = $._data($(actual).get(0), &quot;events&quot;)[normalizedEventName];
+
+                    for (var i = 0; i &lt; stack.length; i++) {
+                        if (stack[i].handler == eventHandler) return {pass: true}
+                    }
+
+                    return {pass: false}
+                }
+            }
+        },
+
+        toHaveBeenTriggeredOn: function () {
+            return {
+                compare: function (actual, selector) {
+                    var result = {pass: jasmine.jQuery.events.wasTriggered(selector, actual)};
+
+                    result.message = result.pass ?
+                    &quot;Expected event &quot; + $(actual) + &quot; not to have been triggered on &quot; + selector :
+                    &quot;Expected event &quot; + $(actual) + &quot; to have been triggered on &quot; + selector;
+
+                    return result;
+                }
+            }
+        },
+
+        toHaveBeenTriggered: function () {
+            return {
+                compare: function (actual) {
+                    var eventName = actual.eventName
+                        , selector = actual.selector
+                        , result = {pass: jasmine.jQuery.events.wasTriggered(selector, eventName)};
+
+                    result.message = result.pass ?
+                    &quot;Expected event &quot; + eventName + &quot; not to have been triggered on &quot; + selector :
+                    &quot;Expected event &quot; + eventName + &quot; to have been triggered on &quot; + selector;
+
+                    return result
+                }
+            }
+        },
+
+        toHaveBeenTriggeredOnAndWith: function (j$, customEqualityTesters) {
+            return {
+                compare: function (actual, selector, expectedArgs) {
+                    var wasTriggered = jasmine.jQuery.events.wasTriggered(selector, actual)
+                        , result = {pass: wasTriggered &amp;&amp; jasmine.jQuery.events.wasTriggeredWith(selector, actual, expectedArgs, j$, customEqualityTesters)};
+
+                    if (wasTriggered) {
+                        var actualArgs = jasmine.jQuery.events.args(selector, actual, expectedArgs)[1];
+                        result.message = result.pass ?
+                        &quot;Expected event &quot; + actual + &quot; not to have been triggered with &quot; + jasmine.pp(expectedArgs) + &quot; but it was triggered with &quot; + jasmine.pp(actualArgs) :
+                        &quot;Expected event &quot; + actual + &quot; to have been triggered with &quot; + jasmine.pp(expectedArgs) + &quot;  but it was triggered with &quot; + jasmine.pp(actualArgs)
+
+                    } else {
+                        // todo check on this
+                        result.message = result.pass ?
+                        &quot;Expected event &quot; + actual + &quot; not to have been triggered on &quot; + selector :
+                        &quot;Expected event &quot; + actual + &quot; to have been triggered on &quot; + selector
+                    }
+
+                    return result
+                }
+            }
+        },
+
+        toHaveBeenPreventedOn: function () {
+            return {
+                compare: function (actual, selector) {
+                    var result = {pass: jasmine.jQuery.events.wasPrevented(selector, actual)};
+
+                    result.message = result.pass ?
+                    &quot;Expected event &quot; + actual + &quot; not to have been prevented on &quot; + selector :
+                    &quot;Expected event &quot; + actual + &quot; to have been prevented on &quot; + selector;
+
+                    return result
+                }
+            }
+        },
+
+        toHaveBeenPrevented: function () {
+            return {
+                compare: function (actual) {
+                    var eventName = actual.eventName
+                        , selector = actual.selector
+                        , result = {pass: jasmine.jQuery.events.wasPrevented(selector, eventName)};
+
+                    result.message = result.pass ?
+                    &quot;Expected event &quot; + eventName + &quot; not to have been prevented on &quot; + selector :
+                    &quot;Expected event &quot; + eventName + &quot; to have been prevented on &quot; + selector;
+
+                    return result
+                }
+            }
+        },
+
+        toHaveBeenStoppedOn: function () {
+            return {
+                compare: function (actual, selector) {
+                    var result = {pass: jasmine.jQuery.events.wasStopped(selector, actual)};
+
+                    result.message = result.pass ?
+                    &quot;Expected event &quot; + actual + &quot; not to have been stopped on &quot; + selector :
+                    &quot;Expected event &quot; + actual + &quot; to have been stopped on &quot; + selector;
+
+                    return result;
+                }
+            }
+        },
+
+        toHaveBeenStopped: function () {
+            return {
+                compare: function (actual) {
+                    var eventName = actual.eventName
+                        , selector = actual.selector
+                        , result = {pass: jasmine.jQuery.events.wasStopped(selector, eventName)};
+
+                    result.message = result.pass ?
+                    &quot;Expected event &quot; + eventName + &quot; not to have been stopped on &quot; + selector :
+                    &quot;Expected event &quot; + eventName + &quot; to have been stopped on &quot; + selector;
+
+                    return result
+                }
+            }
+        }
+    });
+
+    jasmine.getEnv().addCustomEqualityTester(function (a, b) {
+        if (a &amp;&amp; b) {
+            if (a instanceof $ || jasmine.isDomNode(a)) {
+                var $a = $(a);
+
+                if (b instanceof $)
+                    return $a.length == b.length &amp;&amp; a.is(b);
+
+                return $a.is(b);
+            }
+
+            if (b instanceof $ || jasmine.isDomNode(b)) {
+                var $b = $(b);
+
+                if (a instanceof $)
+                    return a.length == $b.length &amp;&amp; $b.is(a);
+
+                return $(b).is(a);
+            }
+        }
+    });
+
+    jasmine.getEnv().addCustomEqualityTester(function (a, b) {
+        if (a instanceof $ &amp;&amp; b instanceof $ &amp;&amp; a.size() == b.size())
+            return a.is(b)
+    })
+});
+
+afterEach(function () {
+    jasmine.getFixtures().cleanUp();
+    jasmine.getStyleFixtures().cleanUp();
+    jasmine.jQuery.events.cleanUp()
+});
+
+window.readFixtures = function () {
+    return jasmine.getFixtures().proxyCallTo_(&#39;read&#39;, arguments)
+};
+
+window.preloadFixtures = function () {
+    jasmine.getFixtures().proxyCallTo_(&#39;preload&#39;, arguments)
+};
+
+window.loadFixtures = function () {
+    jasmine.getFixtures().proxyCallTo_(&#39;load&#39;, arguments)
+};
+
+window.appendLoadFixtures = function () {
+    jasmine.getFixtures().proxyCallTo_(&#39;appendLoad&#39;, arguments)
+};
+
+window.setFixtures = function (html) {
+    return jasmine.getFixtures().proxyCallTo_(&#39;set&#39;, arguments)
+};
+
+window.appendSetFixtures = function () {
+    jasmine.getFixtures().proxyCallTo_(&#39;appendSet&#39;, arguments)
+};
+
+window.sandbox = function (attributes) {
+    return jasmine.getFixtures().sandbox(attributes)
+};
+
+window.spyOnEvent = function (selector, eventName) {
+    return jasmine.jQuery.events.spyOn(selector, eventName)
+};
+
+window.preloadStyleFixtures = function () {
+    jasmine.getStyleFixtures().proxyCallTo_(&#39;preload&#39;, arguments)
+};
+
+window.loadStyleFixtures = function () {
+    jasmine.getStyleFixtures().proxyCallTo_(&#39;load&#39;, arguments)
+};
+
+window.appendLoadStyleFixtures = function () {
+    jasmine.getStyleFixtures().proxyCallTo_(&#39;appendLoad&#39;, arguments)
+};
+
+window.setStyleFixtures = function (html) {
+    jasmine.getStyleFixtures().proxyCallTo_(&#39;set&#39;, arguments)
+};
+
+window.appendSetStyleFixtures = function (html) {
+    jasmine.getStyleFixtures().proxyCallTo_(&#39;appendSet&#39;, arguments)
+};
+
+window.loadJSONFixtures = function () {
+    return jasmine.getJSONFixtures().proxyCallTo_(&#39;load&#39;, arguments)
+};
+
+window.getJSONFixture = function (url) {
+    return jasmine.getJSONFixtures().proxyCallTo_(&#39;read&#39;, arguments)[url]
+}</pre>
+
+<p>}(window, window.jasmine, window.jQuery);</p>
+</main>
+
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

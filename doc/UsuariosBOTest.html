@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+
+    <title>class UsuariosBOTest - RDoc Documentation</title>
+
+    <script type="text/javascript">
+        var rdoc_rel_prefix = "./";
+    </script>
+
+    <script src="./js/jquery.js"></script>
+    <script src="./js/darkfish.js"></script>
+
+    <link href="./css/fonts.css" rel="stylesheet">
+    <link href="./css/rdoc.css" rel="stylesheet">
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+    <div id="project-navigation">
+        <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+            <h2>
+                <a href="./index.html" rel="home">Home</a>
+            </h2>
+
+            <div id="table-of-contents-navigation">
+                <a href="./table_of_contents.html#pages">Pages</a>
+                <a href="./table_of_contents.html#classes">Classes</a>
+                <a href="./table_of_contents.html#methods">Methods</a>
+            </div>
+        </div>
+
+        <div id="search-section" role="search" class="project-section initially-hidden">
+            <form action="#" method="get" accept-charset="utf-8">
+                <div id="search-field-wrapper">
+                    <input id="search-field" role="combobox" aria-label="Search"
+                           aria-autocomplete="list" aria-controls="search-results"
+                           type="text" name="search" placeholder="Search" spellcheck="false"
+                           title="Type to search, Up and Down to navigate, Enter to load">
+                </div>
+
+                <ul id="search-results" aria-label="Search Results"
+                    aria-busy="false" aria-expanded="false"
+                    aria-atomic="false" class="initially-hidden"></ul>
+            </form>
+        </div>
+
+    </div>
+
+
+    <div id="class-metadata">
+
+        <div id="parent-class-section" class="nav-section">
+            <h3>Parent</h3>
+
+
+            <p class="link">MiniTest::Test
+
+        </div>
+
+
+        <!-- Method Quickref -->
+        <div id="method-list-section" class="nav-section">
+            <h3>Methods</h3>
+
+            <ul class="link-list" role="directory">
+
+                <li><a href="#method-i-setup">#setup</a>
+
+                <li><a href="#method-i-test_bo_usuario_all">#test_bo_usuario_all</a>
+
+                <li><a href="#method-i-test_bo_usuario_delete">#test_bo_usuario_delete</a>
+
+                <li><a href="#method-i-test_bo_usuario_delete_no_exist">#test_bo_usuario_delete_no_exist</a>
+
+                <li><a href="#method-i-test_bo_usuario_find">#test_bo_usuario_find</a>
+
+                <li><a href="#method-i-test_bo_usuario_find_no_exist">#test_bo_usuario_find_no_exist</a>
+
+                <li><a href="#method-i-test_bo_usuario_new">#test_bo_usuario_new</a>
+
+                <li><a href="#method-i-test_bo_usuario_new_data_error">#test_bo_usuario_new_data_error</a>
+
+                <li><a href="#method-i-test_bo_usuario_new_exist">#test_bo_usuario_new_exist</a>
+
+                <li><a href="#method-i-test_bo_usuario_update">#test_bo_usuario_update</a>
+
+                <li><a href="#method-i-test_bo_usuario_update_no_exist">#test_bo_usuario_update_no_exist</a>
+
+            </ul>
+        </div>
+
+    </div>
+</nav>
+
+<main role="main" aria-labelledby="class-UsuariosBOTest">
+    <h1 id="class-UsuariosBOTest" class="class">
+        class UsuariosBOTest
+    </h1>
+
+    <section class="description">
+
+        <p>Testea todos los metodos de la clase UsuariosBO</p>
+
+    </section>
+
+
+    <section id="5Buntitled-5D" class="documentation-section">
+
+
+        <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+            <header>
+                <h3>Public Instance Methods</h3>
+            </header>
+
+
+            <div id="method-i-setup" class="method-detail ">
+
+                <div class="method-heading">
+                    <span class="method-name">setup</span><span
+                        class="method-args">()</span>
+
+                    <span class="method-click-advice">click to toggle source</span>
+
+                </div>
+
+
+                <div class="method-description">
+
+                    <p>Configuracion de la BD</p>
+
+
+                    <div class="method-source-code" id="setup-source">
+            <pre><span class="ruby-comment"># File test/aplication/usuarios_bo_test.rb, line 14</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">setup</span>
+  <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span
+                        class="ruby-constant">Base</span>.<span class="ruby-identifier">establish_connection</span>(
+      <span class="ruby-value">:adapter</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;sqlite3&quot;</span>,
+      <span class="ruby-comment">#cuidado, el path de la BD es relativo al fichero actual (__FILE__)</span>
+      <span class="ruby-comment">#si cambiáis de sitio el test, habrá que cambiar el path</span>
+      <span class="ruby-value">:database</span>  =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">File</span>.<span
+                        class="ruby-identifier">join</span>(<span class="ruby-constant">File</span>.<span
+                        class="ruby-identifier">dirname</span>(<span class="ruby-keyword">__FILE__</span>),<span
+                        class="ruby-string">&#39;..&#39;</span>, <span class="ruby-string">&#39;..&#39;</span>,<span
+                        class="ruby-string">&#39;db&#39;</span>,<span
+                        class="ruby-string">&#39;cf_test.sqlite3&#39;</span>)
+  )
+  <span class="ruby-constant">DatabaseCleaner</span>.<span class="ruby-identifier">strategy</span> = <span
+                        class="ruby-value">:transaction</span>
+  <span class="ruby-constant">DatabaseCleaner</span>.<span class="ruby-identifier">start</span>
+<span class="ruby-keyword">end</span></pre>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <div id="method-i-test_bo_usuario_all" class="method-detail ">
+
+                <div class="method-heading">
+                    <span class="method-name">test_bo_usuario_all</span><span
+                        class="method-args">()</span>
+
+                    <span class="method-click-advice">click to toggle source</span>
+
+                </div>
+
+
+                <div class="method-description">
+
+                    <p>Test de listado total de los usuarios</p>
+
+
+                    <div class="method-source-code" id="test_bo_usuario_all-source">
+            <pre><span class="ruby-comment"># File test/aplication/usuarios_bo_test.rb, line 26</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bo_usuario_all</span>
+  <span class="ruby-identifier">lista</span> = <span class="ruby-identifier">@@users_bo</span>.<span
+                        class="ruby-identifier">all</span>(<span class="ruby-identifier">@@token</span>, {})[<span
+                        class="ruby-value">:datos</span>]
+  <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">1</span>, <span class="ruby-identifier">lista</span>.<span
+                        class="ruby-identifier">length</span>
+<span class="ruby-keyword">end</span></pre>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <div id="method-i-test_bo_usuario_delete" class="method-detail ">
+
+                <div class="method-heading">
+                    <span class="method-name">test_bo_usuario_delete</span><span
+                        class="method-args">()</span>
+
+                    <span class="method-click-advice">click to toggle source</span>
+
+                </div>
+
+
+                <div class="method-description">
+
+                    <p>Test para borrar un usuario de la BD</p>
+
+
+                    <div class="method-source-code" id="test_bo_usuario_delete-source">
+            <pre><span class="ruby-comment"># File test/aplication/usuarios_bo_test.rb, line 111</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bo_usuario_delete</span>
+  <span class="ruby-identifier">msg</span> = <span class="ruby-identifier">@@users_bo</span>.<span
+                        class="ruby-identifier">delete</span>(<span class="ruby-string">&#39;root&#39;</span>,<span
+                        class="ruby-identifier">@@token</span>)
+  <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;Se ha borrado correctamente el usuario root&#39;</span>, <span
+                        class="ruby-identifier">msg</span>
+<span class="ruby-keyword">end</span></pre>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <div id="method-i-test_bo_usuario_delete_no_exist" class="method-detail ">
+
+                <div class="method-heading">
+                    <span class="method-name">test_bo_usuario_delete_no_exist</span><span
+                        class="method-args">()</span>
+
+                    <span class="method-click-advice">click to toggle source</span>
+
+                </div>
+
+
+                <div class="method-description">
+
+                    <p>Test para comprobar si el usuario no existe al borrar</p>
+
+
+                    <div class="method-source-code" id="test_bo_usuario_delete_no_exist-source">
+            <pre><span class="ruby-comment"># File test/aplication/usuarios_bo_test.rb, line 117</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bo_usuario_delete_no_exist</span>
+  <span class="ruby-identifier">e</span> = <span class="ruby-identifier">assert_raises</span> <span
+                        class="ruby-constant">CustomMsgException</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">@@users_bo</span>.<span class="ruby-identifier">delete</span>(<span
+                        class="ruby-string">&#39;noExiste&#39;</span>,<span class="ruby-identifier">@@token</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;Error 404: No existe el usuario noExiste&#39;</span>, <span
+                        class="ruby-identifier">e</span>.<span class="ruby-identifier">message</span>
+<span class="ruby-keyword">end</span></pre>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <div id="method-i-test_bo_usuario_find" class="method-detail ">
+
+                <div class="method-heading">
+                    <span class="method-name">test_bo_usuario_find</span><span
+                        class="method-args">()</span>
+
+                    <span class="method-click-advice">click to toggle source</span>
+
+                </div>
+
+
+                <div class="method-description">
+
+                    <p>Test para buscar un usuario en la BD</p>
+
+
+                    <div class="method-source-code" id="test_bo_usuario_find-source">
+            <pre><span class="ruby-comment"># File test/aplication/usuarios_bo_test.rb, line 32</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bo_usuario_find</span>
+  <span class="ruby-identifier">u</span> = <span class="ruby-identifier">@@users_bo</span>.<span
+                        class="ruby-identifier">find_by_user</span> <span
+                        class="ruby-string">&#39;root&#39;</span>, <span class="ruby-identifier">@@token</span>
+  <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;root&#39;</span>, <span
+                        class="ruby-identifier">u</span>.<span class="ruby-identifier">user</span>
+<span class="ruby-keyword">end</span></pre>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <div id="method-i-test_bo_usuario_find_no_exist" class="method-detail ">
+
+                <div class="method-heading">
+                    <span class="method-name">test_bo_usuario_find_no_exist</span><span
+                        class="method-args">()</span>
+
+                    <span class="method-click-advice">click to toggle source</span>
+
+                </div>
+
+
+                <div class="method-description">
+
+                    <p>Test para comprobar si no existe el usuario</p>
+
+
+                    <div class="method-source-code" id="test_bo_usuario_find_no_exist-source">
+            <pre><span class="ruby-comment"># File test/aplication/usuarios_bo_test.rb, line 38</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bo_usuario_find_no_exist</span>
+  <span class="ruby-identifier">e</span> = <span class="ruby-identifier">assert_raises</span> <span
+                        class="ruby-constant">CustomMsgException</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">@@users_bo</span>.<span class="ruby-identifier">find_by_user</span> <span
+                        class="ruby-string">&#39;noExiste&#39;</span>, <span class="ruby-identifier">@@token</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;Error 404: No existe el usuario noExiste&#39;</span>, <span
+                        class="ruby-identifier">e</span>.<span class="ruby-identifier">message</span>
+<span class="ruby-keyword">end</span></pre>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <div id="method-i-test_bo_usuario_new" class="method-detail ">
+
+                <div class="method-heading">
+                    <span class="method-name">test_bo_usuario_new</span><span
+                        class="method-args">()</span>
+
+                    <span class="method-click-advice">click to toggle source</span>
+
+                </div>
+
+
+                <div class="method-description">
+
+                    <p>Test para crear un usuario en la BD</p>
+
+
+                    <div class="method-source-code" id="test_bo_usuario_new-source">
+            <pre><span class="ruby-comment"># File test/aplication/usuarios_bo_test.rb, line 46</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bo_usuario_new</span>
+  <span class="ruby-identifier">datos</span> = {<span class="ruby-value">:user</span> =<span
+                        class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Test&#39;</span>,
+           <span class="ruby-value">:password</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Test&#39;</span>,
+           <span class="ruby-value">:password_confirmation</span> =<span class="ruby-operator">&gt;</span> <span
+                        class="ruby-string">&#39;Test&#39;</span>,
+           <span class="ruby-value">:nombre</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Test&#39;</span>,
+           <span class="ruby-value">:apellidos</span> =<span class="ruby-operator">&gt;</span> <span
+                        class="ruby-string">&#39;de prueba&#39;</span>,
+           <span class="ruby-value">:email</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;a@a.a&#39;</span>,
+           <span class="ruby-value">:direccion</span> =<span class="ruby-operator">&gt;</span> <span
+                        class="ruby-string">&#39;Test&#39;</span>,
+           <span class="ruby-value">:telefono</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;123456789&#39;</span>
+  }
+
+  <span class="ruby-identifier">u</span> = <span class="ruby-identifier">@@users_bo</span>.<span
+                        class="ruby-identifier">create</span>(<span class="ruby-identifier">datos</span>)
+  <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;Test&#39;</span>, <span
+                        class="ruby-identifier">u</span>.<span class="ruby-identifier">user</span>
+<span class="ruby-keyword">end</span></pre>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <div id="method-i-test_bo_usuario_new_data_error" class="method-detail ">
+
+                <div class="method-heading">
+                    <span class="method-name">test_bo_usuario_new_data_error</span><span
+                        class="method-args">()</span>
+
+                    <span class="method-click-advice">click to toggle source</span>
+
+                </div>
+
+
+                <div class="method-description">
+
+                    <p>Test para comprobar que los datos esta bien introducidos</p>
+
+
+                    <div class="method-source-code" id="test_bo_usuario_new_data_error-source">
+            <pre><span class="ruby-comment"># File test/aplication/usuarios_bo_test.rb, line 78</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bo_usuario_new_data_error</span>
+  <span class="ruby-identifier">datos</span> = {<span class="ruby-value">:user</span> =<span
+                        class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Test&#39;</span>,
+           <span class="ruby-value">:email</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;root@root.su&#39;</span>
+  }
+  <span class="ruby-identifier">e</span> = <span class="ruby-identifier">assert_raises</span> <span
+                        class="ruby-constant">CustomMsgException</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">@@users_bo</span>.<span class="ruby-identifier">create</span>(<span
+                        class="ruby-identifier">datos</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;Error 400: Los datos son incorrectos&#39;</span>, <span
+                        class="ruby-identifier">e</span>.<span class="ruby-identifier">message</span>
+<span class="ruby-keyword">end</span></pre>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <div id="method-i-test_bo_usuario_new_exist" class="method-detail ">
+
+                <div class="method-heading">
+                    <span class="method-name">test_bo_usuario_new_exist</span><span
+                        class="method-args">()</span>
+
+                    <span class="method-click-advice">click to toggle source</span>
+
+                </div>
+
+
+                <div class="method-description">
+
+                    <p>Test para comprobar si ya existe el usuario</p>
+
+
+                    <div class="method-source-code" id="test_bo_usuario_new_exist-source">
+            <pre><span class="ruby-comment"># File test/aplication/usuarios_bo_test.rb, line 62</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bo_usuario_new_exist</span>
+  <span class="ruby-identifier">datos</span> = {<span class="ruby-value">:user</span> =<span
+                        class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;root&#39;</span>,
+           <span class="ruby-value">:pass</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Test&#39;</span>,
+           <span class="ruby-value">:nombre</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Test&#39;</span>,
+           <span class="ruby-value">:apellidos</span> =<span class="ruby-operator">&gt;</span> <span
+                        class="ruby-string">&#39;de prueba&#39;</span>,
+           <span class="ruby-value">:email</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;a@a.a&#39;</span>,
+           <span class="ruby-value">:direccion</span> =<span class="ruby-operator">&gt;</span> <span
+                        class="ruby-string">&#39;Test&#39;</span>,
+           <span class="ruby-value">:telefono</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;123456789&#39;</span>
+  }
+  <span class="ruby-identifier">e</span> = <span class="ruby-identifier">assert_raises</span> <span
+                        class="ruby-constant">CustomMsgException</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">@@users_bo</span>.<span class="ruby-identifier">create</span>(<span
+                        class="ruby-identifier">datos</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;Error 400: El usuario root ya existe&#39;</span>, <span
+                        class="ruby-identifier">e</span>.<span class="ruby-identifier">message</span>
+<span class="ruby-keyword">end</span></pre>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <div id="method-i-test_bo_usuario_update" class="method-detail ">
+
+                <div class="method-heading">
+                    <span class="method-name">test_bo_usuario_update</span><span
+                        class="method-args">()</span>
+
+                    <span class="method-click-advice">click to toggle source</span>
+
+                </div>
+
+
+                <div class="method-description">
+
+                    <p>Test para modificar los datos de un usuario</p>
+
+
+                    <div class="method-source-code" id="test_bo_usuario_update-source">
+            <pre><span class="ruby-comment"># File test/aplication/usuarios_bo_test.rb, line 89</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bo_usuario_update</span>
+  <span class="ruby-identifier">datos</span> = {<span class="ruby-value">:user</span> =<span
+                        class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;root&#39;</span>,
+           <span class="ruby-value">:email</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;a@a.a&#39;</span>
+  }
+
+  <span class="ruby-identifier">u</span> = <span class="ruby-identifier">@@users_bo</span>.<span
+                        class="ruby-identifier">update</span>(<span class="ruby-identifier">datos</span>,<span
+                        class="ruby-identifier">@@token</span>)
+  <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;a@a.a&#39;</span>, <span
+                        class="ruby-identifier">u</span>.<span class="ruby-identifier">email</span>
+<span class="ruby-keyword">end</span></pre>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <div id="method-i-test_bo_usuario_update_no_exist" class="method-detail ">
+
+                <div class="method-heading">
+                    <span class="method-name">test_bo_usuario_update_no_exist</span><span
+                        class="method-args">()</span>
+
+                    <span class="method-click-advice">click to toggle source</span>
+
+                </div>
+
+
+                <div class="method-description">
+
+                    <p>Test para comprobar si el usuario no existe</p>
+
+
+                    <div class="method-source-code" id="test_bo_usuario_update_no_exist-source">
+            <pre><span class="ruby-comment"># File test/aplication/usuarios_bo_test.rb, line 99</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bo_usuario_update_no_exist</span>
+  <span class="ruby-identifier">datos</span> = {<span class="ruby-value">:user</span> =<span
+                        class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;noExiste&#39;</span>,
+           <span class="ruby-value">:email</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;a@a.asdf&#39;</span>
+  }
+
+  <span class="ruby-identifier">e</span> = <span class="ruby-identifier">assert_raises</span> <span
+                        class="ruby-constant">CustomMsgException</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">@@users_bo</span>.<span class="ruby-identifier">update</span>(<span
+                        class="ruby-identifier">datos</span>,<span class="ruby-identifier">@@token</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">assert_equal</span> <span class="ruby-string">&#39;Error 404: No existe el usuario noExiste&#39;</span>, <span
+                        class="ruby-identifier">e</span>.<span class="ruby-identifier">message</span>
+<span class="ruby-keyword">end</span></pre>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+    </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+    <p><a href="http://validator.w3.org/check/referer">Validate</a>
+
+    <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.0.
+
+    <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael
+        Granger</a>.
+</footer>
+

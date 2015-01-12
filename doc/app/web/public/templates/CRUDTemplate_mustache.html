@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>CRUDTemplate.mustache - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../../../";
+</script>
+
+<script src="../../../../js/jquery.js"></script>
+<script src="../../../../js/darkfish.js"></script>
+
+<link href="../../../../css/fonts.css" rel="stylesheet">
+<link href="../../../../css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="file">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../../../table_of_contents.html#pages">Pages</a>
+    <a href="../../../../table_of_contents.html#classes">Classes</a>
+    <a href="../../../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="project-metadata">
+    <div id="fileindex-section" class="nav-section">
+  <h3>Pages</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../../../../Gemfile.html">Gemfile</a>
+  
+    <li><a href="../../../../Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="../../../../README_md.html">README</a>
+  
+    <li><a href="../../../../Rakefile.html">Rakefile</a>
+  
+    <li><a href="../../../../app/web/public/css/bootstrap-theme_css.html">bootstrap-theme.css</a>
+  
+    <li><a href="../../../../app/web/public/css/bootstrap-theme_css_map.html">bootstrap-theme.css.map</a>
+  
+    <li><a href="../../../../app/web/public/css/bootstrap-theme_min_css.html">bootstrap-theme.min.css</a>
+  
+    <li><a href="../../../../app/web/public/css/bootstrap_css.html">bootstrap.css</a>
+  
+    <li><a href="../../../../app/web/public/css/bootstrap_css_map.html">bootstrap.css.map</a>
+  
+    <li><a href="../../../../app/web/public/css/bootstrap_min_css.html">bootstrap.min.css</a>
+  
+    <li><a href="../../../../app/web/public/css/estilo_css.html">estilo.css</a>
+  
+    <li><a href="../../../../app/web/public/css/font-awesome_css.html">font-awesome.css</a>
+  
+    <li><a href="../../../../app/web/public/css/font-awesome_min_css.html">font-awesome.min.css</a>
+  
+    <li><a href="../../../../app/web/public/css/notify_css.html">notify.css</a>
+  
+    <li><a href="../../../../app/web/public/fonts/fontawesome-webfont_svg.html">fontawesome-webfont.svg</a>
+  
+    <li><a href="../../../../app/web/public/fonts/glyphicons-halflings-regular_svg.html">glyphicons-halflings-regular.svg</a>
+  
+    <li><a href="../../../../app/web/public/humans_txt.html">humans</a>
+  
+    <li><a href="../../../../app/web/public/index_html.html">index.html</a>
+  
+    <li><a href="../../../../app/web/public/index_bb_html.html">index_bb.html</a>
+  
+    <li><a href="../../../../app/web/public/js/constantes_js.html">constantes.js</a>
+  
+    <li><a href="../../../../app/web/public/js/lib/backbone_js.html">backbone.js</a>
+  
+    <li><a href="../../../../app/web/public/js/lib/bootstrap_min_js.html">bootstrap.min.js</a>
+  
+    <li><a href="../../../../app/web/public/js/lib/jquery-1_11_1_js.html">jquery-1.11.1.js</a>
+  
+    <li><a href="../../../../app/web/public/js/lib/jquery-1_11_1_min_js.html">jquery-1.11.1.min.js</a>
+  
+    <li><a href="../../../../app/web/public/js/lib/jquery-1_11_1_min_map.html">jquery-1.11.1.min.map</a>
+  
+    <li><a href="../../../../app/web/public/js/lib/jquery_cookie_js.html">jquery.cookie.js</a>
+  
+    <li><a href="../../../../app/web/public/js/lib/mustache_js.html">mustache.js</a>
+  
+    <li><a href="../../../../app/web/public/js/lib/notify_js.html">notify.js</a>
+  
+    <li><a href="../../../../app/web/public/js/lib/underscore-min_js.html">underscore-min.js</a>
+  
+    <li><a href="../../../../app/web/public/js/lib/underscore-min_map.html">underscore-min.map</a>
+  
+    <li><a href="../../../../app/web/public/js/lib/zepto_min_js.html">zepto.min.js</a>
+  
+    <li><a href="../../../../app/web/public/js/productos_js.html">productos.js</a>
+  
+    <li><a href="../../../../app/web/public/js/productos_bb_js.html">productos_bb.js</a>
+  
+    <li><a href="../../../../app/web/public/js/usuarios_js.html">usuarios.js</a>
+  
+    <li><a href="../../../../app/web/public/js/utilidades_js.html">utilidades.js</a>
+  
+    <li><a href="../../../../app/web/public/js/utilidades_bb_js.html">utilidades_bb.js</a>
+  
+    <li><a href="../../../../app/web/public/less/bordered-pulled_less.html">bordered-pulled.less</a>
+  
+    <li><a href="../../../../app/web/public/less/core_less.html">core.less</a>
+  
+    <li><a href="../../../../app/web/public/less/fixed-width_less.html">fixed-width.less</a>
+  
+    <li><a href="../../../../app/web/public/less/font-awesome_less.html">font-awesome.less</a>
+  
+    <li><a href="../../../../app/web/public/less/icons_less.html">icons.less</a>
+  
+    <li><a href="../../../../app/web/public/less/larger_less.html">larger.less</a>
+  
+    <li><a href="../../../../app/web/public/less/list_less.html">list.less</a>
+  
+    <li><a href="../../../../app/web/public/less/mixins_less.html">mixins.less</a>
+  
+    <li><a href="../../../../app/web/public/less/path_less.html">path.less</a>
+  
+    <li><a href="../../../../app/web/public/less/rotated-flipped_less.html">rotated-flipped.less</a>
+  
+    <li><a href="../../../../app/web/public/less/spinning_less.html">spinning.less</a>
+  
+    <li><a href="../../../../app/web/public/less/stacked_less.html">stacked.less</a>
+  
+    <li><a href="../../../../app/web/public/less/variables_less.html">variables.less</a>
+  
+    <li><a href="../../../../app/web/public/robots_txt.html">robots</a>
+  
+    <li><a href="../../../../app/web/public/scss/_bordered-pulled_scss.html">_bordered-pulled.scss</a>
+  
+    <li><a href="../../../../app/web/public/scss/_core_scss.html">_core.scss</a>
+  
+    <li><a href="../../../../app/web/public/scss/_fixed-width_scss.html">_fixed-width.scss</a>
+  
+    <li><a href="../../../../app/web/public/scss/_icons_scss.html">_icons.scss</a>
+  
+    <li><a href="../../../../app/web/public/scss/_larger_scss.html">_larger.scss</a>
+  
+    <li><a href="../../../../app/web/public/scss/_list_scss.html">_list.scss</a>
+  
+    <li><a href="../../../../app/web/public/scss/_mixins_scss.html">_mixins.scss</a>
+  
+    <li><a href="../../../../app/web/public/scss/_path_scss.html">_path.scss</a>
+  
+    <li><a href="../../../../app/web/public/scss/_rotated-flipped_scss.html">_rotated-flipped.scss</a>
+  
+    <li><a href="../../../../app/web/public/scss/_spinning_scss.html">_spinning.scss</a>
+  
+    <li><a href="../../../../app/web/public/scss/_stacked_scss.html">_stacked.scss</a>
+  
+    <li><a href="../../../../app/web/public/scss/_variables_scss.html">_variables.scss</a>
+  
+    <li><a href="../../../../app/web/public/scss/font-awesome_scss.html">font-awesome.scss</a>
+  
+    <li><a href="../../../../app/web/public/templates/CRUDTemplate_mustache.html">CRUDTemplate.mustache</a>
+  
+    <li><a href="../../../../app/web/public/templates/inicioTemplate_mustache.html">inicioTemplate.mustache</a>
+  
+    <li><a href="../../../../app/web/public/templates/loginTemplate_mustache.html">loginTemplate.mustache</a>
+  
+    <li><a href="../../../../app/web/public/templates/productoTemplate_mustache.html">productoTemplate.mustache</a>
+  
+    <li><a href="../../../../app/web/public/templates/registroTemplate_mustache.html">registroTemplate.mustache</a>
+  
+    <li><a href="../../../../app/web/public/templates/usuarioTemplate_mustache.html">usuarioTemplate.mustache</a>
+  
+    <li><a href="../../../../carniceria_sublime-project.html">carniceria.sublime-project</a>
+  
+    <li><a href="../../../../carniceria_sublime-workspace.html">carniceria.sublime-workspace</a>
+  
+    <li><a href="../../../../comandosDB_sh.html">comandosDB.sh</a>
+  
+    <li><a href="../../../../comandosDoc_sh.html">comandosDoc.sh</a>
+  
+    <li><a href="../../../../config_ru.html">config.ru</a>
+  
+    <li><a href="../../../../proyecto-carniceria_komodoproject.html">proyecto-carniceria.komodoproject</a>
+  
+    <li><a href="../../../../spec/javascripts/fixtures/detalles_proyecto_html.html">detalles_proyecto.html</a>
+  
+    <li><a href="../../../../spec/javascripts/helpers/jasmine-jquery_js.html">jasmine-jquery.js</a>
+  
+    <li><a href="../../../../spec/javascripts/helpers/lib/jquery-2_1_1_min_js.html">jquery-2.1.1.min.js</a>
+  
+    <li><a href="../../../../spec/javascripts/helpers/lib/mock-ajax_js.html">mock-ajax.js</a>
+  
+    <li><a href="../../../../spec/javascripts/principalSpec_js.html">principalSpec.js</a>
+  
+    <li><a href="../../../../spec/javascripts/proyectos_spec_js.html">proyectos_spec.js</a>
+  
+    <li><a href="../../../../spec/javascripts/saludo_spec_js.html">saludo_spec.js</a>
+  
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-label="Page app/web/public/templates/CRUDTemplate.mustache">
+
+<p>&lt;div id=“menu” xmlns=“<a
+href="http://www.w3.org/1999/html">www.w3.org/1999/html</a>”&gt;</p>
+
+<pre>&lt;div id=&quot;new&quot;&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot; data-action=&quot;#create&quot;&gt;
+        Crear producto nuevo
+    &lt;/button&gt;
+&lt;/div&gt;
+&lt;table class=&quot;table table-hover table-striped table-condensed table-responsive&quot;&gt;
+    &lt;thead&gt;
+    &lt;tr&gt;
+        &lt;th&gt;ID&lt;/th&gt;
+        &lt;th&gt;Nombre&lt;/th&gt;
+        &lt;th&gt;Descripcion&lt;/th&gt;
+        &lt;th&gt;Precio/Kg&lt;/th&gt;
+        &lt;th&gt;Stock&lt;/th&gt;
+        &lt;th&gt;Oferta&lt;/th&gt;
+        &lt;th&gt;Rebaja&lt;/th&gt;
+        &lt;th&gt;Proovedor&lt;/th&gt;
+        &lt;th&gt;Fecha creacion&lt;/th&gt;
+        &lt;th&gt;Fecha de modificacion&lt;/th&gt;
+        &lt;th style=&quot;text-align: center&quot;&gt;DETALLES&lt;/th&gt;
+        &lt;th style=&quot;text-align: center&quot;&gt;EDITAR&lt;/th&gt;
+        &lt;th style=&quot;text-align: center&quot;&gt;BORRAR&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+    &lt;!--{{#contenido}}--&gt;
+    &lt;tr id=&quot;prod_{{id}}&quot;&gt;
+        &lt;td class=&quot;id&quot;&gt;&lt;b&gt;{{id}}&lt;/b&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;b&gt;{{nombre}}&lt;/b&gt;&lt;/td&gt;
+        &lt;td&gt;{{descripcion}}&lt;/td&gt;
+        &lt;td style=&quot;text-align: right&quot;&gt;{{precioKg}} €/Kg&lt;/td&gt;
+        &lt;td style=&quot;text-align: right&quot;&gt;{{stock}}&lt;/td&gt;
+        &lt;td style=&quot;text-align: right&quot;&gt;{{rebaja}} %&lt;/td&gt;
+        &lt;td style=&quot;text-align: center&quot;&gt;{{ofertas}}&lt;/td&gt;
+        &lt;td style=&quot;text-align: center&quot;&gt;{{proovedor_id}}&lt;/td&gt;
+        &lt;td&gt;{{created_at}}&lt;/td&gt;
+        &lt;td&gt;{{updated_at}}&lt;/td&gt;
+        &lt;td class=&quot;detail&quot;&gt;
+            &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot; data-action=&quot;#detail&quot; data-id=&quot;{{id}}&quot;&gt;
+                Detalles
+            &lt;/button&gt;
+        &lt;/td&gt;
+        &lt;td class=&quot;update&quot;&gt;
+            &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot; data-action=&quot;#update&quot; data-id=&quot;{{id}}&quot;&gt;
+                Modificar
+            &lt;/button&gt;
+        &lt;/td&gt;
+        &lt;td class=&quot;delete&quot;&gt;
+            &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot; data-action=&quot;#delete&quot; data-id=&quot;{{id}}&quot;&gt;
+                Borrar
+            &lt;/button&gt;
+        &lt;/td&gt;
+    &lt;/tr&gt;
+            &lt;!--{{/contenido}}--&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;div class=&quot;panel-footer&quot;&gt;
+    &lt;div id=&quot;{{link_prev.rel}}&quot; class=&quot;col-xs-4&quot;&gt;
+        {{#link_prev}}
+            &lt;a href=&quot;javascript:{{&gt; funcion}}(&#39;{{link_prev.href}}&#39;)&quot;&gt;&lt;i
+                    class=&quot;fa fa-chevron-circle-left&quot;&gt;&lt;/i&gt; Anterior&lt;/a&gt;
+        {{/link_prev}}
+    &lt;/div&gt;
+    &lt;div id=&quot;{{link.rel}}&quot; class=&quot;col-xs-4&quot;&gt;
+        &lt;a href=&quot;javascript:{{&gt; funcion}}(&#39;{{link.href}}&#39;)&quot;&gt;&lt;i class=&quot;fa fa-chevron-circle-up&quot;&gt;&lt;/i&gt; Actual
+            &lt;i class=&quot;fa fa-chevron-circle-up&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div id=&quot;{{link_next.rel}}&quot; class=&quot;col-xs-4&quot;&gt;
+        {{#link_next}}
+            &lt;a href=&quot;javascript:{{&gt; funcion}}(&#39;{{link_next.href}}&#39;)&quot;&gt;Siguiente &lt;i
+                    class=&quot;fa fa-chevron-circle-right&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+        {{/link_next}}
+    &lt;/div&gt;
+&lt;/div&gt;</pre>
+
+<p>&lt;/div&gt;</p>
+
+<p>&lt;div id=“create”&gt;</p>
+
+<pre>&lt;h4 class=&quot;modal-title&quot; id=&quot;detail-modal&quot;&gt;Crear&lt;/h4&gt;
+
+&lt;form id=&quot;form_create_crud&quot;&gt;
+    &lt;div class=&quot;row&quot;&gt;
+        &lt;div class=&quot;col-xs-6&quot;&gt;
+            &lt;div class=&quot;form-group&quot;&gt;
+                &lt;label for=&quot;nombre_input&quot;&gt;Nombre&lt;/label&gt;
+                &lt;input type=&quot;text&quot; class=&quot;form-control valids&quot; id=&quot;nombre_input&quot; placeholder=&quot;Nombre del producto&quot;&gt;
+                &lt;span class=&quot;help-block&quot; id=&quot;help_nombre_input&quot;&gt;&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;form-group&quot;&gt;
+                &lt;label for=&quot;descripcion_input&quot;&gt;Descripcion&lt;/label&gt;
+                &lt;textarea placeholder=&quot;Descripcion del producto&quot; class=&quot;form-control&quot;
+                          id=&quot;descripcion_input&quot;&gt;&lt;/textarea&gt;
+                &lt;span class=&quot;help-block&quot; id=&quot;help_descripcion_input&quot;&gt;&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;form-group&quot;&gt;
+                &lt;label for=&quot;precioKg_input&quot;&gt;Precio&lt;/label&gt;
+                &lt;div class=&quot;input-group&quot;&gt;
+                    &lt;input type=&quot;text&quot; class=&quot;form-control valids&quot; id=&quot;precioKg_input&quot;
+                           placeholder=&quot;Precio del producto&quot;&gt;
+                    &lt;span class=&quot;input-group-addon&quot;&gt;€/Kg&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;span class=&quot;help-block&quot; id=&quot;help_precioKg_input&quot;&gt;&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;form-group&quot;&gt;
+                &lt;label for=&quot;stock_input&quot;&gt;Stock&lt;/label&gt;
+                &lt;input type=&quot;text&quot; class=&quot;form-control valids&quot; id=&quot;stock_input&quot; placeholder=&quot;Stock del producto&quot;&gt;
+                &lt;span class=&quot;help-block&quot; id=&quot;help_stock_input&quot;&gt;&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;form-group&quot;&gt;
+                &lt;label for=&quot;proovedor_id_input&quot;&gt;Nº proovedor&lt;/label&gt;
+                &lt;input type=&quot;text&quot; class=&quot;form-control valids&quot; id=&quot;proovedor_id_input&quot;
+                       placeholder=&quot;Numero del proovedor&quot;&gt;
+                &lt;span class=&quot;help-block&quot; id=&quot;help_proovedor_id_input&quot;&gt;&lt;/span&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;col-xs-6&quot;&gt;
+            &lt;div class=&quot;form-group&quot;&gt;
+                &lt;label for=&quot;rebaja_input&quot;&gt;Rebaja&lt;/label&gt;
+                &lt;div class=&quot;input-group&quot;&gt;
+                    &lt;input type=&quot;text&quot; class=&quot;form-control valids&quot; id=&quot;rebaja_input&quot;
+                           placeholder=&quot;Rebaja del producto&quot;&gt;
+                    &lt;span class=&quot;input-group-addon&quot;&gt;%&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;span class=&quot;help-block&quot; id=&quot;help_rebaja_input&quot;&gt;&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;form-group&quot;&gt;
+                &lt;label for=&quot;ofertas_input&quot;&gt;Oferta&lt;/label&gt;
+                &lt;div class=&quot;checkbox&quot;&gt;
+                    &lt;label&gt;
+                        &lt;input type=&quot;checkbox&quot; id=&quot;ofertas_input&quot;&gt;Oferta
+                    &lt;/label&gt;
+                &lt;/div&gt;
+                &lt;span class=&quot;help-block&quot; id=&quot;help_ofertas_input&quot;&gt;&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;form-group input-group&quot;&gt;
+                &lt;label for=&quot;url_imagen_input&quot;&gt;Imagen&lt;/label&gt;
+                &lt;input value=&quot;img/missing_prod.png&quot; class=&quot;form-control valids&quot; id=&quot;url_imagen_input&quot; type=&quot;file&quot;/&gt;
+                &lt;span class=&quot;help-block&quot; id=&quot;help_url_imagen_input&quot;&gt;&lt;/span&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot; id=&quot;create_crud&quot;&gt;Crear&lt;/button&gt;
+&lt;/form&gt;</pre>
+
+<p>&lt;/div&gt;</p>
+
+<p>&lt;div id=“detail”&gt;</p>
+
+<pre>&lt;h4 class=&quot;modal-title&quot;&gt;Detalles&lt;/h4&gt;
+&lt;div class=&quot;row&quot;&gt;
+    &lt;div class=&quot;col-xs-2&quot;&gt;ID:&lt;/div&gt;{{id}}&lt;br&gt;
+    &lt;div class=&quot;col-xs-2&quot;&gt;Nombre:&lt;/div&gt;{{nombre}}&lt;br&gt;
+    &lt;div class=&quot;col-xs-2&quot;&gt;Descricion:&lt;/div&gt;{{descripcion}}&lt;br&gt;
+    &lt;div class=&quot;col-xs-2&quot;&gt;Precio/Kg:&lt;/div&gt;{{precioKg}} €/Kg&lt;br&gt;
+    &lt;div class=&quot;col-xs-2&quot;&gt;Stock:&lt;/div&gt;{{stock}}&lt;br&gt;
+    &lt;div class=&quot;col-xs-2&quot;&gt;Rebajado:&lt;/div&gt;{{rebaja}} %&lt;br&gt;
+    &lt;div class=&quot;col-xs-2&quot;&gt;Oferta:&lt;/div&gt;{{ofertas}}&lt;br&gt;
+    &lt;div class=&quot;col-xs-2&quot;&gt;Nº proovedor:&lt;/div&gt;{{proovedor_id}}&lt;br&gt;
+    &lt;div class=&quot;col-xs-2&quot;&gt;Creado el:&lt;/div&gt;{{created_at}}&lt;br&gt;
+    &lt;div class=&quot;col-xs-2&quot;&gt;Modificado el:&lt;/div&gt;{{updated_at}}&lt;br&gt;
+&lt;/div&gt;</pre>
+
+<p>&lt;/div&gt;</p>
+
+<p>&lt;div id=“update”&gt;</p>
+
+<pre>&lt;h4 class=&quot;modal-title&quot; id=&quot;detail-modal&quot;&gt;Modificar&lt;/h4&gt;
+
+&lt;form id=&quot;form_update_crud&quot;&gt;
+    &lt;div class=&quot;row&quot;&gt;
+        &lt;div class=&quot;col-xs-6&quot;&gt;
+            &lt;div class=&quot;form-group&quot;&gt;
+                &lt;label for=&quot;id_input&quot;&gt;ID&lt;/label&gt;
+                &lt;input type=&quot;text&quot; class=&quot;form-control valids&quot; id=&quot;id_input&quot; placeholder=&quot;ID del producto&quot;
+                       value=&quot;{{id}}&quot; disabled&gt;
+                &lt;span class=&quot;help-block&quot; id=&quot;help_id_input&quot;&gt;&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;form-group&quot;&gt;
+                &lt;label for=&quot;nombre_input&quot;&gt;Nombre&lt;/label&gt;
+                &lt;input type=&quot;text&quot; class=&quot;form-control valids&quot; id=&quot;nombre_input&quot; placeholder=&quot;Nombre del producto&quot;
+                       value=&quot;{{nombre}}&quot;&gt;
+                &lt;span class=&quot;help-block&quot; id=&quot;help_nombre_input&quot;&gt;&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;form-group&quot;&gt;
+                &lt;label for=&quot;descripcion_input&quot;&gt;Descripcion&lt;/label&gt;
+                &lt;textarea placeholder=&quot;Descripcion del producto&quot; class=&quot;form-control valids&quot;
+                          id=&quot;descripcion_input&quot;&gt;{{descripcion}}&lt;/textarea&gt;
+                &lt;span class=&quot;help-block&quot; id=&quot;help_descripcion_input&quot;&gt;&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;form-group&quot;&gt;
+                &lt;label for=&quot;precioKg_input&quot;&gt;Precio&lt;/label&gt;
+                &lt;div class=&quot;input-group&quot;&gt;
+                    &lt;input type=&quot;text&quot; class=&quot;form-control valids&quot; id=&quot;precioKg_input&quot;
+                           placeholder=&quot;Precio del producto&quot; value=&quot;{{precioKg}}&quot;&gt;
+                    &lt;span class=&quot;input-group-addon&quot;&gt;€/Kg&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;span class=&quot;help-block&quot; id=&quot;help_precioKg_input&quot;&gt;&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;form-group&quot;&gt;
+                &lt;label for=&quot;stock_input&quot;&gt;Stock&lt;/label&gt;
+                &lt;input type=&quot;text&quot; class=&quot;form-control valids&quot; id=&quot;stock_input&quot; placeholder=&quot;Stock del producto&quot;
+                       value=&quot;{{stock}}&quot;&gt;
+                &lt;span class=&quot;help-block&quot; id=&quot;help_stock_input&quot;&gt;&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;form-group&quot;&gt;
+                &lt;label for=&quot;proovedor_id_input&quot;&gt;Nº proovedor&lt;/label&gt;
+                &lt;input type=&quot;text&quot; class=&quot;form-control valids&quot; id=&quot;proovedor_id_input&quot;
+                       placeholder=&quot;Numero del proovedor&quot; value=&quot;{{proovedor_id}}&quot;&gt;
+                &lt;span class=&quot;help-block&quot; id=&quot;help_proovedor_id_input&quot;&gt;&lt;/span&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;col-xs-6&quot;&gt;
+            &lt;div class=&quot;form-group&quot;&gt;
+                &lt;label for=&quot;rebaja_input&quot;&gt;Rebaja&lt;/label&gt;
+                &lt;div class=&quot;input-group&quot;&gt;
+                    &lt;input type=&quot;text&quot; class=&quot;form-control valids&quot; id=&quot;rebaja_input&quot;
+                           placeholder=&quot;Rebaja del producto&quot; value=&quot;{{rebaja}}&quot;&gt;
+                    &lt;span class=&quot;input-group-addon&quot;&gt;%&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;span class=&quot;help-block&quot; id=&quot;help_rebaja_input&quot;&gt;&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;form-group&quot;&gt;
+                &lt;label for=&quot;ofertas_input&quot;&gt;Oferta&lt;/label&gt;
+                &lt;div class=&quot;checkbox&quot;&gt;
+                    &lt;label&gt;
+                        &lt;input type=&quot;checkbox&quot; id=&quot;ofertas_input&quot; checked=&quot;{{ofertas}}&quot; value=&quot;{{ofertas}}&quot;&gt;Oferta
+                    &lt;/label&gt;
+                &lt;/div&gt;
+                &lt;span class=&quot;help-block&quot; id=&quot;help_ofertas_input&quot;&gt;&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;form-group&quot;&gt;
+                &lt;label for=&quot;created_at_input&quot;&gt;Creado&lt;/label&gt;
+                &lt;input type=&quot;text&quot; class=&quot;form-control&quot; id=&quot;created_at_input&quot;
+                       placeholder=&quot;Fecha de creacion del producto&quot; value=&quot;{{created_at}}&quot; disabled&gt;
+                &lt;span class=&quot;help-block&quot; id=&quot;help_created_at_input&quot;&gt;&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;form-group&quot;&gt;
+                &lt;label for=&quot;updated_at_input&quot;&gt;Modificado&lt;/label&gt;
+                &lt;input type=&quot;text&quot; class=&quot;form-control&quot; id=&quot;updated_at_input&quot;
+                       placeholder=&quot;Fecha de modificacion del producto&quot; value=&quot;{{updated_at}}&quot; disabled&gt;
+                &lt;span class=&quot;help-block&quot; id=&quot;help_updated_at_input&quot;&gt;&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;form-group input-group&quot;&gt;
+                &lt;label for=&quot;url_imagen_input&quot;&gt;Imagen&lt;/label&gt;
+                &lt;input value=&quot;{{url_imagen}}&quot; class=&quot;form-control valids&quot; id=&quot;url_imagen_input&quot; type=&quot;file&quot;/&gt;
+                &lt;span class=&quot;help-block&quot; id=&quot;help_url_imagen_input&quot;&gt;&lt;/span&gt;
+                &lt;br&gt;
+                {{&gt; img}}
+                &lt;input class=&quot;btn btn-default&quot; type=&quot;button&quot; id=&quot;borrar_imagen_registro&quot; value=&quot;Borrar&quot;&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot; id=&quot;update_crud&quot;&gt;Modificar&lt;/button&gt;
+&lt;/form&gt;</pre>
+
+<p>&lt;/div&gt;</p>
+
+<p>&lt;div id=“delete”&gt;</p>
+
+<pre>&lt;h4 class=&quot;modal-title&quot;&gt;Borrar&lt;/h4&gt;
+
+&lt;div class=&quot;row&quot;&gt;
+    &lt;div class=&quot;col-xs-4&quot;&gt;¿Quieres borrar el producto &lt;span id=&quot;id&quot;&gt;{{id}}&lt;/span&gt; ({{nombre}})?&lt;/div&gt;
+    &lt;br&gt;
+
+    &lt;div class=&quot;col-xs-4&quot;&gt;
+        &lt;input type=&quot;button&quot; id=&quot;button_delete_ok&quot; class=&quot;btn btn-primary&quot; value=&quot;Si&quot;&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</pre>
+
+<p>&lt;/div&gt;</p>
+</main>
+
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+
