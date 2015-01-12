@@ -12,6 +12,7 @@ class ProductosAPI < Sinatra::Base
 
   # Configuracion inicial
   configure do
+    register Sinatra::ActiveRecordExtension
     puts 'configurando API de productos...'
     @@producto_bo = ProductoBO.new
   end
@@ -31,28 +32,31 @@ class ProductosAPI < Sinatra::Base
 
   # Devuelve un listado con todos los productos del proovedor
   get '/proovedor/:id' do
-    p = @@producto_bo.select_by_proovedor(params['id'])
+    params_parseados = Utilidad.parse_params(params)
+    p = @@producto_bo.select_by_proovedor(params['id'], params_parseados)
     content_type :json
     status 200
-    result = Utilidad.paginacion(request.env['REQUEST_PATH'],p,params)
+    result = Utilidad.paginacion(request.env['REQUEST_PATH'], p, params_parseados)
     result.to_json
   end
 
   # Devuelve un listado con todos los productos que contengan la subcadena
   get '/buscar/:subcadena' do
-    p = @@producto_bo.select_by_nombre(params['subcadena'])
+    params_parseados = Utilidad.parse_params(params)
+    p = @@producto_bo.select_by_nombre(params['subcadena'], params_parseados)
     content_type :json
     status 200
-    result = Utilidad.paginacion(request.env['REQUEST_PATH'],p,params)
+    result = Utilidad.paginacion(request.env['REQUEST_PATH'], p, params_parseados)
     result.to_json
   end
 
   # Todos los productos en JSON
   get '/all' do
-    p = @@producto_bo.all
+    params_parseados = Utilidad.parse_params(params)
+    p = @@producto_bo.all(params_parseados)
     status 200
     content_type :json
-    result = Utilidad.paginacion(request.env['REQUEST_PATH'],p,params)
+    result = Utilidad.paginacion(request.env['REQUEST_PATH'], p, params_parseados)
     result.to_json
   end
 
@@ -71,13 +75,19 @@ class ProductosAPI < Sinatra::Base
 
   # Crea un producto nuevo. Si ya existe o esta mal formado el formulario lanza un 400
   post '/new' do
-    datos = {:nombre => params['nombre'],
+    datos = {}
+    begin
+      datos = JSON.parse(request.body.read)
+    rescue Exception => e
+      datos = {:nombre => params['nombre'],
              :descripcion => params['descripcion'],
              :precioKg => params['precioKg'],
              :stock => params['stock'],
              :ofertas => params['ofertas'],
              :proovedor_id => params['proovedor_id']
-    }
+      }
+    end
+
     begin
       p = @@producto_bo.create(datos,request.env['HTTP_X_AUTH_TOKEN'])
       status 201
@@ -91,46 +101,51 @@ class ProductosAPI < Sinatra::Base
 
   # Actualiza los campos de un producto. Si se viola alguna regla de la base de datos lanza un 400
   put '/update' do
-    if params['id'].nil?
-      status 400
-      'Error 400: Falta el id en el formulario'
-    else
-      datos = {:id => params['id']}
+    datos = {}
+    begin
+      datos = JSON.parse(request.body.read)
+    rescue Exception => e
+      if params['id'].nil?
+        status 400
+        'Error 400: Falta el id en el formulario'
+      else
+        datos = {'id' => params['id']}
 
-      # Permite elegir que parametro van a ser modificados
-      if !params['nombre'].nil?
-        datos.store('nombre',params['nombre'])
-      end
+        # Permite elegir que parametro van a ser modificados
+        if !params['nombre'].nil?
+          datos.store('nombre', params['nombre'])
+        end
 
-      if !params['descripcion'].nil?
-        datos.store('descripcion',params['descripcion'])
-      end
+        if !params['descripcion'].nil?
+          datos.store('descripcion', params['descripcion'])
+        end
 
-      if !params['precioKg'].nil?
-        datos.store('precioKg',params['precioKg'])
-      end
+        if !params['precioKg'].nil?
+          datos.store('precioKg', params['precioKg'])
+        end
 
-      if !params['stock'].nil?
-        datos.store('stock',params['stock'])
-      end
+        if !params['stock'].nil?
+          datos.store('stock', params['stock'])
+        end
 
-      if !params['ofertas'].nil?
-        datos.store('ofertas',params['ofertas'])
-      end
+        if !params['ofertas'].nil?
+          datos.store('ofertas', params['ofertas'])
+        end
 
-      if !params['proovedor_id'].nil?
-        datos.store('proovedor_id',params['proovedor_id'])
+        if !params['proovedor_id'].nil?
+          datos.store('proovedor_id', params['proovedor_id'])
+        end
       end
+    end
 
-      begin
-        p = @@producto_bo.update(datos,request.env['HTTP_X_AUTH_TOKEN'])
-        status 200
-        content_type :json
-        p.to_json
-      rescue CustomMsgException => e
-        status e.status
-        e.message
-      end
+    begin
+      p = @@producto_bo.update(datos, request.env['HTTP_X_AUTH_TOKEN'])
+      status 200
+      content_type :json
+      p.to_json
+    rescue CustomMsgException => e
+      status e.status
+      e.message
     end
   end
 

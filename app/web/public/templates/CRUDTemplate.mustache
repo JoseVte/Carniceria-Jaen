@@ -1,0 +1,264 @@
+<div id="menu" xmlns="http://www.w3.org/1999/html">
+    <div id="new">
+        <button type="button" class="btn btn-primary" data-action="#create">
+            Crear producto nuevo
+        </button>
+    </div>
+    <table class="table table-hover table-striped table-condensed table-responsive">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Descripcion</th>
+            <th>Precio/Kg</th>
+            <th>Stock</th>
+            <th>Oferta</th>
+            <th>Rebaja</th>
+            <th>Proovedor</th>
+            <th>Fecha creacion</th>
+            <th>Fecha de modificacion</th>
+            <th style="text-align: center">DETALLES</th>
+            <th style="text-align: center">EDITAR</th>
+            <th style="text-align: center">BORRAR</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!--{{#contenido}}-->
+        <tr id="prod_{{id}}">
+            <td class="id"><b>{{id}}</b></td>
+            <td><b>{{nombre}}</b></td>
+            <td>{{descripcion}}</td>
+            <td style="text-align: right">{{precioKg}} €/Kg</td>
+            <td style="text-align: right">{{stock}}</td>
+            <td style="text-align: right">{{rebaja}} %</td>
+            <td style="text-align: center">{{ofertas}}</td>
+            <td style="text-align: center">{{proovedor_id}}</td>
+            <td>{{created_at}}</td>
+            <td>{{updated_at}}</td>
+            <td class="detail">
+                <button type="button" class="btn btn-primary" data-action="#detail" data-id="{{id}}">
+                    Detalles
+                </button>
+            </td>
+            <td class="update">
+                <button type="button" class="btn btn-primary" data-action="#update" data-id="{{id}}">
+                    Modificar
+                </button>
+            </td>
+            <td class="delete">
+                <button type="button" class="btn btn-primary" data-action="#delete" data-id="{{id}}">
+                    Borrar
+                </button>
+            </td>
+        </tr>
+                <!--{{/contenido}}-->
+        </tbody>
+    </table>
+
+    <div class="panel-footer">
+        <div id="{{link_prev.rel}}" class="col-xs-4">
+            {{#link_prev}}
+                <a href="javascript:{{> funcion}}('{{link_prev.href}}')"><i
+                        class="fa fa-chevron-circle-left"></i> Anterior</a>
+            {{/link_prev}}
+        </div>
+        <div id="{{link.rel}}" class="col-xs-4">
+            <a href="javascript:{{> funcion}}('{{link.href}}')"><i class="fa fa-chevron-circle-up"></i> Actual
+                <i class="fa fa-chevron-circle-up"></i></a>
+        </div>
+        <div id="{{link_next.rel}}" class="col-xs-4">
+            {{#link_next}}
+                <a href="javascript:{{> funcion}}('{{link_next.href}}')">Siguiente <i
+                        class="fa fa-chevron-circle-right"></i></a>
+            {{/link_next}}
+        </div>
+    </div>
+</div>
+
+<div id="create">
+    <h4 class="modal-title" id="detail-modal">Crear</h4>
+
+    <form id="form_create_crud">
+        <div class="row">
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <label for="nombre_input">Nombre</label>
+                    <input type="text" class="form-control valids" id="nombre_input" placeholder="Nombre del producto">
+                    <span class="help-block" id="help_nombre_input"></span>
+                </div>
+                <div class="form-group">
+                    <label for="descripcion_input">Descripcion</label>
+                    <textarea placeholder="Descripcion del producto" class="form-control"
+                              id="descripcion_input"></textarea>
+                    <span class="help-block" id="help_descripcion_input"></span>
+                </div>
+                <div class="form-group">
+                    <label for="precioKg_input">Precio</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control valids" id="precioKg_input"
+                               placeholder="Precio del producto">
+                        <span class="input-group-addon">€/Kg</span>
+                    </div>
+                    <span class="help-block" id="help_precioKg_input"></span>
+                </div>
+                <div class="form-group">
+                    <label for="stock_input">Stock</label>
+                    <input type="text" class="form-control valids" id="stock_input" placeholder="Stock del producto">
+                    <span class="help-block" id="help_stock_input"></span>
+                </div>
+                <div class="form-group">
+                    <label for="proovedor_id_input">Nº proovedor</label>
+                    <input type="text" class="form-control valids" id="proovedor_id_input"
+                           placeholder="Numero del proovedor">
+                    <span class="help-block" id="help_proovedor_id_input"></span>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <label for="rebaja_input">Rebaja</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control valids" id="rebaja_input"
+                               placeholder="Rebaja del producto">
+                        <span class="input-group-addon">%</span>
+                    </div>
+                    <span class="help-block" id="help_rebaja_input"></span>
+                </div>
+                <div class="form-group">
+                    <label for="ofertas_input">Oferta</label>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" id="ofertas_input">Oferta
+                        </label>
+                    </div>
+                    <span class="help-block" id="help_ofertas_input"></span>
+                </div>
+                <div class="form-group input-group">
+                    <label for="url_imagen_input">Imagen</label>
+                    <input value="img/missing_prod.png" class="form-control valids" id="url_imagen_input" type="file"/>
+                    <span class="help-block" id="help_url_imagen_input"></span>
+                </div>
+            </div>
+        </div>
+        <button type="button" class="btn btn-primary" id="create_crud">Crear</button>
+    </form>
+</div>
+
+<div id="detail">
+    <h4 class="modal-title">Detalles</h4>
+    <div class="row">
+        <div class="col-xs-2">ID:</div>{{id}}<br>
+        <div class="col-xs-2">Nombre:</div>{{nombre}}<br>
+        <div class="col-xs-2">Descricion:</div>{{descripcion}}<br>
+        <div class="col-xs-2">Precio/Kg:</div>{{precioKg}} €/Kg<br>
+        <div class="col-xs-2">Stock:</div>{{stock}}<br>
+        <div class="col-xs-2">Rebajado:</div>{{rebaja}} %<br>
+        <div class="col-xs-2">Oferta:</div>{{ofertas}}<br>
+        <div class="col-xs-2">Nº proovedor:</div>{{proovedor_id}}<br>
+        <div class="col-xs-2">Creado el:</div>{{created_at}}<br>
+        <div class="col-xs-2">Modificado el:</div>{{updated_at}}<br>
+    </div>
+</div>
+
+<div id="update">
+    <h4 class="modal-title" id="detail-modal">Modificar</h4>
+
+    <form id="form_update_crud">
+        <div class="row">
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <label for="id_input">ID</label>
+                    <input type="text" class="form-control valids" id="id_input" placeholder="ID del producto"
+                           value="{{id}}" disabled>
+                    <span class="help-block" id="help_id_input"></span>
+                </div>
+                <div class="form-group">
+                    <label for="nombre_input">Nombre</label>
+                    <input type="text" class="form-control valids" id="nombre_input" placeholder="Nombre del producto"
+                           value="{{nombre}}">
+                    <span class="help-block" id="help_nombre_input"></span>
+                </div>
+                <div class="form-group">
+                    <label for="descripcion_input">Descripcion</label>
+                    <textarea placeholder="Descripcion del producto" class="form-control valids"
+                              id="descripcion_input">{{descripcion}}</textarea>
+                    <span class="help-block" id="help_descripcion_input"></span>
+                </div>
+                <div class="form-group">
+                    <label for="precioKg_input">Precio</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control valids" id="precioKg_input"
+                               placeholder="Precio del producto" value="{{precioKg}}">
+                        <span class="input-group-addon">€/Kg</span>
+                    </div>
+                    <span class="help-block" id="help_precioKg_input"></span>
+                </div>
+                <div class="form-group">
+                    <label for="stock_input">Stock</label>
+                    <input type="text" class="form-control valids" id="stock_input" placeholder="Stock del producto"
+                           value="{{stock}}">
+                    <span class="help-block" id="help_stock_input"></span>
+                </div>
+                <div class="form-group">
+                    <label for="proovedor_id_input">Nº proovedor</label>
+                    <input type="text" class="form-control valids" id="proovedor_id_input"
+                           placeholder="Numero del proovedor" value="{{proovedor_id}}">
+                    <span class="help-block" id="help_proovedor_id_input"></span>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <label for="rebaja_input">Rebaja</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control valids" id="rebaja_input"
+                               placeholder="Rebaja del producto" value="{{rebaja}}">
+                        <span class="input-group-addon">%</span>
+                    </div>
+                    <span class="help-block" id="help_rebaja_input"></span>
+                </div>
+                <div class="form-group">
+                    <label for="ofertas_input">Oferta</label>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" id="ofertas_input" checked="{{ofertas}}" value="{{ofertas}}">Oferta
+                        </label>
+                    </div>
+                    <span class="help-block" id="help_ofertas_input"></span>
+                </div>
+                <div class="form-group">
+                    <label for="created_at_input">Creado</label>
+                    <input type="text" class="form-control" id="created_at_input"
+                           placeholder="Fecha de creacion del producto" value="{{created_at}}" disabled>
+                    <span class="help-block" id="help_created_at_input"></span>
+                </div>
+                <div class="form-group">
+                    <label for="updated_at_input">Modificado</label>
+                    <input type="text" class="form-control" id="updated_at_input"
+                           placeholder="Fecha de modificacion del producto" value="{{updated_at}}" disabled>
+                    <span class="help-block" id="help_updated_at_input"></span>
+                </div>
+                <div class="form-group input-group">
+                    <label for="url_imagen_input">Imagen</label>
+                    <input value="{{url_imagen}}" class="form-control valids" id="url_imagen_input" type="file"/>
+                    <span class="help-block" id="help_url_imagen_input"></span>
+                    <br>
+                    {{> img}}
+                    <input class="btn btn-default" type="button" id="borrar_imagen_registro" value="Borrar">
+                </div>
+            </div>
+        </div>
+        <button type="button" class="btn btn-primary" id="update_crud">Modificar</button>
+    </form>
+</div>
+
+<div id="delete">
+    <h4 class="modal-title">Borrar</h4>
+
+    <div class="row">
+        <div class="col-xs-4">¿Quieres borrar el producto <span id="id">{{id}}</span> ({{nombre}})?</div>
+        <br>
+
+        <div class="col-xs-4">
+            <input type="button" id="button_delete_ok" class="btn btn-primary" value="Si">
+        </div>
+    </div>
+</div>

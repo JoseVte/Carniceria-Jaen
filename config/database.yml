@@ -14,7 +14,7 @@ test:
 
 # Configuracion de la base de datos cuando se encuentra en el entorno de produccion
 production:
-  adapter: sqlite3
+  adapter: postgresql
   encoding: unicode
-  database: db/cf_production.sqlite3
+  database: database_production
   pool: 5

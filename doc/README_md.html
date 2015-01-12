@@ -2,331 +2,530 @@
 
 <html>
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<title>README - RDoc Documentation</title>
+    <title>README - RDoc Documentation</title>
 
-<link href="./fonts.css" rel="stylesheet">
-<link href="./rdoc.css" rel="stylesheet">
+    <script type="text/javascript">
+        var rdoc_rel_prefix = "./";
+    </script>
 
-<script type="text/javascript">
-  var rdoc_rel_prefix = "./";
-</script>
+    <script src="./js/jquery.js"></script>
+    <script src="./js/darkfish.js"></script>
 
-<script src="./js/jquery.js"></script>
-<script src="./js/navigation.js"></script>
-<script src="./js/search_index.js"></script>
-<script src="./js/search.js"></script>
-<script src="./js/searcher.js"></script>
-<script src="./js/darkfish.js"></script>
+    <link href="./css/fonts.css" rel="stylesheet">
+    <link href="./css/rdoc.css" rel="stylesheet">
 
 
 <body id="top" role="document" class="file">
 <nav role="navigation">
-  <div id="project-navigation">
-    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
-  <h2>
-    <a href="./index.html" rel="home">Home</a>
-  </h2>
+    <div id="project-navigation">
+        <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+            <h2>
+                <a href="./index.html" rel="home">Home</a>
+            </h2>
 
-  <div id="table-of-contents-navigation">
-    <a href="./table_of_contents.html#pages">Pages</a>
-    <a href="./table_of_contents.html#classes">Classes</a>
-    <a href="./table_of_contents.html#methods">Methods</a>
-  </div>
-</div>
+            <div id="table-of-contents-navigation">
+                <a href="./table_of_contents.html#pages">Pages</a>
+                <a href="./table_of_contents.html#classes">Classes</a>
+                <a href="./table_of_contents.html#methods">Methods</a>
+            </div>
+        </div>
 
-    <div id="search-section" role="search" class="project-section initially-hidden">
-  <form action="#" method="get" accept-charset="utf-8">
-    <div id="search-field-wrapper">
-      <input id="search-field" role="combobox" aria-label="Search"
-             aria-autocomplete="list" aria-controls="search-results"
-             type="text" name="search" placeholder="Search" spellcheck="false"
-             title="Type to search, Up and Down to navigate, Enter to load">
+        <div id="search-section" role="search" class="project-section initially-hidden">
+            <form action="#" method="get" accept-charset="utf-8">
+                <div id="search-field-wrapper">
+                    <input id="search-field" role="combobox" aria-label="Search"
+                           aria-autocomplete="list" aria-controls="search-results"
+                           type="text" name="search" placeholder="Search" spellcheck="false"
+                           title="Type to search, Up and Down to navigate, Enter to load">
+                </div>
+
+                <ul id="search-results" aria-label="Search Results"
+                    aria-busy="false" aria-expanded="false"
+                    aria-atomic="false" class="initially-hidden"></ul>
+            </form>
+        </div>
+
     </div>
 
-    <ul id="search-results" aria-label="Search Results"
-        aria-busy="false" aria-expanded="false"
-        aria-atomic="false" class="initially-hidden"></ul>
-  </form>
-</div>
 
-  </div>
+    <div class="nav-section">
+        <h3>Table of Contents</h3>
 
-  
-<div class="nav-section">
-  <h3>Table of Contents</h3>
-
-  <ul class="link-list" role="directory">
-    <li><a href="#label-Carniceria+J%C3%A1en">Carniceria Jáen</a>
-    <li><a href="#label-Acceso+a+la+API">Acceso a la API</a>
-    <li><a href="#label-Producto">Producto</a>
-    <li><a href="#label-Ofertas">Ofertas</a>
-    <li><a href="#label-Busqueda">Busqueda</a>
-    <li><a href="#label-Todos+los+productos">Todos los productos</a>
-    <li><a href="#label-Productos+en+detalle">Productos en detalle</a>
-    <li><a href="#label-Crear+producto">Crear producto</a>
-    <li><a href="#label-Actualizar+producto">Actualizar producto</a>
-    <li><a href="#label-Borrar+producto">Borrar producto</a>
-    <li><a href="#label-Usuario">Usuario</a>
-    <li><a href="#label-Crear+usuario">Crear usuario</a>
-    <li><a href="#label-Login">Login</a>
-    <li><a href="#label-Logout">Logout</a>
-    <li><a href="#label-Todos+los+usuarios">Todos los usuarios</a>
-    <li><a href="#label-Usuarios+en+detalle">Usuarios en detalle</a>
-    <li><a href="#label-Actualizar+usuario">Actualizar usuario</a>
-    <li><a href="#label-Borrar+usuario">Borrar usuario</a>
-    <li><a href="#label-Carrito">Carrito</a>
-    <li><a href="#label-Todo+el+carrito">Todo el carrito</a>
-    <li><a href="#label-A%C3%B1adir+al+carrito">Añadir al carrito</a>
-    <li><a href="#label-Comprar+todo+el+carrito">Comprar todo el carrito</a>
-    <li><a href="#label-Borrar+en+el+carrito">Borrar en el carrito</a>
-    <li><a href="#label-Proovedor">Proovedor</a>
-    <li><a href="#label-Busqueda">Busqueda</a>
-    <li><a href="#label-Todos+los+proovedores">Todos los proovedores</a>
-    <li><a href="#label-Proovedores+en+detalle">Proovedores en detalle</a>
-    <li><a href="#label-Crear+proovedor">Crear proovedor</a>
-    <li><a href="#label-Actualizar+proovedor">Actualizar proovedor</a>
-    <li><a href="#label-Borrar+proovedor">Borrar proovedor</a>
-  </ul>
-</div>
+        <ul class="link-list" role="directory">
+            <li><a href="#label-Carniceria+J-C3-A1en">Carniceria Jáen</a>
+            <li><a href="#label-Acceso+a+la+API">Acceso a la API</a>
+            <li><a href="#label-Producto">Producto</a>
+            <li><a href="#label-Ofertas">Ofertas</a>
+            <li><a href="#label-Busqueda">Busqueda</a>
+            <li><a href="#label-Todos+los+productos">Todos los productos</a>
+            <li><a href="#label-Productos+en+detalle">Productos en detalle</a>
+            <li><a href="#label-Crear+producto">Crear producto</a>
+            <li><a href="#label-Actualizar+producto">Actualizar producto</a>
+            <li><a href="#label-Borrar+producto">Borrar producto</a>
+            <li><a href="#label-Usuario">Usuario</a>
+            <li><a href="#label-Crear+usuario">Crear usuario</a>
+            <li><a href="#label-Login">Login</a>
+            <li><a href="#label-Logout">Logout</a>
+            <li><a href="#label-Todos+los+usuarios">Todos los usuarios</a>
+            <li><a href="#label-Usuarios+en+detalle">Usuarios en detalle</a>
+            <li><a href="#label-Actualizar+usuario">Actualizar usuario</a>
+            <li><a href="#label-Borrar+usuario">Borrar usuario</a>
+            <li><a href="#label-Carrito">Carrito</a>
+            <li><a href="#label-Todo+el+carrito">Todo el carrito</a>
+            <li><a href="#label-A-C3-B1adir+al+carrito">Añadir al carrito</a>
+            <li><a href="#label-Comprar+todo+el+carrito">Comprar todo el carrito</a>
+            <li><a href="#label-Borrar+en+el+carrito">Borrar en el carrito</a>
+            <li><a href="#label-Proovedor">Proovedor</a>
+            <li><a href="#label-Busqueda">Busqueda</a>
+            <li><a href="#label-Todos+los+proovedores">Todos los proovedores</a>
+            <li><a href="#label-Proovedores+en+detalle">Proovedores en detalle</a>
+            <li><a href="#label-Crear+proovedor">Crear proovedor</a>
+            <li><a href="#label-Actualizar+proovedor">Actualizar proovedor</a>
+            <li><a href="#label-Borrar+proovedor">Borrar proovedor</a>
+        </ul>
+    </div>
 
 
-  <div id="project-metadata">
-    <div id="fileindex-section" class="nav-section">
-  <h3>Pages</h3>
+    <div id="project-metadata">
+        <div id="fileindex-section" class="nav-section">
+            <h3>Pages</h3>
 
-  <ul class="link-list">
-  
-    <li><a href="./Gemfile.html">Gemfile</a>
-  
-    <li><a href="./Gemfile_lock.html">Gemfile.lock</a>
-  
-    <li><a href="./README_md.html">README</a>
-  
-    <li><a href="./Rakefile.html">Rakefile</a>
-  
-    <li><a href="./comandosDB_sh.html">comandosDB.sh</a>
-  
-    <li><a href="./comandosDoc_sh.html">comandosDoc.sh</a>
-  
-    <li><a href="./config_ru.html">config.ru</a>
-  
-  </ul>
-</div>
+            <ul class="link-list">
 
-  </div>
+                <li><a href="./Gemfile.html">Gemfile</a>
+
+                <li><a href="./Gemfile_lock.html">Gemfile.lock</a>
+
+                <li><a href="./README_md.html">README</a>
+
+                <li><a href="./Rakefile.html">Rakefile</a>
+
+                <li><a href="./app/web/public/css/bootstrap-theme_css.html">bootstrap-theme.css</a>
+
+                <li><a href="./app/web/public/css/bootstrap-theme_css_map.html">bootstrap-theme.css.map</a>
+
+                <li><a href="./app/web/public/css/bootstrap-theme_min_css.html">bootstrap-theme.min.css</a>
+
+                <li><a href="./app/web/public/css/bootstrap_css.html">bootstrap.css</a>
+
+                <li><a href="./app/web/public/css/bootstrap_css_map.html">bootstrap.css.map</a>
+
+                <li><a href="./app/web/public/css/bootstrap_min_css.html">bootstrap.min.css</a>
+
+                <li><a href="./app/web/public/css/estilo_css.html">estilo.css</a>
+
+                <li><a href="./app/web/public/css/font-awesome_css.html">font-awesome.css</a>
+
+                <li><a href="./app/web/public/css/font-awesome_min_css.html">font-awesome.min.css</a>
+
+                <li><a href="./app/web/public/css/notify_css.html">notify.css</a>
+
+                <li><a href="./app/web/public/fonts/fontawesome-webfont_svg.html">fontawesome-webfont.svg</a>
+
+                <li><a href="./app/web/public/fonts/glyphicons-halflings-regular_svg.html">glyphicons-halflings-regular.svg</a>
+
+                <li><a href="./app/web/public/humans_txt.html">humans</a>
+
+                <li><a href="./app/web/public/index_html.html">index.html</a>
+
+                <li><a href="./app/web/public/index_bb_html.html">index_bb.html</a>
+
+                <li><a href="./app/web/public/js/constantes_js.html">constantes.js</a>
+
+                <li><a href="./app/web/public/js/lib/backbone_js.html">backbone.js</a>
+
+                <li><a href="./app/web/public/js/lib/bootstrap_min_js.html">bootstrap.min.js</a>
+
+                <li><a href="./app/web/public/js/lib/jquery-1_11_1_js.html">jquery-1.11.1.js</a>
+
+                <li><a href="./app/web/public/js/lib/jquery-1_11_1_min_js.html">jquery-1.11.1.min.js</a>
+
+                <li><a href="./app/web/public/js/lib/jquery-1_11_1_min_map.html">jquery-1.11.1.min.map</a>
+
+                <li><a href="./app/web/public/js/lib/jquery_cookie_js.html">jquery.cookie.js</a>
+
+                <li><a href="./app/web/public/js/lib/mustache_js.html">mustache.js</a>
+
+                <li><a href="./app/web/public/js/lib/notify_js.html">notify.js</a>
+
+                <li><a href="./app/web/public/js/lib/underscore-min_js.html">underscore-min.js</a>
+
+                <li><a href="./app/web/public/js/lib/underscore-min_map.html">underscore-min.map</a>
+
+                <li><a href="./app/web/public/js/lib/zepto_min_js.html">zepto.min.js</a>
+
+                <li><a href="./app/web/public/js/productos_js.html">productos.js</a>
+
+                <li><a href="./app/web/public/js/productos_bb_js.html">productos_bb.js</a>
+
+                <li><a href="./app/web/public/js/usuarios_js.html">usuarios.js</a>
+
+                <li><a href="./app/web/public/js/utilidades_js.html">utilidades.js</a>
+
+                <li><a href="./app/web/public/js/utilidades_bb_js.html">utilidades_bb.js</a>
+
+                <li><a href="./app/web/public/less/bordered-pulled_less.html">bordered-pulled.less</a>
+
+                <li><a href="./app/web/public/less/core_less.html">core.less</a>
+
+                <li><a href="./app/web/public/less/fixed-width_less.html">fixed-width.less</a>
+
+                <li><a href="./app/web/public/less/font-awesome_less.html">font-awesome.less</a>
+
+                <li><a href="./app/web/public/less/icons_less.html">icons.less</a>
+
+                <li><a href="./app/web/public/less/larger_less.html">larger.less</a>
+
+                <li><a href="./app/web/public/less/list_less.html">list.less</a>
+
+                <li><a href="./app/web/public/less/mixins_less.html">mixins.less</a>
+
+                <li><a href="./app/web/public/less/path_less.html">path.less</a>
+
+                <li><a href="./app/web/public/less/rotated-flipped_less.html">rotated-flipped.less</a>
+
+                <li><a href="./app/web/public/less/spinning_less.html">spinning.less</a>
+
+                <li><a href="./app/web/public/less/stacked_less.html">stacked.less</a>
+
+                <li><a href="./app/web/public/less/variables_less.html">variables.less</a>
+
+                <li><a href="./app/web/public/robots_txt.html">robots</a>
+
+                <li><a href="./app/web/public/scss/_bordered-pulled_scss.html">_bordered-pulled.scss</a>
+
+                <li><a href="./app/web/public/scss/_core_scss.html">_core.scss</a>
+
+                <li><a href="./app/web/public/scss/_fixed-width_scss.html">_fixed-width.scss</a>
+
+                <li><a href="./app/web/public/scss/_icons_scss.html">_icons.scss</a>
+
+                <li><a href="./app/web/public/scss/_larger_scss.html">_larger.scss</a>
+
+                <li><a href="./app/web/public/scss/_list_scss.html">_list.scss</a>
+
+                <li><a href="./app/web/public/scss/_mixins_scss.html">_mixins.scss</a>
+
+                <li><a href="./app/web/public/scss/_path_scss.html">_path.scss</a>
+
+                <li><a href="./app/web/public/scss/_rotated-flipped_scss.html">_rotated-flipped.scss</a>
+
+                <li><a href="./app/web/public/scss/_spinning_scss.html">_spinning.scss</a>
+
+                <li><a href="./app/web/public/scss/_stacked_scss.html">_stacked.scss</a>
+
+                <li><a href="./app/web/public/scss/_variables_scss.html">_variables.scss</a>
+
+                <li><a href="./app/web/public/scss/font-awesome_scss.html">font-awesome.scss</a>
+
+                <li><a href="./app/web/public/templates/CRUDTemplate_mustache.html">CRUDTemplate.mustache</a>
+
+                <li><a href="./app/web/public/templates/inicioTemplate_mustache.html">inicioTemplate.mustache</a>
+
+                <li><a href="./app/web/public/templates/loginTemplate_mustache.html">loginTemplate.mustache</a>
+
+                <li><a href="./app/web/public/templates/productoTemplate_mustache.html">productoTemplate.mustache</a>
+
+                <li><a href="./app/web/public/templates/registroTemplate_mustache.html">registroTemplate.mustache</a>
+
+                <li><a href="./app/web/public/templates/usuarioTemplate_mustache.html">usuarioTemplate.mustache</a>
+
+                <li><a href="./carniceria_sublime-project.html">carniceria.sublime-project</a>
+
+                <li><a href="./carniceria_sublime-workspace.html">carniceria.sublime-workspace</a>
+
+                <li><a href="./comandosDB_sh.html">comandosDB.sh</a>
+
+                <li><a href="./comandosDoc_sh.html">comandosDoc.sh</a>
+
+                <li><a href="./config_ru.html">config.ru</a>
+
+                <li><a href="./proyecto-carniceria_komodoproject.html">proyecto-carniceria.komodoproject</a>
+
+                <li><a href="./spec/javascripts/fixtures/detalles_proyecto_html.html">detalles_proyecto.html</a>
+
+                <li><a href="./spec/javascripts/helpers/jasmine-jquery_js.html">jasmine-jquery.js</a>
+
+                <li><a href="./spec/javascripts/helpers/lib/jquery-2_1_1_min_js.html">jquery-2.1.1.min.js</a>
+
+                <li><a href="./spec/javascripts/helpers/lib/mock-ajax_js.html">mock-ajax.js</a>
+
+                <li><a href="./spec/javascripts/principalSpec_js.html">principalSpec.js</a>
+
+                <li><a href="./spec/javascripts/proyectos_spec_js.html">proyectos_spec.js</a>
+
+                <li><a href="./spec/javascripts/saludo_spec_js.html">saludo_spec.js</a>
+
+            </ul>
+        </div>
+
+    </div>
 </nav>
 
 <main role="main" aria-label="Page README.md">
 
-<h1 id="label-Carniceria+J%C3%A1en">Carniceria Jáen<span><a href="#label-Carniceria+J%C3%A1en">&para;</a> <a href="#documentation">&uarr;</a></span></h1>
-<ul><li>
-<p>Se trata de una aplicacion Web la cual permite al usuario <strong>mirar
-todos los productos</strong> y los que estan en <strong>oferta</strong>, y
-una vez logeado puedes <strong>añadir a un carrito</strong> y
-<strong>eliminar del carrito</strong>.</p>
-</li></ul>
+    <h1 id="label-Carniceria+J-C3-A1en">Carniceria Jáen<span><a href="#label-Carniceria+J-C3-A1en">&para;</a> <a
+            href="#top">&uarr;</a></span></h1>
+    <ul>
+        <li>
+            <p>Se trata de una aplicacion Web la cual permite al usuario <strong>mirar
+                todos los productos</strong> y los que estan en <strong>oferta</strong>, y
+                una vez logeado puedes <strong>añadir a un carrito</strong> y
+                <strong>eliminar del carrito</strong>.</p>
+        </li>
+    </ul>
 
-<h2 id="label-Acceso+a+la+API">Acceso a la API<span><a href="#label-Acceso+a+la+API">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
-<ul><li>
-<p>Los usuarios <strong>no registrados</strong> solo pueden acceder a:</p>
-<ul><li>
-<p><strong>API de productos</strong>:</p>
-<ul><li>
-<p><strong>ofertas</strong></p>
-</li><li>
-<p><strong>todos los productos</strong></p>
-</li><li>
-<p><strong>buscar varios productos por nombre</strong></p>
-</li><li>
-<p><strong>datos de un productos</strong></p>
-</li></ul>
-</li><li>
-<p><strong>API de proovedores</strong>:</p>
-<ul><li>
-<p><strong>todos los proovedores</strong></p>
-</li><li>
-<p><strong>buscar varios proovedores por cualquier campo</strong></p>
-</li><li>
-<p><strong>datos de un proovedor</strong></p>
-</li></ul>
-</li></ul>
-</li><li>
-<p>Los usuarios <strong>registrados sin acceso ADMIN</strong> pueden acceder a
-las funciones anteriores, y ademas a las siguientes:</p>
-<ul><li>
-<p><strong>API de carritos</strong>: todas las funciones de <strong>su
-carrito</strong></p>
-</li><li>
-<p><strong>API de usuarios</strong>: todas las funciones de <strong>su
-usuario</strong></p>
-</li></ul>
-</li><li>
-<p>Los usuarios <strong>registrados con acceso ADMIN</strong> pueden acceder a
-todas las funcionalidades de la API:</p>
-<ul><li>
-<p><strong>API de usuarios</strong>: todas las funciones de <strong>todos los
-usuarios</strong></p>
-</li><li>
-<p><strong>API de productos</strong>: todas las funciones de
-<strong>administracion de productos</strong></p>
-</li><li>
-<p><strong>API de carritos</strong>: todas las funciones de <strong>todos los
-carritos</strong></p>
-</li><li>
-<p><strong>API de proovedores</strong>: todas las funciones de
-<strong>administracion de prooverdores</strong></p>
-</li></ul>
-</li></ul>
+    <h2 id="label-Acceso+a+la+API">Acceso a la API<span><a href="#label-Acceso+a+la+API">&para;</a> <a
+            href="#top">&uarr;</a></span></h2>
+    <ul>
+        <li>
+            <p>Los usuarios <strong>no registrados</strong> solo pueden acceder a:</p>
+            <ul>
+                <li>
+                    <p><strong>API de productos</strong>:</p>
+                    <ul>
+                        <li>
+                            <p><strong>ofertas</strong></p>
+                        </li>
+                        <li>
+                            <p><strong>todos los productos</strong></p>
+                        </li>
+                        <li>
+                            <p><strong>buscar varios productos por nombre</strong></p>
+                        </li>
+                        <li>
+                            <p><strong>datos de un productos</strong></p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>API de proovedores</strong>:</p>
+                    <ul>
+                        <li>
+                            <p><strong>todos los proovedores</strong></p>
+                        </li>
+                        <li>
+                            <p><strong>buscar varios proovedores por cualquier campo</strong></p>
+                        </li>
+                        <li>
+                            <p><strong>datos de un proovedor</strong></p>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <p>Los usuarios <strong>registrados sin acceso ADMIN</strong> pueden acceder a
+                las funciones anteriores, y ademas a las siguientes:</p>
+            <ul>
+                <li>
+                    <p><strong>API de carritos</strong>: todas las funciones de <strong>su
+                        carrito</strong></p>
+                </li>
+                <li>
+                    <p><strong>API de usuarios</strong>: todas las funciones de <strong>su
+                        usuario</strong></p>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <p>Los usuarios <strong>registrados con acceso ADMIN</strong> pueden acceder a
+                todas las funcionalidades de la API:</p>
+            <ul>
+                <li>
+                    <p><strong>API de usuarios</strong>: todas las funciones de <strong>todos los
+                        usuarios</strong></p>
+                </li>
+                <li>
+                    <p><strong>API de productos</strong>: todas las funciones de
+                        <strong>administracion de productos</strong></p>
+                </li>
+                <li>
+                    <p><strong>API de carritos</strong>: todas las funciones de <strong>todos los
+                        carritos</strong></p>
+                </li>
+                <li>
+                    <p><strong>API de proovedores</strong>: todas las funciones de
+                        <strong>administracion de prooverdores</strong></p>
+                </li>
+            </ul>
+        </li>
+    </ul>
 
-<h2 id="label-Producto"><a href="Producto.html">Producto</a><span><a href="#label-Producto">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+    <h2 id="label-Producto"><a href="Producto.html">Producto</a><span><a href="#label-Producto">&para;</a> <a
+            href="#top">&uarr;</a></span></h2>
 
-<p>API de productos.</p>
+    <p>API de productos.</p>
 
-<h3 id="label-Ofertas">Ofertas<span><a href="#label-Ofertas">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+    <h3 id="label-Ofertas">Ofertas<span><a href="#label-Ofertas">&para;</a> <a href="#top">&uarr;</a></span></h3>
 
-<p>Devuelve los productos que estan de oferta en <code>JSON</code>:<br> <code>
-get &#39;{host}/api/producto/ofertas&#39; </code></p>
+    <p>Devuelve los productos que estan de oferta en <code>JSON</code>:<br> <code>
+        get &#39;{host}/api/producto/ofertas&#39; </code></p>
 
-<h3 id="label-Busqueda">Busqueda<span><a href="#label-Busqueda">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+    <h3 id="label-Busqueda">Busqueda<span><a href="#label-Busqueda">&para;</a> <a href="#top">&uarr;</a></span></h3>
 
-<p>Devuelve una lista de productos que cumplen el criterio de busqueda:<br>
-<code> get &#39;{host}/api/producto/buscar/:subcadena&#39; </code></p>
+    <p>Devuelve una lista de productos que cumplen el criterio de busqueda:<br>
+        <code> get &#39;{host}/api/producto/buscar/:subcadena&#39; </code></p>
 
-<h3 id="label-Todos+los+productos">Todos los productos<span><a href="#label-Todos+los+productos">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+    <h3 id="label-Todos+los+productos">Todos los productos<span><a href="#label-Todos+los+productos">&para;</a> <a
+            href="#top">&uarr;</a></span></h3>
 
-<p>Devuelve todos los productos:<br> <code> get
-&#39;{host}/api/producto/all&#39; </code></p>
+    <p>Devuelve todos los productos:<br> <code> get
+        &#39;{host}/api/producto/all&#39; </code></p>
 
-<h3 id="label-Productos+en+detalle">Productos en detalle<span><a href="#label-Productos+en+detalle">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+    <h3 id="label-Productos+en+detalle">Productos en detalle<span><a href="#label-Productos+en+detalle">&para;</a> <a
+            href="#top">&uarr;</a></span></h3>
 
-<p>Devuelve los datos de un productos a partir de su <code>id</code>:<br>
-<code> get &#39;{host}/api/producto/:id&#39; </code></p>
+    <p>Devuelve los datos de un productos a partir de su <code>id</code>:<br>
+        <code> get &#39;{host}/api/producto/:id&#39; </code></p>
 
-<h3 id="label-Crear+producto">Crear producto<span><a href="#label-Crear+producto">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+    <h3 id="label-Crear+producto">Crear producto<span><a href="#label-Crear+producto">&para;</a> <a
+            href="#top">&uarr;</a></span></h3>
 
-<p>Se debe ser <strong>Administrador</strong>. Crea un nuevo producto:<br>
-<code> post &#39;{host}/api/producto/new&#39; </code></p>
+    <p>Se debe ser <strong>Administrador</strong>. Crea un nuevo producto:<br>
+        <code> post &#39;{host}/api/producto/new&#39; </code></p>
 
-<h3 id="label-Actualizar+producto">Actualizar producto<span><a href="#label-Actualizar+producto">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+    <h3 id="label-Actualizar+producto">Actualizar producto<span><a href="#label-Actualizar+producto">&para;</a> <a
+            href="#top">&uarr;</a></span></h3>
 
-<p>Se debe ser <strong>Administrador</strong>. Actualiza los datos de un
-producto:<br> <code> put &#39;{host}/api/producto/update&#39; </code></p>
+    <p>Se debe ser <strong>Administrador</strong>. Actualiza los datos de un
+        producto:<br> <code> put &#39;{host}/api/producto/update&#39; </code></p>
 
-<h3 id="label-Borrar+producto">Borrar producto<span><a href="#label-Borrar+producto">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+    <h3 id="label-Borrar+producto">Borrar producto<span><a href="#label-Borrar+producto">&para;</a> <a
+            href="#top">&uarr;</a></span></h3>
 
-<p>Se debe ser <strong>Administrador</strong>. Borra un producto:<br> <code>
-delete &#39;{host}/api/producto/:id&#39; </code></p>
+    <p>Se debe ser <strong>Administrador</strong>. Borra un producto:<br> <code>
+        delete &#39;{host}/api/producto/:id&#39; </code></p>
 
-<h2 id="label-Usuario"><a href="Usuario.html">Usuario</a><span><a href="#label-Usuario">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+    <h2 id="label-Usuario"><a href="Usuario.html">Usuario</a><span><a href="#label-Usuario">&para;</a> <a
+            href="#top">&uarr;</a></span></h2>
 
-<p>API de usuarios.</p>
+    <p>API de usuarios.</p>
 
-<h3 id="label-Crear+usuario">Crear usuario<span><a href="#label-Crear+usuario">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+    <h3 id="label-Crear+usuario">Crear usuario<span><a href="#label-Crear+usuario">&para;</a> <a href="#top">&uarr;</a></span>
+    </h3>
 
-<p>Se utiliza para <strong>registrarse</strong>. Crea un nuevo usuario:<br>
-<code> post &#39;{host}/api/usuario/new&#39; </code></p>
+    <p>Se utiliza para <strong>registrarse</strong>. Crea un nuevo usuario:<br>
+        <code> post &#39;{host}/api/usuario/new&#39; </code></p>
 
-<h3 id="label-Login">Login<span><a href="#label-Login">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+    <h3 id="label-Login">Login<span><a href="#label-Login">&para;</a> <a href="#top">&uarr;</a></span></h3>
 
-<p>Se utiliza para <strong>loguearse</strong>. Devuelve un token para usarlo
-como login:<br> <code> post &#39;{host}/api/autentificacion/login&#39;
-</code></p>
+    <p>Se utiliza para <strong>loguearse</strong>. Devuelve un token para usarlo
+        como login:<br> <code> post &#39;{host}/api/autentificacion/login&#39;
+        </code></p>
 
-<h3 id="label-Logout">Logout<span><a href="#label-Logout">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+    <h3 id="label-Logout">Logout<span><a href="#label-Logout">&para;</a> <a href="#top">&uarr;</a></span></h3>
 
-<p>Se utiliza para <strong>desloguearse</strong>. Se desloguea de la
-aplicacion:<br> <code> get &#39;{host}/api/autentificacion/logout&#39;
-</code></p>
+    <p>Se utiliza para <strong>desloguearse</strong>. Se desloguea de la
+        aplicacion:<br> <code> get &#39;{host}/api/autentificacion/logout&#39;
+        </code></p>
 
-<h3 id="label-Todos+los+usuarios">Todos los usuarios<span><a href="#label-Todos+los+usuarios">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+    <h3 id="label-Todos+los+usuarios">Todos los usuarios<span><a href="#label-Todos+los+usuarios">&para;</a> <a
+            href="#top">&uarr;</a></span></h3>
 
-<p>Se debe ser <strong>Administrador</strong>. Devuelve todos los
-usuarios:<br> <code> get &#39;{host}/api/usuario/all&#39; </code></p>
+    <p>Se debe ser <strong>Administrador</strong>. Devuelve todos los
+        usuarios:<br> <code> get &#39;{host}/api/usuario/all&#39; </code></p>
 
-<h3 id="label-Usuarios+en+detalle">Usuarios en detalle<span><a href="#label-Usuarios+en+detalle">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+    <h3 id="label-Usuarios+en+detalle">Usuarios en detalle<span><a href="#label-Usuarios+en+detalle">&para;</a> <a
+            href="#top">&uarr;</a></span></h3>
 
-<p>Se debe estar <strong>registrado</strong>. Muestra el usuario actual:<br>
-<code> get &#39;{host}/api/usuario/:user&#39; </code></p>
+    <p>Se debe estar <strong>registrado</strong>. Muestra el usuario actual:<br>
+        <code> get &#39;{host}/api/usuario/:user&#39; </code></p>
 
-<h3 id="label-Actualizar+usuario">Actualizar usuario<span><a href="#label-Actualizar+usuario">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+    <h3 id="label-Actualizar+usuario">Actualizar usuario<span><a href="#label-Actualizar+usuario">&para;</a> <a
+            href="#top">&uarr;</a></span></h3>
 
-<p>Se debe estar <strong>registrado</strong>. Modifica el usuario actual:<br>
-<code> put &#39;{host}/api/usuario/update&#39; </code></p>
+    <p>Se debe estar <strong>registrado</strong>. Modifica el usuario actual:<br>
+        <code> put &#39;{host}/api/usuario/update&#39; </code></p>
 
-<h3 id="label-Borrar+usuario">Borrar usuario<span><a href="#label-Borrar+usuario">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+    <h3 id="label-Borrar+usuario">Borrar usuario<span><a href="#label-Borrar+usuario">&para;</a> <a
+            href="#top">&uarr;</a></span></h3>
 
-<p>Se debe estar <strong>registrado</strong>. Borra el usuario actual:<br>
-<code> delete &#39;{host}/api/usuario/:user&#39; </code></p>
+    <p>Se debe estar <strong>registrado</strong>. Borra el usuario actual:<br>
+        <code> delete &#39;{host}/api/usuario/:user&#39; </code></p>
 
-<h2 id="label-Carrito"><a href="Carrito.html">Carrito</a><span><a href="#label-Carrito">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+    <h2 id="label-Carrito"><a href="Carrito.html">Carrito</a><span><a href="#label-Carrito">&para;</a> <a
+            href="#top">&uarr;</a></span></h2>
 
-<p>API de carritos.</p>
+    <p>API de carritos.</p>
 
-<h3 id="label-Todo+el+carrito">Todo el carrito<span><a href="#label-Todo+el+carrito">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+    <h3 id="label-Todo+el+carrito">Todo el carrito<span><a href="#label-Todo+el+carrito">&para;</a> <a
+            href="#top">&uarr;</a></span></h3>
 
-<p>Se debe estar <strong>registrado</strong>. Muestra el carrito del usuario
-actual:<br> <code> get &#39;{host}/api/usuario/:user/carrito&#39; </code></p>
+    <p>Se debe estar <strong>registrado</strong>. Muestra el carrito del usuario
+        actual:<br> <code> get &#39;{host}/api/usuario/:user/carrito&#39; </code></p>
 
-<h3 id="label-A%C3%B1adir+al+carrito">Añadir al carrito<span><a href="#label-A%C3%B1adir+al+carrito">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+    <h3 id="label-A-C3-B1adir+al+carrito">Añadir al carrito<span><a href="#label-A-C3-B1adir+al+carrito">&para;</a> <a
+            href="#top">&uarr;</a></span></h3>
 
-<p>Se debe estar <strong>registrado</strong>. Añade un producto al carrito del
-usuario actual:<br> <code> post &#39;{host}/api/usuario/:user/carrito&#39;
-</code></p>
+    <p>Se debe estar <strong>registrado</strong>. Añade un producto al carrito del
+        usuario actual:<br> <code> post &#39;{host}/api/usuario/:user/carrito&#39;
+        </code></p>
 
-<h3 id="label-Comprar+todo+el+carrito">Comprar todo el carrito<span><a href="#label-Comprar+todo+el+carrito">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+    <h3 id="label-Comprar+todo+el+carrito">Comprar todo el carrito<span><a
+            href="#label-Comprar+todo+el+carrito">&para;</a> <a href="#top">&uarr;</a></span></h3>
 
-<p>Se debe estar <strong>registrado</strong>. Compra todos los productos que
-estan actualmente en el carrito: <code> put
-&#39;{host}/api/usuario/:user/comprar&#39; </code></p>
+    <p>Se debe estar <strong>registrado</strong>. Compra todos los productos que
+        estan actualmente en el carrito: <code> put
+            &#39;{host}/api/usuario/:user/comprar&#39; </code></p>
 
-<h3 id="label-Borrar+en+el+carrito">Borrar en el carrito<span><a href="#label-Borrar+en+el+carrito">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+    <h3 id="label-Borrar+en+el+carrito">Borrar en el carrito<span><a href="#label-Borrar+en+el+carrito">&para;</a> <a
+            href="#top">&uarr;</a></span></h3>
 
-<p>Se debe estar <strong>registrado</strong>. Elimina un producto del carrito
-del usuario actual:<br> <code> delete
-&#39;{host}/api/usuario/:user/carrito&#39; </code></p>
+    <p>Se debe estar <strong>registrado</strong>. Elimina un producto del carrito
+        del usuario actual:<br> <code> delete
+            &#39;{host}/api/usuario/:user/carrito&#39; </code></p>
 
-<h2 id="label-Proovedor"><a href="Proovedor.html">Proovedor</a><span><a href="#label-Proovedor">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+    <h2 id="label-Proovedor"><a href="Proovedor.html">Proovedor</a><span><a href="#label-Proovedor">&para;</a> <a
+            href="#top">&uarr;</a></span></h2>
 
-<p>API de proovedores.</p>
+    <p>API de proovedores.</p>
 
-<h3 id="label-Busqueda">Busqueda<span><a href="#label-Busqueda">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+    <h3 id="label-Busqueda">Busqueda<span><a href="#label-Busqueda">&para;</a> <a href="#top">&uarr;</a></span></h3>
 
-<p>Devuelve una lista de proovedores que cumplen el criterio de busqueda:<br>
-<code> get &#39;{host}/api/proovedor/buscar/:campo/:cadena&#39; </code></p>
+    <p>Devuelve una lista de proovedores que cumplen el criterio de busqueda:<br>
+        <code> get &#39;{host}/api/proovedor/buscar/:campo/:cadena&#39; </code></p>
 
-<h3 id="label-Todos+los+proovedores">Todos los proovedores<span><a href="#label-Todos+los+proovedores">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+    <h3 id="label-Todos+los+proovedores">Todos los proovedores<span><a href="#label-Todos+los+proovedores">&para;</a> <a
+            href="#top">&uarr;</a></span></h3>
 
-<p>Devuelve todos los proovedores:<br> <code> get
-&#39;{host}/api/proovedor/all&#39; </code></p>
+    <p>Devuelve todos los proovedores:<br> <code> get
+        &#39;{host}/api/proovedor/all&#39; </code></p>
 
-<h3 id="label-Proovedores+en+detalle">Proovedores en detalle<span><a href="#label-Proovedores+en+detalle">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+    <h3 id="label-Proovedores+en+detalle">Proovedores en detalle<span><a href="#label-Proovedores+en+detalle">&para;</a> <a
+            href="#top">&uarr;</a></span></h3>
 
-<p>Devuelve los datos de un proovedores a partir de su <code>id</code>:<br>
-<code> get &#39;{host}/api/proovedor/:id&#39; </code></p>
+    <p>Devuelve los datos de un proovedores a partir de su <code>id</code>:<br>
+        <code> get &#39;{host}/api/proovedor/:id&#39; </code></p>
 
-<h3 id="label-Crear+proovedor">Crear proovedor<span><a href="#label-Crear+proovedor">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+    <h3 id="label-Crear+proovedor">Crear proovedor<span><a href="#label-Crear+proovedor">&para;</a> <a
+            href="#top">&uarr;</a></span></h3>
 
-<p>Se debe ser <strong>Administrador</strong>. Crea un nuevo proovedor:<br>
-<code> post &#39;{host}/api/proovedor/new&#39; </code></p>
+    <p>Se debe ser <strong>Administrador</strong>. Crea un nuevo proovedor:<br>
+        <code> post &#39;{host}/api/proovedor/new&#39; </code></p>
 
-<h3 id="label-Actualizar+proovedor">Actualizar proovedor<span><a href="#label-Actualizar+proovedor">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+    <h3 id="label-Actualizar+proovedor">Actualizar proovedor<span><a href="#label-Actualizar+proovedor">&para;</a> <a
+            href="#top">&uarr;</a></span></h3>
 
-<p>Se debe ser <strong>Administrador</strong>. Actualiza los datos de un
-proovedor:<br> <code> put &#39;{host}/api/proovedor/update&#39; </code></p>
+    <p>Se debe ser <strong>Administrador</strong>. Actualiza los datos de un
+        proovedor:<br> <code> put &#39;{host}/api/proovedor/update&#39; </code></p>
 
-<h3 id="label-Borrar+proovedor">Borrar proovedor<span><a href="#label-Borrar+proovedor">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+    <h3 id="label-Borrar+proovedor">Borrar proovedor<span><a href="#label-Borrar+proovedor">&para;</a> <a
+            href="#top">&uarr;</a></span></h3>
 
-<p>Se debe ser <strong>Administrador</strong>. Borra un proovedor:<br> <code>
-delete &#39;{host}/api/proovedor/:id&#39; </code></p>
+    <p>Se debe ser <strong>Administrador</strong>. Borra un proovedor:<br> <code>
+        delete &#39;{host}/api/proovedor/:id&#39; </code></p>
 </main>
 
 
-
 <footer id="validator-badges" role="contentinfo">
-  <p><a href="http://validator.w3.org/check/referer">Validate</a>
-  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.2.
-  <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+    <p><a href="http://validator.w3.org/check/referer">Validate</a>
+
+    <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.0.
+
+    <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael
+        Granger</a>.
 </footer>
 

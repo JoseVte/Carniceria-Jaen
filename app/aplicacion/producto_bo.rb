@@ -9,18 +9,36 @@ class ProductoBO
   end
 
   # Busqueda por proovedor
-  def select_by_proovedor(proovedor)
-    Producto.where("proovedor_id == ?", "#{proovedor}").order('created_at DESC')
+  def select_by_proovedor(proovedor, params)
+    {
+        datos: Producto.where("proovedor_id == ?", "#{proovedor}")
+                   .offset(params[:inicio])
+                   .limit(params[:cantidad])
+                   .order('created_at DESC'),
+        total: Producto.where("proovedor_id == ?", "#{proovedor}").count()
+    }
   end
 
   # Busqueda de productos por subcadena
-  def select_by_nombre(subcadena)
-    Producto.where("nombre LIKE ?", "%#{subcadena}%").order('created_at DESC')
+  def select_by_nombre(subcadena, params)
+    {
+        datos: Producto.where("nombre LIKE ?", "%#{subcadena}%")
+                   .offset(params[:inicio])
+                   .limit(params[:cantidad])
+                   .order('created_at DESC'),
+        total: Producto.where("nombre LIKE ?", "%#{subcadena}%").count()
+    }
   end
 
   # Todos los productos
-  def all
-    Producto.all.order('created_at DESC')
+  def all(params)
+    {
+        datos: Producto.all
+                   .offset(params[:inicio])
+                   .limit(params[:cantidad])
+                   .order('created_at DESC'),
+        total: Producto.count()
+    }
   end
 
   # Devuelve un producto concreto
@@ -45,9 +63,9 @@ class ProductoBO
   # Modifica un producto a partir del id
   def update(datos, login)
     if UsuarioBO.permitted?(login,'root')
-      p = find_by_id(datos[:id])
+      p = find_by_id(datos['id'])
 
-      datos.delete(:id)
+      datos.delete('id')
       raise CustomMsgException.new(500,'Error 500: No se ha podido modificar') if !p.update(datos)
 
       p.save

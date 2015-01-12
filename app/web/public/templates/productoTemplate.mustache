@@ -1,0 +1,82 @@
+<div id="plantilla_ofertas">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Ofertas</h3>
+        </div>
+        <div class="panel-body">
+            <main class="container">
+                <div class="scroll_horizontal">
+                    <table>
+                        <tr>
+                        <!--{{#.}}-->
+                            <td id="prod_oferta_{{id}}" align="center" style="padding-left: 10px; padding-right: 10px">
+                                {{> img}}<br>
+                                <b>{{nombre}}</b><br>
+                                <em>{{rebaja}} %</em><br>
+                                <a href="javascript:get_producto_detalles({{id}})" id="prod{{id}}">Detalles</a>
+                            </td>
+                                <!--{{/.}}-->
+                        </tr>
+                    </table>
+                </div>
+            </main>
+        </div>
+    </div>
+</div>
+
+<div id="plantilla_paginacion">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Productos <span class="badge">{{total}}</span></h3>
+        </div>
+        <div class="panel-body">
+            <main class="container">
+                {{#contenido}}
+                    <div id="prod_{{id}}" class="col-sm-3" align="center">
+                        {{> img}}<br>
+                        <b>{{nombre}}</b><br>
+                        <a href="javascript:get_producto_detalles({{id}})" id="prod{{id}}">Detalles</a>
+                    </div>
+                {{/contenido}}
+            </main>
+        </div>
+        <div class="panel-footer">
+            <div id="{{link_prev.rel}}" class="col-xs-4">
+                {{#link_prev}}
+                    <a href="javascript:{{> funcion}}('{{link_prev.href}}')"><i
+                            class="fa fa-chevron-circle-left"></i> Anterior</a>
+                {{/link_prev}}
+            </div>
+            <div id="{{link.rel}}" class="col-xs-4">
+                <a href="javascript:{{> funcion}}('{{link.href}}')"><i class="fa fa-chevron-circle-up"></i> Actual
+                    <i class="fa fa-chevron-circle-up"></i></a>
+            </div>
+            <div id="{{link_next.rel}}" class="col-xs-4">
+                {{#link_next}}
+                    <a href="javascript:{{> funcion}}('{{link_next.href}}')">Siguiente <i
+                            class="fa fa-chevron-circle-right"></i></a>
+                {{/link_next}}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- TODO Reformar para poner la imagen a un lado y los datos al otro-->
+<div id="plantilla_detalles">
+    <div style="text-align: justify" class="center-block">
+        <div class="col-xs-3">
+            {{> img_detalles}}
+        </div>
+        <div class="col-xs-3">
+            <b>{{nombre}}</b><br>
+            {{descripcion}}<br>
+            {{precioKg}}<br>
+            {{stock}}<br>
+            {{rebaja}}<br>
+
+            <em>{{fecha_js}}</em><br>
+
+            <a href="javascript:add_prod_carrito({{id}})">Add</a>
+        </div>
+    </div>
+</div>

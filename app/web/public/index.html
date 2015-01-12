@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head lang="es">
+    <meta charset="UTF-8">
+    <title>Carniceria Jáen</title>
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap-theme.css" rel="stylesheet" type="text/css">
+    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="css/notify.css" rel="stylesheet" type="text/css">
+    <link href="css/estilo.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<header class="panel-heading">
+    <div id="inicio" class="col-lg-5 panel well-sm">
+        <div class="col-lg-7">
+            <h1 id="titulo">CARNICERIA CHARCUTERIA</h1>
+        </div>
+        <div class="col-lg-1">
+            <img src="img/logo.ico">
+        </div>
+    </div>
+    <div class="col-lg-7"><br></div>
+</header>
+
+<!-- TODO Añadir navegacion de los proovedores-->
+<nav class="nav navbar-default" role="navigation" id="barra_nav">
+    <div class="row" id="row_nav">
+        <div class="col-lg-8">
+            <form class="navbar-form navbar-left" role="search">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Buscar productos" id="search">
+                    <div class="input-group-btn">
+                        <button type="button" class="btn btn-default" id="button_search"><i class="glyphicon glyphicon-search"></i></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div id="login" class="navbar-right panel col-lg-4">
+        </div>
+    </div>
+</nav>
+
+<main id="body" class="panel-body">
+</main>
+
+<footer class="panel-footer">
+    &copy; ADI 2014
+</footer>
+
+<!-- Las librerias antes que nuestro codigo -->
+<script src="js/lib/mustache.js"></script>
+<script src="js/lib/jquery-1.11.1.js"></script>
+<script src="js/lib/jquery.cookie.js"></script>
+<script src="js/lib/notify.js"></script>
+<script src="js/constantes.js"></script>
+<script src="js/productos.js"></script>
+<script src="js/usuarios.js"></script>
+<script src="js/utilidades.js"></script>
+
+</body>
+</html>

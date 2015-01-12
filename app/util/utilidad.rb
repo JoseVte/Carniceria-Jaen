@@ -4,9 +4,45 @@ class Utilidad
   # Secreto para el JWT
   SECRET = 'ADI'
 
+  # Tiempo para expirar
+  EXPIRE = 1000*60*60*24
+
   # Dados una url base, unos datos que se puedan convertir en array, y los parametros de la url devuelve un JSON con los elementos indicados
   def self.paginacion(url_base, datos, params)
-    inicio = 1
+    inicio = params[:inicio]
+    cantidad = params[:cantidad]
+
+    # Montamos el JSON final
+    result = {
+        :total => datos[:total],
+        :params => params,
+        :contenido => datos[:datos],
+        :link => {
+            :rel => 'self',
+            :href => "#{url_base}?inicio=#{inicio}&cantidad=#{cantidad}"
+        }
+    }
+
+    # Añadimos la pagina previa
+    if inicio.to_i > 1
+      aux=1
+      if inicio.to_i-cantidad.to_i>0
+        aux= (inicio.to_i-cantidad.to_i)
+      end
+      result.store(:link_prev,{:rel => 'prev',:href => "#{url_base}?inicio=#{aux}&cantidad=#{cantidad}"})
+    end
+
+    # Añadimos la siguiente pagina
+    if (inicio.to_i + cantidad.to_i) <= datos[:total]
+      result.store(:link_next,{:rel => 'next',:href => "#{url_base}?inicio=#{inicio.to_i+cantidad.to_i}&cantidad=#{cantidad}"})
+    end
+
+    return result
+  end
+
+  # Dados el principio y la cantidad, devuelve un array con los parametros
+  def self.parse_params(params)
+    inicio = 0
     if !params[:inicio].nil?
       inicio = params[:inicio]
     end
@@ -16,46 +52,9 @@ class Utilidad
       cantidad = params[:cantidad]
     end
 
-    # Montamos el JSON final
-    result = { :total => datos.length,
-               :contenido => seleccion(datos,inicio,cantidad),
-               :link => { :rel => 'self',
-                          :href => "#{url_base}?inicio=#{inicio}&cantidad=#{cantidad}"
-               }
+    return {
+        inicio: inicio,
+        cantidad: cantidad
     }
-
-    # Añadimos la pagina previa
-    if inicio.to_i > 1
-      aux=1
-      if inicio.to_i-cantidad.to_i>0
-        aux=inicio
-      end
-      result.store(:link_prev,{:rel => 'prev',:href => "#{url_base}?inicio=#{aux}&cantidad=#{cantidad}"})
-    end
-
-    # Añadimos la siguiente pagina
-    if (inicio.to_i + cantidad.to_i) <= datos.length
-      result.store(:link_next,{:rel => 'next',:href => "#{url_base}?inicio=#{inicio.to_i+cantidad.to_i}&cantidad=#{cantidad}"})
-    end
-
-    return result
-  end
-
-  # Dados los datos y el principio y la cantidad, devuelve un array con los datos seleccionados
-  def self.seleccion(datos,inicio,cantidad)
-    # Transformamos los datos en un array
-    seleccion_datos = JSON.parse(datos.to_json)
-    datos_finales = Array.new
-
-    # Seleccionamos los de la pagina actual
-    aux = 1
-    seleccion_datos.each { |obj|
-      if aux >= inicio.to_i && aux < (cantidad.to_i + inicio.to_i)
-        datos_finales << obj
-      end
-      aux+=1
-    }
-
-    return datos_finales
   end
 end

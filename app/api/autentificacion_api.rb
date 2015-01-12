@@ -8,6 +8,7 @@ class AutentificacionAPI < Sinatra::Base
   
   # Configuracion inicial
   configure do
+    register Sinatra::ActiveRecordExtension
     puts 'activando autentificacion...'
     @@usuario_bo = UsuarioBO.new
   end
@@ -27,7 +28,11 @@ class AutentificacionAPI < Sinatra::Base
           token = @@usuario_bo.login(datos['login'], datos['password'])
           status 200
           content_type :json
-          {:token => token}.to_json
+          {
+              :user => @@usuario_bo.find_by_user(datos['login'],token),
+              :token => token,
+              :expire => Utilidad::EXPIRE
+          }.to_json
         rescue CustomMsgException => e
           status e.status
           e.message

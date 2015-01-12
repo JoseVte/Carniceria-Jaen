@@ -15,6 +15,7 @@ class UsuariosAPI < Sinatra::Base
 
   # Configuracion inicial
   configure do
+    register Sinatra::ActiveRecordExtension
     puts 'configurando API de usuarios...'
     @@usuario_bo = UsuarioBO.new
     @@carrito_bo = CarritoBO.new
@@ -29,10 +30,11 @@ class UsuariosAPI < Sinatra::Base
   # Lista de usuarios en JSON
   get '/all' do
     begin
-      users = @@usuario_bo.all(request.env['HTTP_X_AUTH_TOKEN'])
+      params_parseados = Utilidad.parse_params(params)
+      users = @@usuario_bo.all(request.env['HTTP_X_AUTH_TOKEN'], params_parseados)
       status 200
       content_type :json
-      result = Utilidad.paginacion(request.env['REQUEST_PATH'],users,params)
+      result = Utilidad.paginacion(request.env['REQUEST_PATH'], users, params_parseados)
       result.to_json
     rescue CustomMsgException => e
       status e.status
@@ -50,6 +52,15 @@ class UsuariosAPI < Sinatra::Base
     rescue CustomMsgException => e
       status e.status
       e.message
+    end
+  end
+
+  # Comprobar si un usuario existe o no
+  get '/exists/:campo/:cadena' do
+    if(@@usuario_bo.exists?(params[:campo],params[:cadena]))
+      status 200
+    else
+      status 203
     end
   end
 
@@ -137,10 +148,11 @@ class UsuariosAPI < Sinatra::Base
   # Todos los productos del carrito
   get '/:user/carrito' do
     begin
-      c = @@carrito_bo.all(params['user'],request.env['HTTP_X_AUTH_TOKEN'])
+      params_parseados = Utilidad.parse_params(params)
+      c = @@carrito_bo.all(params['user'], request.env['HTTP_X_AUTH_TOKEN'], params_parseados)
       status 200
       content_type :json
-      result = Utilidad.paginacion(request.env['REQUEST_PATH'],c,params)
+      result = Utilidad.paginacion(request.env['REQUEST_PATH'], c, params_parseados)
       result.to_json
     rescue CustomMsgException => e
       status e.status
@@ -157,7 +169,6 @@ class UsuariosAPI < Sinatra::Base
     begin
       msg = @@carrito_bo.add_prod_en_carrito(datos,request.env['HTTP_X_AUTH_TOKEN'])
       status 201
-      content_type :json
       msg
     rescue CustomMsgException => e
       status e.status

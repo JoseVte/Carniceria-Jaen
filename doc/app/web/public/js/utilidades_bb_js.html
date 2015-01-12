@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>utilidades_bb.js - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../../../";
+</script>
+
+<script src="../../../../js/jquery.js"></script>
+<script src="../../../../js/darkfish.js"></script>
+
+<link href="../../../../css/fonts.css" rel="stylesheet">
+<link href="../../../../css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="file">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../../../table_of_contents.html#pages">Pages</a>
+    <a href="../../../../table_of_contents.html#classes">Classes</a>
+    <a href="../../../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="project-metadata">
+    <div id="fileindex-section" class="nav-section">
+  <h3>Pages</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../../../../Gemfile.html">Gemfile</a>
+  
+    <li><a href="../../../../Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li><a href="../../../../README_md.html">README</a>
+  
+    <li><a href="../../../../Rakefile.html">Rakefile</a>
+  
+    <li><a href="../../../../app/web/public/css/bootstrap-theme_css.html">bootstrap-theme.css</a>
+  
+    <li><a href="../../../../app/web/public/css/bootstrap-theme_css_map.html">bootstrap-theme.css.map</a>
+  
+    <li><a href="../../../../app/web/public/css/bootstrap-theme_min_css.html">bootstrap-theme.min.css</a>
+  
+    <li><a href="../../../../app/web/public/css/bootstrap_css.html">bootstrap.css</a>
+  
+    <li><a href="../../../../app/web/public/css/bootstrap_css_map.html">bootstrap.css.map</a>
+  
+    <li><a href="../../../../app/web/public/css/bootstrap_min_css.html">bootstrap.min.css</a>
+  
+    <li><a href="../../../../app/web/public/css/estilo_css.html">estilo.css</a>
+  
+    <li><a href="../../../../app/web/public/css/font-awesome_css.html">font-awesome.css</a>
+  
+    <li><a href="../../../../app/web/public/css/font-awesome_min_css.html">font-awesome.min.css</a>
+  
+    <li><a href="../../../../app/web/public/css/notify_css.html">notify.css</a>
+  
+    <li><a href="../../../../app/web/public/fonts/fontawesome-webfont_svg.html">fontawesome-webfont.svg</a>
+  
+    <li><a href="../../../../app/web/public/fonts/glyphicons-halflings-regular_svg.html">glyphicons-halflings-regular.svg</a>
+  
+    <li><a href="../../../../app/web/public/humans_txt.html">humans</a>
+  
+    <li><a href="../../../../app/web/public/index_html.html">index.html</a>
+  
+    <li><a href="../../../../app/web/public/index_bb_html.html">index_bb.html</a>
+  
+    <li><a href="../../../../app/web/public/js/constantes_js.html">constantes.js</a>
+  
+    <li><a href="../../../../app/web/public/js/lib/backbone_js.html">backbone.js</a>
+  
+    <li><a href="../../../../app/web/public/js/lib/bootstrap_min_js.html">bootstrap.min.js</a>
+  
+    <li><a href="../../../../app/web/public/js/lib/jquery-1_11_1_js.html">jquery-1.11.1.js</a>
+  
+    <li><a href="../../../../app/web/public/js/lib/jquery-1_11_1_min_js.html">jquery-1.11.1.min.js</a>
+  
+    <li><a href="../../../../app/web/public/js/lib/jquery-1_11_1_min_map.html">jquery-1.11.1.min.map</a>
+  
+    <li><a href="../../../../app/web/public/js/lib/jquery_cookie_js.html">jquery.cookie.js</a>
+  
+    <li><a href="../../../../app/web/public/js/lib/mustache_js.html">mustache.js</a>
+  
+    <li><a href="../../../../app/web/public/js/lib/notify_js.html">notify.js</a>
+  
+    <li><a href="../../../../app/web/public/js/lib/underscore-min_js.html">underscore-min.js</a>
+  
+    <li><a href="../../../../app/web/public/js/lib/underscore-min_map.html">underscore-min.map</a>
+  
+    <li><a href="../../../../app/web/public/js/lib/zepto_min_js.html">zepto.min.js</a>
+  
+    <li><a href="../../../../app/web/public/js/productos_js.html">productos.js</a>
+  
+    <li><a href="../../../../app/web/public/js/productos_bb_js.html">productos_bb.js</a>
+  
+    <li><a href="../../../../app/web/public/js/usuarios_js.html">usuarios.js</a>
+  
+    <li><a href="../../../../app/web/public/js/utilidades_js.html">utilidades.js</a>
+  
+    <li><a href="../../../../app/web/public/js/utilidades_bb_js.html">utilidades_bb.js</a>
+  
+    <li><a href="../../../../app/web/public/less/bordered-pulled_less.html">bordered-pulled.less</a>
+  
+    <li><a href="../../../../app/web/public/less/core_less.html">core.less</a>
+  
+    <li><a href="../../../../app/web/public/less/fixed-width_less.html">fixed-width.less</a>
+  
+    <li><a href="../../../../app/web/public/less/font-awesome_less.html">font-awesome.less</a>
+  
+    <li><a href="../../../../app/web/public/less/icons_less.html">icons.less</a>
+  
+    <li><a href="../../../../app/web/public/less/larger_less.html">larger.less</a>
+  
+    <li><a href="../../../../app/web/public/less/list_less.html">list.less</a>
+  
+    <li><a href="../../../../app/web/public/less/mixins_less.html">mixins.less</a>
+  
+    <li><a href="../../../../app/web/public/less/path_less.html">path.less</a>
+  
+    <li><a href="../../../../app/web/public/less/rotated-flipped_less.html">rotated-flipped.less</a>
+  
+    <li><a href="../../../../app/web/public/less/spinning_less.html">spinning.less</a>
+  
+    <li><a href="../../../../app/web/public/less/stacked_less.html">stacked.less</a>
+  
+    <li><a href="../../../../app/web/public/less/variables_less.html">variables.less</a>
+  
+    <li><a href="../../../../app/web/public/robots_txt.html">robots</a>
+  
+    <li><a href="../../../../app/web/public/scss/_bordered-pulled_scss.html">_bordered-pulled.scss</a>
+  
+    <li><a href="../../../../app/web/public/scss/_core_scss.html">_core.scss</a>
+  
+    <li><a href="../../../../app/web/public/scss/_fixed-width_scss.html">_fixed-width.scss</a>
+  
+    <li><a href="../../../../app/web/public/scss/_icons_scss.html">_icons.scss</a>
+  
+    <li><a href="../../../../app/web/public/scss/_larger_scss.html">_larger.scss</a>
+  
+    <li><a href="../../../../app/web/public/scss/_list_scss.html">_list.scss</a>
+  
+    <li><a href="../../../../app/web/public/scss/_mixins_scss.html">_mixins.scss</a>
+  
+    <li><a href="../../../../app/web/public/scss/_path_scss.html">_path.scss</a>
+  
+    <li><a href="../../../../app/web/public/scss/_rotated-flipped_scss.html">_rotated-flipped.scss</a>
+  
+    <li><a href="../../../../app/web/public/scss/_spinning_scss.html">_spinning.scss</a>
+  
+    <li><a href="../../../../app/web/public/scss/_stacked_scss.html">_stacked.scss</a>
+  
+    <li><a href="../../../../app/web/public/scss/_variables_scss.html">_variables.scss</a>
+  
+    <li><a href="../../../../app/web/public/scss/font-awesome_scss.html">font-awesome.scss</a>
+  
+    <li><a href="../../../../app/web/public/templates/CRUDTemplate_mustache.html">CRUDTemplate.mustache</a>
+  
+    <li><a href="../../../../app/web/public/templates/inicioTemplate_mustache.html">inicioTemplate.mustache</a>
+  
+    <li><a href="../../../../app/web/public/templates/loginTemplate_mustache.html">loginTemplate.mustache</a>
+  
+    <li><a href="../../../../app/web/public/templates/productoTemplate_mustache.html">productoTemplate.mustache</a>
+  
+    <li><a href="../../../../app/web/public/templates/registroTemplate_mustache.html">registroTemplate.mustache</a>
+  
+    <li><a href="../../../../app/web/public/templates/usuarioTemplate_mustache.html">usuarioTemplate.mustache</a>
+  
+    <li><a href="../../../../carniceria_sublime-project.html">carniceria.sublime-project</a>
+  
+    <li><a href="../../../../carniceria_sublime-workspace.html">carniceria.sublime-workspace</a>
+  
+    <li><a href="../../../../comandosDB_sh.html">comandosDB.sh</a>
+  
+    <li><a href="../../../../comandosDoc_sh.html">comandosDoc.sh</a>
+  
+    <li><a href="../../../../config_ru.html">config.ru</a>
+  
+    <li><a href="../../../../proyecto-carniceria_komodoproject.html">proyecto-carniceria.komodoproject</a>
+  
+    <li><a href="../../../../spec/javascripts/fixtures/detalles_proyecto_html.html">detalles_proyecto.html</a>
+  
+    <li><a href="../../../../spec/javascripts/helpers/jasmine-jquery_js.html">jasmine-jquery.js</a>
+  
+    <li><a href="../../../../spec/javascripts/helpers/lib/jquery-2_1_1_min_js.html">jquery-2.1.1.min.js</a>
+  
+    <li><a href="../../../../spec/javascripts/helpers/lib/mock-ajax_js.html">mock-ajax.js</a>
+  
+    <li><a href="../../../../spec/javascripts/principalSpec_js.html">principalSpec.js</a>
+  
+    <li><a href="../../../../spec/javascripts/proyectos_spec_js.html">proyectos_spec.js</a>
+  
+    <li><a href="../../../../spec/javascripts/saludo_spec_js.html">saludo_spec.js</a>
+  
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-label="Page app/web/public/js/utilidades_bb.js">
+
+<pre>Created by josrom on 18/11/14.</pre>
+
+<p>//Cargar todos los metodos de la pagina $(document).ready(function () {</p>
+
+<pre>mostrar_logout();
+principal();
+$(document).on(&#39;click&#39;, &#39;#button_search&#39;, function () {
+    productoRouter.search($(&#39;#search&#39;).val());
+});
+$(document).on(&#39;click&#39;, &quot;#inicio&quot;, principal);
+$(document).on(&#39;click&#39;, &quot;#button_login&quot;, login);
+$(document).on(&#39;click&#39;, &quot;#button_open_registro&quot;, mostrar_registro_parte_1);
+$(document).on(&#39;click&#39;, &quot;#button_registro_parte_1&quot;, validar_registro_parte_1);
+$(document).on(&#39;click&#39;, &quot;#button_registro_parte_2&quot;, validar_registro_parte_2);
+$(document).on(&#39;change&#39;, &quot;#input_imagen_registro&quot;, validar_imagen);
+$(document).on(&#39;click&#39;, &quot;#borrar_imagen_registro&quot;, borrar_imagen);
+$(document).on(&#39;click&#39;, &quot;#click_login&quot;, toggle_login);
+$(document).on(&#39;click&#39;, &quot;#buttom_registro_edit&quot;, mostrar_registro_parte_1);
+$(document).on(&#39;click&#39;, &quot;#buttom_registro_completar&quot;, registro_completado);
+
+$(document).on(&#39;click&#39;, &quot;#click_crud&quot;, function () {
+    productoRouter.crud();
+});
+$(document).on(&#39;click&#39;, &quot;#create_crud&quot;, function () {
+    productoRouter.crear(datosForm(&#39;#form_create_crud&#39;));
+});
+$(document).on(&#39;click&#39;, &quot;#update_crud&quot;, function () {
+    productoRouter.update(datosForm(&#39;#form_update_crud&#39;));
+});
+$(document).on(&#39;click&#39;, &quot;#button_delete_ok&quot;, function () {
+    productoRouter.delete($(&#39;#id&#39;).html());
+});
+
+Backbone.history.start();</pre>
+
+<p>});</p>
+
+<p>//Carga la vista principal function principal() {</p>
+
+<pre>$(&quot;#body&quot;).load(&quot;templates/inicioTemplate.mustache #plantilla_inicio&quot;, function () {
+    productoRouter = new ProductoRouter();
+
+    productoRouter.all();
+    productoRouter.ofertas();
+})</pre>
+
+<p>}</p>
+
+<pre>/</pre>
+
+<p>/***************** Registro de usuario</p>
+
+<p>/**********************************************************/</p>
+
+<p>//Variable global del registro var datosFormRegistro;</p>
+
+<p>//Metodos de la primera parte formulario de registro function
+mostrar_registro_parte_1() {</p>
+
+<pre>toggle_login();
+$(&quot;#body&quot;).load(&quot;templates/registroTemplate.mustache #plantilla_registro_1&quot;, function () {
+    datosFormRegistro = {};
+    var plantilla = document.getElementById(&quot;plantilla_registro_1&quot;).innerHTML;
+    $(&quot;#body&quot;).html(Mustache.render(plantilla));
+})</pre>
+
+<p>} function validar_registro_parte_1() {</p>
+
+<pre>var arrayDatos = [];
+var arrayForm = [];
+arrayForm[&#39;user&#39;] = &#39;Escriba el nombre de usuario&#39;;
+arrayForm[&#39;pass&#39;] = &#39;Escriba la contraseña&#39;;
+arrayForm[&#39;pass_2&#39;] = &#39;Escriba la confimacion de la contraseña&#39;;
+arrayForm[&#39;email&#39;] = &#39;Escriba el email de contacto&#39;;
+
+var correcto = bucle_form(arrayForm, arrayDatos);
+
+if (correcto) {
+    datosFormRegistro = {
+        &#39;datos1&#39;: arrayDatos
+    };
+    mostrar_registro_parte_2()
+}</pre>
+
+<p>}</p>
+
+<p>//Metodos de la segunda parte del formulario function
+mostrar_registro_parte_2() {</p>
+
+<pre>$(&quot;#body&quot;).load(&quot;templates/registroTemplate.mustache #plantilla_registro_2&quot;, function () {
+    var plantilla = document.getElementById(&quot;plantilla_registro_2&quot;).innerHTML;
+    $(&quot;#body&quot;).html(Mustache.render(plantilla));
+})</pre>
+
+<p>} function validar_registro_parte_2() {</p>
+
+<pre>var arrayDatos = [];
+var arrayForm = [];
+arrayForm[&#39;nombre&#39;] = &#39;Escriba su nombre&#39;;
+arrayForm[&#39;apellidos&#39;] = &#39;Escriba sus apellidos&#39;;
+arrayForm[&#39;direccion&#39;] = &#39;Escriba su direccion&#39;;
+arrayForm[&#39;telefono&#39;] = &#39;Escriba un telefono&#39;;
+arrayForm[&#39;imagen&#39;] = &#39;&#39;;
+
+bucle_form(arrayForm, arrayDatos);
+
+if (comprobar_errores(arrayForm)) {
+    datosFormRegistro.datos2 = arrayDatos;
+    datosFormRegistro.imagen = {
+        url: validar_imagen(),
+        title: $(&quot;#preview&quot;).attr(&#39;title&#39;),
+        src: $(&quot;#preview&quot;).attr(&#39;src&#39;)
+    };
+    mostrar_registro_resumen();
+}</pre>
+
+<p>}</p>
+
+<p>//Metodos de la confirmacion del formulario function
+mostrar_registro_resumen() {</p>
+
+<pre>$(&quot;#body&quot;).load(&quot;templates/registroTemplate.mustache #plantilla_confirmacion&quot;, function () {
+    var plantilla = document.getElementById(&quot;plantilla_confirmacion&quot;).innerHTML;
+    $(&quot;#body&quot;).html(Mustache.render(plantilla.replace(&#39;&amp;gt;&#39;, &#39;&gt;&#39;), datosFormRegistro, partial_img_reg));
+})</pre>
+
+<p>} function registro_completado() {</p>
+
+<pre>$(&quot;#body&quot;).load(&quot;templates/registroTemplate.mustache #plantilla_redir&quot;, function () {
+    var plantilla = document.getElementById(&quot;plantilla_redir&quot;).innerHTML;
+    $(&quot;#body&quot;).html(Mustache.render(plantilla));
+    registrar_usuario(datosFormRegistro);
+    datosFormRegistro = {};
+})</pre>
+
+<p>}</p>
+
+<p>//Funciones auxiliares para validar los formularios del registro function
+bucle_form(arrayForm, arrayDatos) {</p>
+
+<pre>var i = 0;
+
+for (var campo in arrayForm) {
+    var valorCampo = $(&quot;#input_&quot; + campo + &quot;_registro&quot;).val();
+    var helper = $(&quot;#help_&quot; + campo);
+    var icon = $(&quot;#icon_help_&quot; + campo);
+
+    helper.html(&quot;&quot;);
+    helper.removeClass(&quot;alert alert-warning alert-danger&quot;);
+    icon.removeClass(&quot;glyphicon-warning-sign glyphicon-remove&quot;);
+
+    if (valorCampo == &quot;&quot; &amp;&amp; campo != &quot;imagen&quot;) {
+        helper.html(arrayForm[campo]);
+        helper.addClass(&quot;alert alert-warning&quot;);
+        icon.addClass(&quot;glyphicon-warning-sign&quot;);
+    } else if (campo != &quot;imagen&quot;) {
+        validar_servidor(campo, valorCampo, helper, icon);
+        arrayDatos[i] = {
+            campo: campo,
+            valor: valorCampo
+        };
+        i++;
+    }
+}</pre>
+
+<p>} function validar_servidor(campo, valorCampo, helper, icon) {</p>
+
+<pre>switch (campo) {
+    case &#39;user&#39;:
+        user_exist(valorCampo);
+        break;
+    case &#39;pass&#39;:
+    case &#39;pass_2&#39;:
+        var pass = $(&quot;#input_pass_registro&quot;);
+        var pass2 = $(&quot;#input_pass_2_registro&quot;);
+        if (pass.val() != &quot;&quot; &amp;&amp; pass2.val() != &quot;&quot;) {
+            if (pass.val() != pass2.val()) {
+                helper.html(&quot;Las contraseñas deben coincidir&quot;);
+                helper.addClass(&quot;alert alert-danger&quot;);
+                icon.addClass(&quot;glyphicon-remove&quot;);
+            }
+        }
+        break;
+    case &#39;email&#39;:
+        if (!checkEmail(valorCampo)) {
+            helper.html(&quot;Introduzca un email valido&quot;);
+            helper.addClass(&quot;alert alert-danger&quot;);
+            icon.addClass(&quot;glyphicon-remove&quot;);
+        } else {
+            email_exist(valorCampo);
+        }
+        break;
+    case &#39;telefono&#39;:
+        var regExpNum = /^[0-9]{9}$/;
+        var regExpNumComp = /^\(\+\d{2,3}\)\d{9}$/;
+        if (!(!valorCampo.match(regExpNum) ^ !valorCampo.match(regExpNumComp))) {
+            helper.html(&quot;Introduzca un telefono valido&quot;);
+            helper.addClass(&quot;alert alert-danger&quot;);
+            icon.addClass(&quot;glyphicon-remove&quot;);
+        }
+        break;
+}</pre>
+
+<p>} function comprobar_errores(arrayForm) {</p>
+
+<pre>var correcto = true;
+
+for (var campo in arrayForm) {
+    var helper = $(&quot;#help_&quot; + campo);
+
+    if ((helper.html() == &quot;&quot;) &amp;&amp; correcto)
+        correcto = true;
+    else
+        correcto = false;
+}</pre>
+
+<p>} function checkEmail(email) {</p>
+
+<pre>var sQtext = &#39;[^\\x0d\\x22\\x5c\\x80-\\xff]&#39;;
+var sDtext = &#39;[^\\x0d\\x5b-\\x5d\\x80-\\xff]&#39;;
+var sAtom = &#39;[^\\x00-\\x20\\x22\\x28\\x29\\x2c\\x2e\\x3a-\\x3c\\x3e\\x40\\x5b-\\x5d\\x7f-\\xff]+&#39;;
+var sQuotedPair = &#39;\\x5c[\\x00-\\x7f]&#39;;
+var sDomainLiteral = &#39;\\x5b(&#39; + sDtext + &#39;|&#39; + sQuotedPair + &#39;)*\\x5d&#39;;
+var sQuotedString = &#39;\\x22(&#39; + sQtext + &#39;|&#39; + sQuotedPair + &#39;)*\\x22&#39;;
+var sDomain_ref = sAtom;
+var sSubDomain = &#39;(&#39; + sDomain_ref + &#39;|&#39; + sDomainLiteral + &#39;)&#39;;
+var sWord = &#39;(&#39; + sAtom + &#39;|&#39; + sQuotedString + &#39;)&#39;;
+var sDomain = sSubDomain + &#39;(\\x2e&#39; + sSubDomain + &#39;)*&#39;;
+var sLocalPart = sWord + &#39;(\\x2e&#39; + sWord + &#39;)*&#39;;
+var sAddrSpec = sLocalPart + &#39;\\x40&#39; + sDomain; // complete RFC822 email address spec
+var sValidEmail = &#39;^&#39; + sAddrSpec + &#39;$&#39;; // as whole string
+var regExpEmail = new RegExp(sValidEmail);
+
+return regExpEmail.test(email);</pre>
+
+<p>} function validar_imagen() {</p>
+
+<pre>var foto = $(&quot;#input_imagen_registro&quot;)[0].files[0];
+var url_imagen;
+var helper = $(&quot;#help_imagen&quot;);
+var icon = $(&quot;#icon_help_imagen&quot;);
+if (foto == null) {
+    url_imagen = $(&quot;#input_imagen_registro&quot;)[0].defaultValue;
+} else if (!foto.type.match(&quot;image.&quot;)) { //Solo subir imagenes
+    helper.html(&quot;Suba una imagen&quot;);
+    helper.addClass(&quot;alert alert-danger&quot;);
+    icon.addClass(&quot;glyphicon-remove&quot;);
+} else if (foto.size &gt; 1048576) { //No debe ser mayor que un 1MB
+    helper.html(&quot;Imagen demasiado grande&quot;);
+    helper.addClass(&quot;alert alert-danger&quot;);
+    icon.addClass(&quot;glyphicon-remove&quot;);
+} else {
+    url_imagen = &quot;img/usuarios/&quot; + datosFormRegistro.datos1.user + &quot;.png&quot;;
+
+    var reader = new FileReader();
+    reader.onload = (function (archivo) {
+        return function (e) {
+            var preview = document.getElementById(&quot;preview&quot;);
+            preview.src = e.target.result;
+            preview.title = escape(archivo.name);
+        };
+    })(foto);
+
+    reader.readAsDataURL(foto);
+}
+return url_imagen;</pre>
+
+<p>} function borrar_imagen() {</p>
+
+<pre>$(&quot;#input_imagen_registro&quot;).val(&quot;&quot;);
+$(&quot;#preview&quot;).attr({src: &quot;img/missing_user.png&quot;, title: &quot;&quot;});</pre>
+
+<p>} function upload_imagen(datos) {</p>
+
+<pre>$.ajax({
+    type: &#39;POST&#39;,
+    url: &quot;/web/upload&quot;,
+    data: datos,
+    success: function (msg) {
+        console.log(msg);
+        $.notify(msg);
+    },
+    error: function (xhr) {
+        console.log(xhr.responseText);
+        $.notify(xhr.responseText, &#39;error&#39;);
+    }
+});</pre>
+
+<p>}</p>
+
+<p>/**********************************************************/
+/***************** Login de usuario ***********************/
+/**********************************************************/</p>
+
+<p>//Animacion para mostrar-ocultar el menu de login function toggle_login() {</p>
+
+<pre>var form = document.getElementById(&quot;form_login&quot;);
+var login = document.getElementById(&quot;login&quot;);
+
+if (form.style.display == &quot;block&quot;) {
+    setTimeout(function () {
+        form.style.display = &quot;none&quot;;
+    }, 0);
+    $(&#39;#errorLogin&#39;).html(&quot;&quot;);
+    $(&#39;#login_user&#39;).removeClass(&#39;has-warning&#39;);
+    $(&#39;#login_pass&#39;).removeClass(&#39;has-warning&#39;);
+    fx(login, [
+        {&#39;inicio&#39;: 280, &#39;fin&#39;: 100, &#39;u&#39;: &#39;px&#39;, &#39;propCSS&#39;: &#39;width&#39;},
+        {&#39;inicio&#39;: 250, &#39;fin&#39;: 45, &#39;u&#39;: &#39;px&#39;, &#39;propCSS&#39;: &#39;height&#39;},
+        {&#39;inicio&#39;: 1, &#39;fin&#39;: 1, &#39;u&#39;: &#39;&#39;, &#39;propCSS&#39;: &#39;opacity&#39;}
+    ], 200, true, desacelerado);
+} else {
+    fx(login, [
+        {&#39;inicio&#39;: 100, &#39;fin&#39;: 280, &#39;u&#39;: &#39;px&#39;, &#39;propCSS&#39;: &#39;width&#39;},
+        {&#39;inicio&#39;: 45, &#39;fin&#39;: 250, &#39;u&#39;: &#39;px&#39;, &#39;propCSS&#39;: &#39;height&#39;},
+        {&#39;inicio&#39;: 1, &#39;fin&#39;: 1, &#39;u&#39;: &#39;&#39;, &#39;propCSS&#39;: &#39;opacity&#39;}
+    ], 200, true, desacelerado);
+    setTimeout(function () {
+        form.style.display = &quot;block&quot;;
+    }, 200)
+}</pre>
+
+<p>}</p>
+
+<p>//Validacion del form del login function validar_form_login() {</p>
+
+<pre>var errorLogin = $(&#39;#errorLogin&#39;);
+var loginUser = $(&#39;#login_user&#39;);
+var loginPass = $(&#39;#login_pass&#39;);
+var login = document.getElementById(&quot;login&quot;);
+
+if ($(&quot;#inputUser&quot;).val() == &quot;&quot; || $(&quot;#inputPassword&quot;).val() == &quot;&quot;) {
+    errorLogin.load(&quot;templates/loginTemplate.mustache #plantilla_error&quot;, function () {
+        var plantilla = document.getElementById(&#39;plantilla_error&#39;).innerHTML;
+        loginUser.removeClass(&#39;has-warning&#39;);
+        loginPass.removeClass(&#39;has-warning&#39;);
+
+        if ($(&quot;#inputUser&quot;).val() == &quot;&quot;) {
+            errorLogin.html(Mustache.render(plantilla,
+                {icon: &quot;fa-warning&quot;, class: &quot;alert-warning&quot;, error: &quot;Por favor, introduzca el usuario&quot;}));
+            loginUser.addClass(&#39;has-warning&#39;);
+            fx(login, [
+                {&#39;inicio&#39;: 280, &#39;fin&#39;: 280, &#39;u&#39;: &#39;px&#39;, &#39;propCSS&#39;: &#39;width&#39;},
+                {&#39;inicio&#39;: 250, &#39;fin&#39;: 320, &#39;u&#39;: &#39;px&#39;, &#39;propCSS&#39;: &#39;height&#39;},
+                {&#39;inicio&#39;: 1, &#39;fin&#39;: 1, &#39;u&#39;: &#39;&#39;, &#39;propCSS&#39;: &#39;opacity&#39;}
+            ], 200, true, desacelerado);
+            return false;
+
+        }
+
+        if ($(&quot;#inputPassword&quot;).val() == &quot;&quot;) {
+            errorLogin.html(Mustache.render(plantilla,
+                {icon: &quot;fa-warning&quot;, class: &quot;alert-warning&quot;, error: &quot;Por favor, introduzca la contraseña&quot;}));
+            loginPass.addClass(&#39;has-warning&#39;);
+            fx(login, [
+                {&#39;inicio&#39;: 280, &#39;fin&#39;: 280, &#39;u&#39;: &#39;px&#39;, &#39;propCSS&#39;: &#39;width&#39;},
+                {&#39;inicio&#39;: 250, &#39;fin&#39;: 320, &#39;u&#39;: &#39;px&#39;, &#39;propCSS&#39;: &#39;height&#39;},
+                {&#39;inicio&#39;: 1, &#39;fin&#39;: 1, &#39;u&#39;: &#39;&#39;, &#39;propCSS&#39;: &#39;opacity&#39;}
+            ], 200, true, desacelerado);
+            return false;
+
+        }
+    });
+}
+errorLogin.html(&quot;&quot;);
+return true;</pre>
+
+<p>}</p>
+
+<p>//Vista de cuando se esta logueado function mostrar_login_ok(user) {</p>
+
+<pre>var login = $(&quot;#login&quot;);
+
+if (have_credentiales()) {
+    login.load(&quot;templates/loginTemplate.mustache #plantilla_login_ok&quot;, function () {
+        var plantilla = document.getElementById(&quot;plantilla_login_ok&quot;).innerHTML;
+        login.html(Mustache.render(plantilla.replace(&#39;&amp;gt;&#39;, &#39;&gt;&#39;), user, partial_img_perfil));
+        login.css(&#39;width&#39;, &#39;260px&#39;);
+        login.css(&#39;height&#39;, &#39;105px&#39;);
+        login.css(&#39;top&#39;, &#39;-60px&#39;);
+    });
+}</pre>
+
+<p>} //Vista de cuando no se esta logueado function mostrar_logout() {</p>
+
+<pre>var login = $(&quot;#login&quot;);
+
+if (!have_credentiales()) {
+    login.load(&quot;templates/loginTemplate.mustache #plantilla_logout&quot;, function () {
+        var plantilla = document.getElementById(&quot;plantilla_logout&quot;).innerHTML;
+        login.html(Mustache.render(plantilla));
+        login.css(&#39;width&#39;, &#39;100px&#39;);
+        login.css(&#39;height&#39;, &#39;45px&#39;);
+        login.css(&#39;top&#39;, &#39;0px&#39;);
+    })
+} else {
+    $.cookie.json = true;
+    var usuarioObj = JSON.parse(localStorage.getItem(&#39;usuarioObj&#39;));
+    $.cookie.json = false;
+    mostrar_login_ok(usuarioObj);
+}</pre>
+
+<p>}</p>
+
+<p>/**********************************************************/
+/***************** CRUD de productos **********************/
+/**********************************************************/</p>
+
+<p>function datosForm(form) {</p>
+
+<pre>var inputs = $(form + &quot; .valids&quot;);
+var datos = {
+    &#39;descripcion&#39;: $(form + &quot; textarea&quot;).val()
+};
+for (var i = 0; i &lt; inputs.length; i++) {
+    datos[inputs[i].id.replace(&#39;_input&#39;, &#39;&#39;)] = inputs[i].value;
+}
+datos[&#39;ofertas&#39;] = $(&quot;input:checkbox&quot;)[0].checked;
+datos[&#39;url_imagen&#39;] = $(&#39;input[type=file]&#39;)[0].defaultValue;
+return datos;</pre>
+
+<p>}</p>
+
+<p>/**********************************************************/
+/***************** Gestion de credenciales ****************/
+/**********************************************************/</p>
+
+<p>//Comprobamos si hay credenciales guardadas y si son validas function
+have_credentiales() {</p>
+
+<pre>//Comprobamos si esta en local, sino buscamos en la cookie y las guardamos en local
+var items = [&#39;token&#39;, &#39;usuarioObj&#39;, &#39;usuario&#39;];
+var aux = true;
+
+for (var i = 0; i &lt; items.length; i++) {
+    if (localStorage.getItem(items[i]) == null || localStorage.getItem(items[i]) == &quot;undefined&quot;)
+        aux = false;
+}
+
+if (aux == false) {
+    var arrayCookie = [];
+    aux = true;
+    for (var i = 0; i &lt; items.length; i++) {
+        arrayCookie[i] = $.cookie(items[i]);
+        if (arrayCookie[i] == null)
+            aux = false;
+    }
+    //Si todo esta correcto en la cookie la guardamos en local
+    if (aux) {
+        for (var i = 0; i &lt; items.length; i++) {
+            localStorage.setItem(items[i], arrayCookie[i]);
+        }
+    } else {
+        delete_credenciales()
+    }
+}
+
+return aux;</pre>
+
+<p>} //Borramos todas las credenciales del programa function
+delete_credenciales() {</p>
+
+<pre>localStorage.removeItem(&#39;usuario&#39;);
+localStorage.removeItem(&#39;usuarioObj&#39;);
+localStorage.removeItem(&#39;token&#39;);
+$.removeCookie(&#39;usuario&#39;);
+$.removeCookie(&#39;usuarioObj&#39;);
+$.removeCookie(&#39;token&#39;);</pre>
+
+<p>}</p>
+
+<p>/**********************************************************/
+/***************** Animacion de los menus *****************/
+/**********************************************************/</p>
+
+<p>function transicion(curva, ms, callback) {</p>
+
+<pre>this.ant = 0.01;
+var _this = this;
+this.start = new Date().getTime();
+this.init = function () {
+    setTimeout(function () {
+        if (!_this.next()) {
+            callback(1);
+            _this.done_ = true;
+            window.globalIntervalo = 0;
+            return;
+        }
+        callback(_this.next());
+        _this.init();
+    }, 13);
+};
+this.next = function () {
+    var now = new Date().getTime();
+    if ((now - this.start) &gt; ms)
+        return false;
+    return this.ant = curva((now - this.start + .001) / ms, this.ant);
+}</pre>
+
+<p>} function fx(obj, efectos, ms, cola, curva) {</p>
+
+<pre>if (!window.globalIntervalo)
+    window.globalIntervalo = 1;
+else {
+    if (cola)
+        return setTimeout(function () {
+            fx(obj, efectos, ms, cola, curva)
+        }, 30);
+    else
+        return;
+}
+var t = new transicion(
+    curva, ms, function (p) {
+        for (var i = 0; efectos[i]; i++) {
+            if (efectos[i].fin &lt; efectos[i].inicio) {
+                var delta = efectos[i].inicio - efectos[i].fin;
+                obj.style[efectos[i].propCSS] = (efectos[i].inicio - (p * delta)) + efectos[i].u;
+                if (efectos[i].propCSS == &#39;opacity&#39;) {
+                    obj.style.zoom = 1;
+                    obj.style.MozOpacity = (efectos[i].inicio - (p * delta));
+                    obj.style.KhtmlOpacity = (efectos[i].inicio - (p * delta));
+                    obj.style.filter = &#39;alpha(opacity=&#39; + 100 * (efectos[i].inicio - (p * delta)) + &#39;)&#39;;
+                }
+            }
+            else {
+                var delta = efectos[i].fin - efectos[i].inicio;
+                obj.style[efectos[i].propCSS] = (efectos[i].inicio + (p * delta)) + efectos[i].u;
+                if (efectos[i].propCSS == &#39;opacity&#39;) {
+                    obj.style.zoom = 1;
+                    obj.style.MozOpacity = (efectos[i].inicio + (p * delta));
+                    obj.style.KhtmlOpacity = (efectos[i].inicio + (p * delta));
+                    obj.style.filter = &#39;alpha(opacity=&#39; + 100 * (efectos[i].inicio + (p * delta)) + &#39;)&#39;;
+                }
+            }
+        }
+
+    });
+t.init();
+t = null;</pre>
+
+<p>} function desacelerado(p, ant) {</p>
+
+<pre>var maxValue = 1, minValue = .001, totalP = 1, k = .25;
+var delta = maxValue - minValue;
+return minValue + (Math.pow(((1 / totalP) * p), k) * delta); //stepp</pre>
+
+<p>}</p>
+</main>
+
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

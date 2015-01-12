@@ -4,14 +4,26 @@ require 'app/dominio/proovedor'
 class ProovedorBO
 
   # Busca en el campo dado la cadena dada
-  def select_by(campo,cadena)
+  def select_by(campo, cadena, params)
     raise CustomMsgException.new(404,"Error 404: El campo #{campo} no existe") if !Proovedor.column_names.include?(campo)
-    Proovedor.where("#{campo} LIKE ?", "%#{cadena}%").order('created_at DESC')
+    {
+        datos: Proovedor.where("#{campo} LIKE ?", "%#{cadena}%")
+                   .offset(params[:inicio])
+                   .limit(params[:cantidad])
+                   .order('created_at DESC'),
+        total: Proovedor.where("#{campo} LIKE ?", "%#{cadena}%").count()
+    }
   end
 
   # Todos los proovedores
-  def all
-    Proovedor.all.order('created_at DESC')
+  def all(params)
+    {
+        datos: Proovedor.all
+                   .offset(params[:inicio])
+                   .limit(params[:cantidad])
+                   .order('created_at DESC'),
+        total: Proovedor.count()
+    }
   end
 
   # Devuelve el proovedor concreto

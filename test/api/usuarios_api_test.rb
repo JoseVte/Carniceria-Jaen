@@ -202,13 +202,13 @@ class UsuariosAPITest < MiniTest::Test
   # Test para comprobar si el producto no existe
   def test_api_carrito_add_producto_to_carrito_error_prod_no_exist
     d = {:user_id => 1,
-         :prod_id => 3
+         :prod_id => 0
     }
 
     post '/root/carrito', d, 'HTTP_X_AUTH_TOKEN'=> @@token
     assert_equal 404, last_response.status
     datos = last_response.body
-    assert_equal datos, 'Error 404: No existe el producto 3'
+    assert_equal 'Error 404: No existe el producto 0', datos
   end
 
   # Test para añadir un producto al carrito
@@ -233,12 +233,12 @@ class UsuariosAPITest < MiniTest::Test
 
   # Test para comprobar si el producto no existe
   def test_api_carrito_delete_producto_to_carrito_error_prod_no_exist
-    d = {:prod_id => 3}
+    d = {:prod_id => 0}
 
     delete '/root/carrito', d, 'HTTP_X_AUTH_TOKEN'=> @@token
     assert_equal 404, last_response.status
     datos = last_response.body
-    assert_equal datos, 'Error 404: No existe el producto 3'
+    assert_equal 'Error 404: No existe el producto 0', datos
   end
 
   # Test para añadir un producto al carrito

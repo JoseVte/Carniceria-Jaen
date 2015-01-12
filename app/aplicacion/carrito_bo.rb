@@ -7,13 +7,16 @@ class CarritoBO
   @@usuario_bo = UsuarioBO.new
 
   # Todos los productos del carrito en un hash
-  def all(usuario,login)
+  def all(usuario, login, params)
     if UsuarioBO.permitted?(login,usuario)
       u = @@usuario_bo.find_by_user(usuario,login)
       raise CustomMsgException.new(404,"Error 404: No existe el usuario #{usuario}") if u.nil?
       carrito = Carrito.find_by(usuarios_id: u.id)
 
-      carrito.productos.to_ary
+      {
+          datos: carrito.productos.offset(params[:inicio]).limit(params[:cantidad]).to_ary,
+          total: carrito.productos.count()
+      }
     end
   end
 

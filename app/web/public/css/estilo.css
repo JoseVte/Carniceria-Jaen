@@ -1,0 +1,172 @@
+@font-face {
+    font-family: 'Nunito';
+    src: url(../fonts/Nunito-Regular.ttf) format("truetype");
+}
+
+#titulo{
+    margin-top: 0;
+    margin-bottom: 0;
+    font-family: 'Nunito';
+}
+#row_nav{
+    position: relative;
+}
+#login{
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 99;
+    margin-right: 15px;
+    text-align: center;
+    width: 100px;
+    height: 45px;
+}
+
+#crud {
+    position: absolute;
+    left: 400px;
+    top: 0;
+    z-index: 99;
+    margin-bottom: auto;
+    margin-right: 15px;
+    text-align: center;
+    width: 100px;
+    height: 45px;
+}
+
+#click_login, #inicio, #click_crud {
+    cursor: pointer;
+}
+.scroll_horizontal{
+    overflow:scroll;
+}
+
+header.panel-heading {
+    height: 160px;
+    background-image: -webkit-linear-gradient(top, #f8e1ad 0%, #f8c390 100%);
+    background-image:      -o-linear-gradient(top, #f8e1ad 0%, #f8c390 100%);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#f8e1ad), to(#f8c390));
+    background-image:         linear-gradient(to bottom, #f8e1ad 0%, #f8c390 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#fff8f8f8', GradientType=0);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+    background-repeat: repeat-x;
+}
+.row{
+    margin-right: 0;
+}
+.redir{
+    text-align: center;
+    font-size: 16px;
+}
+.redir > .fa-check{
+    color: lightgreen;
+    margin: 0 10px;
+}
+#form_registro_1, #form_registro_2{
+    margin: 10px 20px;
+}
+#form_registro_1 > fieldset > div > div > div > span.input-group-addon{
+    width: 165px;
+    text-align: justify;
+}
+#form_registro_2 > fieldset > div > div > div > span.input-group-addon{
+    width: 100px;
+    text-align: justify;
+}
+#form_registro_1 > fieldset > div > div > div > span > i, #form_registro_2 > fieldset > div > div > div > span > i{
+    margin-right: 5px;
+}
+#form_registro_1 > fieldset > div > div > div > input{
+    width: 365px;
+    border-radius: 0 4px 4px 0;
+}
+#form_registro_2 > fieldset > div > div > div > input{
+    width: 400px;
+    border-radius: 0 4px 4px 0;
+}
+#form_registro_2 > fieldset > div > div > input{
+    margin-left: 20px;
+}
+#form_registro_1 > fieldset > div > div > div.help-block, #form_registro_2 > fieldset > div > div > div.help-block{
+    height: 30px;
+    padding: 4px 10px;
+    margin: 0;
+    width: 290px;
+}
+.form-group.col-md-6{
+    padding: 0 60px;
+}
+
+#form_registro_resumen {
+    padding: 0 20px;
+}
+#form_registro_resumen > div {
+    padding: 0;
+    border-bottom-color: rgb(248, 150, 83);
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-image-outset: 0;
+    border-image-repeat: stretch;
+    border-image-slice: 100%;
+    border-image-source: none;
+    border-image-width: 1px;
+    border-left-color: rgb(248, 150, 83);
+    border-left-style: solid;
+    border-left-width: 1px;
+    border-right-color: rgb(248, 150, 83);
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-top-color: rgb(248, 150, 83);
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-top-style: solid;
+    border-top-width: 1px;
+    box-shadow: rgba(0, 0, 0, 0.0470588) 0 1px 2px 0;
+    box-sizing: border-box;
+    color: rgb(51, 51, 51);
+}
+
+.panel-default > .panel-heading {
+    height: auto;
+    background-color: rgb(245, 245, 245);
+    background-image: -webkit-linear-gradient(top, #f8e1ad 0%, #f8c390 100%);
+    background-image: -o-linear-gradient(top, #f8e1ad 0%, #f8c390 100%);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#f8e1ad), to(#f8c390));
+    background-image: linear-gradient(to bottom, #f8e1ad 0%, #f8c390 100%);
+    background-repeat: repeat-x;
+    border-bottom-color: rgb(221, 221, 221);
+    border-left-color: rgb(221, 221, 221);
+    border-right-color: rgb(221, 221, 221);
+    border-top-color: rgb(221, 221, 221);
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    box-sizing: border-box;
+    color: rgb(51, 51, 51);
+    display: block;
+    padding-bottom: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.panel-footer {
+    overflow: hidden;
+}
+#self {
+    text-align: center;
+}
+#next {
+    text-align: right;
+}
+
+.form_registro_campo {
+    font-weight: bold;
+    text-transform: capitalize;
+}
+.form_registro_valor {
+}
+#form_registro_resumen > div > div > div {
+    text-align: center;
+    padding: 10px 0;
+}

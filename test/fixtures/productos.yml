@@ -1,11 +1,12 @@
 jamon_serrano:
   id: 1
   nombre: Jamon serrano
-  descripcion: Jamon de pata negra
+  descripcion: Jamon de pata negra de el castillo
   precioKg: 75
   stock: 100
   ofertas: true
   rebaja: 10
+  url_imagen: img/productos/jamonibericodebellota_elcastillo.png
   proovedor_id: 1
 
 jamon_york:
@@ -15,4 +16,78 @@ jamon_york:
   precioKg: 5
   stock: 200
   ofertas: false
+  url_imagen: img/productos/jamonyork_elpozo.png
+  proovedor_id: 1
+
+chorizo:
+  id: 3
+  nombre: Chorizo
+  descripcion: Chorizo de pamplona
+  precioKg: 5
+  stock: 200
+  ofertas: true
+  rebaja: 5
+  proovedor_id: 1
+
+jamon_york3:
+  id: 4
+  nombre: Jamon york3
+  descripcion: Jamon normalito
+  precioKg: 5
+  stock: 200
+  ofertas: true
+  proovedor_id: 1
+
+jamon_york4:
+  id: 5
+  nombre: Jamon york4
+  descripcion: Jamon normalito
+  precioKg: 5
+  stock: 200
+  ofertas: true
+  proovedor_id: 1
+
+jamon_york5:
+  id: 6
+  nombre: Jamon york5
+  descripcion: Jamon normalito
+  precioKg: 5
+  stock: 200
+  ofertas: true
+  proovedor_id: 1
+
+jamon_york6:
+  id: 7
+  nombre: Jamon york6
+  descripcion: Jamon normalito
+  precioKg: 5
+  stock: 200
+  ofertas: true
+  proovedor_id: 1
+
+jamon_york7:
+  id: 8
+  nombre: Jamon york7
+  descripcion: Jamon normalito
+  precioKg: 5
+  stock: 200
+  ofertas: true
+  proovedor_id: 1
+
+jamon_york8:
+  id: 9
+  nombre: Jamon york8
+  descripcion: Jamon normalito
+  precioKg: 5
+  stock: 200
+  ofertas: true
+  proovedor_id: 1
+
+jamon_york9:
+  id: 10
+  nombre: Jamon york9
+  descripcion: Jamon normalito
+  precioKg: 5
+  stock: 200
+  ofertas: true
   proovedor_id: 1

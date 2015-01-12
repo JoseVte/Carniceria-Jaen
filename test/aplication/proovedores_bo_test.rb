@@ -24,21 +24,21 @@ class ProovedorBOTest < MiniTest::Test
 
   # Test para buscar un proovedor a partir de una subcadena
   def test_bo_proovedor_buscar
-    lista = @@proov_bo.select_by('nombreEmpresa','Josrom')
+    lista = @@proov_bo.select_by('nombreEmpresa', 'Josrom', {})[:datos]
     assert_equal 1, lista.length
   end
 
   # Test para probar si no existe el campo de busqueda
   def test_bo_proovedor_buscar_error_no_exist
     e = assert_raises CustomMsgException  do
-      @@proov_bo.select_by('noExiste','Josrom')
+      @@proov_bo.select_by('noExiste', 'Josrom', {})
     end
     assert_equal 'Error 404: El campo noExiste no existe',e.message
   end
 
   # Test para listar todos los proovedores
   def test_bo_proovedor_all
-    lista = @@proov_bo.all()
+    lista = @@proov_bo.all({})[:datos]
     assert_equal 1, lista.length
   end
 

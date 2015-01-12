@@ -12,6 +12,7 @@ class ProovedorAPI < Sinatra::Base
 
   # Configuracion inicial
   configure do
+    register Sinatra::ActiveRecordExtension
     puts 'configurando API de proovedores...'
     @@proovedor_bo = ProovedorBO.new
   end
@@ -25,10 +26,11 @@ class ProovedorAPI < Sinatra::Base
   # Devuelve un listado con todos los proovedores que contengan la subcadena
   get '/buscar/:campo/:cadena' do
     begin
-      p = @@proovedor_bo.select_by(params['campo'],params['cadena'])
+      params_parseados = Utilidad.parse_params(params)
+      p = @@proovedor_bo.select_by(params['campo'], params['cadena'], params_parseados)
       status 200
       content_type :json
-      result = Utilidad.paginacion(request.env['REQUEST_PATH'],p,params)
+      result = Utilidad.paginacion(request.env['REQUEST_PATH'], p, params_parseados)
       result.to_json
     rescue CustomMsgException => e
       status e.status
@@ -39,10 +41,11 @@ class ProovedorAPI < Sinatra::Base
   # Todos los proovedor en JSON
   get '/all' do
     begin
-      p = @@proovedor_bo.all
+      params_parseados = Utilidad.parse_params(params)
+      p = @@proovedor_bo.all(params_parseados)
       status 200
       content_type :json
-      result = Utilidad.paginacion(request.env['REQUEST_PATH'],p,params)
+      result = Utilidad.paginacion(request.env['REQUEST_PATH'], p, params_parseados)
       result.to_json
     rescue CustomMsgException => e
       status e.status
